@@ -6,6 +6,7 @@ export const Toast = styled.div`
   top: 78px;
   right: 50%;
   transform: translate(50%);
+  z-index: 1;
 
   width: 272px;
   min-height: 52px;
@@ -63,13 +64,13 @@ export const Toast = styled.div`
   }
 
   ${(props) =>
-        props.isOpen === false
-            ? `
+    props.isOpen === false
+      ? `
         visibility: hidden;
         transition: visibility 0.5s;
         animation: fadeOut 0.5s;
       `
-            : `
+      : `
         visibility: visible;
         animation: fadeIn 0.5s 0s;
   `}
