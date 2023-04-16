@@ -35,7 +35,7 @@ import IconKey from "../../assets/img/key.png"
 import LineEffect from "../../assets/img/line-effect.png"
 
 export default function SignUp() {
-    const { setToastType, setIsLoggedIn, setUserData, userData, signup } = useContext(AuthContext);
+    const { setToastType, setIsLoggedIn, setUserData, userData, signup, createUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -95,7 +95,11 @@ export default function SignUp() {
 
                         try {
 
-                            await signup(values.email, values.password)
+                            const userParams = { name: values.name }
+
+                            await signup(values.email, values.password, userParams)
+
+
 
                             navigate('/');
 

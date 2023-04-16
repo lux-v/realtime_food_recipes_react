@@ -13,9 +13,42 @@ const AuthProvider = ({ children }) => {
 
     console.log("app: ", app)
 
-    const signup = (email, password) => {
-        return app.auth().createUserWithEmailAndPassword(email, password)
 
+    const signup = async (email, password, userParams) => {
+        return app.auth().createUserWithEmailAndPassword(email, password).then(credential => {
+            handleUser(credential.user, userParams)
+        })
+    }
+
+    const handleUser = (rawUser, userParams) => {
+        console.log("rawUser: ", rawUser)
+        if (rawUser) {
+            const user = formatUser(rawUser, userParams)
+
+            console.log("user:", user)
+
+            createUser(user.uid, user)
+
+            return user
+        } else {
+
+            return false
+        }
+    }
+
+    const formatUser = (user, userParams) => {
+        return {
+            uid: user.uid,
+            email: user.email,
+            ...userParams,
+        }
+    }
+
+
+    const createUser = async (uid, userParams) => {
+        return app.firestore().collection("users").doc(uid).set({
+            ...userParams
+        })
     }
 
 
@@ -56,6 +89,7 @@ const AuthProvider = ({ children }) => {
                 toastType,
                 setToastType,
                 signup,
+                createUser,
                 login,
                 logout,
                 resetPassword

@@ -53,7 +53,7 @@ export default function AddNewStudent() {
 
                             setToastType({
                                 open: true,
-                                message: 'Reset password request is successful. Check your email.',
+                                message: 'Check your email to futher instructions.',
                                 type: 'success',
                             });
                         }
