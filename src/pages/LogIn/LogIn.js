@@ -28,13 +28,15 @@ import {
   BigWrapper,
   LineEffectWrapper,
 } from './LoginStyle';
-import ImageLogin from '../../assets/img/3-bowel-fruit.png';
+import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from "../../assets/img/profile.svg"
 import IconKey from "../../assets/img/key.png"
 import LineEffect from "../../assets/img/line-effect.png"
 
-export default function LogIn() {
-  const { setToastType, setIsLoggedIn, setUserData } = useContext(AuthContext);
+import app from "../../firebase"
+
+const LogIn = () => {
+  const { setToastType, userData, setIsLoggedIn, setUserData, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -87,8 +89,26 @@ export default function LogIn() {
             //     type: 'error',
             //   });
             // } 
+            try {
+              await login(values.email, values.password)
 
-            console.log(values);
+              navigate("/")
+
+              setToastType({
+                open: true,
+                message: `Welcome back, ${userData.first_name}.`,
+                type: 'success',
+              });
+
+            }
+            catch (err) {
+              setToastType({
+                open: true,
+                message: err.message,
+                type: 'error',
+              });
+            }
+
           }}
         >
           {(formik) => (
@@ -148,7 +168,7 @@ export default function LogIn() {
         </Formik>
       </Wrapper>
       <ImageContainer>
-        <ImageImage src={ImageLogin} />
+        <ImageImage src={FruitBowls} />
       </ImageContainer>
       <LineEffectWrapper>
         <img src={LineEffect} style={{ height: "100%" }} />
@@ -156,3 +176,4 @@ export default function LogIn() {
     </BigWrapper >
   );
 }
+export default LogIn

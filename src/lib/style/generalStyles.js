@@ -29,7 +29,7 @@ export const Form = styled(FormFormik)`
   `}
 
     ${(props) =>
-    props.profile === 'true' &&
+    props.profile === true &&
     `
       width: 572px;
   `}
