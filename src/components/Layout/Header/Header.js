@@ -13,7 +13,7 @@ import {
 } from './HeaderStyle';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import LogoImg from '../../../assets/img/logo.svg';
+import LogoImg from '../../../assets/img/logo.png';
 import profileImg from '../../../assets/img/profilePicture.jpg';
 import Arrow from '../../../assets/img/arrow-icon.svg';
 import Sidebar from '../Sidebar/Sidebar';
@@ -36,9 +36,9 @@ const Header = () => {
   return (
     <>
       <HeaderInner>
-        <LogoLink to="/lectures">
+        <LogoLink to="/dashboard">
           <LogoElement src={LogoImg} alt="logo"></LogoElement>
-          <LogoText>Learning Academy</LogoText>
+
         </LogoLink>
         <Breadcrumbs />
         <Hamburger onClick={handleHamburgerClick} />

@@ -13,11 +13,12 @@ import { AuthContext } from './context/AuthContext';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from "./pages/SignUp/SignUp"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
-import Landing from "./pages/Landing/Landing"
+import Dashboard from "./pages/Dashboard/Dashboard"
 import PasswordReset from "./pages/PasswordReset/PasswordReset"
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 import Toast from './components/Toast/Toast';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
@@ -33,7 +34,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/landing" />} />
+          {/* <Route path="/" element={<Navigate replace to="/landing" />} /> */}
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotPassword" element={<PasswordReset />} />
@@ -48,7 +50,7 @@ function App() {
               />
             }
           >
-            <Route path="/landing" element={<Landing />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

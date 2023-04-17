@@ -37,6 +37,8 @@ export const LogoContainer = styled.div`
 
 export const LogoImg = styled.img`
 
+  
+
   height: 100px;
 
   @media (${breakpoints.tablet}) {
@@ -67,11 +69,43 @@ export const ImageContainer = styled.div`
 
 export const LineEffectWrapper = styled.div`
   position:absolute;
-  bottom:0;
-  right:0;
   height:100vh;
   overflow:hidden;
+  display:none;
+  max-width: ${props => props.maxWidth && props.maxWidth};
+
+
+  ${props =>
+    props.topLeft ?
+      `
+      // transform: scaleY(0);
+      // transform: scaleX(-1);
+      rotate: 180deg;
+      top:0;
+      left:0;
+    `
+      :
+      `
+      bottom:0;
+      right:0;
+      `
+  }
+
+
+@media(${breakpoints.tablet}){
+  display:block;
+  /* max-width: 700px; */
+}
+
+
+@media(${breakpoints.tablet}){
+  
+  /* max-width: 50vw; */
+}
+
+
 `
+
 
 export const ImageImage = styled.img`
   height: 100%;

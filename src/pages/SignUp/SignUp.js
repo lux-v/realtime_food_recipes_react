@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import jwt from 'jwt-decode';
+// import jwt from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 // import { loginUser, getUserByID } from '../../api/users';
 import { AuthContext } from '../../context/AuthContext';
@@ -13,10 +13,10 @@ import {
     ErrorMesagge,
     FormLabel,
     FormIcon,
-    RequiredSpan,
+
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
-import LogoPic from '../../assets/img/logo.svg';
+import LogoPic from '../../assets/img/logo.png';
 import {
     LogoContainer,
     LogoImg,
@@ -33,10 +33,38 @@ import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from "../../assets/img/profile.svg"
 import IconKey from "../../assets/img/key.png"
 import LineEffect from "../../assets/img/line-effect.png"
+import GoogleIcon from '../../assets/img/google-icon.png';
 
 export default function SignUp() {
-    const { setToastType, setIsLoggedIn, setUserData, userData, signup, createUser } = useContext(AuthContext);
+    const { setToastType, signup, googleSignin, handleUser } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const handleGoogleSignup = async () => {
+        try {
+            await googleSignin()
+                .then(res => {
+                    handleUser(res.user)
+
+                    const displayName = res.user.displayName
+                    navigate('/');
+
+                    setToastType({
+                        open: true,
+                        message: `Hello, ${displayName}`,
+                        type: 'success',
+                    });
+                })
+
+
+
+        } catch (err) {
+            setToastType({
+                open: true,
+                message: err.message,
+                type: 'error',
+            });
+        }
+    }
 
     return (
         <BigWrapper>
@@ -60,49 +88,12 @@ export default function SignUp() {
                         confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match").required("Confirm password is required")
                     })}
                     onSubmit={async (values, actions) => {
-                        // try {
-                        //   const res = await loginUser(values);
-                        //   const userData = await getUserByID(
-                        //     res.access_token,
-                        //     jwt(res.access_token).id,
-                        //   );
-
-                        //   localStorage.setItem('userDataAll', JSON.stringify(userData));
-                        //   localStorage.setItem('accessToken', res.access_token);
-
-                        //   setIsLoggedIn(true);
-                        //   setUserData(userData);
-                        //   setToastType({
-                        //     open: true,
-                        //     message: `Welcome back, ${userData.first_name}.`,
-                        //     type: 'success',
-                        //   });
-
-                        //   navigate('/lectures');
-
-                        //   actions.setSubmitting(false);
-                        //   actions.resetForm({
-                        //     email: '',
-                        //     password: '',
-                        //   });
-                        // } catch (err) {
-                        //   setToastType({
-                        //     open: true,
-                        //     message: `Email or password is not correct. Please try again.`,
-                        //     type: 'error',
-                        //   });
-                        // } 
-
                         try {
-
                             const userParams = { name: values.name }
 
                             await signup(values.email, values.password, userParams)
 
-
-
                             navigate('/');
-
                             setToastType({
                                 open: true,
                                 message: `Successfully signed up.`,
@@ -124,7 +115,7 @@ export default function SignUp() {
                     {(formik) => (
                         <Form >
                             <LogoContainer>
-                                <LogoImg src={LogoPic} />
+                                <LogoImg src={LogoPic} alt="logo" />
                             </LogoContainer>
                             <FormRow>
                                 <FormIcon src={IconProfile} />
@@ -196,6 +187,20 @@ export default function SignUp() {
                                     </Button>
                                 </ButtonWrapper>
                             </FormRow>
+                            <FormRow>
+                                <ButtonWrapper>
+                                    <Button isSecondary type="button" callback={handleGoogleSignup}>
+                                        <img
+                                            src={GoogleIcon}
+                                            style={{ height: '25px' }}
+                                            alt="google-icon"
+                                        />
+                                        <p style={{ margin: 'auto' }}>
+                                            Sign in with Google
+                                        </p>
+                                    </Button>
+                                </ButtonWrapper>
+                            </FormRow>
                             <FormRow center>
                                 <FormLabel italic>Already have an account? <BlueLink to="/login">Log in.</BlueLink> </FormLabel>
                             </FormRow>
@@ -207,7 +212,7 @@ export default function SignUp() {
                 <ImageImage src={FruitBowls} />
             </ImageContainer>
             <LineEffectWrapper>
-                <img src={LineEffect} style={{
+                <img src={LineEffect} alt="line-effect" style={{
                     height: "100%", transform: "scaleX(-1)"
                 }} />
             </LineEffectWrapper>

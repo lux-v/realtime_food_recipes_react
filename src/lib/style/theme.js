@@ -9,9 +9,10 @@ export const colors = {
     secondary: '#FFFFFF', // white
     bgPrimary: '#E9E9E9', // gray
     bgSecondary: '#FFFFFF', //white
+    textGreen: "#455439", //green
     textPrimary: '#081131', //gray1
-    textSecondary: '#4D4D4D', //gray2
-    textTertiary: '#CACACA', // gray 4
+    textSecondary: '#455439', //green
+    textTertiary: '#00000040', // gray 4
     borderPrimary: '#CACACA', // gray 4
     iconsPrimary: '#7F8590', // gray body
     link: '#0085FF', //link
@@ -20,6 +21,7 @@ export const colors = {
     darkRed: '#AA1D1D', //dark red
     logoText: '#626267', // logo text
     Bg: '#E9E9E9', //Bg
+    white05: "rgba(255, 255, 255, 0.5)", //white opacity 0.5
     columnHover: '#1ABBB9', // table column hover
     columnBackground: '#F9F9F9', // table column background
     tableBorder: '#E0E7ED', // table border

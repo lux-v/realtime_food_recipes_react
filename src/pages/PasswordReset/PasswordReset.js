@@ -91,8 +91,7 @@ export default function AddNewStudent() {
 
                             </FormRow>
                             <FormRow center >
-
-                                <Button isSecondary callback={() => navigate("/login")}>
+                                <Button isSecondary type="button" callback={() => navigate("/login")}>
                                     Login
                                 </Button>
                             </FormRow>

@@ -19,7 +19,7 @@ import {
     YourProfile as YourProfileIcon,
 } from './SidebarStyle';
 
-import LogoImg from '../../../assets/img/logo.svg';
+import LogoImg from '../../../assets/img/logo.png';
 import ExitIcon from '../../../assets/img/exit-icon.svg';
 
 const Header = ({ openHamburger, handleHamburgerClick }) => {
@@ -33,9 +33,8 @@ const Header = ({ openHamburger, handleHamburgerClick }) => {
 
     return (
         <SidebarWrapper openHamburger={openHamburger}>
-            <LogoLink className="desktopNav" to="/lectures">
+            <LogoLink className="desktopNav" to="/dashboard">
                 <LogoElement src={LogoImg} alt="logo"></LogoElement>
-                <LogoText>Learning Academy</LogoText>
             </LogoLink>
             <MenuWrapper className="mobileTabletNav" to="">
                 <MenuText>Menu</MenuText>
@@ -47,9 +46,9 @@ const Header = ({ openHamburger, handleHamburgerClick }) => {
             </MenuWrapper>
             <Nav>
                 <OptionsWrapper>
-                    <HeaderNavLink to="/lectures">
+                    <HeaderNavLink to="/dashboard">
                         <LecturesIcon />
-                        Lectures
+                        Dashboard
                     </HeaderNavLink>
                     <HeaderNavLink to="/students">
                         <StudentsIcon />

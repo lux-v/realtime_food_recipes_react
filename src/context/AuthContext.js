@@ -1,4 +1,5 @@
 
+import firebase from 'firebase';
 import { createContext, useEffect, useState } from 'react';
 import app from "../firebase"
 
@@ -11,49 +12,53 @@ const AuthProvider = ({ children }) => {
         open: false,
     });
 
+
+
     console.log("app: ", app)
 
 
-    const signup = async (email, password, userParams) => {
+    const signup = async (email, password, displayName) => {
         return app.auth().createUserWithEmailAndPassword(email, password).then(credential => {
-            handleUser(credential.user, userParams)
+            const formattedUser = { ...credential.user, displayName: displayName }
+            handleUser(formattedUser)
         })
     }
 
-    const handleUser = (rawUser, userParams) => {
-        console.log("rawUser: ", rawUser)
-        if (rawUser) {
-            const user = formatUser(rawUser, userParams)
 
-            console.log("user:", user)
 
-            createUser(user.uid, user)
 
-            return user
+    const handleUser = (formattedUser) => {
+        console.log("formattedUser: ", formattedUser)
+        if (formattedUser) {
+            createUser(formattedUser.uid, formattedUser)
+
         } else {
-
             return false
         }
     }
 
-    const formatUser = (user, userParams) => {
-        return {
-            uid: user.uid,
-            email: user.email,
-            ...userParams,
-        }
-    }
 
-
-    const createUser = async (uid, userParams) => {
+    const createUser = async (uid, formattedUser) => {
         return app.firestore().collection("users").doc(uid).set({
-            ...userParams
+            email: formattedUser.email,
+            displayName: formattedUser.displayName,
+
         })
     }
 
 
     const login = (email, password) => {
         return app.auth().signInWithEmailAndPassword(email, password)
+    }
+
+    const googleSignin = async () => {
+        let provider = new firebase.auth.GoogleAuthProvider()
+
+        return app.auth().signInWithPopup(provider).catch(err => {
+            alert(err)
+
+
+        })
     }
 
     const logout = () => {
@@ -92,7 +97,10 @@ const AuthProvider = ({ children }) => {
                 createUser,
                 login,
                 logout,
-                resetPassword
+                resetPassword,
+                googleSignin,
+                handleUser
+
             }}
         >
             {children}
