@@ -10,8 +10,8 @@ export const Button = style.button`
     gap: 8px;
     border-radius: 10px;
     position: relative;
-    height: 45px;
     border: none;
+    height: ${(props) => props.height || `45px`};
     width: ${(props) => props.width || `auto`};
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -38,6 +38,22 @@ export const Button = style.button`
         padding: 12px 16px;
         color: ${colors.primary};
         border: 1px solid ${colors.whiteBorder}; 
+
+        &:hover {
+               
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            background-color: ${colors.lightRed};
+        }
+    `}
+
+    ${(props) =>
+        props.isTertiary &&
+        `
+        background-color: transparent;
+        padding: 12px 16px;
+        color: ${colors.primary};
+        border: 1px solid ${colors.primary}; 
 
         &:hover {
                

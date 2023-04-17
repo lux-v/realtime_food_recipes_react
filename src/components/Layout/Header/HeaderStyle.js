@@ -24,8 +24,7 @@ export const LogoLink = styled(Link)`
 `;
 
 export const LogoImg = styled.img`
-  width: 77px;
-  height: 32px;
+  height: 45px;
 `;
 
 export const LogoText = styled.p`

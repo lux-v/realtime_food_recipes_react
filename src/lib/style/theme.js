@@ -12,7 +12,7 @@ export const colors = {
     textGreen: "#455439", //green
     textPrimary: '#081131', //gray1
     textSecondary: '#455439', //green
-    textTertiary: '#00000040', // gray 4
+    textTertiary: 'rgba(0, 0, 0, 0.5)', // gray 4
     borderPrimary: '#CACACA', // gray 4
     iconsPrimary: '#7F8590', // gray body
     link: '#0085FF', //link

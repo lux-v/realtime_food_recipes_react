@@ -10,8 +10,8 @@ import { ReactComponent as YourProfileIcon } from '../../../assets/img/yourProfi
 
 export const Sidebar = styled.nav`
   ${(props) =>
-        props.openHamburger &&
-        `
+    props.openHamburger &&
+    `
         display: block;
         height: 100vh;
     `}
@@ -34,8 +34,8 @@ export const LogoLink = styled(Link)`
     padding-left: 14px;
 
     ${(props) =>
-        props.className === 'desktopNav' &&
-        `
+    props.className === 'desktopNav' &&
+    `
         display:block;
     `}
   }
@@ -57,8 +57,8 @@ export const MenuWrapper = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 108px;
-  height: 45px;
+  
+  height: 75px;
 `;
 
 export const LogoText = styled.p`
@@ -129,8 +129,8 @@ export const HeaderNavLink = styled(NavLink)`
     width: 274px;
 
     ${(props) =>
-        props.className === 'mobileNav' &&
-        `
+    props.className === 'mobileNav' &&
+    `
         display:none;
     `}
   }
@@ -139,8 +139,8 @@ export const HeaderNavLink = styled(NavLink)`
     width: 224px;
 
     ${(props) =>
-        props.className === 'mobileNav' &&
-        `
+    props.className === 'mobileNav' &&
+    `
         display:none;
     `}
   }

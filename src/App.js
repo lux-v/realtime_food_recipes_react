@@ -23,8 +23,10 @@ import Landing from './pages/Landing/Landing';
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
 
+
   useEffect(() => {
-    const isLoggedIn = JSON.parse(localStorage.getItem('accessToken')) !== null;
+    const accessToken = JSON.parse(localStorage.getItem('accessToken'))
+    const isLoggedIn = accessToken !== null && accessToken !== undefined;
 
     setIsLoggedIn(isLoggedIn);
   });
@@ -35,10 +37,19 @@ function App() {
       <Router>
         <Routes>
           {/* <Route path="/" element={<Navigate replace to="/landing" />} /> */}
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={isLoggedIn ? <Dashboard /> : <Landing />} />
+          {isLoggedIn && <>
+            <Route path="/login" element={<Navigate replace to="/" />} />
+            <Route path="/signup" element={<Navigate replace to="/" />} />
+          </>
+          }
+
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgotPassword" element={<PasswordReset />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
+
+          <Route path="/about-us" element={<SignUp />} />
+          <Route path="/how-it-works" element={<PasswordReset />} />
 
           <Route
             element={

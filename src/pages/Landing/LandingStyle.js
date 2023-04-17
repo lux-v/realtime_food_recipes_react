@@ -3,6 +3,7 @@ import { colors, fonts, breakpoints } from "../../lib/style/theme";
 
 export const LandingContainer = styled.div`
     position: relative;
+    overflow:auto;
     height: 100%;
     background: ${colors.bgPrimary};
 `
@@ -49,13 +50,14 @@ export const TwoFoodPlatesWrapper = styled.div`
 export const TextWrapper = styled.div`
     position: absolute; 
     right: 40px; 
-    height: calc(100% - 100px); 
+    /* height: calc(100% - 100px);  */
     margin-top: 100px ;
     z-index: 1; 
     display: flex; 
     flex-direction:column;
     align-items: flex-end; 
     text-align: right;
+    padding:10px;
 
     @media(${breakpoints.tablet}){
         right: 15%
@@ -77,7 +79,6 @@ export const RedTextStyle = styled.p`
 `
 
 export const GrayTextStyle = styled.p`
-    background-color: ${colors.white05};
     color: ${colors.textTertiary}; 
     font-family: ${fonts.primary}; 
     line-height: 130px; 
@@ -118,3 +119,11 @@ export const AnswerText = styled.p`
     font-size: 16px; 
     font-weight: 400;
 `
+
+export const StartFreeWrapper = styled.div`
+    position:absolute;
+    bottom: 10%;
+    left: 30%
+`
+
+

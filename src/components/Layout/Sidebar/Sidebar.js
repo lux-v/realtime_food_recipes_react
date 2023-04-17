@@ -6,7 +6,6 @@ import {
     LogoImg as LogoElement,
     LogoLink,
     MenuWrapper,
-    LogoText,
     MenuText,
     ExitImg as ExitElement,
     Nav,
@@ -23,13 +22,8 @@ import LogoImg from '../../../assets/img/logo.png';
 import ExitIcon from '../../../assets/img/exit-icon.svg';
 
 const Header = ({ openHamburger, handleHamburgerClick }) => {
-    const { setIsLoggedIn, setUserData } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
 
-    const handleLogOut = () => {
-        setIsLoggedIn(false);
-        localStorage.clear('accessToken');
-        setUserData(null);
-    };
 
     return (
         <SidebarWrapper openHamburger={openHamburger}>
@@ -63,7 +57,9 @@ const Header = ({ openHamburger, handleHamburgerClick }) => {
                         Your profile
                     </HeaderNavLink>
                 </OptionsWrapper>
-                <HeaderNavLink onClick={handleLogOut} className="mobileNav" to="/login">
+                <HeaderNavLink
+                    onClick={logout}
+                    className="mobileNav" to="/login">
                     <LogOutIcon />
                     Log out
                 </HeaderNavLink>

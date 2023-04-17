@@ -1,11 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { colors, fonts } from '../../lib/style/theme'
-
 import LineEffect from '../../assets/img/line-effect.png';
 import LogoPic from '../../assets/img/logo.png';
 import TwoFoodPlates from "../../assets/img/2-food-plates.png"
-import { LineEffectWrapper, LogoContainer, LogoImg } from '../LogIn/LoginStyle';
+import { LineEffectWrapper } from '../LogIn/LoginStyle';
 import Button from '../../components/Button/Button'
 import { AnswerText, GrayTextStyle, GreenTextStyle, LandingContainer, LandingHeader, LogoWrapper, MainTextWrapper, QuestionText, RedTextStyle, SecondaryTextWrapper, TextWrapper, TwoFoodPlatesWrapper } from './LandingStyle';
 
@@ -33,23 +31,29 @@ const Landing = () => {
                 >
                     Login
                 </Button>
+                <Button
+                    isTertiary
+                    callback={() => navigate("/signup")}
+                >
+                    Start for FREE today
+                </Button>
             </LandingHeader>
 
 
             <LineEffectWrapper topLeft maxWidth="50vh">
-                <img src={LineEffect} />
+                <img alt="LineEffect" src={LineEffect} />
             </LineEffectWrapper>
 
             <LineEffectWrapper>
-                <img src={LineEffect} />
+                <img alt="LineEffect" src={LineEffect} />
             </LineEffectWrapper>
 
             <LogoWrapper>
-                <img src={LogoPic} style={{ height: "100px" }} />
+                <img alt="LogoPic" src={LogoPic} style={{ height: "100px" }} />
             </LogoWrapper >
 
             <TwoFoodPlatesWrapper>
-                <img src={TwoFoodPlates} style={{ width: "100%", height: "100%", objectFit: "cover", }} />
+                <img alt="TwoFoodPlates" src={TwoFoodPlates} style={{ width: "100%", height: "100%", objectFit: "cover", }} />
             </TwoFoodPlatesWrapper >
 
             <TextWrapper>
@@ -75,13 +79,9 @@ const Landing = () => {
                     <AnswerText>
                         We are here to help you! Choose food that you already have in you'r fridge and we will suggest new and innovative recipes that you can try!
                     </AnswerText>
-
                 </SecondaryTextWrapper>
-
             </TextWrapper>
-
-
-        </LandingContainer>
+        </LandingContainer >
     )
 }
 

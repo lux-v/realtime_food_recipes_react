@@ -3,8 +3,10 @@ import { Button as ButtonWrapepr } from './ButtonStyle';
 
 function Button({
     isSecondary = false,
+    isTertiary = false,
     isCancel = false,
     width,
+    height,
     type = 'submit',
     children,
     callback,
@@ -15,8 +17,10 @@ function Button({
     return (
         <ButtonWrapepr
             isSecondary={isSecondary}
+            isTertiary={isTertiary}
             isCancel={isCancel}
             width={width}
+            height={height}
             disabled={disabled}
             type={type}
             btnHiddenMobile={btnHiddenMobile}

@@ -13,17 +13,18 @@ import {
   ErrorMesagge,
   FormLabel,
   FormIcon,
+  LogoContainer,
+  LogoImg,
+  BlueLink,
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
 import LogoPic from '../../assets/img/logo.png';
 import {
-  LogoContainer,
-  LogoImg,
+
   ImageImage,
   ImageContainer,
   Wrapper,
   ButtonWrapper,
-  BlueLink,
   BigWrapper,
   LineEffectWrapper,
 } from './LoginStyle';
@@ -36,34 +37,35 @@ import GoogleIcon from '../../assets/img/google-icon.png';
 
 
 const LogIn = () => {
-  const { setToastType, userData, login, googleSignin, handleUser } =
+  const { setToastType, login, setIsLoggedIn
+    // googleSignin 
+  } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleGoogleSignup = async () => {
-    try {
-      await googleSignin()
-        .then(res => {
+  // const handleGoogleSignup = async () => {
+  //   try {
+  //     await googleSignin()
+  //       .then(res => {
 
-          const displayName = res.user.displayName
-          navigate('/');
+  //         const displayName = res.user.displayName
+  //         navigate('/dashboard');
 
-          setToastType({
-            open: true,
-            message: `Hello, ${displayName}`,
-            type: 'success',
-          });
-        })
+  //         setToastType({
+  //           open: true,
+  //           message: `Hello, ${displayName}`,
+  //           type: 'success',
+  //         });
+  //       })
 
-
-    } catch (err) {
-      setToastType({
-        open: true,
-        message: err.message,
-        type: 'error',
-      });
-    }
-  }
+  //   } catch (err) {
+  //     setToastType({
+  //       open: true,
+  //       message: err.message,
+  //       type: 'error',
+  //     });
+  //   }
+  // }
 
   return (
     <BigWrapper>
@@ -88,28 +90,24 @@ const LogIn = () => {
           onSubmit={async (values, actions) => {
 
             try {
-              await login(values.email, values.password);
+              await login(values.email, values.password)
 
-              navigate('/');
-
-              setToastType({
-                open: true,
-                message: `Welcome back, ${userData.name}.`,
-                type: 'success',
-              });
             } catch (err) {
               setToastType({
                 open: true,
                 message: err.message,
                 type: 'error',
               });
+
+              localStorage.clear("accessToken")
+              setIsLoggedIn(false)
             }
           }}
         >
           {(formik) => (
             <Form>
               <LogoContainer>
-                <LogoImg src={LogoPic} />
+                <LogoImg src={LogoPic} onClick={() => navigate("/")} />
               </LogoContainer>
               <FormRow>
                 <FormIcon src={IconProfile} />
@@ -147,7 +145,7 @@ const LogIn = () => {
                 />
               </FormRow>
               <FormRow right>
-                <BlueLink to='/forgotPassword'>
+                <BlueLink to='/password-reset'>
                   Forgot your password?
                 </BlueLink>
               </FormRow>
@@ -158,7 +156,7 @@ const LogIn = () => {
                     disabled={formik.isSubmitting}
                     isBtnOutline
                     isBtnForm
-                    width='175px'
+                    width='100%'
                   >
                     {formik.isSubmitting
                       ? 'Processing...'
@@ -168,7 +166,9 @@ const LogIn = () => {
               </FormRow>
               <FormRow>
                 <ButtonWrapper>
-                  <Button isSecondary type="button" callback={handleGoogleSignup}>
+                  <Button isSecondary type="button" width='100%'
+                  // callback={handleGoogleSignup}
+                  >
                     <img
                       src={GoogleIcon}
                       style={{ height: '25px' }}
@@ -183,7 +183,7 @@ const LogIn = () => {
               <FormRow center>
                 <FormLabel italic>
                   Don't have an account?{' '}
-                  <BlueLink to='/signup'>Sign up.</BlueLink>{' '}
+                  <BlueLink to='/signup'>Sign up.</BlueLink>
                 </FormLabel>
               </FormRow>
             </Form>

@@ -18,18 +18,14 @@ export const Content = styled.div`
         margin: 0 -24px;
   `}
 
-  ${(props) =>
-    props.isChangePassword &&
-    `
-        height: 100vh;
-  `}
+
 
   @media (${breakpoints.tablet}) {
     padding: 40px 72px;
 
     ${(props) =>
-      props.isSecondary &&
-      `
+    props.isSecondary &&
+    `
         padding: 40px 0px 0px 72px;
         position: relative;
         max-width: 692px;
@@ -42,8 +38,8 @@ export const Content = styled.div`
     padding: 40px;
 
     ${(props) =>
-      props.isSecondary &&
-      `
+    props.isSecondary &&
+    `
         padding: 40px 0 40px 40px;
         position: relative;
         max-width: 897px;
@@ -69,8 +65,8 @@ export const Heading = styled.div`
 
   @media (${breakpoints.tablet}) {
     ${(props) =>
-      props.floatLeft === true &&
-      `
+    props.floatLeft === true &&
+    `
       align-items: flex-start;
       gap: 48px;
     `}
@@ -88,8 +84,8 @@ const TitleStyle = css`
     line-height: 39px;
 
     ${(props) =>
-      props.isSecondary &&
-      `
+    props.isSecondary &&
+    `
     font-size: 24px;
     `}
   }

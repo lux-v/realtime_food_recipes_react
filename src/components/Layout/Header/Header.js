@@ -4,7 +4,6 @@ import {
   HeaderInner,
   LogoLink,
   LogoImg as LogoElement,
-  LogoText,
   Hamburger,
   HamburgerContent,
   HeaderProfile,

@@ -13,18 +13,18 @@ import {
     ErrorMesagge,
     FormLabel,
     FormIcon,
+    LogoContainer,
+    LogoImg,
+    BlueLink,
 
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
 import LogoPic from '../../assets/img/logo.png';
 import {
-    LogoContainer,
-    LogoImg,
     ImageImage,
     ImageContainer,
     Wrapper,
     ButtonWrapper,
-    BlueLink,
     BigWrapper,
     LineEffectWrapper,
 } from './SingUpStyle';
@@ -36,35 +36,37 @@ import LineEffect from "../../assets/img/line-effect.png"
 import GoogleIcon from '../../assets/img/google-icon.png';
 
 export default function SignUp() {
-    const { setToastType, signup, googleSignin, handleUser } = useContext(AuthContext);
+    const { setToastType, signup,
+        // googleSignin, handleUser 
+    } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleGoogleSignup = async () => {
-        try {
-            await googleSignin()
-                .then(res => {
-                    handleUser(res.user)
+    // const handleGoogleSignup = async () => {
+    //     try {
+    //         await googleSignin()
+    //             .then(res => {
+    //                 handleUser(res.user)
 
-                    const displayName = res.user.displayName
-                    navigate('/');
+    //                 const displayName = res.user.displayName
+    //                 navigate('/dashboard');
 
-                    setToastType({
-                        open: true,
-                        message: `Hello, ${displayName}`,
-                        type: 'success',
-                    });
-                })
+    //                 setToastType({
+    //                     open: true,
+    //                     message: `Hello, ${displayName}`,
+    //                     type: 'success',
+    //                 });
+    //             })
 
 
 
-        } catch (err) {
-            setToastType({
-                open: true,
-                message: err.message,
-                type: 'error',
-            });
-        }
-    }
+    //     } catch (err) {
+    //         setToastType({
+    //             open: true,
+    //             message: err.message,
+    //             type: 'error',
+    //         });
+    //     }
+    // }
 
     return (
         <BigWrapper>
@@ -89,16 +91,10 @@ export default function SignUp() {
                     })}
                     onSubmit={async (values, actions) => {
                         try {
-                            const userParams = { name: values.name }
 
-                            await signup(values.email, values.password, userParams)
 
-                            navigate('/');
-                            setToastType({
-                                open: true,
-                                message: `Successfully signed up.`,
-                                type: 'success',
-                            });
+                            await signup(values.email, values.password, values.name)
+
 
                         } catch (err) {
                             setToastType({
@@ -115,7 +111,7 @@ export default function SignUp() {
                     {(formik) => (
                         <Form >
                             <LogoContainer>
-                                <LogoImg src={LogoPic} alt="logo" />
+                                <LogoImg src={LogoPic} alt="logo" onClick={() => navigate("/")} />
                             </LogoContainer>
                             <FormRow>
                                 <FormIcon src={IconProfile} />
@@ -181,7 +177,7 @@ export default function SignUp() {
                                         disabled={formik.isSubmitting}
                                         isBtnOutline
                                         isBtnForm
-                                        width="175px"
+                                        width='100%'
                                     >
                                         {formik.isSubmitting ? 'Processing...' : 'Sign up'}
                                     </Button>
@@ -189,7 +185,9 @@ export default function SignUp() {
                             </FormRow>
                             <FormRow>
                                 <ButtonWrapper>
-                                    <Button isSecondary type="button" callback={handleGoogleSignup}>
+                                    <Button isSecondary type="button" width='100%'
+                                    // callback={handleGoogleSignup}
+                                    >
                                         <img
                                             src={GoogleIcon}
                                             style={{ height: '25px' }}

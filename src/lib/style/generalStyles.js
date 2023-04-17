@@ -17,6 +17,7 @@ import { ReactComponent as Edit } from '../../assets/img/edit.svg';
 export const Form = styled(FormFormik)`
   width: 272px;
   margin: 0 auto;
+    
 
   @media (${breakpoints.tablet}) {
     width: auto;
@@ -789,4 +790,45 @@ export const EditIcon = styled(Edit)`
   width: 18px;
   height: 18px;
   cursor: pointer;
+`;
+
+
+
+// logo login and signup
+export const LogoContainer = styled.div`
+  display:flex;
+  justify-content:center;
+
+  margin-bottom: 32px;
+
+    @media (${breakpoints.desktop}) {
+      margin-bottom: 64px;
+    }
+`;
+
+export const LogoImg = styled.img`
+  height: 70px;
+  cursor:pointer;
+
+  @media (${breakpoints.tablet}) {
+    height:100px;
+  }
+
+  @media (${breakpoints.desktop}) {
+    height:155px;
+  }
+`;
+
+export const BlueLink = styled(Link)`
+  color: ${colors.link};
+    
+  font-size: 14px;
+  font-family: ${fonts.secondary};
+  font-style: italic;
+  font-weight: 400;
+  line-height: 17px;
+
+  @media (${breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `;

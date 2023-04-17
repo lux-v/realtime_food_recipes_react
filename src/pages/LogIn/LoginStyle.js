@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { breakpoints, colors, fonts } from '../../lib/style/theme';
-import { Link } from 'react-router-dom';
+import { breakpoints, colors } from '../../lib/style/theme';
+
 
 
 
 export const BigWrapper = styled.div`
-
   position: relative;
-  height:100%;
-
+  height:100%;  
   display:flex;
   justify-content:center;
+  overflow:auto;
 
   background-color: ${colors.bgPrimary};
 
@@ -24,31 +23,6 @@ export const Wrapper = styled.div`
   width: 100%;
   z-index: 1;
 
-`;
-
-
-export const LogoContainer = styled.div`
-  display:flex;
-  justify-content:center;
-    @media (${breakpoints.desktop}) {
-      margin-bottom: 32px;
-    }
-`;
-
-export const LogoImg = styled.img`
-
-  
-
-  height: 100px;
-
-  @media (${breakpoints.tablet}) {
-    height:145px;
-  }
-
-
-  @media (${breakpoints.desktop}) {
-    height:185px;
-  }
 `;
 
 
@@ -113,20 +87,6 @@ export const ImageImage = styled.img`
 `;
 
 
-
-export const BlueLink = styled(Link)`
-  color: ${colors.link};
-  
-  font-size: 14px;
-  font-family: ${fonts.secondary};
-  font-style: italic;
-  font-weight: 400;
-  line-height: 17px;
-
-  @media (${breakpoints.tablet}) {
-    font-size: 16px;
-  }
-`;
 
 
 export const ButtonWrapper = styled.div`

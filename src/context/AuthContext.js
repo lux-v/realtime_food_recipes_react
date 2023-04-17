@@ -1,5 +1,3 @@
-
-import firebase from 'firebase';
 import { createContext, useEffect, useState } from 'react';
 import app from "../firebase"
 
@@ -12,58 +10,75 @@ const AuthProvider = ({ children }) => {
         open: false,
     });
 
-
-
-    console.log("app: ", app)
-
-
     const signup = async (email, password, displayName) => {
-        return app.auth().createUserWithEmailAndPassword(email, password).then(credential => {
-            const formattedUser = { ...credential.user, displayName: displayName }
-            handleUser(formattedUser)
-        })
+        const res = await app.auth().createUserWithEmailAndPassword(email, password)
+
+        const user = res.user;
+        // .then(credential => {
+        //     const formattedUser = { ...credential.user, displayName: displayName }
+        //     handleUser(formattedUser)
+        // })
+
+        localStorage.setItem("accessToken", JSON.stringify(user))
+        setIsLoggedIn(true)
+        setToastType({
+            open: true,
+            message: `Welcome, ${displayName}.`,
+            type: 'success',
+        });
+
     }
 
 
+    const login = async (email, password) => {
+        try {
+            const res = await app.auth().signInWithEmailAndPassword(email, password)
+            const user = res.user;
 
-
-    const handleUser = (formattedUser) => {
-        console.log("formattedUser: ", formattedUser)
-        if (formattedUser) {
-            createUser(formattedUser.uid, formattedUser)
-
-        } else {
-            return false
+            localStorage.setItem("accessToken", JSON.stringify(user))
+            setIsLoggedIn(true)
+            setToastType({
+                open: true,
+                message: `Welcome back, ${user.email}.`,
+                type: 'success',
+            });
+        }
+        catch {
+            await logout()
         }
     }
 
 
-    const createUser = async (uid, formattedUser) => {
-        return app.firestore().collection("users").doc(uid).set({
-            email: formattedUser.email,
-            displayName: formattedUser.displayName,
-
-        })
+    const logout = async () => {
+        setIsLoggedIn(false)
+        setUserData(null)
+        localStorage.clear('accessToken');
+        await app.auth().signOut();
     }
 
+    // const handleUser = (formattedUser) => {
+    //     if (formattedUser) {
+    //         createUser(formattedUser)
+    //     } else {
+    //         return false
+    //     }
+    // }
 
-    const login = (email, password) => {
-        return app.auth().signInWithEmailAndPassword(email, password)
-    }
+    // const createUser = async (formattedUser) => {
+    //     return app.firestore().collection("users").doc(formattedUser.uid).set({
+    //         email: formattedUser.email,
+    //         displayName: formattedUser.displayName,
 
-    const googleSignin = async () => {
-        let provider = new firebase.auth.GoogleAuthProvider()
-
-        return app.auth().signInWithPopup(provider).catch(err => {
-            alert(err)
+    //     })
+    // }
 
 
-        })
-    }
 
-    const logout = () => {
-        return app.auth().signOut();
-    }
+    // const googleSignin = async () => {
+    //     let provider = new firebase.auth.GoogleAuthProvider()
+    //     return app.auth().signInWithPopup(provider)
+    // }
+
 
     const resetPassword = (email) => {
         return app.auth().sendPasswordResetEmail(email)
@@ -73,10 +88,11 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = app.auth().onAuthStateChanged(user => {
             if (user) {
                 setUserData(user)
+                setIsLoggedIn(true)
                 localStorage.setItem("accessToken", JSON.stringify(user))
             } else {
                 setUserData(null)
-                localStorage.setItem("accessToken", null)
+                localStorage.clear("accessToken")
             }
         })
 
@@ -94,12 +110,12 @@ const AuthProvider = ({ children }) => {
                 toastType,
                 setToastType,
                 signup,
-                createUser,
+                // createUser,
                 login,
                 logout,
                 resetPassword,
-                googleSignin,
-                handleUser
+                // googleSignin,
+                // handleUser
 
             }}
         >
