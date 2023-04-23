@@ -45,9 +45,9 @@ const Sidebar = ({ openHamburger, handleHamburgerClick }) => {
                         <LecturesIcon />
                         Dashboard
                     </HeaderNavLink>
-                    <HeaderNavLink to="/recipies">
+                    <HeaderNavLink to="/recipes">
                         <StudentsIcon />
-                        Recipies
+                        Recipes
                     </HeaderNavLink>
                     <HeaderNavLink className="mobileNav" to="/profile">
                         <YourProfileIcon />

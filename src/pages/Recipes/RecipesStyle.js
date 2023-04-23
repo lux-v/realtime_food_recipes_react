@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../lib/style/theme";
 
 
-export const RecipiesWrapper = styled.div`
+export const RecipesWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 2rem;
