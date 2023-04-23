@@ -67,7 +67,7 @@ export const Button = style.button`
         props.isCancel &&
         `
         padding: 12px 24px;
-        background-color: ${colors.Bg};
+        background-color: ${colors.bgPrimary};
         color: ${colors.textPrimary};
         &:hover {
             transition: all 0.3s ease-in-out;

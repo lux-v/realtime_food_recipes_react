@@ -4,23 +4,38 @@ export const fonts = {
 };
 
 export const colors = {
+
+    // base
     primary: '#EB2828', //red-orange
-    primaryTransparent: '#BF393914', //red
     secondary: '#FFFFFF', // white
+    //background
     bgPrimary: '#E9E9E9', // gray
     bgSecondary: '#FFFFFF', //white
-    textGreen: "#455439", //green
+    //text
     textPrimary: '#081131', //gray1
     textSecondary: '#455439', //green
     textTertiary: 'rgba(0, 0, 0, 0.5)', // gray 4
-    borderPrimary: '#CACACA', // gray 4
+    textToast: "0D150D",
+    //icons
     iconsPrimary: '#7F8590', // gray body
+
+    //status colors
+    primarySuccess: '#B6F8C4',
+    secondarySuccess: "#36e05a",
+    primaryError: '#FFB7B7',
+    secondaryError: "#db6e6e",
+    primaryWarning: '#FAE7C7',
+    secondaryWarning: "#e3bb78",
+    primaryInfo: '#B2E7F5',
+    secondaryInfo: "#60bad1",
+
+
     link: '#0085FF', //link
     purple: '#4747BF', //purple
     lightRed: 'rgba(191, 57, 57, 0.08)', //light red
     darkRed: '#AA1D1D', //dark red
     logoText: '#626267', // logo text
-    Bg: '#E9E9E9', //Bg
+
     white05: "rgba(255, 255, 255, 0.5)", //white opacity 0.5
     columnHover: '#1ABBB9', // table column hover
     columnBackground: '#F9F9F9', // table column background

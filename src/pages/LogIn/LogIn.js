@@ -164,7 +164,7 @@ const LogIn = () => {
                   </Button>
                 </ButtonWrapper>
               </FormRow>
-              <FormRow>
+              {/* <FormRow>
                 <ButtonWrapper>
                   <Button isSecondary type="button" width='100%'
                   // callback={handleGoogleSignup}
@@ -179,7 +179,7 @@ const LogIn = () => {
                     </p>
                   </Button>
                 </ButtonWrapper>
-              </FormRow>
+              </FormRow> */}
               <FormRow center>
                 <FormLabel italic>
                   Don't have an account?{' '}

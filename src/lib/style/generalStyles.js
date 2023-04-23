@@ -552,7 +552,7 @@ export const TableCell = styled.td`
   width: inherit;
   height: 50px;
   padding: 18px 12px;
-  background-color: ${colors.Bg};
+  background-color: ${colors.bgPrimary};
   margin: 0;
   border-top: 1px solid ${colors.tableBorder};
   @media (${breakpoints.desktop}) {

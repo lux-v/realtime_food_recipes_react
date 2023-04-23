@@ -90,22 +90,8 @@ export default function SignUp() {
                         confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match").required("Confirm password is required")
                     })}
                     onSubmit={async (values, actions) => {
-                        try {
+                        await signup(values.email, values.password, values.name)
 
-
-                            await signup(values.email, values.password, values.name)
-
-
-                        } catch (err) {
-                            setToastType({
-                                open: true,
-                                message: err.message,
-                                type: 'error',
-                            });
-                        }
-
-
-                        console.log(values);
                     }}
                 >
                     {(formik) => (
@@ -183,7 +169,7 @@ export default function SignUp() {
                                     </Button>
                                 </ButtonWrapper>
                             </FormRow>
-                            <FormRow>
+                            {/* <FormRow>
                                 <ButtonWrapper>
                                     <Button isSecondary type="button" width='100%'
                                     // callback={handleGoogleSignup}
@@ -198,7 +184,7 @@ export default function SignUp() {
                                         </p>
                                     </Button>
                                 </ButtonWrapper>
-                            </FormRow>
+                            </FormRow> */}
                             <FormRow center>
                                 <FormLabel italic>Already have an account? <BlueLink to="/login">Log in.</BlueLink> </FormLabel>
                             </FormRow>
