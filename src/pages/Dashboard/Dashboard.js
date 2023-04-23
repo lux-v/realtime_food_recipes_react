@@ -9,28 +9,13 @@ import { AuthContext } from '../../context/AuthContext.js'
 const Dashboard = () => {
     const navigate = useNavigate()
 
-    const { logout } = useContext(AuthContext)
-
-    const handleSignOut = async () => {
-        try {
-            await logout()
-            navigate("/login")
-
-        }
-        catch (err) {
-        }
-    }
 
 
     return (
         <Layout
-            title="Title"
+            title="Dashboard"
         >
-            <Button
-                callback={handleSignOut}
-            >
-                Sign out
-            </Button>
+
         </Layout>
     )
 }

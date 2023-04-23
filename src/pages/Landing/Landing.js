@@ -5,6 +5,7 @@ import LogoPic from '../../assets/img/logo.png';
 import TwoFoodPlates from "../../assets/img/2-food-plates.png"
 import { LineEffectWrapper } from '../LogIn/LoginStyle';
 import Button from '../../components/Button/Button'
+import Layout from "../../components/Layout/Layout"
 import { AnswerText, GrayTextStyle, GreenTextStyle, LandingContainer, LandingHeader, LogoWrapper, MainTextWrapper, QuestionText, RedTextStyle, SecondaryTextWrapper, TextWrapper, TwoFoodPlatesWrapper } from './LandingStyle';
 
 
@@ -12,6 +13,7 @@ const Landing = () => {
     const navigate = useNavigate()
 
     return (
+
         <LandingContainer>
             <LandingHeader>
                 <Button
@@ -74,7 +76,7 @@ const Landing = () => {
 
                 <SecondaryTextWrapper>
                     <QuestionText>
-                        "What sould I eat today?"
+                        "What should I eat today?"
                     </QuestionText>
                     <AnswerText>
                         We are here to help you! Choose food that you already have in you'r fridge and we will suggest new and innovative recipes that you can try!
@@ -82,6 +84,7 @@ const Landing = () => {
                 </SecondaryTextWrapper>
             </TextWrapper>
         </LandingContainer >
+
     )
 }
 

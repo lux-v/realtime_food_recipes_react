@@ -15,7 +15,6 @@ import {
 export default function Layout({
     title,
     isCentered = false,
-    isHeadingVisible = true,
     elements,
     children,
 }) {
@@ -31,9 +30,8 @@ export default function Layout({
                 <ContentWrapper>
                     <Content
                         title={title}
-                        isCentered={isCentered}
-                        isHeadingVisible={isHeadingVisible}
                         elements={elements}
+                        isCentered={isCentered}
                     >
                         {children}
                     </Content>

@@ -145,7 +145,7 @@ export const HeaderNavLink = styled(NavLink)`
     `}
   }
 
-  &:after {
+  /* &:after {
     content: '';
     position: absolute;
     background-color: ${colors.primary};
@@ -161,7 +161,7 @@ export const HeaderNavLink = styled(NavLink)`
   &.active:after {
     width: 9px;
     border-radius: 50%;
-  }
+  } */
 
   @media (${breakpoints.tablet}) {
     &.active {

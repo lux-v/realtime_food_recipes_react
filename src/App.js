@@ -13,12 +13,14 @@ import { AuthContext } from './context/AuthContext';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from "./pages/SignUp/SignUp"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
+import SoonPage from "./pages/ComingSoon/ComingSoon"
 import Dashboard from "./pages/Dashboard/Dashboard"
 import PasswordReset from "./pages/PasswordReset/PasswordReset"
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 import Toast from './components/Toast/Toast';
 import Landing from './pages/Landing/Landing';
+import Recipies from './pages/Recipies/Recipies';
 
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
@@ -48,8 +50,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/password-reset" element={<PasswordReset />} />
 
-          <Route path="/about-us" element={<SignUp />} />
-          <Route path="/how-it-works" element={<PasswordReset />} />
+          <Route path="/about-us" element={<SoonPage />} />
+          <Route path="/how-it-works" element={<SoonPage />} />
 
           <Route
             element={
@@ -62,6 +64,7 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/recipies" element={<Recipies />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

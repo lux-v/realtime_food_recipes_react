@@ -10,6 +10,8 @@ export const Content = styled.div`
   background-color: ${colors.bgPrimary};
   margin: auto 0;
 
+  overflow:auto;
+
   ${(props) =>
     props.isSecondary &&
     `

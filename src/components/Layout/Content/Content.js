@@ -13,15 +13,17 @@ const Content = ({
   topLeftEffect = false,
   bottomRightEffect = false,
   isCentered = false,
-  isHeadingVisible = true,
   isSecondary = false,
   elements,
   children,
 }) => {
+  const showHeading = title != undefined || elements != undefined
+
   return (
     <ContentWrapper
       isSecondary={isSecondary}
     >
+      {/* ----------- styles ----------- */}
       {topLeftEffect &&
         <LineEffectWrapper topLeft maxWidth="50vh">
           <img alt="LineEffect" src={LineEffect} />
@@ -32,17 +34,21 @@ const Content = ({
           <img alt="LineEffect" src={LineEffect} />
         </LineEffectWrapper>
       }
-      {isHeadingVisible && (
+      {/* ----------------------------- */}
+
+      {showHeading && (
         <Heading
           isCentered={isCentered}
           floatLeft={elements && elements.props.children.length === undefined}
         >
-          {title && (
+          {title != undefined && (
             <Title isSecondary={isSecondary} isCentered={isCentered}>
               {title}
             </Title>
           )}
-          <ButtonWrapper>{elements}</ButtonWrapper>
+          {elements &&
+            <ButtonWrapper>{elements}</ButtonWrapper>
+          }
         </Heading>
       )}
       {children}

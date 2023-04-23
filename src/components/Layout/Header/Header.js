@@ -13,7 +13,7 @@ import {
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import LogoImg from '../../../assets/img/logo.png';
-import profileImg from '../../../assets/img/profilePicture.jpg';
+import profileImg from '../../../assets/img/profile.svg';
 import Arrow from '../../../assets/img/arrow-icon.svg';
 import Sidebar from '../Sidebar/Sidebar';
 
@@ -37,13 +37,12 @@ const Header = () => {
       <HeaderInner>
         <LogoLink to="/dashboard">
           <LogoElement src={LogoImg} alt="logo"></LogoElement>
-
         </LogoLink>
         <Breadcrumbs />
         <Hamburger onClick={handleHamburgerClick} />
         <HeaderProfile onClick={handleMenuClick}>
-          <ProfileImg src={profileImg} alt="profileImg"></ProfileImg>
-          <ArrowDropdown src={Arrow} alt="arrow"></ArrowDropdown>
+          <ProfileImg src={profileImg} alt="profileImg" />
+          <ArrowDropdown src={Arrow} alt="arrow" />
         </HeaderProfile>
         {openMenu && <Menu open={openMenu} />}
       </HeaderInner>

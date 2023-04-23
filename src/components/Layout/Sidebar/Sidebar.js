@@ -21,7 +21,8 @@ import {
 import LogoImg from '../../../assets/img/logo.png';
 import ExitIcon from '../../../assets/img/exit-icon.svg';
 
-const Header = ({ openHamburger, handleHamburgerClick }) => {
+
+const Sidebar = ({ openHamburger, handleHamburgerClick }) => {
     const { logout } = useContext(AuthContext);
 
 
@@ -44,22 +45,29 @@ const Header = ({ openHamburger, handleHamburgerClick }) => {
                         <LecturesIcon />
                         Dashboard
                     </HeaderNavLink>
-                    <HeaderNavLink to="/students">
+                    <HeaderNavLink to="/recipies">
                         <StudentsIcon />
-                        Students
-                    </HeaderNavLink>
-                    <HeaderNavLink to="/criteria">
-                        <CriteriaIcon />
-                        Criteria
+                        Recipies
                     </HeaderNavLink>
                     <HeaderNavLink className="mobileNav" to="/profile">
                         <YourProfileIcon />
                         Your profile
                     </HeaderNavLink>
+                    <HeaderNavLink to="/how-it-works">
+                        <CriteriaIcon />
+                        How It Works
+                    </HeaderNavLink>
+                    <HeaderNavLink to="/about-us">
+                        <CriteriaIcon />
+                        About us
+                    </HeaderNavLink>
                 </OptionsWrapper>
+
                 <HeaderNavLink
                     onClick={logout}
-                    className="mobileNav" to="/login">
+                    className="mobileNav"
+                    to="/login">
+
                     <LogOutIcon />
                     Log out
                 </HeaderNavLink>
@@ -67,4 +75,4 @@ const Header = ({ openHamburger, handleHamburgerClick }) => {
         </SidebarWrapper>
     );
 };
-export default Header;
+export default Sidebar;

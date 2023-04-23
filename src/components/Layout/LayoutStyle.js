@@ -60,5 +60,5 @@ export const HeaderWrapper = styled.header`
 export const ContentWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 60px);
 `;

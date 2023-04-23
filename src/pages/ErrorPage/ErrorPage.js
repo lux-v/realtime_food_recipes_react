@@ -7,8 +7,8 @@ function ErrorPage() {
 
     return (
         <Layout
-            title={'Error 404 - page not found'}
-            buttonText={'Back'}
+            title='Error 404 - page not found'
+            buttonText='Back'
             callback={() => navigate(-1)}
         />
     );

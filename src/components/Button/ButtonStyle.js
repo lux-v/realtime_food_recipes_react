@@ -95,8 +95,7 @@ export const Button = style.button`
 
 
     ${(props) =>
-        props.isTransparent &&
-        `
+        props.isTransparent && `
           background-color: transparent;
           padding-right: 8px;
           padding-left: 15px;

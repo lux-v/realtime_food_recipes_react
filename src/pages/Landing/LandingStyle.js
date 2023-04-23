@@ -50,7 +50,7 @@ export const TwoFoodPlatesWrapper = styled.div`
 export const TextWrapper = styled.div`
     position: absolute; 
     right: 40px; 
-    /* height: calc(100% - 100px);  */
+    
     margin-top: 100px ;
     z-index: 1; 
     display: flex; 
@@ -58,6 +58,11 @@ export const TextWrapper = styled.div`
     align-items: flex-end; 
     text-align: right;
     padding:10px;
+
+    @media(${breakpoints.tablet}){
+        right: 15%
+    }   
+    
 
     @media(${breakpoints.tablet}){
         right: 15%
@@ -73,51 +78,106 @@ export const MainTextWrapper = styled.div`
 export const RedTextStyle = styled.p`
     color: ${colors.primary}; 
     font-family: ${fonts.primary}; 
-    line-height: 130px; 
-    font-size: 128px; 
+    line-height: 60px; 
+    font-size: 54px; 
     font-weight: 700;
+
+    @media(${breakpoints.tablet}){
+        line-height: 74px; 
+        font-size: 72px; 
+    }
+
+    @media(${breakpoints.desktop}){
+        line-height: 130px; 
+        font-size: 128px; 
+    }
+
 `
 
 export const GrayTextStyle = styled.p`
     color: ${colors.textTertiary}; 
     font-family: ${fonts.primary}; 
-    line-height: 130px; 
-    font-size: 97px; 
+    line-height: 60px; 
+    font-size: 36px; 
     font-weight: 700;
     border-radius: 4px;
     padding:10px;
+
+    @media(${breakpoints.tablet}){
+        line-height: 70px; 
+        font-size: 64px; 
+    }
+
+    @media(${breakpoints.desktop}){
+        line-height: 130px; 
+        font-size: 97px; 
+    }
+
 `
 
 export const GreenTextStyle = styled.p`
     color: ${colors.textSecondary}; 
     font-family: ${fonts.primary}; 
-    line-height: 130px; 
-    font-size: 97px; 
+    line-height: 60px; 
+    font-size: 36px; 
     font-weight: 700;
+
+    @media(${breakpoints.tablet}){
+        line-height: 70px; 
+        font-size: 64px; 
+    }
+
+    @media(${breakpoints.desktop}){
+        line-height: 130px; 
+        font-size: 97px; 
+    }
+
 `
 
 export const SecondaryTextWrapper = styled.div`
     background-color: ${colors.white05};
-    width:600px;
+    width: 100%;
+    max-width:400px;
     padding: 10px;
-    border-radius: 10px;    
+    border-radius: 10px; 
+    
+    @media(${breakpoints.tablet}){
+        width: 500px;
+        padding: 10px;
+    }
+
+    @media(${breakpoints.desktop}){
+        width: 600px;
+        padding: 10px;
+    }
 `
 
 export const QuestionText = styled.p`
     color: ${colors.textMenu}; 
     font-family: ${fonts.primary}; 
-    line-height: 20px; 
-    font-size: 16px; 
+    line-height: 18px; 
+    font-size: 14px; 
     font-weight: 700;
+
+    
+    @media(${breakpoints.desktop}){
+        line-height: 20px; 
+        font-size: 16px; 
+    }
 `
 
 
 export const AnswerText = styled.p`
     color: ${colors.textMenu}; 
     font-family: ${fonts.primary}; 
-    line-height: 20px; 
-    font-size: 16px; 
+    line-height: 18px; 
+    font-size: 14px; 
     font-weight: 400;
+
+    @media(${breakpoints.desktop}){
+        line-height: 20px; 
+        font-size: 16px; 
+    }
 `
 
 export const StartFreeWrapper = styled.div`
