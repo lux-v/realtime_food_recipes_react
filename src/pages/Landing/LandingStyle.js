@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors, fonts, breakpoints } from "../../lib/style/theme";
 
 export const LandingContainer = styled.div`
@@ -158,14 +158,38 @@ export const GreenTextStyle = styled.p`
 `
 
 export const SecondaryTextWrapper = styled.div`
-    background-color: ${colors.white05};
     width: 100%;
     max-width:400px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px; 
-    
+    cursor:pointer;
+
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+
+    --b: 0.2em;   /* the thickness of the line */
+    --c: ${colors.primary}; /* the color */
+    --textMenu: ${colors.textMenu}; 
+
+    color:var(--textMenu);
+
+    background: 
+        linear-gradient(var(--c) 0,var(--textMenu) 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+        linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
+
+
+  &:hover{
+        --_p: 100%;
+        --_s: .3s;
+        scale:1.1;
+    };
+
+
     @media(${breakpoints.tablet}){
-        // width: 500px;
+        width: 500px;
     }
 
     @media(${breakpoints.desktop}){
@@ -173,32 +197,27 @@ export const SecondaryTextWrapper = styled.div`
     }
 `
 
-export const QuestionText = styled.p`
-    color: ${colors.textMenu}; 
+const SecondaryText = css`
+
     font-family: ${fonts.primary}; 
     line-height: 18px; 
-    font-size: 14px; 
-    font-weight: 700;
+    font-size: 14px;
 
-    
+
     @media(${breakpoints.desktop}){
         line-height: 20px; 
         font-size: 16px; 
     }
 `
 
+export const QuestionText = styled.p`
+    ${SecondaryText};
+    font-weight: 700;   
+`
 
 export const AnswerText = styled.p`
-    color: ${colors.textMenu}; 
-    font-family: ${fonts.primary}; 
-    line-height: 18px; 
-    font-size: 14px; 
+    ${SecondaryText};
     font-weight: 400;
-
-    @media(${breakpoints.desktop}){
-        line-height: 20px; 
-        font-size: 16px; 
-    }
 `
 
 export const StartFreeWrapper = styled.div`

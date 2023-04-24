@@ -74,7 +74,7 @@ const Landing = () => {
 
                 </MainTextWrapper>
 
-                <SecondaryTextWrapper>
+                <SecondaryTextWrapper onClick={() => navigate("/signup")}>
                     <QuestionText>
                         "What should I eat today?"
                     </QuestionText>
