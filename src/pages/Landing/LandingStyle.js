@@ -50,23 +50,27 @@ export const TwoFoodPlatesWrapper = styled.div`
 export const TextWrapper = styled.div`
     position: absolute; 
     right: 40px; 
+
+    height: calc(100% - 110px);
+    width: calc(100% - 40px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items:flex-end;
+    justify-content:flex-start;
+    align-content:space-around;
     
     margin-top: 100px ;
     z-index: 1; 
-    display: flex; 
-    flex-direction:column;
-    align-items: flex-end; 
+  
     text-align: right;
     padding:10px;
 
     @media(${breakpoints.tablet}){
         right: 15%
+        width: calc(100% - 15%);
     }   
     
-
-    @media(${breakpoints.tablet}){
-        right: 15%
-    }   
     
 `
 
@@ -161,13 +165,11 @@ export const SecondaryTextWrapper = styled.div`
     border-radius: 10px; 
     
     @media(${breakpoints.tablet}){
-        width: 500px;
-        padding: 10px;
+        // width: 500px;
     }
 
     @media(${breakpoints.desktop}){
         width: 600px;
-        padding: 10px;
     }
 `
 
