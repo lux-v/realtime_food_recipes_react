@@ -21,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Toast from './components/Toast/Toast';
 import Landing from './pages/Landing/Landing';
 import Recipes from './pages/Recipes/Recipes';
+import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
 
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
@@ -38,7 +39,6 @@ function App() {
     <>
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Navigate replace to="/landing" />} /> */}
           <Route path="/" element={isLoggedIn ? <Recipes /> : <Landing />} />
           {isLoggedIn && <>
             <Route path="/login" element={<Navigate replace to="/" />} />
@@ -65,6 +65,7 @@ function App() {
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/recipes/add-new" element={<RecipesAddNew />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

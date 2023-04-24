@@ -1,31 +1,20 @@
 import { Link } from 'react-router-dom';
 import style from 'styled-components';
-import { colors, breakpoints, fonts } from '../../lib/style/theme.js';
+import { colors, fonts } from '../../lib/style/theme.js';
 
 export const Menu = style.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
+    position: absolute;
+    top: 55px;
+    right: 0;
+  
     width: 306px;
-    position: relative;
     box-shadow: ${colors.boxShadow};
-    margin-top: 125px;
-    margin-right: 65px;
+        
     background-color: ${colors.secondary};
     border-radius: 8px;
-    z-index: 1;
+ 
     
-    visibility: hidden;
 
-    @media (${breakpoints.tablet}) {
-        visibility: visible;
-    }
-
-    @media (${breakpoints.desktop}) {
-        margin-right: 0;
-        visibility: visible;
-    }
 `;
 
 export const MenuLink = style(Link)`

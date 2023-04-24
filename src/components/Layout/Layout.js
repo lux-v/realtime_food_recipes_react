@@ -5,12 +5,11 @@ import Sidebar from './Sidebar/Sidebar';
 import Content from './Content/Content';
 
 import {
-    ContentWrapper,
-    HeaderWrapper,
     LayoutWrapper,
-    RightWrapper,
-    SidebarWrapper,
+    BodyWrapper,
+
 } from './LayoutStyle';
+
 
 export default function Layout({
     title,
@@ -18,25 +17,20 @@ export default function Layout({
     elements,
     children,
 }) {
+
     return (
         <LayoutWrapper>
-            <SidebarWrapper>
+            <Header />
+            <BodyWrapper>
                 <Sidebar />
-            </SidebarWrapper>
-            <RightWrapper>
-                <HeaderWrapper>
-                    <Header />
-                </HeaderWrapper>
-                <ContentWrapper>
-                    <Content
-                        title={title}
-                        elements={elements}
-                        isCentered={isCentered}
-                    >
-                        {children}
-                    </Content>
-                </ContentWrapper>
-            </RightWrapper>
+                <Content
+                    title={title}
+                    elements={elements}
+                    isCentered={isCentered}
+                >
+                    {children}
+                </Content>
+            </BodyWrapper>
         </LayoutWrapper>
     );
 }

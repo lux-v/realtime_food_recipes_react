@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { breakpoints, colors } from '../../lib/style/theme';
 
 
+
+
+
+export const FormWrapper = styled.div`
+
+`;
+
 export const BigWrapper = styled.div`
   position: relative;
   height:100%;
@@ -54,10 +61,6 @@ export const ImageImage = styled.img`
   transform: scaleX(-1);
   object-fit: cover;
 `;
-
-
-
-
 
 
 export const ButtonWrapper = styled.div`

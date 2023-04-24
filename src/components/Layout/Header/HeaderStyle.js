@@ -1,30 +1,78 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { colors, breakpoints } from '../../../lib/style/theme';
-import { ReactComponent as HamburgerIcon } from '../../../assets/img/hamburger-icon.svg';
+import { ReactComponent as Hamburger } from '../../../assets/img/hamburger-icon.svg';
+import { ReactComponent as ArrowIcon } from '../../../assets/img/arrow-icon.svg';
 
-export const HeaderInner = styled.div`
+
+export const HeaderWrapper = styled.header`
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 9px 24px;
+  user-select: none;
+  background-color: ${colors.bgSecondary};
+  box-shadow: 0px 3px 2px 0px #0000000a;
+  z-index: 3;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  height: 100%;
-  height: 40px;
+      
+
+  @media (${breakpoints.tablet}) {
+    padding: 8px 87px 8px 8px;
+  }
+
+  @media (${breakpoints.desktop}) {
+    padding: 10px 40px 10px 8px;
+  }
+
+  transition:all 0.2s ease-in;
 `;
 
+
+export const LeftSideWrapper = styled.div`
+  position: relative; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 232px; 
+  padding-right: 20px;
+`;
+
+
+export const RightSideWrapper = styled.div`
+  width: calc(100% - 240px); 
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-end;
+`;
+
+export const HeaderProfileWrapper = styled.div`
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+
+
+
+
 export const LogoLink = styled(Link)`
+
   &:hover {
     cursor: pointer;
   }
 
-  @media (${breakpoints.desktop}) {
-    display: none;
-  }
+
 `;
 
 export const LogoImg = styled.img`
-  height: 45px;
+  height: 40px;
 `;
 
 export const LogoText = styled.p`
@@ -38,21 +86,51 @@ export const LogoText = styled.p`
   color: ${colors.logoText};
 `;
 
-export const Hamburger = styled(HamburgerIcon)`
-  width: 27px;
-  height: 18px;
-  height: auto;
+
+export const HamburgerIcon = styled(Hamburger)`
+  width: 40px;
+  height: 40px;
+  border-radius:8px;
+  padding:5px;
+  
   cursor: pointer;
-  position: absolute;
-  right: 0%;
-  path {
-    fill: ${colors.textSecondary};
+
+  :hover{
+    background: ${colors.lightRed};
+    stroke:${colors.primary}
   }
 
+  transition: all 0.1s ease-in;
+
+  ${props =>
+    props.left ? `
+        position: absolute;
+        right: 0%;
+    ` : `
+      position: relative;
+    `
+  }
+
+  ${props =>
+    props.left ? `
+      display: none;
+      ` : `
+      display: block;
+    `
+  }  
+
+
   @media (${breakpoints.desktop}) {
-    display: none;
+    ${props =>
+    props.left ? `
+      display: block;
+      ` : `
+      display: none;
+    `}  
   }
 `;
+
+
 
 export const HamburgerContent = styled.div`
   display: none;
@@ -60,9 +138,11 @@ export const HamburgerContent = styled.div`
   right: 0;
   top: 0;
   width: 260px;
+  height:100%;
   background-color: ${colors.bgSecondary};
-  box-shadow: 0px 3px 2px 0px #0000000a;
-
+  
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  
   @media (${breakpoints.tablet}) {
     width: 315px;
   }
@@ -72,37 +152,57 @@ export const HamburgerContent = styled.div`
   }
 
   ${(props) =>
-    props.openHamburger &&
+    props.isSidebarOpen &&
     `
         display: block;
-    `}
-`;
-
-export const HeaderProfile = styled.nav`
-  display: none;
-
-  @media (${breakpoints.tablet}) {
-    position: absolute;
-    right: 0;
-    display: flex;
-    margin-right: 65px;
-    gap: 8px;
-    cursor: pointer;
-  }
-  @media (${breakpoints.desktop}) {
-    margin-right: 0px;
+    `
   }
 `;
+
+
 export const ProfileImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid ${colors.iconsPrimary};
+
+  background:${colors.bgSecondary};
 `;
 
-export const Arrow = styled.img`
-  width: 12px;
-  path {
-    fill: ${colors.iconsPrimary};
+export const Arrow = styled(ArrowIcon)`
+  width: 24px;
+
+  stroke:${colors.primary};
+`;
+
+
+export const HeaderProfile = styled.nav`
+  position:relative;
+  display: none;
+  width:100px;
+  padding: 5px 10px;
+  
+  background:${colors.mediumRed};
+  border-radius:50px;
+
+  cursor: pointer;
+
+  :hover{
+    background:${colors.primary};
+
+    ${Arrow} {
+      stroke: white;
+    }
   }
+  transition:all 0.2s ease-in;
+
+  @media (${breakpoints.tablet}) {
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+  
+    gap: 8px;
+
+  }
+  
 `;

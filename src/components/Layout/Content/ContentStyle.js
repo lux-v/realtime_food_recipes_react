@@ -2,6 +2,20 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 import { colors, breakpoints } from '../../../lib/style/theme';
 
+
+export const ContentWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  
+
+  @media (${breakpoints.desktop}) {
+    width: ${props => props.isSidebarOpen ? "calc(100% - 240px)" : "calc(100% - 80px)"};
+    transition: width 0.2s ease-in;
+  }
+`;
+
 export const Content = styled.div`
   position: relative;
   width: 100%;
@@ -12,41 +26,17 @@ export const Content = styled.div`
 
   overflow:auto;
 
-  ${(props) =>
-    props.isSecondary &&
-    `
-        position: relative;
-        width: calc(100% + 48px);
-        margin: 0 -24px;
-  `
-  }
 
   @media (${breakpoints.tablet}) {
     padding: 40px 72px;
 
-    ${(props) =>
-    props.isSecondary &&
-    `
-        padding: 40px 0px 0px 72px;
-        position: relative;
-        max-width: 692px;
-        width: 100%;
-        margin: 0 -72px;
-  `}
+  
   }
 
   @media (${breakpoints.desktop}) {
     padding: 40px;
 
-    ${(props) =>
-    props.isSecondary &&
-    `
-        padding: 40px 0 40px 40px;
-        position: relative;
-        max-width: 897px;
-        width: 100%;
-        margin: 0 -40px;
-  `}
+  
   }
 `;
 
@@ -75,7 +65,7 @@ export const Heading = styled.div`
 `;
 
 export const ChildrenWrapper = styled.div`
-    height: ${props => props.showHeading ? "calc(100% - 83px)" : "100%"}
+    height: ${props => props.showHeading ? "calc(100% - 83px)" : "100%"};
 `;
 
 
@@ -87,20 +77,8 @@ const TitleStyle = css`
 
   @media (${breakpoints.tablet}) {
     font-size: 32px;
-    line-height: 39px;
-
-    ${(props) =>
-    props.isSecondary &&
-    `
-    font-size: 24px;
-    `}
-  }
-
-  ${(props) =>
-    props.isSecondary &&
-    `
-    font-size: 20px;
-  `}
+    line-height: 39px;   
+  } 
 `;
 
 export const Title = styled.h1`

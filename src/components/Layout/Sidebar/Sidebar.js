@@ -2,13 +2,10 @@ import { AuthContext } from '../../../context/AuthContext';
 import { useContext } from 'react';
 
 import {
-    Sidebar as SidebarWrapper,
-    LogoImg as LogoElement,
-    LogoLink,
+    SidebarWrapper,
     MenuWrapper,
     MenuText,
     ExitImg as ExitElement,
-    Nav,
     OptionsWrapper,
     HeaderNavLink,
     Lectures as LecturesIcon,
@@ -16,62 +13,68 @@ import {
     Criteria as CriteriaIcon,
     LogOut as LogOutIcon,
     YourProfile as YourProfileIcon,
+    ItemsWrapper,
+    IconTextWrapper,
 } from './SidebarStyle';
 
-import LogoImg from '../../../assets/img/logo.png';
+
 import ExitIcon from '../../../assets/img/exit-icon.svg';
 
 
-const Sidebar = ({ openHamburger, handleHamburgerClick }) => {
-    const { logout } = useContext(AuthContext);
+const Sidebar = () => {
+    const { logout, isSidebarOpen, setIsSidebarOpen } = useContext(AuthContext);
+
+    const handleHamburgerClick = () => {
+        setIsSidebarOpen(!isSidebarOpen)
+    }
 
 
     return (
-        <SidebarWrapper openHamburger={openHamburger}>
-            <LogoLink className="desktopNav" to="/dashboard">
-                <LogoElement src={LogoImg} alt="logo"></LogoElement>
-            </LogoLink>
-            <MenuWrapper className="mobileTabletNav" to="">
-                <MenuText>Menu</MenuText>
-                <ExitElement
-                    src={ExitIcon}
-                    alt="exitIcon"
-                    onClick={handleHamburgerClick}
-                ></ExitElement>
-            </MenuWrapper>
-            <Nav>
-                <OptionsWrapper>
-                    {/* <HeaderNavLink to="/dashboard">
-                        <LecturesIcon />
-                        Dashboard
-                    </HeaderNavLink> */}
-                    <HeaderNavLink to="/recipes">
-                        <StudentsIcon />
-                        Recipes
-                    </HeaderNavLink>
-                    <HeaderNavLink className="mobileNav" to="/profile">
-                        <YourProfileIcon />
-                        Your profile
-                    </HeaderNavLink>
-                    <HeaderNavLink to="/how-it-works">
-                        <CriteriaIcon />
-                        How It Works
-                    </HeaderNavLink>
-                    <HeaderNavLink to="/about-us">
-                        <CriteriaIcon />
-                        About us
-                    </HeaderNavLink>
-                </OptionsWrapper>
+        <SidebarWrapper isSidebarOpen={isSidebarOpen}>
+            <ItemsWrapper>
+                <HeaderNavLink to="/recipes">
+                    {isSidebarOpen ?
+                        <IconTextWrapper >
+                            <StudentsIcon />
+                            Recipes
+                        </IconTextWrapper> : <StudentsIcon />}
+                </HeaderNavLink>
+                <HeaderNavLink className="mobileNav" to="/profile">
+
+                    {isSidebarOpen ?
+                        <IconTextWrapper >
+                            <YourProfileIcon />
+                            Your profile
+                        </IconTextWrapper> : <YourProfileIcon />}
+                </HeaderNavLink>
+                <HeaderNavLink to="/how-it-works">
+
+                    {isSidebarOpen ?
+                        <IconTextWrapper >
+                            <CriteriaIcon />
+                            How It Works
+                        </IconTextWrapper> : <CriteriaIcon />}
+                </HeaderNavLink>
+                <HeaderNavLink to="/about-us">
+
+                    {isSidebarOpen ?
+                        <IconTextWrapper >
+                            <CriteriaIcon />
+                            About us
+                        </IconTextWrapper> : <CriteriaIcon />}
+                </HeaderNavLink>
 
                 <HeaderNavLink
                     onClick={logout}
                     className="mobileNav"
-                    to="/login">
-
-                    <LogOutIcon />
-                    Log out
+                    to="/login"
+                >
+                    <IconTextWrapper >
+                        <LogOutIcon />
+                        Log out
+                    </IconTextWrapper>
                 </HeaderNavLink>
-            </Nav>
+            </ItemsWrapper>
         </SidebarWrapper>
     );
 };

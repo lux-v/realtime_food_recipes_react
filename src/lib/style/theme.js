@@ -33,6 +33,7 @@ export const colors = {
     link: '#0085FF', //link
     purple: '#4747BF', //purple
     lightRed: 'rgba(191, 57, 57, 0.08)', //light red
+    mediumRed: 'rgba(191, 57, 57, 0.2)', //medium red
     darkRed: '#AA1D1D', //dark red
     logoText: '#626267', // logo text
 

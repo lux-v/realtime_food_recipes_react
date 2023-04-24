@@ -12,7 +12,7 @@ export const AddFavorite = styled(AddFavoriteIcon)`
     padding:6px;
 
     path {
-        fill: ${colors.primary};
+        fill: ${colors.primary};    
     }
 `;
 

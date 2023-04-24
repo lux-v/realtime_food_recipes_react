@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { colors, breakpoints } from '../../../lib/style/theme';
 
@@ -8,14 +8,29 @@ import { ReactComponent as CriteriaIcon } from '../../../assets/img/criteria-ico
 import { ReactComponent as LogOutIcon } from '../../../assets/img/logout-icon.svg';
 import { ReactComponent as YourProfileIcon } from '../../../assets/img/yourProfile-icon.svg';
 
-export const Sidebar = styled.nav`
-  ${(props) =>
-    props.openHamburger &&
-    `
-        display: block;
-        height: 100vh;
-    `}
+
+
+export const SidebarWrapper = styled.nav`
+  display: none;
+  width: 260px;
+  height: 100%;
+
+  padding: 32px 14px;
+  box-shadow: 16px 12px 20px 0px #00000000;
+  background-color: ${colors.bgSecondary};
+
+
+  @media (${breakpoints.tablet}) {
+    width: 315px;
+  }
+
+  @media (${breakpoints.desktop}) {
+    display: block;
+    width: ${props => props.isSidebarOpen ? "240px" : "80px"};
+    transition: width 0.2s ease-in;
+  }
 `;
+
 
 export const LogoLink = styled(Link)`
   display: flex;
@@ -89,46 +104,52 @@ export const MenuText = styled.p`
   color: ${colors.textPrimary};
 `;
 
-export const Nav = styled.nav`
-  position: relative;
+export const ItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-
-  width: calc(100% - 32px);
-  height: calc(100% - 60px);
+  width:100%;
   padding: 44px 0;
 
-  @media (${breakpoints.tablet}) {
-    height: calc(100% - 52px);
-  }
   @media (${breakpoints.desktop}) {
-    padding-top: 56px;
-    height: auto;
+    padding: 0;
   }
 `;
 
-export const OptionsWrapper = styled.div``;
+
 
 export const HeaderNavLink = styled(NavLink)`
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 236px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width: 100%;
   height: 43px;
+
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-  padding: 12px 0px 12px 28px;
+
+  padding: 12px;
+  border-radius:8px;
+  
   color: ${colors.textPrimary};
   cursor: pointer;
 
-  @media (${breakpoints.tablet}) {
-    width: 274px;
+  :hover{
+    background:${colors.lightRed};
+    color:${colors.primary}
+  }
 
-    ${(props) =>
+  ${(props) =>
+    props.className === 'login' &&
+    `
+        position: absolute;
+    `}
+
+  @media (${breakpoints.tablet}) {
+      ${(props) =>
     props.className === 'mobileNav' &&
     `
         display:none;
@@ -136,7 +157,6 @@ export const HeaderNavLink = styled(NavLink)`
   }
 
   @media (${breakpoints.desktop}) {
-    width: 224px;
 
     ${(props) =>
     props.className === 'mobileNav' &&
@@ -145,72 +165,52 @@ export const HeaderNavLink = styled(NavLink)`
     `}
   }
 
-  /* &:after {
-    content: '';
-    position: absolute;
-    background-color: ${colors.primary};
-    height: 9px;
-    right: 20px;
-  }
-
-  &:hover:after {
-    width: 9px;
-    border-radius: 50%;
-  }
-
-  &.active:after {
-    width: 9px;
-    border-radius: 50%;
-  } */
-
   @media (${breakpoints.tablet}) {
     &.active {
-      background-color: ${colors.lightRed};
+      background:${colors.lightRed};
+      color:${colors.primary}
     }
   }
 `;
 
-export const Lectures = styled(LecturesIcon)`
-  height: 18px;
-  width: auto;
 
-  path {
-    fill: ${colors.textSecondary};
+export const IconTextWrapper = styled.div`
+  display:flex;
+  gap:16px;
+  width: 100%;
+  height:100%;
+`;
+
+
+const IconStyle = css`
+  height:20px;
+  width:auto;
+
+  :hover{
+    fill:${colors.primary}
   }
+`
+
+export const Lectures = styled(LecturesIcon)`
+  ${IconStyle}
 `;
 
 export const Students = styled(StudentsIcon)`
-  height: 18px;
-  width: auto;
 
-  path {
-    fill: ${colors.textSecondary};
-  }
+${IconStyle}
 `;
 
 export const Criteria = styled(CriteriaIcon)`
-  height: 20px;
-  width: auto;
 
-  path {
-    fill: ${colors.textSecondary};
-  }
+${IconStyle}
 `;
 
 export const LogOut = styled(LogOutIcon)`
-  height: 20px;
-  width: auto;
 
-  path {
-    fill: ${colors.textSecondary};
-  }
+${IconStyle}
 `;
 
 export const YourProfile = styled(YourProfileIcon)`
-  height: 19px;
-  width: auto;
 
-  path {
-    fill: ${colors.textSecondary};
-  }
+${IconStyle}
 `;

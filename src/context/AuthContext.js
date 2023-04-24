@@ -7,6 +7,9 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
     const [userData, setUserData] = useState(null);
     const [toastType, setToastType] = useState({
         open: false,
@@ -123,6 +126,9 @@ const AuthProvider = ({ children }) => {
                 login,
                 logout,
                 resetPassword,
+
+                isSidebarOpen,
+                setIsSidebarOpen
 
             }}
         >

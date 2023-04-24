@@ -17,10 +17,9 @@ import { ReactComponent as Edit } from '../../assets/img/edit.svg';
 export const Form = styled(FormFormik)`
   width: 272px;
   margin: 0 auto;
-    
+    width:100%;
 
   @media (${breakpoints.tablet}) {
-    width: auto;
     margin: unset;
 
     ${(props) =>

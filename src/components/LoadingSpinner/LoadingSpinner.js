@@ -1,9 +1,11 @@
 import React from 'react'
 import { Loading } from './LoadingSpinnerStyle'
 
-export const LoadingSpinner = ({ size = "48px" }) => {
+const LoadingSpinner = ({ size = "48px" }) => {
     return (
 
         <Loading size={size} />
     )
 }
+
+export default LoadingSpinner;

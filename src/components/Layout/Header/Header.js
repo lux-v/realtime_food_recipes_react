@@ -1,32 +1,54 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import {
+  HeaderWrapper,
   HeaderInner,
   LogoLink,
   LogoImg as LogoElement,
-  Hamburger,
+  HamburgerIcon,
   HamburgerContent,
   HeaderProfile,
   ProfileImg,
-  Arrow as ArrowDropdown,
+  Arrow,
+  LeftSideWrapper,
+  RightSideWrapper,
+  HeaderProfileWrapper,
 } from './HeaderStyle';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import LogoImg from '../../../assets/img/logo.png';
 import profileImg from '../../../assets/img/profile.svg';
-import Arrow from '../../../assets/img/arrow-icon.svg';
-import Sidebar from '../Sidebar/Sidebar';
+
+import ExitIcon from '../../../assets/img/exit-icon.svg';
 
 import Menu from '../../Menu/Menu';
+import { AuthContext } from '../../../context/AuthContext';
+import {
+  SidebarWrapper,
+  MenuWrapper,
+  MenuText,
+  ExitImg as ExitElement,
+  OptionsWrapper,
+  HeaderNavLink,
+  Lectures as LecturesIcon,
+  Students as StudentsIcon,
+  Criteria as CriteriaIcon,
+  LogOut as LogOutIcon,
+  YourProfile as YourProfileIcon,
+  ItemsWrapper,
+  IconTextWrapper,
+} from '../../Layout/Sidebar/SidebarStyle';
 
 const Header = () => {
-  const [openHamburger, setOpenHamburger] = useState(false);
+  const { isSidebarOpen, setIsSidebarOpen, logout } = useContext(AuthContext)
+
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleHamburgerClick = () => {
-    setOpenHamburger(!openHamburger);
+    setIsSidebarOpen(!isSidebarOpen);
     setOpenMenu(false);
   };
+
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
@@ -34,23 +56,85 @@ const Header = () => {
 
   return (
     <>
-      <HeaderInner>
-        <LogoLink to="/dashboard">
-          <LogoElement src={LogoImg} alt="logo"></LogoElement>
-        </LogoLink>
+      <HeaderWrapper isSidebarOpen={isSidebarOpen}>
+        <LeftSideWrapper>
+          <LogoLink to="/dashboard">
+            <LogoElement src={LogoImg} alt="logo" />
+          </LogoLink>
+          <HamburgerIcon left onClick={handleHamburgerClick} />
+        </LeftSideWrapper>
         <Breadcrumbs />
-        <Hamburger onClick={handleHamburgerClick} />
-        <HeaderProfile onClick={handleMenuClick}>
-          <ProfileImg src={profileImg} alt="profileImg" />
-          <ArrowDropdown src={Arrow} alt="arrow" />
-        </HeaderProfile>
-        {openMenu && <Menu open={openMenu} />}
-      </HeaderInner>
-      <HamburgerContent openHamburger={openHamburger}>
-        <Sidebar
-          openHamburger={openHamburger}
-          handleHamburgerClick={handleHamburgerClick}
-        />
+        <RightSideWrapper >
+          <HeaderProfileWrapper >
+            <HeaderProfile onClick={handleMenuClick}>
+              <ProfileImg src={profileImg} alt="profileImg" />
+              <Arrow />
+            </HeaderProfile>
+            <HamburgerIcon onClick={handleHamburgerClick} />
+            {openMenu && <Menu open={openMenu} />}
+          </HeaderProfileWrapper>
+        </RightSideWrapper>
+
+
+
+      </HeaderWrapper>
+
+      <HamburgerContent isSidebarOpen={isSidebarOpen}>
+        <div style={{ display: "block", height: "100%" }}>
+          <MenuWrapper className="mobileTabletNav">
+            <MenuText>Menu</MenuText>
+            <ExitElement
+              src={ExitIcon}
+              alt="exitIcon"
+              onClick={handleHamburgerClick}
+            />
+          </MenuWrapper>
+          <ItemsWrapper>
+            <HeaderNavLink to="/recipes">
+              {isSidebarOpen ?
+                <IconTextWrapper >
+                  <StudentsIcon />
+                  Recipes
+                </IconTextWrapper> : <StudentsIcon />}
+            </HeaderNavLink>
+            <HeaderNavLink className="mobileNav" to="/profile">
+
+              {isSidebarOpen ?
+                <IconTextWrapper >
+                  <YourProfileIcon />
+                  Your profile
+                </IconTextWrapper> : <YourProfileIcon />}
+            </HeaderNavLink>
+            <HeaderNavLink to="/how-it-works">
+
+              {isSidebarOpen ?
+                <IconTextWrapper >
+                  <CriteriaIcon />
+                  How It Works
+                </IconTextWrapper> : <CriteriaIcon />}
+            </HeaderNavLink>
+            <HeaderNavLink to="/about-us">
+
+              {isSidebarOpen ?
+                <IconTextWrapper >
+                  <CriteriaIcon />
+                  About us
+                </IconTextWrapper> : <CriteriaIcon />}
+            </HeaderNavLink>
+
+            <HeaderNavLink
+              onClick={logout}
+              className="mobileNav"
+              to="/login"
+            >
+              <IconTextWrapper >
+                <LogOutIcon />
+                Log out
+              </IconTextWrapper>
+            </HeaderNavLink>
+          </ItemsWrapper>
+
+        </div>
       </HamburgerContent>
     </>
   );

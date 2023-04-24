@@ -27,6 +27,7 @@ import {
   ButtonWrapper,
   BigWrapper,
   LineEffectWrapper,
+  FormWrapper
 } from './LoginStyle';
 import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from '../../assets/img/profile.svg';
@@ -105,66 +106,67 @@ const LogIn = () => {
           }}
         >
           {(formik) => (
-            <Form>
-              <LogoContainer>
-                <LogoImg src={LogoPic} onClick={() => navigate("/")} />
-              </LogoContainer>
-              <FormRow>
-                <FormIcon src={IconProfile} />
-                <Field
-                  type='email'
-                  name='email'
-                  placeholder='Enter your email'
-                  disabled={formik.isSubmitting}
-                  error={
-                    formik.touched.email &&
-                    formik.errors.email
-                  }
-                  isSecondary={true}
-                  width='100%'
-                />
-                <ErrorMesagge component={'div'} name='email' />
-              </FormRow>
-              <FormRow>
-                <FormIcon src={IconKey} />
-                <Field
-                  type='password'
-                  name='password'
-                  placeholder='Enter the password'
-                  disabled={formik.isSubmitting}
-                  error={
-                    formik.touched.password &&
-                    formik.errors.password
-                  }
-                  isSecondary={true}
-                  width='100%'
-                />
-                <ErrorMesagge
-                  component={'div'}
-                  name='password'
-                />
-              </FormRow>
-              <FormRow right>
-                <BlueLink to='/password-reset'>
-                  Forgot your password?
-                </BlueLink>
-              </FormRow>
-              <FormRow>
-                <ButtonWrapper>
-                  <Button
-                    type='submit'
+            <FormWrapper>
+              <Form>
+                <LogoContainer>
+                  <LogoImg src={LogoPic} onClick={() => navigate("/")} />
+                </LogoContainer>
+                <FormRow>
+                  <FormIcon src={IconProfile} />
+                  <Field
+                    type='email'
+                    name='email'
+                    placeholder='Enter your email'
                     disabled={formik.isSubmitting}
-                    isBtnOutline
-                    isBtnForm
+                    error={
+                      formik.touched.email &&
+                      formik.errors.email
+                    }
+                    isSecondary={true}
                     width='100%'
-                  >
-                    {formik.isSubmitting
-                      ? 'Processing...'
-                      : 'Log in'}
-                  </Button>
-                </ButtonWrapper>
-              </FormRow>
-              {/* <FormRow>
+                  />
+                  <ErrorMesagge component={'div'} name='email' />
+                </FormRow>
+                <FormRow>
+                  <FormIcon src={IconKey} />
+                  <Field
+                    type='password'
+                    name='password'
+                    placeholder='Enter the password'
+                    disabled={formik.isSubmitting}
+                    error={
+                      formik.touched.password &&
+                      formik.errors.password
+                    }
+                    isSecondary={true}
+                    width='100%'
+                  />
+                  <ErrorMesagge
+                    component={'div'}
+                    name='password'
+                  />
+                </FormRow>
+                <FormRow right>
+                  <BlueLink to='/password-reset'>
+                    Forgot your password?
+                  </BlueLink>
+                </FormRow>
+                <FormRow>
+                  <ButtonWrapper>
+                    <Button
+                      type='submit'
+                      disabled={formik.isSubmitting}
+                      isBtnOutline
+                      isBtnForm
+                      width='100%'
+                    >
+                      {formik.isSubmitting
+                        ? 'Processing...'
+                        : 'Log in'}
+                    </Button>
+                  </ButtonWrapper>
+                </FormRow>
+                {/* <FormRow>
                 <ButtonWrapper>
                   <Button isSecondary type="button" width='100%'
                   // callback={handleGoogleSignup}
@@ -180,13 +182,14 @@ const LogIn = () => {
                   </Button>
                 </ButtonWrapper>
               </FormRow> */}
-              <FormRow center>
-                <FormLabel italic>
-                  Don't have an account?{' '}
-                  <BlueLink to='/signup'>Sign up.</BlueLink>
-                </FormLabel>
-              </FormRow>
-            </Form>
+                <FormRow center>
+                  <FormLabel italic>
+                    Don't have an account?{' '}
+                    <BlueLink to='/signup'>Sign up.</BlueLink>
+                  </FormLabel>
+                </FormRow>
+              </Form>
+            </FormWrapper>
           )}
         </Formik>
       </Wrapper>

@@ -27,6 +27,7 @@ import {
     ButtonWrapper,
     BigWrapper,
     LineEffectWrapper,
+    FormWrapper,
 } from './SingUpStyle';
 
 import FruitBowls from '../../assets/img/3-bowel-fruit.png';
@@ -95,81 +96,82 @@ export default function SignUp() {
                     }}
                 >
                     {(formik) => (
-                        <Form >
-                            <LogoContainer>
-                                <LogoImg src={LogoPic} alt="logo" onClick={() => navigate("/")} />
-                            </LogoContainer>
-                            <FormRow>
-                                <FormIcon src={IconProfile} />
-                                <Field
-                                    type="name"
-                                    name="name"
-                                    placeholder="Enter your name"
-                                    disabled={formik.isSubmitting}
-                                    error={formik.touched.name && formik.errors.name}
-                                    isSecondary={true}
-                                    width="100%"
-
-                                />
-                                <ErrorMesagge component={'div'} name="name" />
-                            </FormRow>
-                            <FormRow>
-                                <FormIcon src={IconProfile} />
-                                <Field
-                                    type="email"
-                                    name="email"
-                                    placeholder="Enter your email"
-                                    disabled={formik.isSubmitting}
-                                    error={formik.touched.email && formik.errors.email}
-                                    isSecondary={true}
-                                    width="100%"
-
-                                />
-                                <ErrorMesagge component={'div'} name="email" />
-                            </FormRow>
-                            <FormRow>
-                                <FormIcon src={IconKey} />
-                                <Field
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter the password"
-                                    disabled={formik.isSubmitting}
-                                    error={formik.touched.password && formik.errors.password}
-                                    isSecondary={true}
-                                    width="100%"
-
-                                />
-                                <ErrorMesagge component={'div'} name="password" />
-                            </FormRow>
-                            <FormRow>
-                                <FormIcon src={IconKey} />
-                                <Field
-                                    type="password"
-                                    name="confirmPassword"
-                                    placeholder="Confirm password"
-                                    disabled={formik.isSubmitting}
-                                    error={formik.touched.confirmPassword && formik.errors.confirmPassword}
-                                    isSecondary={true}
-                                    width="100%"
-
-                                />
-                                <ErrorMesagge component={'div'} name="confirmPassword" />
-                            </FormRow>
-
-                            <FormRow>
-                                <ButtonWrapper>
-                                    <Button
-                                        type="submit"
+                        <FormWrapper>
+                            <Form>
+                                <LogoContainer>
+                                    <LogoImg src={LogoPic} alt="logo" onClick={() => navigate("/")} />
+                                </LogoContainer>
+                                <FormRow>
+                                    <FormIcon src={IconProfile} />
+                                    <Field
+                                        type="name"
+                                        name="name"
+                                        placeholder="Enter your name"
                                         disabled={formik.isSubmitting}
-                                        isBtnOutline
-                                        isBtnForm
-                                        width='100%'
-                                    >
-                                        {formik.isSubmitting ? 'Processing...' : 'Sign up'}
-                                    </Button>
-                                </ButtonWrapper>
-                            </FormRow>
-                            {/* <FormRow>
+                                        error={formik.touched.name && formik.errors.name}
+                                        isSecondary={true}
+                                        width="100%"
+
+                                    />
+                                    <ErrorMesagge component={'div'} name="name" />
+                                </FormRow>
+                                <FormRow>
+                                    <FormIcon src={IconProfile} />
+                                    <Field
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        disabled={formik.isSubmitting}
+                                        error={formik.touched.email && formik.errors.email}
+                                        isSecondary={true}
+                                        width="100%"
+
+                                    />
+                                    <ErrorMesagge component={'div'} name="email" />
+                                </FormRow>
+                                <FormRow>
+                                    <FormIcon src={IconKey} />
+                                    <Field
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter the password"
+                                        disabled={formik.isSubmitting}
+                                        error={formik.touched.password && formik.errors.password}
+                                        isSecondary={true}
+                                        width="100%"
+
+                                    />
+                                    <ErrorMesagge component={'div'} name="password" />
+                                </FormRow>
+                                <FormRow>
+                                    <FormIcon src={IconKey} />
+                                    <Field
+                                        type="password"
+                                        name="confirmPassword"
+                                        placeholder="Confirm password"
+                                        disabled={formik.isSubmitting}
+                                        error={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                                        isSecondary={true}
+                                        width="100%"
+
+                                    />
+                                    <ErrorMesagge component={'div'} name="confirmPassword" />
+                                </FormRow>
+
+                                <FormRow>
+                                    <ButtonWrapper>
+                                        <Button
+                                            type="submit"
+                                            disabled={formik.isSubmitting}
+                                            isBtnOutline
+                                            isBtnForm
+                                            width='100%'
+                                        >
+                                            {formik.isSubmitting ? 'Processing...' : 'Sign up'}
+                                        </Button>
+                                    </ButtonWrapper>
+                                </FormRow>
+                                {/* <FormRow>
                                 <ButtonWrapper>
                                     <Button isSecondary type="button" width='100%'
                                     // callback={handleGoogleSignup}
@@ -185,10 +187,11 @@ export default function SignUp() {
                                     </Button>
                                 </ButtonWrapper>
                             </FormRow> */}
-                            <FormRow center>
-                                <FormLabel italic>Already have an account? <BlueLink to="/login">Log in.</BlueLink> </FormLabel>
-                            </FormRow>
-                        </Form>
+                                <FormRow center>
+                                    <FormLabel italic>Already have an account? <BlueLink to="/login">Log in.</BlueLink> </FormLabel>
+                                </FormRow>
+                            </Form>
+                        </FormWrapper>
                     )}
                 </Formik>
             </Wrapper>

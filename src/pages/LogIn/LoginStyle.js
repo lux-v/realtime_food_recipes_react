@@ -4,6 +4,10 @@ import { breakpoints, colors } from '../../lib/style/theme';
 
 
 
+export const FormWrapper = styled.div`
+`;
+
+
 export const BigWrapper = styled.div`
   position: relative;
   height:100%;  

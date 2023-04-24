@@ -22,7 +22,6 @@ import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.pn
 import ClockIcon from '../../assets/img/clock-icon.png';
 
 
-
 const RecipeCard = ({ recipe }) => {
     const recipeImage = recipe.imgUrl != "" ? recipe.imgUrl : RecipeImagePlaceholder
 
