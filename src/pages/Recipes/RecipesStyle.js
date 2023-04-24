@@ -19,3 +19,11 @@ export const RecipesWrapper = styled.div`
         grid-gap: 2rem;
     }
 `
+
+export const LoadingSpinnerWrapper = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+`

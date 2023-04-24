@@ -5,6 +5,7 @@ import {
   Heading,
   Title,
   ButtonWrapper,
+  ChildrenWrapper,
 } from './ContentStyle';
 import LineEffect from '../../../assets/img/line-effect.png';
 
@@ -51,7 +52,9 @@ const Content = ({
           }
         </Heading>
       )}
-      {children}
+      <ChildrenWrapper showHeading={showHeading}>
+        {children}
+      </ChildrenWrapper>
     </ContentWrapper>
   );
 };

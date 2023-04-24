@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/Layout/Layout'
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 // import { recipes } from '../../lib/mock'
-import { RecipesWrapper } from './RecipesStyle'
+import { LoadingSpinnerWrapper, RecipesWrapper } from './RecipesStyle'
 import { getAllRecipesData } from '../../api/recipes'
 import { AuthContext } from '../../context/AuthContext'
+import { LoadingSpinner } from '../../components/LoadingSpinner/LoadingSpinner'
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState(null)
@@ -45,7 +46,10 @@ const Recipes = () => {
                 </RecipesWrapper>
 
                 :
-                <p>Loading spinner</p>
+                <LoadingSpinnerWrapper>
+                    <LoadingSpinner size="120px" />
+                </LoadingSpinnerWrapper>
+
             }
         </Layout>
     )

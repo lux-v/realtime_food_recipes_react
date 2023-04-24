@@ -5,7 +5,7 @@ import { colors, breakpoints } from '../../../lib/style/theme';
 export const Content = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height:100%;
   padding: 24px 24px 50px 24px;
   background-color: ${colors.bgPrimary};
   margin: auto 0;
@@ -18,9 +18,8 @@ export const Content = styled.div`
         position: relative;
         width: calc(100% + 48px);
         margin: 0 -24px;
-  `}
-
-
+  `
+  }
 
   @media (${breakpoints.tablet}) {
     padding: 40px 72px;
@@ -74,6 +73,11 @@ export const Heading = styled.div`
     `}
   }
 `;
+
+export const ChildrenWrapper = styled.div`
+    height: ${props => props.showHeading ? "calc(100% - 83px)" : "100%"}
+`;
+
 
 const TitleStyle = css`
   color: ${colors.textPrimary};
