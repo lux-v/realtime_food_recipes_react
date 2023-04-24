@@ -78,7 +78,7 @@ export const MainTextWrapper = styled.div`
 export const RedTextStyle = styled.p`
     color: ${colors.primary}; 
     font-family: ${fonts.primary}; 
-    line-height: 60px; 
+    line-height: 56px; 
     font-size: 54px; 
     font-weight: 700;
 
@@ -88,6 +88,12 @@ export const RedTextStyle = styled.p`
     }
 
     @media(${breakpoints.desktop}){
+        line-height: 96px; 
+        font-size: 94px; 
+    }
+
+    
+    @media(${breakpoints.desktopXL}){
         line-height: 130px; 
         font-size: 128px; 
     }
@@ -97,19 +103,25 @@ export const RedTextStyle = styled.p`
 export const GrayTextStyle = styled.p`
     color: ${colors.textTertiary}; 
     font-family: ${fonts.primary}; 
-    line-height: 60px; 
+    line-height: 38px; 
     font-size: 36px; 
     font-weight: 700;
     border-radius: 4px;
     padding:10px;
 
     @media(${breakpoints.tablet}){
-        line-height: 70px; 
-        font-size: 64px; 
+        line-height: 56px; 
+        font-size: 54px; 
     }
 
     @media(${breakpoints.desktop}){
-        line-height: 130px; 
+        line-height: 78px; 
+        font-size: 76px; 
+    }
+
+        
+    @media(${breakpoints.desktopXL}){
+        line-height: 99px; 
         font-size: 97px; 
     }
 
@@ -118,17 +130,24 @@ export const GrayTextStyle = styled.p`
 export const GreenTextStyle = styled.p`
     color: ${colors.textSecondary}; 
     font-family: ${fonts.primary}; 
-    line-height: 60px; 
+    line-height: 38px; 
     font-size: 36px; 
     font-weight: 700;
 
+
     @media(${breakpoints.tablet}){
-        line-height: 70px; 
-        font-size: 64px; 
+        line-height: 56px; 
+        font-size: 54px; 
     }
 
     @media(${breakpoints.desktop}){
-        line-height: 130px; 
+        line-height: 78px; 
+        font-size: 76px; 
+    }
+
+        
+    @media(${breakpoints.desktopXL}){
+        line-height: 99px; 
         font-size: 97px; 
     }
 
