@@ -45,7 +45,6 @@ export const colors = {
     modalBackground: 'rgba(46, 46, 46, 0.6)',
     cancelBackground: 'rgba(191, 57, 57, 0.08);',
     textMenu: '#2C3131', //black
-    menuHover: 'rgba(191, 57, 57, 0.08)',
     boxShadow:
         '0px 1px 6px rgba(89, 89, 89, 0.04), 0px 2px 16px rgba(119, 119, 119, 0.1)',
 };

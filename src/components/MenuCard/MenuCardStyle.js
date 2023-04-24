@@ -16,14 +16,14 @@ export const MenuCard = style.div`
 
 
     ${(props) =>
-      !props.isLogOut &&
-      `
+    !props.isLogOut &&
+    `
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         `}
     ${(props) =>
-      props.isLogOut &&
-      `
+    props.isLogOut &&
+    `
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
     `}
@@ -31,7 +31,7 @@ export const MenuCard = style.div`
     &:hover {
         
         transition: all 0.3s ease-in-out;
-        background-color: ${colors.menuHover};
+        background-color: ${colors.lightRed};
 
     }
 

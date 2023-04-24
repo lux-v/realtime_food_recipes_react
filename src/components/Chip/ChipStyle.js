@@ -6,29 +6,29 @@ export const ChipWrapper = styled.div`
     display:flex;
     align-items:center;
     height:20px;
-    padding:4px;
+    padding:6px;
     border-radius:10px;
 
     
     ${props =>
-        props.type == "success" ?
-            `
+    props.type == "success" ?
+      `
       background-color: ${colors.secondarySuccess};
     `
-            :
-            props.type == "error" ?
-                `
+      :
+      props.type == "error" ?
+        `
       background-color: ${colors.secondaryError};
     `:
-                props.type == "warning" ?
-                    `
+        props.type == "warning" ?
+          `
       background-color: ${colors.secondaryWarning};
     `:
 
-                    `
+          `
     background-color: ${colors.secondaryInfo};
       `
-    }
+  }
     
 `;
 export const ChipName = styled.p`

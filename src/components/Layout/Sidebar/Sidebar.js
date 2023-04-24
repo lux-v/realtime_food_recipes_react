@@ -41,10 +41,10 @@ const Sidebar = ({ openHamburger, handleHamburgerClick }) => {
             </MenuWrapper>
             <Nav>
                 <OptionsWrapper>
-                    <HeaderNavLink to="/dashboard">
+                    {/* <HeaderNavLink to="/dashboard">
                         <LecturesIcon />
                         Dashboard
-                    </HeaderNavLink>
+                    </HeaderNavLink> */}
                     <HeaderNavLink to="/recipes">
                         <StudentsIcon />
                         Recipes

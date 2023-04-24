@@ -39,7 +39,7 @@ function App() {
       <Router>
         <Routes>
           {/* <Route path="/" element={<Navigate replace to="/landing" />} /> */}
-          <Route path="/" element={isLoggedIn ? <Dashboard /> : <Landing />} />
+          <Route path="/" element={isLoggedIn ? <Recipes /> : <Landing />} />
           {isLoggedIn && <>
             <Route path="/login" element={<Navigate replace to="/" />} />
             <Route path="/signup" element={<Navigate replace to="/" />} />

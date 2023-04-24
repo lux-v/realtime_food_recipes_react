@@ -201,7 +201,6 @@ const FieldStyleType2 = css`
   padding: 16px 24px;
   border:0;
   border-bottom: 1px solid ${colors.textSecondary};
-  /* background-color: ${colors.bgPrimary}; */
   background-color: unset;
 
   outline: none;
@@ -241,8 +240,7 @@ export const PasswordIcon = styled.img`
   }
 `;
 
-export const Field = styled(FieldFormik)
-  `
+export const Field = styled(FieldFormik)`
   ${(props) =>
     props.isSecondary ?
       FieldStyleType2 : FieldStyleType1
@@ -250,14 +248,12 @@ export const Field = styled(FieldFormik)
 
 `;
 
-export const Select = styled.select
-  `
+export const Select = styled.select`
   ${(props) =>
     props.isSecondary ?
       FieldStyleType2 : FieldStyleType1
   };
 
-  /* width: 272px; */
   height: 56px;
   ${(props) =>
     props.value === '' &&

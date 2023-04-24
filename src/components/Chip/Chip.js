@@ -4,7 +4,7 @@ import { ChipName, ChipWrapper } from './ChipStyle'
 
 const Chip = ({ name = "", type }) => {
     return (
-        <ChipWrapper type={type}>
+        <ChipWrapper type={type} key={name}>
             <ChipName>
                 {name}
             </ChipName>

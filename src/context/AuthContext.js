@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
-import app from "../firebase"
+import app from "../api/firebase"
+import { getUserData, postUserData } from '../api/users';
 
 
 const AuthContext = createContext();
@@ -17,11 +18,20 @@ const AuthProvider = ({ children }) => {
             const res = await app.auth().createUserWithEmailAndPassword(email, password)
 
             const user = res.user;
-            const updatedUser = await user.updateProfile({
+
+            user.updateProfile({
                 displayName: displayName
             })
 
-            createUser(updatedUser)
+            const formattedUser = {
+                ...user,
+                displayName: displayName
+            }
+            try {
+                postUserData(formattedUser)
+            } catch (err) {
+                console.log("error posting user data: ", err)
+            }
 
             setToastType({
                 open: true,
@@ -69,58 +79,24 @@ const AuthProvider = ({ children }) => {
     //     return app.auth().signInWithPopup(provider)
     // }
 
-
-    const createUser = async (formattedUser) => {
-        return app.firestore().collection("users").doc(formattedUser.uid).set({
-            email: formattedUser.email,
-            displayName: formattedUser.displayName,
-
-        })
-    }
-
-
     const resetPassword = (email) => {
         return app.auth().sendPasswordResetEmail(email)
     }
 
-
-    const getUserData = async (uid) => {
-        const user = await app.firestore().collection("users").doc(uid).get()
-
-        if (user.exists)
-            return user.data()
-
-        return null
-    }
-
-
-    const getAllUserData = async () => {
-        const users = await app.firestore().collection("users").get()
-
-        if (users.size > 0) {
-            const usersList = [];
-            users.docs.forEach(user => {
-                usersList.push(user.data())
-
-            });
-            return usersList
-        }
-
-        return null
-    }
-
-
     useEffect(() => {
         const unsubscribe = app.auth().onAuthStateChanged(async user => {
             if (user) {
-
                 //for now I am saving every data about the user...
                 setIsLoggedIn(true)
                 localStorage.setItem("accessToken", JSON.stringify(user))
 
                 //get the userData
-                const userData = await getUserData(user.uid)
-                setUserData(userData)
+                try {
+                    const userData = await getUserData(user.uid)
+                    setUserData(userData)
+                } catch (error) {
+                    alert("error getting user data :", error)
+                }
 
 
             } else {
@@ -147,8 +123,6 @@ const AuthProvider = ({ children }) => {
                 login,
                 logout,
                 resetPassword,
-                // googleSignin,
-                // handleUser
 
             }}
         >

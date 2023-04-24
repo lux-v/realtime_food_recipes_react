@@ -1,17 +1,30 @@
 import React from 'react'
-import { colors } from '../../lib/style/theme'
 
-import RecipeImagePlaceholder from '../../assets/img/logo.png';
-import { RecipeDescription, RecipeName, RecipeIngredientsWrapper, RecipieCardWrapper, ImageWrapper, RecipeImage, TextWrapper } from './RecipeCardStyle';
 import Chip from '../Chip/Chip';
+import {
+    RecipeDescription,
+    RecipeName,
+    RecipeIngredientsWrapper,
+    RecipieCardWrapper,
+    ImageWrapper,
+    RecipeImage,
+    TextWrapper,
+    NameFavoritesWrapper,
+    FavoriteIconWrapper,
+    CookTimeWrapper,
+    CookTimeIcon,
+    CookTimeLabel,
+    AddFavorite
+} from './RecipeCardStyle';
 
+
+import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
+import ClockIcon from '../../assets/img/clock-icon.png';
 
 
 
 const RecipeCard = ({ recipe }) => {
-    console.log("recipe: ", recipe)
-
-    const recipeImage = recipe.pictureUrl != "" ? recipe.pictureUrl : RecipeImagePlaceholder
+    const recipeImage = recipe.imgUrl != "" ? recipe.imgUrl : RecipeImagePlaceholder
 
     return (
         <RecipieCardWrapper>
@@ -19,14 +32,24 @@ const RecipeCard = ({ recipe }) => {
                 <RecipeImage src={recipeImage} />
             </ImageWrapper>
             <TextWrapper>
-                <RecipeName className='RecipeName' >{recipe.name}</RecipeName>
+                <NameFavoritesWrapper>
+                    <RecipeName className='RecipeName' >{recipe.name}</RecipeName>
+                    <FavoriteIconWrapper>
+                        <AddFavorite />
+                    </FavoriteIconWrapper>
+
+                </NameFavoritesWrapper>
                 <RecipeDescription>{recipe.description}</RecipeDescription>
 
                 <RecipeIngredientsWrapper>
-                    {recipe.ingredients.map(ingredient => {
-                        return <Chip key={ingredient} name={ingredient} type="error" />
+                    {recipe.ingredients.slice(0, 10).map((ingredient, index) => {
+                        return <Chip key={index} name={ingredient} type="error" />
                     })}
                 </RecipeIngredientsWrapper>
+                <CookTimeWrapper>
+                    <CookTimeIcon src={ClockIcon} />
+                    <CookTimeLabel>{recipe.cookTimeMin}</CookTimeLabel>
+                </CookTimeWrapper>
             </TextWrapper>
 
         </RecipieCardWrapper>
