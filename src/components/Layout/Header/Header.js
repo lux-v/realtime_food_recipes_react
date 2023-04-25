@@ -35,8 +35,6 @@ import {
   IconTextWrapper,
 } from '../../Layout/Sidebar/SidebarStyle';
 
-import Chip from "../../Chip/Chip"
-
 const Header = () => {
   const { isSidebarOpen, setIsSidebarOpen, logout } = useContext(AuthContext)
 
@@ -86,7 +84,7 @@ const Header = () => {
             />
           </MenuWrapper>
           <ItemsWrapper>
-            <HeaderNavLink to="/recipes">
+            <HeaderNavLink to="/">
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <StudentsIcon />

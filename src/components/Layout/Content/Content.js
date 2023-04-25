@@ -27,7 +27,6 @@ const Content = ({
   return (
     <ContentWrapper isSidebarOpen={isSidebarOpen}>
       <ContentWrapper1
-
       >
         {/* ----------- styles ----------- */}
         {topLeftEffect &&

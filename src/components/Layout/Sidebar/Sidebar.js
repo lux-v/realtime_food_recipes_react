@@ -3,12 +3,11 @@ import { useContext } from 'react';
 
 import {
     SidebarWrapper,
-    MenuWrapper,
-    MenuText,
-    ExitImg as ExitElement,
-    OptionsWrapper,
+
+
+
     HeaderNavLink,
-    Lectures as LecturesIcon,
+
     Students as StudentsIcon,
     Criteria as CriteriaIcon,
     LogOut as LogOutIcon,
@@ -18,21 +17,15 @@ import {
 } from './SidebarStyle';
 
 
-import ExitIcon from '../../../assets/img/exit-icon.svg';
-
-
 const Sidebar = () => {
-    const { logout, isSidebarOpen, setIsSidebarOpen } = useContext(AuthContext);
+    const { logout, isSidebarOpen } = useContext(AuthContext);
 
-    const handleHamburgerClick = () => {
-        setIsSidebarOpen(!isSidebarOpen)
-    }
 
 
     return (
         <SidebarWrapper isSidebarOpen={isSidebarOpen}>
             <ItemsWrapper>
-                <HeaderNavLink to="/recipes">
+                <HeaderNavLink to="/">
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <StudentsIcon />

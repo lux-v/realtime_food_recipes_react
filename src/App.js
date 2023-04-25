@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,9 +22,13 @@ import Toast from './components/Toast/Toast';
 import Landing from './pages/Landing/Landing';
 import Recipes from './pages/Recipes/Recipes';
 import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
+import { Loading } from './components/LoadingSpinner/LoadingSpinnerStyle';
+import Backdrop from './components/Backdrop/Backdrop';
+
 
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
+  const [isLoading, setIsLoading] =useState(true)
 
 
   useEffect(() => {
@@ -32,16 +36,32 @@ function App() {
     const isLoggedIn = accessToken !== null && accessToken !== undefined;
 
     setIsLoggedIn(isLoggedIn);
+
+    setIsLoading(false)
   });
 
+  console.log("isLoading: ", isLoading)
 
   return (
     <>
       <Router>
-        <Routes>
-          <Route path="/" element={isLoggedIn ? <Recipes /> : <Landing />} />
-          {isLoggedIn && <>
-            <Route path="/login" element={<Navigate replace to="/" />} />
+        <Routes> 
+          <Route path="/" element={ isLoggedIn ? isLoading ? 
+          <Backdrop>
+            <Recipes />
+            </Backdrop> 
+            : 
+            <Recipes /> 
+            : isLoading ?
+             <Backdrop>
+              <Landing />
+              </Backdrop> 
+              : 
+              <Landing />
+              } />
+          {
+          isLoggedIn && <>
+            <Route path="/login" element={ <Navigate replace to="/" />} />
             <Route path="/signup" element={<Navigate replace to="/" />} />
           </>
           }

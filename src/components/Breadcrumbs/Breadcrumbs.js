@@ -47,7 +47,7 @@ const Breadcrumbs = () => {
   };
 
   return (
-    <BreadcrumbsWrapper>
+    <BreadcrumbsWrapper empty={pathNames.length===0}>
       {pathNames.map((path, index) => {
         const routeTo = `/${pathNames.slice(0, index + 1).join('/')}`;
         return (

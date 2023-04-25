@@ -5,9 +5,16 @@ import { colors, breakpoints } from '../../lib/style/theme';
 export const Breadcrumbs = styled.div`
   display: none;
 
+
+
   @media (${breakpoints.desktop}) {
-    display: flex;
-    align-items: center;
+    ${props=>props.empty!==true &&`
+      display: initial;
+      padding:2px 10px;
+      border-radius:20px;
+    `}
+
+    background:${colors.lightRed};
   }
 `;
 
@@ -19,9 +26,9 @@ export const BreadcrumbsLink = styled(Link)`
 
   ${(props) =>
     props.index + 1 < props.pathLength &&
-    `text-decoration: underline; 
-    color: ${colors.link};
-    text-underline-offset: 2px;
+    `text-decoration: none; 
+    color: ${colors.primary};
+
     `}
 
   &:hover {

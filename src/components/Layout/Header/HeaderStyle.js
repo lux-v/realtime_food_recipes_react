@@ -43,12 +43,6 @@ export const LeftSideWrapper = styled.div`
 `;
 
 
-// export const RightSideWrapper = styled.div`
-//   /* width: calc(100% - 240px);  */
-//   display: flex; 
-//   align-items: center; 
-//   justify-content: flex-end;
-// `;
 
 export const HeaderProfileWrapper = styled.div`
   position: relative;
@@ -61,16 +55,9 @@ export const HeaderProfileWrapper = styled.div`
 `;
 
 export const BreadcrumbsWrapper = styled.div`
-  display:none;
+
   width: calc(100% - 145px - 240px);
-  padding:10px;
-  border-radius:20px;
-  background:${colors.lightRed};
-
-  @media (${breakpoints.desktop}) {
-      display: block;
-
-  }  
+ 
 `;
 
 

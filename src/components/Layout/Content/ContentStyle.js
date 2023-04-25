@@ -8,10 +8,10 @@ export const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
 
-  
+  background-color: ${colors.bgPrimary};
+
 
   @media (${breakpoints.desktop}) {
-    width: ${props => props.isSidebarOpen ? "calc(100% - 240px)" : "calc(100% - 80px)"};
     transition: width 0.2s ease-in;
   }
 `;
@@ -21,7 +21,7 @@ export const Content = styled.div`
   width: 100%;
   height:100%;
   padding: 24px 24px 50px 24px;
-  background-color: ${colors.bgPrimary};
+
   margin: auto 0;
 
   overflow:auto;
@@ -35,8 +35,6 @@ export const Content = styled.div`
 
   @media (${breakpoints.desktop}) {
     padding: 40px;
-
-  
   }
 `;
 

@@ -15,7 +15,7 @@ export const SidebarWrapper = styled.nav`
   width: 260px;
   height: 100%;
 
-  padding: 32px 14px;
+  padding: 8px;
   box-shadow: 16px 12px 20px 0px #00000000;
   background-color: ${colors.bgSecondary};
 
@@ -26,7 +26,7 @@ export const SidebarWrapper = styled.nav`
 
   @media (${breakpoints.desktop}) {
     display: block;
-    width: ${props => props.isSidebarOpen ? "240px" : "80px"};
+    width: ${props => props.isSidebarOpen ? "240px" : "60px"};
     transition: width 0.2s ease-in;
   }
 `;
@@ -111,6 +111,8 @@ export const ItemsWrapper = styled.div`
   justify-content: space-between;
   width:100%;
   padding: 44px 0;
+
+  gap:5px;
 
   @media (${breakpoints.desktop}) {
     padding: 0;
