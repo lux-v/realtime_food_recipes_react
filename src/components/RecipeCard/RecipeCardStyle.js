@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
     breakpoints,
-    colors
+    colors,
+    border
 } from "../../lib/style/theme";
 
 import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite.svg";
@@ -24,7 +25,7 @@ export const RecipieCardWrapper = styled.div`
     height: auto;
     max-height:500px;
     background: white;
-    border-radius: 8px;
+    border-radius: ${border.borderRadius};
     padding: 10px;
     margin: 10px;
 
@@ -50,14 +51,14 @@ export const RecipieCardWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-    border-radius:8px;
+    ${border.borderRadius};
 `;
 
 export const RecipeImage = styled.img`
     width: 100%;
     height: 175px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: ${border.borderRadius};
 
     @media (${breakpoints.tablet}) {
         width: 175px;

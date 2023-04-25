@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from 'styled-components';
-import { colors, fonts } from '../../lib/style/theme.js';
+import { colors, fonts,border } from '../../lib/style/theme.js';
 
 export const Menu = style.div`
     position: absolute;
@@ -11,7 +11,7 @@ export const Menu = style.div`
     box-shadow: ${colors.boxShadow};
         
     background-color: ${colors.secondary};
-    border-radius: 8px;
+    border-radius: ${border.borderRadius};
  
     
 

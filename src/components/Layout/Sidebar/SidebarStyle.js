@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
-import { colors, breakpoints } from '../../../lib/style/theme';
+import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 import { ReactComponent as LecturesIcon } from '../../../assets/img/lectures-icon.svg';
 import { ReactComponent as StudentsIcon } from '../../../assets/img/students-icon.svg';
@@ -134,7 +134,8 @@ export const HeaderNavLink = styled(NavLink)`
   line-height: 19px;
 
   padding: 12px;
-  border-radius:8px;
+  border-radius: ${border.borderRadius};
+
   
   color: ${colors.textPrimary};
   cursor: pointer;
@@ -159,6 +160,7 @@ export const HeaderNavLink = styled(NavLink)`
   }
 
   @media (${breakpoints.desktop}) {
+    ${border.borderRadius};
 
     ${(props) =>
     props.className === 'mobileNav' &&

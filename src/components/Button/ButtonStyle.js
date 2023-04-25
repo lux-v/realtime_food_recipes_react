@@ -1,4 +1,4 @@
-import { breakpoints, colors, fonts } from '../../lib/style/theme.js';
+import { border, breakpoints, colors, fonts } from '../../lib/style/theme.js';
 import style from 'styled-components';
 
 export const Button = style.button`
@@ -8,11 +8,13 @@ export const Button = style.button`
     align-items: center;
     padding: 12px 24px;
     gap: 8px;
-    border-radius: 10px;
+    border-radius: ${border.borderRadius};
     position: relative;
     border: none;
     height: ${(props) => props.height || `38px`};
     width: ${(props) => props.width || `auto`};
+
+    user-select:none;
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../lib/style/theme";
+import { border, colors } from "../../lib/style/theme";
 
 
 export const ChipWrapper = styled.div`
@@ -7,7 +7,7 @@ export const ChipWrapper = styled.div`
     align-items:center;
     height:20px;
     padding:6px;
-    border-radius:10px;
+    border-radius: 10px;
 
     
     ${props =>

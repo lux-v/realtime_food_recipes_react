@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { breakpoints, colors, fonts } from './theme';
+import { breakpoints, colors, fonts,border } from './theme';
 import {
   Form as FormFormik,
   Field as FieldFormik,
@@ -163,7 +163,7 @@ const FieldStyleType1 = css`
   height: 48px;
   padding: 16px 24px;
   border: 1px solid ${colors.textSecondary};
-  border-radius: 8px;
+  border-radius: ${border.borderRadius};
 
   outline: none;
   font-size: 16px;
@@ -669,7 +669,7 @@ export const SearchLabel = styled.label`
 export const NavigationLine = styled.div`
   width: 272px;
   background-color: ${colors.bgSecondary};
-  border-radius: 8px;
+  border-radius: ${border.borderRadius};
   height: 48px;
   vertical-align: middle;
   padding: 14px 8px;

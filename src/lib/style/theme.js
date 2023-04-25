@@ -50,6 +50,11 @@ export const colors = {
         '0px 1px 6px rgba(89, 89, 89, 0.04), 0px 2px 16px rgba(119, 119, 119, 0.1)',
 };
 
+export const border = {
+    borderRadius:"8px",
+};
+
+
 export const breakpoints = {
     mobile: 'min-width: 320px',
     tablet: 'min-width: 768px',

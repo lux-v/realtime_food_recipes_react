@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, breakpoints } from '../../lib/style/theme';
+import { colors, breakpoints,border } from '../../lib/style/theme';
 
 export const Toast = styled.div`
   position: fixed;
@@ -10,7 +10,7 @@ export const Toast = styled.div`
 
   width: 272px;
   min-height: 52px;
-  border-radius: 8px;
+  border-radius: ${border.borderRadius};
   display: flex;
   flex-direction: column;
   align-items:center;

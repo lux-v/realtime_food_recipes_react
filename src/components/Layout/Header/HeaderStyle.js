@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { colors, breakpoints } from '../../../lib/style/theme';
+import { colors, breakpoints, border } from '../../../lib/style/theme';
 import { ReactComponent as Hamburger } from '../../../assets/img/hamburger-icon.svg';
 import { ReactComponent as ArrowIcon } from '../../../assets/img/arrow-icon.svg';
 
@@ -84,7 +84,7 @@ export const HamburgerIcon = styled(Hamburger)`
   position: relative;
   width: 40px;
   height: 40px;
-  border-radius:8px;
+  border-radius:${border.borderRadius};
   padding:5px;
   
   cursor: pointer;
@@ -163,10 +163,10 @@ export const Arrow = styled(ArrowIcon)`
 
 
 export const HeaderProfile = styled.nav`
-  /* position:relative; */
   display: none;
   width:100px;
-  padding: 5px 10px;
+  padding: 4px;
+  height:48px;
   
   background:${colors.mediumRed};
   border-radius:50px;
