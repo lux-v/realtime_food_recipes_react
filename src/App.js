@@ -40,7 +40,6 @@ function App() {
     setIsLoading(false)
   });
 
-  console.log("isLoading: ", isLoading)
 
   return (
     <>

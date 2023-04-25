@@ -3,8 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 import { ReactComponent as LecturesIcon } from '../../../assets/img/lectures-icon.svg';
-import { ReactComponent as StudentsIcon } from '../../../assets/img/students-icon.svg';
-import { ReactComponent as CriteriaIcon } from '../../../assets/img/criteria-icon.svg';
+import { ReactComponent as FoodIcon } from '../../../assets/img/food-icon.svg';
+import { ReactComponent as AboutUsIcon } from '../../../assets/img/about-us-icon.svg';
+import { ReactComponent as HowItWorksIcon } from '../../../assets/img/how-it-works-icon.svg';
 import { ReactComponent as LogOutIcon } from '../../../assets/img/logout-icon.svg';
 import { ReactComponent as YourProfileIcon } from '../../../assets/img/yourProfile-icon.svg';
 
@@ -121,6 +122,54 @@ export const ItemsWrapper = styled.div`
 
 
 
+
+
+export const IconTextWrapper = styled.div`
+  display:flex;
+  gap:16px;
+  width: 100%;
+  height:100%;
+`;
+
+
+const IconStyle = css`
+  height:20px;
+  width:auto;
+
+    :hover{
+      stroke:${colors.primary}
+    }
+`
+
+export const Lectures = styled(LecturesIcon)`
+  ${IconStyle}
+`;
+
+export const Food = styled(FoodIcon)`
+
+  ${IconStyle}
+`;
+
+export const AboutUs = styled(AboutUsIcon)`
+  ${IconStyle}
+
+`;
+export const HowItWorks = styled(HowItWorksIcon)`
+  ${IconStyle}
+`;
+
+export const LogOut = styled(LogOutIcon)`
+
+  ${IconStyle}
+`;
+
+export const YourProfile = styled(YourProfileIcon)`
+
+  ${IconStyle}
+`;
+
+
+
 export const HeaderNavLink = styled(NavLink)`
   display:flex;
   align-items:center;
@@ -142,7 +191,18 @@ export const HeaderNavLink = styled(NavLink)`
 
   :hover{
     background:${colors.lightRed};
-    color:${colors.primary}
+    color:${colors.primary};
+
+    
+    ${Food} {
+      stroke: ${colors.primary};
+    }
+    ${AboutUs } {
+      stroke: ${colors.primary};
+    }
+    ${ HowItWorks} {
+      stroke: ${colors.primary};
+    }
   }
 
   ${(props) =>
@@ -172,49 +232,16 @@ export const HeaderNavLink = styled(NavLink)`
   @media (${breakpoints.tablet}) {
     &.active {
       background:${colors.lightRed};
-      color:${colors.primary}
+      color:${colors.primary};
+      ${Food} {
+        stroke: ${colors.primary};
+      }
+      ${AboutUs } {
+        stroke: ${colors.primary};
+      }
+      ${ HowItWorks} {
+        stroke: ${colors.primary};
+      }
     }
   }
-`;
-
-
-export const IconTextWrapper = styled.div`
-  display:flex;
-  gap:16px;
-  width: 100%;
-  height:100%;
-`;
-
-
-const IconStyle = css`
-  height:20px;
-  width:auto;
-
-  :hover{
-    fill:${colors.primary}
-  }
-`
-
-export const Lectures = styled(LecturesIcon)`
-  ${IconStyle}
-`;
-
-export const Students = styled(StudentsIcon)`
-
-${IconStyle}
-`;
-
-export const Criteria = styled(CriteriaIcon)`
-
-${IconStyle}
-`;
-
-export const LogOut = styled(LogOutIcon)`
-
-${IconStyle}
-`;
-
-export const YourProfile = styled(YourProfileIcon)`
-
-${IconStyle}
 `;

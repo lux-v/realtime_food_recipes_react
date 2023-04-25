@@ -4,7 +4,7 @@ import {
     ToastHeader,
     IconTitleWrapper,
     Icon,
-    Content,
+
     Title,
     ContentWrapper,
     XButton,
@@ -108,8 +108,7 @@ const Toast = ({ toastType, setToastType }) => {
             </ToastHeader>
 
             <ContentWrapper>
-
-                <Content>{toastType.message}</Content>
+                {toastType.message}
             </ContentWrapper>
             <TimerBar remainingTime={remainingTime} totalTime={5000} toastType={toastType.type} />
         </ToastWrapper>

@@ -12,14 +12,13 @@ import {
     NameFavoritesWrapper,
     FavoriteIconWrapper,
     CookTimeWrapper,
-    CookTimeIcon,
+    CookTime,
     CookTimeLabel,
     AddFavorite
 } from './RecipeCardStyle';
 
 
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
-import ClockIcon from '../../assets/img/clock-icon.png';
 
 
 const RecipeCard = ({ recipe }) => {
@@ -34,7 +33,7 @@ const RecipeCard = ({ recipe }) => {
                 <NameFavoritesWrapper>
                     <RecipeName className='RecipeName' >{recipe.name}</RecipeName>
                     <FavoriteIconWrapper>
-                        <AddFavorite />
+                        <AddFavorite isFavorite={true}/>
                     </FavoriteIconWrapper>
 
                 </NameFavoritesWrapper>
@@ -46,8 +45,8 @@ const RecipeCard = ({ recipe }) => {
                     })}
                 </RecipeIngredientsWrapper>
                 <CookTimeWrapper>
-                    <CookTimeIcon src={ClockIcon} />
-                    <CookTimeLabel>{recipe.cookTimeMin}</CookTimeLabel>
+                    <CookTime/>
+                    <CookTimeLabel>{recipe.cookTimeMin}<span style={{fontSize:"10px"}}>(min)</span></CookTimeLabel>
                 </CookTimeWrapper>
             </TextWrapper>
 

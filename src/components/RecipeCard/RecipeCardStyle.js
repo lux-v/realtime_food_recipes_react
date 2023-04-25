@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
     breakpoints,
     colors,
@@ -6,14 +6,37 @@ import {
 } from "../../lib/style/theme";
 
 import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite.svg";
+import { ReactComponent as ClockIcon } from "../../assets/img/clock-icon.svg";
+
+
+const IconStyle = css`
+  height:20px;
+  width:auto;
+
+`
+
 
 export const AddFavorite = styled(AddFavoriteIcon)`
-    width:100%;
-    height:100%;
-    padding:6px;
+    ${IconStyle}
 
-    path {
-        fill: ${colors.primary};    
+    :active{
+        scale:1.1;
+    }
+
+    :hover{
+        fill:${colors.primary}
+      }
+
+    ${props=>props.isFavorite &&`
+        fill:${colors.primary};
+    `}
+`;
+
+export const CookTime = styled(ClockIcon)`
+    ${IconStyle}
+
+    :hover{
+        fill: none;
     }
 `;
 
@@ -44,8 +67,7 @@ export const RecipieCardWrapper = styled.div`
     &:hover {
         transition: all 0.2s ease-in-out;
         cursor: pointer;
-        background-color: ${colors.white05};
-        border-color:${colors.primary}; 
+        box-shadow: ${colors.primary} 0px 1px 8px;
     }
 
 `;
@@ -90,31 +112,20 @@ export const FavoriteIconWrapper = styled.div`
     align-items:center;
     justify-content:center;
 
-    width:35px;
-    height:35px;
+    width:30px;
+    height:30px;
 
     border:1px solid ${colors.modalBorder};
     border-radius:50%;
 
     background-color: white;
-
-    overflow:hidden;
-    
-    &:hover {
-        transition: all 0.2s ease-in-out;
-        cursor: pointer;
-
-        scale: 1.1;
-    }
+   
 `;
 
 
 
 export const RecipeName = styled.p`
-    /* LineClampStyle; */
     text-overflow: ellipsis;
-
-    /* Needed to make it work */
     overflow: hidden;
     white-space: nowrap;
 
@@ -157,7 +168,6 @@ export const CookTimeWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    gap:5px;
 `;
 
 export const CookTimeIcon = styled.img`
@@ -167,9 +177,8 @@ export const CookTimeIcon = styled.img`
 `;
 export const CookTimeLabel = styled.p`
     color: ${colors.textPrimary};
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 
-    height:20px;
 `;
 

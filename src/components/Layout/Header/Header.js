@@ -27,8 +27,8 @@ import {
   MenuText,
   ExitImg as ExitElement,
   HeaderNavLink,
-  Students as StudentsIcon,
-  Criteria as CriteriaIcon,
+  Food as FoodIcon,
+  AboutUs as AboutUsIcon,
   LogOut as LogOutIcon,
   YourProfile as YourProfileIcon,
   ItemsWrapper,
@@ -87,9 +87,9 @@ const Header = () => {
             <HeaderNavLink to="/">
               {isSidebarOpen ?
                 <IconTextWrapper >
-                  <StudentsIcon />
+                  <FoodIcon />
                   Recipes
-                </IconTextWrapper> : <StudentsIcon />}
+                </IconTextWrapper> : <FoodIcon />}
             </HeaderNavLink>
             <HeaderNavLink className="mobileNav" to="/profile">
 
@@ -103,17 +103,17 @@ const Header = () => {
 
               {isSidebarOpen ?
                 <IconTextWrapper >
-                  <CriteriaIcon />
+                  <AboutUsIcon />
                   How It Works
-                </IconTextWrapper> : <CriteriaIcon />}
+                </IconTextWrapper> : <AboutUsIcon />}
             </HeaderNavLink>
             <HeaderNavLink to="/about-us">
 
               {isSidebarOpen ?
                 <IconTextWrapper >
-                  <CriteriaIcon />
+                  <AboutUsIcon />
                   About us
-                </IconTextWrapper> : <CriteriaIcon />}
+                </IconTextWrapper> : <AboutUsIcon />}
             </HeaderNavLink>
 
             <HeaderNavLink

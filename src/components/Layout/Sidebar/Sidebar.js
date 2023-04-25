@@ -3,13 +3,10 @@ import { useContext } from 'react';
 
 import {
     SidebarWrapper,
-
-
-
     HeaderNavLink,
-
-    Students as StudentsIcon,
-    Criteria as CriteriaIcon,
+    Food as FoodIcon,
+    AboutUs as AboutUsIcon,
+    HowItWorks as HowItWorksIcon,
     LogOut as LogOutIcon,
     YourProfile as YourProfileIcon,
     ItemsWrapper,
@@ -21,16 +18,15 @@ const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);
 
 
-
     return (
         <SidebarWrapper isSidebarOpen={isSidebarOpen}>
             <ItemsWrapper>
                 <HeaderNavLink to="/">
                     {isSidebarOpen ?
                         <IconTextWrapper >
-                            <StudentsIcon />
+                            <FoodIcon />
                             Recipes
-                        </IconTextWrapper> : <StudentsIcon />}
+                        </IconTextWrapper> : <FoodIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink className="mobileNav" to="/profile">
 
@@ -44,17 +40,17 @@ const Sidebar = () => {
 
                     {isSidebarOpen ?
                         <IconTextWrapper >
-                            <CriteriaIcon />
+                            <HowItWorksIcon />
                             How It Works
-                        </IconTextWrapper> : <CriteriaIcon />}
+                        </IconTextWrapper> : <HowItWorksIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink to="/about-us">
 
                     {isSidebarOpen ?
                         <IconTextWrapper >
-                            <CriteriaIcon />
+                            <AboutUsIcon />
                             About us
-                        </IconTextWrapper> : <CriteriaIcon />}
+                        </IconTextWrapper> : <AboutUsIcon />}
                 </HeaderNavLink>
 
                 <HeaderNavLink

@@ -9,13 +9,12 @@ export const Toast = styled.div`
   z-index: 1;
 
   width: 272px;
-  min-height: 52px;
+  min-height: 40px;
   border-radius: ${border.borderRadius};
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-between;
-  align-items: center;
 
   @media (${breakpoints.tablet}) {
     right: 300px;
@@ -103,11 +102,11 @@ export const Toast = styled.div`
 `;
 
 export const ToastHeader = styled.div`
-display: flex;
-width: 100%;
-height: 40px;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  width: 100%;
+  padding:5px;
+  align-items: center;
+  justify-content: space-between;
 `
 
 export const TimerBar = styled.div.attrs(props => ({
@@ -142,19 +141,18 @@ export const IconTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 10px 0 24px;
 `;
 
 
 export const ContentWrapper = styled.div`
-  @media (${breakpoints.tablet}) {
-    display: flex;
-    flex-direction: column;
 
-    width: 100%;
-    height: fit-content;
-    align-self: flex-start;
-  }
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: ${colors.textToast};
+
+  padding: 8px 8px 12px 8px;
+  font-size: 14px;
 `;
 
 export const Title = styled.span`
@@ -167,20 +165,6 @@ export const Title = styled.span`
     font-weight: 500;
     font-size: 22px;
     line-height: 27px;
-  }
-`;
-
-export const Content = styled.p`
-  padding: 8px 8px 12px 8px;
-  font-size: 14px;
-
-  @media (${breakpoints.tablet}) {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    color: ${colors.textToast};
-    margin-left: 8px;
-    margin-bottom: 8px;
   }
 `;
 
