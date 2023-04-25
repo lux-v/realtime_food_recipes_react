@@ -57,12 +57,12 @@ const Landing = () => {
             </LandingHeader>
 
 
-            <LineEffectWrapper topLeft maxWidth="50vh">
-                <img alt="LineEffect" src={LineEffect} />
+            <LineEffectWrapper login topLeft maxWidth="50vh">
+                <img alt="LineEffect" src={LineEffect} height="100%" />
             </LineEffectWrapper>
 
-            <LineEffectWrapper>
-                <img alt="LineEffect" src={LineEffect} />
+            <LineEffectWrapper login>
+                <img alt="LineEffect" src={LineEffect} height="100%"/>
             </LineEffectWrapper>
 
             <LogoWrapper>
