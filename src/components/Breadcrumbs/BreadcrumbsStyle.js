@@ -13,7 +13,7 @@ export const Breadcrumbs = styled.div`
 
 export const BreadcrumbsLink = styled(Link)`
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12.5px;
   line-height: 19px;
   color: ${colors.textPrimary};
 

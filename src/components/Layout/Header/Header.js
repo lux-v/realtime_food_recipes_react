@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 
 import {
   HeaderWrapper,
-  HeaderInner,
   LogoLink,
   LogoImg as LogoElement,
   HamburgerIcon,
@@ -11,8 +10,8 @@ import {
   ProfileImg,
   Arrow,
   LeftSideWrapper,
-  RightSideWrapper,
   HeaderProfileWrapper,
+  BreadcrumbsWrapper,
 } from './HeaderStyle';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
@@ -24,13 +23,10 @@ import ExitIcon from '../../../assets/img/exit-icon.svg';
 import Menu from '../../Menu/Menu';
 import { AuthContext } from '../../../context/AuthContext';
 import {
-  SidebarWrapper,
   MenuWrapper,
   MenuText,
   ExitImg as ExitElement,
-  OptionsWrapper,
   HeaderNavLink,
-  Lectures as LecturesIcon,
   Students as StudentsIcon,
   Criteria as CriteriaIcon,
   LogOut as LogOutIcon,
@@ -38,6 +34,8 @@ import {
   ItemsWrapper,
   IconTextWrapper,
 } from '../../Layout/Sidebar/SidebarStyle';
+
+import Chip from "../../Chip/Chip"
 
 const Header = () => {
   const { isSidebarOpen, setIsSidebarOpen, logout } = useContext(AuthContext)
@@ -63,20 +61,18 @@ const Header = () => {
           </LogoLink>
           <HamburgerIcon left onClick={handleHamburgerClick} />
         </LeftSideWrapper>
-        <Breadcrumbs />
-        <RightSideWrapper >
-          <HeaderProfileWrapper >
-            <HeaderProfile onClick={handleMenuClick}>
-              <ProfileImg src={profileImg} alt="profileImg" />
-              <Arrow />
-            </HeaderProfile>
-            <HamburgerIcon onClick={handleHamburgerClick} />
-            {openMenu && <Menu open={openMenu} />}
-          </HeaderProfileWrapper>
-        </RightSideWrapper>
+        <BreadcrumbsWrapper>
+          <Breadcrumbs />
+        </BreadcrumbsWrapper>
 
-
-
+        <HeaderProfileWrapper >
+          <HeaderProfile onClick={handleMenuClick}>
+            <ProfileImg src={profileImg} alt="profileImg" />
+            <Arrow />
+          </HeaderProfile>
+          <HamburgerIcon onClick={handleHamburgerClick} />
+          {openMenu && <Menu open={openMenu} />}
+        </HeaderProfileWrapper>
       </HeaderWrapper>
 
       <HamburgerContent isSidebarOpen={isSidebarOpen}>

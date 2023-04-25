@@ -43,32 +43,38 @@ export const LeftSideWrapper = styled.div`
 `;
 
 
-export const RightSideWrapper = styled.div`
-  width: calc(100% - 240px); 
-  display: flex; 
-  align-items: center; 
-  justify-content: flex-end;
-`;
+// export const RightSideWrapper = styled.div`
+//   /* width: calc(100% - 240px);  */
+//   display: flex; 
+//   align-items: center; 
+//   justify-content: flex-end;
+// `;
 
 export const HeaderProfileWrapper = styled.div`
   position: relative;
   height: 100%;
+  width:145px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap:5px;
+`;
+
+export const BreadcrumbsWrapper = styled.div`
+  display:none;
+  width: calc(100% - 145px - 240px);
+  padding:10px;
+  border-radius:20px;
+  background:${colors.lightRed};
+
+  @media (${breakpoints.desktop}) {
+      display: block;
+
+  }  
 `;
 
 
-
-
-
 export const LogoLink = styled(Link)`
-
-  &:hover {
-    cursor: pointer;
-  }
-
-
 `;
 
 export const LogoImg = styled.img`
@@ -88,6 +94,7 @@ export const LogoText = styled.p`
 
 
 export const HamburgerIcon = styled(Hamburger)`
+  position: relative;
   width: 40px;
   height: 40px;
   border-radius:8px;
@@ -103,22 +110,12 @@ export const HamburgerIcon = styled(Hamburger)`
   transition: all 0.1s ease-in;
 
   ${props =>
-    props.left ? `
-        position: absolute;
-        right: 0%;
-    ` : `
-      position: relative;
-    `
-  }
-
-  ${props =>
-    props.left ? `
+    props.left === true ? `
       display: none;
       ` : `
       display: block;
     `
   }  
-
 
   @media (${breakpoints.desktop}) {
     ${props =>
@@ -140,6 +137,8 @@ export const HamburgerContent = styled.div`
   width: 260px;
   height:100%;
   background-color: ${colors.bgSecondary};
+
+  z-index: 3;
   
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   
@@ -177,7 +176,7 @@ export const Arrow = styled(ArrowIcon)`
 
 
 export const HeaderProfile = styled.nav`
-  position:relative;
+  /* position:relative; */
   display: none;
   width:100px;
   padding: 5px 10px;
