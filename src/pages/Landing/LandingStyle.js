@@ -173,18 +173,22 @@ export const SecondaryTextWrapper = styled.div`
 
     color:var(--textMenu);
 
+  
+
     background: 
-        linear-gradient(var(--c) 0,var(--textMenu) 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+        linear-gradient(var(--c) 0,var(--textMenu) ) 0% calc(100% - var(--_p,0%))/100% 200%,
         linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+
     -webkit-background-clip: text,padding-box;
             background-clip: text,padding-box;
     transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
+    background-color: ${colors.white05};
 
 
   &:hover{
         --_p: 100%;
         --_s: .3s;
-        scale:1.1;
+        scale:1.05;
     };
 
 

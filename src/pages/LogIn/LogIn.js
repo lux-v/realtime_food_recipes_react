@@ -16,19 +16,18 @@ import {
   LogoContainer,
   LogoImg,
   BlueLink,
+
+  SignUpWrapper,
+  FormWrapper,
+  ButtonWrapper,
+  ImageImage,
+  ImageContainer,
+  LineEffectWrapper,
+
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
 import LogoPic from '../../assets/img/logo.png';
-import {
 
-  ImageImage,
-  ImageContainer,
-  Wrapper,
-  ButtonWrapper,
-  BigWrapper,
-  LineEffectWrapper,
-  FormWrapper
-} from './LoginStyle';
 import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from '../../assets/img/profile.svg';
 import IconKey from '../../assets/img/key.png';
@@ -69,8 +68,8 @@ const LogIn = () => {
   // }
 
   return (
-    <BigWrapper>
-      <Wrapper>
+    <SignUpWrapper>
+      <FormWrapper>
         <Formik
           initialValues={{
             email: '',
@@ -192,14 +191,14 @@ const LogIn = () => {
             </FormWrapper>
           )}
         </Formik>
-      </Wrapper>
-      <ImageContainer>
-        <ImageImage src={FruitBowls} />
+      </FormWrapper>
+      <ImageContainer login>
+        <ImageImage login src={FruitBowls} />
       </ImageContainer>
-      <LineEffectWrapper>
+      <LineEffectWrapper login>
         <img src={LineEffect} alt="line-effect" style={{ height: '100%' }} />
       </LineEffectWrapper>
-    </BigWrapper>
+    </SignUpWrapper>
   );
 };
 export default LogIn;

@@ -1,12 +1,27 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+
+import { AnswerText, 
+    GrayTextStyle, 
+    GreenTextStyle, 
+    LandingContainer, 
+    LandingHeader, 
+    LogoWrapper, 
+    MainTextWrapper, 
+    QuestionText, 
+    RedTextStyle, 
+    SecondaryTextWrapper, 
+    TextWrapper, 
+    TwoFoodPlatesWrapper 
+} from './LandingStyle';
+
+import Button from '../../components/Button/Button'
+
 import LineEffect from '../../assets/img/line-effect.png';
 import LogoPic from '../../assets/img/logo.png';
 import TwoFoodPlates from "../../assets/img/2-food-plates.png"
-import { LineEffectWrapper } from '../LogIn/LoginStyle';
-import Button from '../../components/Button/Button'
-import Layout from "../../components/Layout/Layout"
-import { AnswerText, GrayTextStyle, GreenTextStyle, LandingContainer, LandingHeader, LogoWrapper, MainTextWrapper, QuestionText, RedTextStyle, SecondaryTextWrapper, TextWrapper, TwoFoodPlatesWrapper } from './LandingStyle';
+import { LineEffectWrapper } from '../../lib/style/generalStyles';
+
 
 
 const Landing = () => {

@@ -17,18 +17,17 @@ import {
     LogoImg,
     BlueLink,
 
+    SignUpWrapper,
+    FormWrapper,
+    ImageImage,
+    ImageContainer,
+    ButtonWrapper,
+    LineEffectWrapper,
+
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
 import LogoPic from '../../assets/img/logo.png';
-import {
-    ImageImage,
-    ImageContainer,
-    Wrapper,
-    ButtonWrapper,
-    BigWrapper,
-    LineEffectWrapper,
-    FormWrapper,
-} from './SingUpStyle';
+
 
 import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from "../../assets/img/profile.svg"
@@ -70,8 +69,8 @@ export default function SignUp() {
     // }
 
     return (
-        <BigWrapper>
-            <Wrapper>
+        <SignUpWrapper>
+            <FormWrapper>
                 <Formik
                     initialValues={{
                         name: "",
@@ -96,7 +95,6 @@ export default function SignUp() {
                     }}
                 >
                     {(formik) => (
-                        <FormWrapper>
                             <Form>
                                 <LogoContainer>
                                     <LogoImg src={LogoPic} alt="logo" onClick={() => navigate("/")} />
@@ -191,10 +189,9 @@ export default function SignUp() {
                                     <FormLabel italic>Already have an account? <BlueLink to="/login">Log in.</BlueLink> </FormLabel>
                                 </FormRow>
                             </Form>
-                        </FormWrapper>
                     )}
                 </Formik>
-            </Wrapper>
+            </FormWrapper>
             <ImageContainer>
                 <ImageImage src={FruitBowls} />
             </ImageContainer>
@@ -203,6 +200,6 @@ export default function SignUp() {
                     height: "100%", transform: "scaleX(-1)"
                 }} />
             </LineEffectWrapper>
-        </BigWrapper >
+        </SignUpWrapper >
     );
 }

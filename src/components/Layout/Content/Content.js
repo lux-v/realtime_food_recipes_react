@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LineEffectWrapper } from '../../../pages/LogIn/LoginStyle';
+import { LineEffectWrapper } from '../../../lib/style/generalStyles';
 import {
   ContentWrapper,
   Content as ContentWrapper1,

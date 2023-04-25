@@ -827,3 +827,99 @@ export const BlueLink = styled(Link)`
     font-size: 16px;
   }
 `;
+
+
+
+
+
+export const SignUpWrapper = styled.div`
+  position: relative;
+  min-height:100%;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+
+  padding: 20px;
+  background-color: ${colors.bgPrimary};
+
+`;
+
+
+export const FormWrapper = styled.div`
+  z-index: 1;
+  margin:auto;
+`;
+
+export const ButtonWrapper = styled.div`
+  display:flex;
+  justify-content:center;
+  width:100%;
+`
+
+
+export const ImageContainer = styled.div`
+  display: none;
+  height:100%;
+  overflow-y: hidden;
+
+  position: absolute;
+  top:0;
+  ${props=>props.login ?"left:0":"right:0"};
+
+  @media (${breakpoints.tablet}) {
+    display: block; 
+  }
+  
+`;
+
+
+
+export const LineEffectWrapper = styled.div`
+  position:absolute;
+
+  height:100vh;
+  overflow:hidden;
+
+  max-width: ${props => props.maxWidth && props.maxWidth};
+
+
+  ${props=>props.login!==true &&`
+      bottom:0;
+      left:0;
+    `
+}
+
+
+
+  ${props =>
+    props.topLeft ?
+      `
+      rotate: 180deg;
+      top:0;
+      left:0;
+    `
+      :
+      `
+      bottom:0;
+      right:0;
+      `
+  }
+
+
+
+
+
+
+`
+
+export const ImageImage = styled.img`
+  height: 100%;
+  object-fit: cover;
+
+  ${props=>props.login!==true &&`
+    transform: scaleX(-1);
+  `}
+
+`;
+
+
