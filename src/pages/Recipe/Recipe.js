@@ -50,6 +50,8 @@ const Recipe = () => {
             elements={
                 <>
                     <Button callback={() => navigate(-1)}>Back</Button>
+
+                    <Button isTertiary callback={() => navigate(-1)}>Update</Button>
                 </>}
         >
             {recipe ?
@@ -75,14 +77,10 @@ const Recipe = () => {
                                     )}
                                 </IngredientsWrapper>
                             </SectionWrapper>
-
-
                         </LeftSideWrapper>
                         <RightSideWrapper>
                             <RecipeImg src={recipe.imgUrl} />
                         </RightSideWrapper>
-
-
                     </TopSideWrapper>
                     <BottomSideWrapper>
                         {recipe.ingredients.map((ingredient, index) =>

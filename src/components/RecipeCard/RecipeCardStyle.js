@@ -60,7 +60,7 @@ export const RecipieCardWrapper = styled.div`
 
 
     @media (${breakpoints.tablet}) {
-        height: 200px;
+        height: 210px;
         flex-direction:row;
     }
 
@@ -78,13 +78,12 @@ export const ImageWrapper = styled.div`
 
 export const RecipeImage = styled.img`
     width: 100%;
-    height: 175px;
+    height: 188px;
     object-fit: cover;
     border-radius: ${border.borderRadius};
 
     @media (${breakpoints.tablet}) {
-        width: 175px;
-        height: 175px;
+        width: 188px;
         object-fit: cover;
     }
 `;
@@ -160,7 +159,7 @@ export const RecipeIngredientsWrapper = styled.div`
     flex-wrap:wrap;
     gap:5px;
 
-    height:50px;
+    height:54px;
     overflow:hidden;
 `;
 
