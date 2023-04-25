@@ -1,41 +1,66 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 
 import { FieldArray, Formik } from 'formik'
 import * as Yup from "yup"
 
 import Layout from '../../components/Layout/Layout'
-import { Form, FormRow, Field, SmallField, FormLabel, ErrorMesagge, RequiredSpan, TextArea, TwoInRow } from '../../lib/style/generalStyles'
+import { Form, FormRow, Field, SmallField, FormLabel, ErrorMesagge, RequiredSpan, TextArea, TwoInRow, InputField, ErrorMessageCustom } from '../../lib/style/generalStyles'
 
-import IngredientCard from '../../components/IngredientCard/IngredientCard'
-import {
-    IngredientCardWrapper,
-    IngredientCardGrid,
-} from '../../components/IngredientCard/IngredientCardStyle';
-import { Button } from '../../components/Button/ButtonStyle'
+import Button from '../../components/Button/Button'
+import Chip from '../../components/Chip/Chip'
+import { RecipeIngredientsWrapper, CloseIcon } from './RecipesAddNewStyles'
+import { postRecipeData } from '../../api/recipes'
 
 const RecipesAddNew = () => {
-    const { setToastType } = useContext(AuthContext)
+    const { setToastType, userData } = useContext(AuthContext)
+    const formRef = useRef(null)
+
+    const [newIngredient, setNewIngredient] = useState("")
+    const [newIngredientError, setNewIngredientError] = useState(false)
+
+    const handleKeyDown = (e, callback) => {
+        if (newIngredient !== "") {
+            if (e.key === "Enter" || e.keyCode === 13) {
+                callback(newIngredient)
+                setNewIngredient("")
+                setNewIngredientError(false)
+            }
+        }
+        else {
+            setNewIngredientError(true)
+        }
+    }
+
+    const handleNewIngredientChange = (e) => {
+        setNewIngredient(e.target.value)
+
+        e.target.value === "" ? setNewIngredientError(true) : setNewIngredientError(false)
+
+    }
+
+    console.log("formRef", formRef)
 
     return (
         <Layout
             title="Add new recipe"
             elements={
                 <>
-                    <Button>
-                        Add +
+                    <Button callback={() => formRef.current.handleSubmit()}>
+                        Add ++
                     </Button>
                 </>
             }
         >
-
             <Formik
+                innerRef={formRef}
                 initialValues={{
                     name: "",
                     description: "",
                     ingredients: [],
                     imgUrl: "",
-                    cookTimeMin: ""
+                    cookTimeMin: "",
+                    newIngredient: "",
 
                 }}
                 validationSchema={Yup.object({
@@ -43,33 +68,42 @@ const RecipesAddNew = () => {
                         .required('Recipe name is required'),
                     description: Yup.string()
                         .required('Description is required'),
-                    ingredients: Yup.array(
-                        Yup.object({
-                            name: Yup.string().required('Ingredient name is required'),
-                        })),
+                    ingredients: Yup.array(Yup.string().required('Ingredient name is required'),
+                    ),
                     imgUrl: Yup.string(),
                     cookTimeMin: Yup.string(),
+                    newIngredient: Yup.string(),
 
                 })}
                 onSubmit={async (values, actions) => {
                     try {
+                        const formattedValues = {
+                            name: values.name,
+                            description: values.description,
+                            ingredients: values.ingredients,
+                            cookTimeMin: values.cookTimeMin,
+                            imgUrl: values.imgUrl,
+                            createdBy: userData.uid || "",
+                            createdAt: new Date()
 
-                        const formattedValues = { ...values }
+                        }
 
-                        // await postRecipe(formattedValues)
+                        console.log("formattedValues: ", formattedValues)
+
+                        await postRecipeData(formattedValues)
 
                         actions.setSubmitting(false);
-                        actions.resetForm({
-                            name: "",
-                            description: "",
-                            imgUrl: "",
-                            ingredients: "",
-                            cookTimeMin: ""
-                        });
+                        // actions.resetForm({
+                        //     name: "",
+                        //     description: "",
+                        //     imgUrl: "",
+                        //     ingredients: "",
+                        //     cookTimeMin: ""
+                        // });
 
                         setToastType({
                             open: true,
-                            message: 'Recipe is added!',
+                            message: values.name + " is added!",
                             type: 'success',
                         });
                     }
@@ -85,9 +119,10 @@ const RecipesAddNew = () => {
                 }}
             >
                 {(formik) => (
-                    <div style={{ display: "flex", justifyContent: "center", height: "100%", width: "100%", }}>
+                    // console.log("formik :", formik),
 
-                        <Form>
+                    <Form>
+                        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignContent: "center", alignItems: "center", width: "600px", margin: "auto" }}>
                             <FormRow>
                                 <FormLabel>
                                     Name: <RequiredSpan>*</RequiredSpan>
@@ -148,41 +183,66 @@ const RecipesAddNew = () => {
                                 </FormRow>
 
                             </TwoInRow>
+                            <FieldArray
+                                name="ingredients"
+                                render={arrayHelpers => (
+                                    <>
 
-                            <FieldArray name="ingredients">
-                                {(fieldArrayProps) => {
-                                    const { form } = fieldArrayProps;
-                                    const { values } = form;
-                                    const { ingredients } = values;
-
-                                    return (
-                                        <>
-                                            <IngredientCardWrapper>
-                                                <IngredientCardGrid>
-                                                    {ingredients.map((ingredient, index) => {
-                                                        return (
-                                                            <IngredientCard
-                                                                key={index}
-                                                                formik={formik}
-                                                                index={index}
-                                                                ingredient={ingredient}
-
-                                                            // fetch={fetchingredients}
-                                                            />
+                                        <FormRow>
+                                            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                                <InputField
+                                                    id="newIngredient"
+                                                    name="newIngredient"
+                                                    type='newIngredient'
+                                                    error={newIngredientError}
+                                                    placeholder="Add ingredient"
+                                                    disabled={formik.isSubmitting}
+                                                    value={newIngredient}
+                                                    onKeyDown={(e) =>
+                                                        handleKeyDown(e, (newValue) => {
+                                                            arrayHelpers.insert(
+                                                                formik.values.ingredients.length - 1,
+                                                                newValue
+                                                            );
+                                                        })
+                                                    }
+                                                    onChange={(e) => handleNewIngredientChange(e)}
+                                                />
+                                                <Button
+                                                    type="button"
+                                                    callback={() => {
+                                                        arrayHelpers.insert(
+                                                            formik.values.ingredients.length - 1,
+                                                            newIngredient
                                                         );
-                                                    })}
-                                                </IngredientCardGrid>
-                                            </IngredientCardWrapper>
-                                        </>
-                                    );
-                                }}
-                            </FieldArray>
+                                                        setNewIngredient("");
+                                                    }
 
-                        </Form>
-                    </div>
+                                                    }
+                                                    disabled={newIngredient === ""}
+                                                    height="100%"
+                                                >
+                                                    +
+                                                </Button>
+                                            </div>
+                                            <ErrorMessageCustom isError={newIngredientError}>Ingredient cannot be empty</ErrorMessageCustom>
+                                        </FormRow>
+                                        <RecipeIngredientsWrapper>
+                                            {formik.values.ingredients.map((ingredient, index) => (
+                                                <div key={index} style={{ display: "flex", alignItems: "center" }}>
+                                                    <Chip name={ingredient} type="error" icon={<CloseIcon onClick={() => arrayHelpers.remove(index)} />} />
+                                                </div>
+                                            ))}
+                                        </RecipeIngredientsWrapper>
 
-                )}
-            </Formik>
+                                    </>
+                                )}
+                            />
+                        </div>
+                    </Form>
+                )
+                }
+            </Formik >
         </Layout >
     )
 }

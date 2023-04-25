@@ -2,12 +2,15 @@ import React from 'react'
 import { ChipName, ChipWrapper } from './ChipStyle'
 
 
-const Chip = ({ name = "", type }) => {
+const Chip = ({ name = "", type, icon }) => {
+
+
     return (
-        <ChipWrapper type={type} key={name}>
+        <ChipWrapper type={type} key={name} icon={icon}>
             <ChipName>
                 {name}
             </ChipName>
+            {icon}
         </ChipWrapper>
     )
 }

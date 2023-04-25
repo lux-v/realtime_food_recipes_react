@@ -49,7 +49,6 @@ const RecipeCard = ({ onClick, recipe }) => {
                     <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
                 </CookTimeWrapper>
             </TextWrapper>
-
         </RecipieCardWrapper>
     )
 }

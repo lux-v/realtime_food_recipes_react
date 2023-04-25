@@ -1,6 +1,6 @@
 import app from "./firebase"
 
-
+// this is put... needs to be refactored to accept more props dynamically
 export const postUserData = async (user) => {
     return app.firestore().collection("users").doc(user.uid).set({
         email: user.email,

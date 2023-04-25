@@ -96,7 +96,7 @@ const AuthProvider = ({ children }) => {
                 //get the userData
                 try {
                     const userData = await getUserData(user.uid)
-                    setUserData(userData)
+                    setUserData({ ...userData, uid: user.uid })
                 } catch (error) {
                     alert("error getting user data :", error)
                 }
@@ -119,7 +119,6 @@ const AuthProvider = ({ children }) => {
                 isLoggedIn,
                 setIsLoggedIn,
                 userData,
-                setUserData,
                 toastType,
                 setToastType,
                 signup,

@@ -29,3 +29,12 @@ export const getRecipeData = async (uid) => {
     })
 }
 
+
+export const postRecipeData = async (recipe) => {
+    return app.firestore().collection("recipes").doc().set({
+        ...recipe
+    }).catch(error => {
+        console.log("Error posting recipe data: ", error);
+        throw error;
+    });
+}

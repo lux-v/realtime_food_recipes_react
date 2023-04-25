@@ -28,7 +28,9 @@ const IngredientCard = ({ ingredientID, formik, index, ingredient, }) => {
 
   };
 
+  console.log("test")
   useEffect(() => {
+    console.log("formik: ", formik)
     if (formik.values.ingredients[index] === "") setEdit(true)
   }, [formik.values, index])
 

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { breakpoints, colors, fonts,border } from './theme';
+import { breakpoints, colors, fonts, border } from './theme';
 import {
   Form as FormFormik,
   Field as FieldFormik,
@@ -100,7 +100,7 @@ export const FormRow = styled.div`
   `}
 
   ${(props) =>
-    props.isCriteria &&
+    props.isIngredient &&
     `
       max-width: 480px;
       width: 100%;
@@ -129,7 +129,7 @@ export const TwoInRow = styled.div`
   `}
 
   ${(props) =>
-    props.isCriteria &&
+    props.isIngredient &&
     `
       display: flex;
       flex-direction: column;
@@ -239,6 +239,13 @@ export const PasswordIcon = styled.img`
   }
 `;
 
+export const InputField = styled.input`
+    ${(props) =>
+    props.isSecondary ?
+      FieldStyleType2 : FieldStyleType1
+  };
+`
+
 export const Field = styled(FieldFormik)`
   ${(props) =>
     props.isSecondary ?
@@ -281,13 +288,13 @@ export const SmallField = styled(Field)`
   }
 
   ${(props) =>
-    props.criteria === 'isCriteria' &&
+    props.ingredient === 'isIngredient' &&
     `
       width: 145px; 
     `}
 
   ${(props) =>
-    props.criteria === 'isAddCriteria' &&
+    props.ingredient === 'isAddIngredient' &&
     props.isedit === 0 &&
     `
         height: 42px; 
@@ -298,7 +305,7 @@ export const SmallField = styled(Field)`
       `}
 
   ${(props) =>
-    props.criteria === 'isAddCriteria' &&
+    props.ingredient === 'isAddIngredient' &&
     props.isedit === 1 &&
     `
         height: 42px; 
@@ -339,6 +346,22 @@ export const ErrorMesagge = styled(ErrorMessageFormik)`
 
   font-family: ${fonts.secondary};
 `;
+
+export const ErrorMessageCustom = styled.p`
+  font-size: 12px;
+  color: ${colors.primary};
+  padding-top: 8px;
+  font-weight: 400;
+
+  font-family: ${fonts.secondary};
+
+  display:none;
+
+  ${props => props.isError && `
+    display:block;
+  `
+  }
+`
 
 export const RequiredSpan = styled.span`
   //margin-left: 8px;
@@ -861,7 +884,7 @@ export const ImageContainer = styled.div`
 
   position: absolute;
   top:0;
-  ${props=>props.login ?"left:0":"right:0"};
+  ${props => props.login ? "left:0" : "right:0"};
 
   @media (${breakpoints.tablet}) {
     display: block; 
@@ -880,11 +903,11 @@ export const LineEffectWrapper = styled.div`
   max-width: ${props => props.maxWidth && props.maxWidth};
 
 
-  ${props=>props.login!==true &&`
+  ${props => props.login !== true && `
       bottom:0;
       left:0;
     `
-}
+  }
 
   ${props =>
     props.topLeft ?
@@ -905,7 +928,7 @@ export const ImageImage = styled.img`
   height: 100%;
   object-fit: cover;
 
-  ${props=>props.login!==true &&`
+  ${props => props.login !== true && `
     transform: scaleX(-1);
   `}
 

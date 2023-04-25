@@ -8,6 +8,8 @@ import {
 import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite.svg";
 import { ReactComponent as ClockIcon } from "../../assets/img/clock-icon.svg";
 
+import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
+
 
 const IconStyle = css`
   height:20px;
@@ -44,20 +46,19 @@ export const CookTime = styled(ClockIcon)`
 export const RecipieCardWrapper = styled.div`
     display: flex;
     flex-direction:column;
-    max-width: 650px;
+    gap:5px;
+
+    width:100%;
     height: auto;
+    max-width: 650px;
     max-height:500px;
-    background: white;
-    border-radius: ${border.borderRadius};
     padding: 10px;
     margin: 10px;
 
-    gap:5px;
-
+    background: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
     border:1px solid ${colors.tableBorder};
-
+    border-radius: ${border.borderRadius};
 
     @media (${breakpoints.tablet}) {
         height: 210px;
@@ -94,15 +95,19 @@ export const TextWrapper = styled.div`
     display:flex;
     flex-direction:column;
     gap:5px;
-
+    width:100%;
 
 `;
+
+
+
 
 
 export const NameFavoritesWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-content:space-between;
+    
     gap:5px;
 `;
 
@@ -154,6 +159,16 @@ export const RecipeDescription = styled.p`
     height: 60px;
 `;
 
+export const CloseIcon = styled(Close)`
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+
+  path {
+    fill: white;
+  }
+`
+
 export const RecipeIngredientsWrapper = styled.div`
     display:flex;
     flex-wrap:wrap;
@@ -162,6 +177,8 @@ export const RecipeIngredientsWrapper = styled.div`
     height:54px;
     overflow:hidden;
 `;
+
+
 
 export const CookTimeWrapper = styled.div`
     display:flex;
