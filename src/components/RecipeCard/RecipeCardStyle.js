@@ -27,7 +27,7 @@ export const AddFavorite = styled(AddFavoriteIcon)`
         fill:${colors.primary}
       }
 
-    ${props=>props.isFavorite &&`
+    ${props => props.isfavorite && `
         fill:${colors.primary};
     `}
 `;

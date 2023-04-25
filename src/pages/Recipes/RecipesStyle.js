@@ -7,6 +7,8 @@ export const RecipesWrapper = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 2rem;
 
+    width:100%;
+
     justify-items:center;
 
     @media (${breakpoints.tablet}) {

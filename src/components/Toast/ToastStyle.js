@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { colors, breakpoints,border } from '../../lib/style/theme';
+import { colors, breakpoints, border } from '../../lib/style/theme';
 
 export const Toast = styled.div`
   position: fixed;
   top: 78px;
   right: 50%;
   transform: translate(50%);
-  z-index: 1;
+  z-index: 6;
 
   width: 272px;
   min-height: 40px;

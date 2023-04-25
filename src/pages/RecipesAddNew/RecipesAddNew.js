@@ -19,11 +19,11 @@ const RecipesAddNew = () => {
 
     return (
         <Layout
-            title=""
+            title="Add new recipe"
             elements={
                 <>
                     <Button>
-                        Create
+                        Add +
                     </Button>
                 </>
             }

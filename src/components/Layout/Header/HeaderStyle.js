@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { colors, breakpoints, border } from '../../../lib/style/theme';
@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.header`
   user-select: none;
   background-color: ${colors.bgSecondary};
   box-shadow: 0px 3px 2px 0px #0000000a;
-  z-index: 3;
+  z-index: 4;
 
   display: flex;
   justify-content: space-between;
@@ -125,7 +125,7 @@ export const HamburgerContent = styled.div`
   height:100%;
   background-color: ${colors.bgSecondary};
 
-  z-index: 3;
+  z-index: 5;
   
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   

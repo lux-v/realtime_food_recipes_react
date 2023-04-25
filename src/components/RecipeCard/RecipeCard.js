@@ -21,11 +21,11 @@ import {
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 
 
-const RecipeCard = ({ recipe }) => {
-    const recipeImage = recipe.imgUrl != "" ? recipe.imgUrl : RecipeImagePlaceholder
+const RecipeCard = ({ onClick, recipe }) => {
+    const recipeImage = recipe.imgUrl ? recipe.imgUrl : RecipeImagePlaceholder
 
     return (
-        <RecipieCardWrapper>
+        <RecipieCardWrapper onClick={onClick}>
             <ImageWrapper>
                 <RecipeImage src={recipeImage} />
             </ImageWrapper>
@@ -33,7 +33,7 @@ const RecipeCard = ({ recipe }) => {
                 <NameFavoritesWrapper>
                     <RecipeName className='RecipeName' >{recipe.name}</RecipeName>
                     <FavoriteIconWrapper>
-                        <AddFavorite isFavorite={true}/>
+                        <AddFavorite isfavorite={true} />
                     </FavoriteIconWrapper>
 
                 </NameFavoritesWrapper>
@@ -45,8 +45,8 @@ const RecipeCard = ({ recipe }) => {
                     })}
                 </RecipeIngredientsWrapper>
                 <CookTimeWrapper>
-                    <CookTime/>
-                    <CookTimeLabel>{recipe.cookTimeMin}<span style={{fontSize:"10px"}}>(min)</span></CookTimeLabel>
+                    <CookTime />
+                    <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
                 </CookTimeWrapper>
             </TextWrapper>
 

@@ -21,14 +21,14 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Toast from './components/Toast/Toast';
 import Landing from './pages/Landing/Landing';
 import Recipes from './pages/Recipes/Recipes';
+import Recipe from './pages/Recipe/Recipe';
 import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
-import { Loading } from './components/LoadingSpinner/LoadingSpinnerStyle';
 import Backdrop from './components/Backdrop/Backdrop';
 
 
 function App() {
   const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
-  const [isLoading, setIsLoading] =useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
 
   useEffect(() => {
@@ -37,32 +37,36 @@ function App() {
 
     setIsLoggedIn(isLoggedIn);
 
-    setIsLoading(false)
   });
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [])
+
 
 
   return (
     <>
       <Router>
-        <Routes> 
-          <Route path="/" element={ isLoggedIn ? isLoading ? 
-          <Backdrop>
+        <Routes>
+          <Route path="/" element={isLoggedIn ? isLoading ?
+            <Backdrop>
+              <Recipes />
+            </Backdrop>
+            :
             <Recipes />
-            </Backdrop> 
-            : 
-            <Recipes /> 
             : isLoading ?
-             <Backdrop>
+              <Backdrop>
+                <Landing />
+              </Backdrop>
+              :
               <Landing />
-              </Backdrop> 
-              : 
-              <Landing />
-              } />
+          } />
           {
-          isLoggedIn && <>
-            <Route path="/login" element={ <Navigate replace to="/" />} />
-            <Route path="/signup" element={<Navigate replace to="/" />} />
-          </>
+            isLoggedIn && <>
+              <Route path="/login" element={<Navigate replace to="/" />} />
+              <Route path="/signup" element={<Navigate replace to="/" />} />
+            </>
           }
 
           <Route path="/login" element={<LogIn />} />
@@ -83,6 +87,7 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/recipes/:id" element={<Recipe />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/add-new" element={<RecipesAddNew />} />
             <Route path="*" element={<ErrorPage />} />

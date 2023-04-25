@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-
+import { AuthContext } from '../../../context/AuthContext';
 import {
   HeaderWrapper,
   LogoLink,
@@ -14,14 +14,7 @@ import {
   BreadcrumbsWrapper,
 } from './HeaderStyle';
 
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import LogoImg from '../../../assets/img/logo.png';
-import profileImg from '../../../assets/img/profile.svg';
 
-import ExitIcon from '../../../assets/img/exit-icon.svg';
-
-import Menu from '../../Menu/Menu';
-import { AuthContext } from '../../../context/AuthContext';
 import {
   MenuWrapper,
   MenuText,
@@ -34,6 +27,13 @@ import {
   ItemsWrapper,
   IconTextWrapper,
 } from '../../Layout/Sidebar/SidebarStyle';
+
+
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
+import LogoImg from '../../../assets/img/logo.png';
+import profileImg from '../../../assets/img/profile.svg';
+import ExitIcon from '../../../assets/img/exit-icon.svg';
+import Menu from '../../Menu/Menu';
 
 const Header = () => {
   const { isSidebarOpen, setIsSidebarOpen, logout } = useContext(AuthContext)

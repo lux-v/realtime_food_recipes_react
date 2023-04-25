@@ -51,7 +51,7 @@ const Recipes = () => {
                 <RecipesWrapper>
                     {
                         recipes.map(recipe => {
-                            return <RecipeCard key={recipe.id} recipe={recipe} />
+                            return <RecipeCard onClick={() => navigate(`/recipes/${recipe.id}`)} key={recipe.id} recipe={recipe} />
                         })
                     }
                 </RecipesWrapper>

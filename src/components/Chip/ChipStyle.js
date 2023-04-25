@@ -1,26 +1,26 @@
 import styled from "styled-components";
-import { border, colors } from "../../lib/style/theme";
+import { colors } from "../../lib/style/theme";
 
 
 export const ChipWrapper = styled.div`
     display:flex;
     align-items:center;
-    height:20px;
+    height:22px;
     padding:6px;
     border-radius: 10px;
 
     
     ${props =>
-    props.type == "success" ?
+    props.type === "success" ?
       `
       background-color: ${colors.secondarySuccess};
     `
       :
-      props.type == "error" ?
+      props.type === "error" ?
         `
       background-color: ${colors.secondaryError};
     `:
-        props.type == "warning" ?
+        props.type === "warning" ?
           `
       background-color: ${colors.secondaryWarning};
     `:

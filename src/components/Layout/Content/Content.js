@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+
 import { LineEffectWrapper } from '../../../lib/style/generalStyles';
 import {
   ContentWrapper,
@@ -8,13 +10,13 @@ import {
   ButtonWrapper,
   ChildrenWrapper,
 } from './ContentStyle';
+
 import LineEffect from '../../../assets/img/line-effect.png';
-import { AuthContext } from '../../../context/AuthContext';
 
 const Content = ({
   title,
-  topLeftEffect = false,
-  bottomRightEffect = false,
+  topLeftEffect = true,
+  bottomRightEffect = true,
   isCentered = false,
 
   elements,
@@ -22,7 +24,7 @@ const Content = ({
 }) => {
 
   const { isSidebarOpen } = useContext(AuthContext);
-  const showHeading = title != undefined || elements != undefined
+  const showHeading = title || elements
 
   return (
     <ContentWrapper isSidebarOpen={isSidebarOpen}>
@@ -36,7 +38,7 @@ const Content = ({
         }
         {bottomRightEffect &&
           <LineEffectWrapper login>
-            <img   alt="LineEffect" src={LineEffect} />
+            <img alt="LineEffect" src={LineEffect} />
           </LineEffectWrapper>
         }
         {/* ----------------------------- */}
@@ -46,7 +48,7 @@ const Content = ({
             isCentered={isCentered}
             floatLeft={elements && elements.props.children.length === undefined}
           >
-            {title != undefined && (
+            {title && (
               <Title isCentered={isCentered}>
                 {title}
               </Title>

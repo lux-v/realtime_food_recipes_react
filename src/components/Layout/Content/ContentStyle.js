@@ -20,7 +20,7 @@ export const Content = styled.div`
   position: relative;
   width: 100%;
   height:100%;
-  padding: 24px 24px 50px 24px;
+  padding: 16px 16px 25px 16px;
 
   margin: auto 0;
 
@@ -28,23 +28,24 @@ export const Content = styled.div`
 
 
   @media (${breakpoints.tablet}) {
-    padding: 40px 72px;
-
-  
+    padding: 20px 36px;
   }
 
   @media (${breakpoints.desktop}) {
-    padding: 40px;
+    padding: 20px;
   }
 `;
 
 export const Heading = styled.div`
+  position:relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  height: 43px;
+  
+  /* height: 40px; */
+  margin:8px;
   max-width: 572px;
+  z-index:3;
 
   ${(props) =>
     props.isCentered === true &&
@@ -63,7 +64,13 @@ export const Heading = styled.div`
 `;
 
 export const ChildrenWrapper = styled.div`
-    height: ${props => props.showHeading ? "calc(100% - 83px)" : "100%"};
+  position:relative;
+
+    /* display:grid; */
+  align-items:flex-start;
+
+  z-index:2;
+  min-height: ${props => props.showHeading ? "calc(100% - 56px)" : "100%"};
 `;
 
 

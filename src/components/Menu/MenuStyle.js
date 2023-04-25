@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from 'styled-components';
-import { colors, fonts,border } from '../../lib/style/theme.js';
+import { colors, fonts, border } from '../../lib/style/theme.js';
 
 export const Menu = style.div`
     position: absolute;
@@ -12,9 +12,6 @@ export const Menu = style.div`
         
     background-color: ${colors.secondary};
     border-radius: ${border.borderRadius};
- 
-    
-
 `;
 
 export const MenuLink = style(Link)`
