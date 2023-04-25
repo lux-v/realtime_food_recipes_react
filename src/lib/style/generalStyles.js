@@ -829,9 +829,6 @@ export const BlueLink = styled(Link)`
 `;
 
 
-
-
-
 export const SignUpWrapper = styled.div`
   position: relative;
   min-height:100%;
@@ -877,7 +874,7 @@ export const ImageContainer = styled.div`
 export const LineEffectWrapper = styled.div`
   position:absolute;
 
-  height:100vh;
+  height:100%;
   overflow:hidden;
 
   max-width: ${props => props.maxWidth && props.maxWidth};
@@ -888,8 +885,6 @@ export const LineEffectWrapper = styled.div`
       left:0;
     `
 }
-
-
 
   ${props =>
     props.topLeft ?
@@ -904,12 +899,6 @@ export const LineEffectWrapper = styled.div`
       right:0;
       `
   }
-
-
-
-
-
-
 `
 
 export const ImageImage = styled.img`

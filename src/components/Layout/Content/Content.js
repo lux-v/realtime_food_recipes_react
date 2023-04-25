@@ -30,13 +30,13 @@ const Content = ({
       >
         {/* ----------- styles ----------- */}
         {topLeftEffect &&
-          <LineEffectWrapper topLeft maxWidth="50vh">
+          <LineEffectWrapper login topLeft maxWidth="50vh">
             <img alt="LineEffect" src={LineEffect} />
           </LineEffectWrapper>
         }
         {bottomRightEffect &&
-          <LineEffectWrapper>
-            <img alt="LineEffect" src={LineEffect} />
+          <LineEffectWrapper login>
+            <img   alt="LineEffect" src={LineEffect} />
           </LineEffectWrapper>
         }
         {/* ----------------------------- */}

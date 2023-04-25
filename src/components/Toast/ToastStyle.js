@@ -174,6 +174,5 @@ export const XButton = styled.img`
 
   @media (${breakpoints.tablet}) {
     display: block;
-    margin: 38px 24px 35px 0px;
   }
 `;
