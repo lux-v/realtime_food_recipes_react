@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FieldArray, Formik } from 'formik'
 import * as Yup from "yup"
@@ -40,15 +40,13 @@ import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.pn
 import useFetchRecipe from '../../hooks/useFetchRecipe'
 
 const RecipesAddNew = ({ isEditRecipe }) => {
-
-    console.log("isEditRecipe: ", isEditRecipe)
     const { setToastType, userData } = useContext(AuthContext)
     const navigate = useNavigate()
     const formRef = useRef(null)
     const recipeId = useParams().id;
     const recipe = useFetchRecipe(recipeId);
 
-    const [imageUrl, setImageUrl] = useState("")
+    const [imageUrl, setImageUrl] = useState(recipe?.imgUrl || "")
     const imageSrc = useCheckImage(imageUrl, RecipeImagePlaceholder);
 
 
@@ -76,14 +74,19 @@ const RecipesAddNew = ({ isEditRecipe }) => {
         setNewIngredient(e.target.value)
     }
 
+    useEffect(() => {
+        setImageUrl(recipe?.imgUrl || "")
+    }, [recipe])
+
+
 
     return (
         <Layout
-            title={isEditRecipe ? "Edit recipe" : "Add new recipe"}
+            title={isEditRecipe ? "Update recipe" : "Add new recipe"}
             elements={
                 <>
                     <Button callback={() => formRef.current.handleSubmit()}>
-                        {isEditRecipe ? "Edit recipe" : "Add Recipe +"}
+                        {isEditRecipe ? "Update recipe" : "Add Recipe +"}
                     </Button>
                     <Button isTertiary callback={() => navigate(-1)}>Back</Button>
 

@@ -37,10 +37,6 @@ const Recipe = () => {
 
     const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
     const isOwner = useMemo(() => { return userData && recipe && userData.uid === recipe.createdBy || userData.isAdmin }, [recipe, userData])
-    console.log("isOwner: ", isOwner)
-    console.log("userData", userData)
-    console.log("recipe", recipe)
-
 
 
     const handleDeleteRecipe = () => {
@@ -67,7 +63,7 @@ const Recipe = () => {
             elements={
                 <>
                     <Button isTertiary callback={() => navigate(-1)}>Back</Button>
-                    <Button callback={() => navigate(`/recipes/update/${recipeId}`)} isHidden={!isOwner}>Update</Button>
+                    <Button callback={() => navigate(`/recipes/update/${recipeId}`)} isHidden={!isOwner}>Edit </Button>
                     <Button isSecondary callback={() => handleDeleteRecipe()} isHidden={!isOwner}>Delete</Button>
                 </>
             }
