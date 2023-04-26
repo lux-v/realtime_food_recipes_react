@@ -20,6 +20,8 @@ const RecipesAddNew = () => {
     const [newIngredientError, setNewIngredientError] = useState(false)
 
     const handleKeyDown = (e, callback) => {
+        formRef.current.handleBlur("ingredients")
+
         if (newIngredient !== "") {
             if (e.key === "Enter" || e.keyCode === 13) {
                 callback(newIngredient)
@@ -33,13 +35,11 @@ const RecipesAddNew = () => {
     }
 
     const handleNewIngredientChange = (e) => {
-        setNewIngredient(e.target.value)
+        formRef.current.handleBlur("ingredients")
 
         e.target.value === "" ? setNewIngredientError(true) : setNewIngredientError(false)
-
+        setNewIngredient(e.target.value)
     }
-
-    console.log("formRef", formRef)
 
     return (
         <Layout
@@ -69,7 +69,7 @@ const RecipesAddNew = () => {
                     description: Yup.string()
                         .required('Description is required'),
                     ingredients: Yup.array(Yup.string().required('Ingredient name is required'),
-                    ),
+                    ).max(19, "Maximum number of ingredients is 20"),
                     imgUrl: Yup.string(),
                     cookTimeMin: Yup.string(),
                     newIngredient: Yup.string(),
@@ -93,13 +93,13 @@ const RecipesAddNew = () => {
                         await postRecipeData(formattedValues)
 
                         actions.setSubmitting(false);
-                        // actions.resetForm({
-                        //     name: "",
-                        //     description: "",
-                        //     imgUrl: "",
-                        //     ingredients: "",
-                        //     cookTimeMin: ""
-                        // });
+                        actions.resetForm({
+                            name: "",
+                            description: "",
+                            imgUrl: "",
+                            ingredients: "",
+                            cookTimeMin: ""
+                        });
 
                         setToastType({
                             open: true,
@@ -119,7 +119,7 @@ const RecipesAddNew = () => {
                 }}
             >
                 {(formik) => (
-                    // console.log("formik :", formik),
+                    console.log("formik :", formik),
 
                     <Form>
                         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignContent: "center", alignItems: "center", width: "600px", margin: "auto" }}>
@@ -198,27 +198,36 @@ const RecipesAddNew = () => {
                                                     placeholder="Add ingredient"
                                                     disabled={formik.isSubmitting}
                                                     value={newIngredient}
-                                                    onKeyDown={(e) =>
+                                                    onKeyDown={(e) => formik.values.ingredients.length < 20 ?
                                                         handleKeyDown(e, (newValue) => {
                                                             arrayHelpers.insert(
                                                                 formik.values.ingredients.length - 1,
                                                                 newValue
                                                             );
-                                                        })
+                                                        }) : null
                                                     }
                                                     onChange={(e) => handleNewIngredientChange(e)}
                                                 />
                                                 <Button
                                                     type="button"
+                                                    // callback={
+                                                    //     () =>
+                                                    //         formik.values.ingredients.length < 20 ?
+                                                    //             {
+                                                    //                 arrayHelpers.insert(
+                                                    //                     formik.values.ingredients.length - 1,
+                                                    //                     newIngredient
+                                                    //                 );
+                                                    //                 setNewIngredient("");
+                                                    //             }
+                                                    //             : null
+                                                    // }
                                                     callback={() => {
-                                                        arrayHelpers.insert(
-                                                            formik.values.ingredients.length - 1,
-                                                            newIngredient
-                                                        );
-                                                        setNewIngredient("");
-                                                    }
-
-                                                    }
+                                                        if (formik.values.ingredients.length < 20) {
+                                                            arrayHelpers.insert(formik.values.ingredients.length - 1, newIngredient);
+                                                            setNewIngredient("");
+                                                        }
+                                                    }}
                                                     disabled={newIngredient === ""}
                                                     height="100%"
                                                 >
@@ -226,6 +235,7 @@ const RecipesAddNew = () => {
                                                 </Button>
                                             </div>
                                             <ErrorMessageCustom isError={newIngredientError}>Ingredient cannot be empty</ErrorMessageCustom>
+                                            <ErrorMesagge component={'div'} name="ingredients" />
                                         </FormRow>
                                         <RecipeIngredientsWrapper>
                                             {formik.values.ingredients.map((ingredient, index) => (

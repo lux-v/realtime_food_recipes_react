@@ -1,26 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAllRecipesData, getRecipeData } from '../../api/recipes'
+import { getRecipeData } from '../../api/recipes'
 import { AuthContext } from '../../context/AuthContext'
+import useCheckImage from '../../hooks/useCheckImage'
 
-import { LeftSideWrapper, LoadingSpinnerWrapper, RecipeImg, RecipeName, SectionWrapper, TopSideWrapper, RightSideWrapper, SectionHeadline, TextContent, IngredientsWrapper, BottomSideWrapper, RecipeWrapper } from './RecipeStyle'
+import {
+    LeftSideWrapper,
+    LoadingSpinnerWrapper,
+    RecipeImg,
+    SectionWrapper,
+    TopSideWrapper,
+    RightSideWrapper,
+    SectionHeadline,
+    TextContent,
+    IngredientsWrapper,
+    BottomSideWrapper,
+    RecipeWrapper
+} from './RecipeStyle'
 
 import Layout from '../../components/Layout/Layout'
-import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import Button from '../../components/Button/Button';
-import Backdrop from '../../components/Backdrop/Backdrop';
 import Chip from '../../components/Chip/Chip'
+
+import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 
 
 const Recipe = () => {
     const navigate = useNavigate()
     const uid = useParams().id;
-
     const { setToastType } = useContext(AuthContext)
 
     const [recipe, setRecipe] = useState(null)
 
+    const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
 
     // moze se odvojit u hook
     const fetchRecipe = async (uid) => {
@@ -37,7 +50,6 @@ const Recipe = () => {
         }
     }
 
-    console.log("recipe: ", recipe)
 
     useEffect(() => {
         fetchRecipe(uid)
@@ -70,21 +82,20 @@ const Recipe = () => {
                                 <SectionHeadline>
                                     Ingredients:
                                 </SectionHeadline>
-
                                 <IngredientsWrapper>
-                                    {recipe.ingredients.map(ingredient =>
-                                        <Chip name={ingredient} type="error" />
+                                    {recipe.ingredients.map((ingredient, index) =>
+                                        <Chip key={index} name={ingredient} type="error" />
                                     )}
                                 </IngredientsWrapper>
                             </SectionWrapper>
                         </LeftSideWrapper>
                         <RightSideWrapper>
-                            <RecipeImg src={recipe.imgUrl} />
+                            <RecipeImg src={imageSrc} />
                         </RightSideWrapper>
                     </TopSideWrapper>
                     <BottomSideWrapper>
                         {recipe.ingredients.map((ingredient, index) =>
-                            <SectionWrapper>
+                            <SectionWrapper key={index}>
                                 <SectionHeadline>
                                     Step {index + 1}
                                 </SectionHeadline>

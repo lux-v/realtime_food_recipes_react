@@ -65,7 +65,8 @@ export const LeftSideWrapper = styled.div`
         
     @media (${breakpoints.desktop}) {
         width:50%;
-        height:100%;
+        /* height:100%; */
+        height:550px;
     }
 `
 
@@ -81,8 +82,10 @@ export const RightSideWrapper = styled.div`
     }
         
     @media (${breakpoints.desktop}) {
-        height:100%;
-        width:50%;
+         /* height:100%; */
+        width:50%; 
+        /* width:550px; */
+        height:550px;
     }
 `
 

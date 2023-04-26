@@ -1,6 +1,7 @@
 import React from 'react'
+import useCheckImage from '../../hooks/useCheckImage';
 
-import Chip from '../Chip/Chip';
+
 import {
     RecipeDescription,
     RecipeName,
@@ -17,17 +18,17 @@ import {
     AddFavorite
 } from './RecipeCardStyle';
 
-
+import Chip from '../Chip/Chip';
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 
 
 const RecipeCard = ({ onClick, recipe }) => {
-    const recipeImage = recipe.imgUrl ? recipe.imgUrl : RecipeImagePlaceholder
+    const imageSrc = useCheckImage(recipe.imgUrl, RecipeImagePlaceholder);
 
     return (
         <RecipieCardWrapper onClick={onClick}>
             <ImageWrapper>
-                <RecipeImage src={recipeImage} />
+                <RecipeImage src={imageSrc} />
             </ImageWrapper>
             <TextWrapper>
                 <NameFavoritesWrapper>
