@@ -11,7 +11,7 @@ function Button({
     children,
     callback,
     disabled,
-    btnHiddenMobile,
+    isHidden,
     isTransparent,
 }) {
     return (
@@ -23,7 +23,7 @@ function Button({
             height={height}
             disabled={disabled}
             type={type}
-            btnHiddenMobile={btnHiddenMobile}
+            isHidden={isHidden}
             isTransparent={isTransparent}
             onClick={callback}
         >

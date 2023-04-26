@@ -47,7 +47,7 @@ const Recipes = () => {
                 </>
             }
         >
-            {recipes != null ?
+            {recipes ?
                 <RecipesWrapper>
                     {
                         recipes.map(recipe => {

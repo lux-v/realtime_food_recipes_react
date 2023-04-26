@@ -145,7 +145,6 @@ export const IconTitleWrapper = styled.div`
 
 
 export const ContentWrapper = styled.div`
-
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
@@ -153,6 +152,7 @@ export const ContentWrapper = styled.div`
 
   padding: 8px 8px 12px 8px;
   font-size: 14px;
+  overflow-wrap: anywhere;
 `;
 
 export const Title = styled.span`

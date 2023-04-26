@@ -1,42 +1,26 @@
 import styled from "styled-components";
 import { colors } from "../../lib/style/theme";
 
-
 export const ChipWrapper = styled.div`
-    display:flex;
-    align-items:center;
-    height:22px;
-    padding:6px;
-    border-radius: 10px;
-
-    user-select:none;
-
-    gap: ${props => props.icon ? "5px" : "0px"};
-    
-    ${props =>
-    props.type === "success" ?
-      `
-      background-color: ${colors.secondarySuccess};
-    `
-      :
-      props.type === "error" ?
-        `
-      background-color: ${colors.secondaryError};
-    `:
-        props.type === "warning" ?
-          `
-      background-color: ${colors.secondaryWarning};
-    `:
-
-          `
-    background-color: ${colors.secondaryInfo};
-      `
-  }
-    
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  user-select: none;
+  gap: ${({ icon }) => icon ? "5px" : "0px"};
+  height: ${({ size = 'small' }) => size === 'medium' ? '30px' : size === 'large' ? '38px' : '22px'};
+  padding: ${({ size = 'small' }) => size === 'medium' ? '8px' : size === 'large' ? '10px' : '6px'};
+  font-size: ${({ size = 'small' }) => size === 'medium' ? '18px' : size === 'large' ? '20px' : '16px'};
+  background-color: ${({ type = 'info' }) => colors[`secondary${type.charAt(0).toUpperCase()}${type.slice(1)}`] || colors.secondaryError};
 `;
+
+export const StyledIcon = styled(props => <props.as {...props} />)`
+  width: ${({ size = 'small' }) => size === 'medium' ? '14px' : size === 'large' ? '16px' : '12px'};
+  height: ${({ size = 'small' }) => size === 'medium' ? '14px' : size === 'large' ? '16px' : '12px'};
+  cursor: pointer;
+  fill: ${colors.bgSecondary};
+`;
+
 export const ChipName = styled.p`
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    color:${colors.bgSecondary};
+  font-weight: 500;
+  color: ${colors.bgSecondary};
 `;

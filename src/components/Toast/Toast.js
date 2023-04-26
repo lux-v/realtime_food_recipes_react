@@ -4,12 +4,10 @@ import {
     ToastHeader,
     IconTitleWrapper,
     Icon,
-
     Title,
     ContentWrapper,
     XButton,
     TimerBar,
-
 } from './ToastStyle';
 
 import AlertIcon from '../../assets/img/alert-icon.svg';

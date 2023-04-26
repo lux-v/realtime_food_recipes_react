@@ -44,7 +44,7 @@ export const Heading = styled.div`
   
   /* height: 40px; */
   margin:8px;
-  max-width: 670px;
+  max-width: 60%;
   z-index:3;
 
   ${(props) =>

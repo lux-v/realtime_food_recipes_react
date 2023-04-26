@@ -88,8 +88,9 @@ function App() {
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/recipes/:id" element={<Recipe />} />
+            <Route path="/recipes/update/:id" element={<RecipesAddNew isEditRecipe={true} />} />
             <Route path="/recipes" element={<Recipes />} />
-            <Route path="/recipes/add-new" element={<RecipesAddNew />} />
+            <Route path="/recipes/add-new" element={<RecipesAddNew isEditRecipe={false} />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

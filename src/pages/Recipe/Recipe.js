@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useMemo, } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getRecipeData } from '../../api/recipes'
+import { deleteRecipe } from '../../api/recipes'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 
@@ -15,7 +15,8 @@ import {
     TextContent,
     IngredientsWrapper,
     BottomSideWrapper,
-    RecipeWrapper
+    RecipeWrapper,
+    RecipeName
 } from './RecipeStyle'
 
 import Layout from '../../components/Layout/Layout'
@@ -24,52 +25,65 @@ import Button from '../../components/Button/Button';
 import Chip from '../../components/Chip/Chip'
 
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
+import useFetchRecipe from '../../hooks/useFetchRecipe'
+import { RedTextStyle } from '../Landing/LandingStyle'
 
 
 const Recipe = () => {
     const navigate = useNavigate()
-    const uid = useParams().id;
-    const { setToastType } = useContext(AuthContext)
-
-    const [recipe, setRecipe] = useState(null)
+    const recipeId = useParams().id;
+    const { setToastType, userData } = useContext(AuthContext)
+    const recipe = useFetchRecipe(recipeId)
 
     const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
+    const isOwner = useMemo(() => { return userData && recipe && userData.uid === recipe.createdBy || userData.isAdmin }, [recipe, userData])
+    console.log("isOwner: ", isOwner)
+    console.log("userData", userData)
+    console.log("recipe", recipe)
 
-    // moze se odvojit u hook
-    const fetchRecipe = async (uid) => {
-        try {
-            const recipesData = await getRecipeData(uid)
-            setRecipe(recipesData)
 
-        } catch (error) {
+
+    const handleDeleteRecipe = () => {
+        deleteRecipe(recipeId).then(res => {
+
+            navigate("/")
             setToastType({
                 open: true,
-                message: error.message,
+                message: "Recipe deleted successfuly!",
+                type: 'success',
+            });
+        }).catch(err => {
+            setToastType({
+                open: true,
+                message: err.message,
                 type: 'error',
             });
-        }
+        })
     }
-
-
-    useEffect(() => {
-        fetchRecipe(uid)
-    }, [uid])
-
 
     return (
         <Layout
-            title={recipe ? recipe.name : "Recipe"}
+            title={recipe && <RecipeName>{recipe.name || "Recipe"}</RecipeName>}
             elements={
                 <>
-                    <Button callback={() => navigate(-1)}>Back</Button>
-
-                    <Button isTertiary callback={() => navigate(-1)}>Update</Button>
-                </>}
+                    <Button isTertiary callback={() => navigate(-1)}>Back</Button>
+                    <Button callback={() => navigate(`/recipes/update/${recipeId}`)} isHidden={!isOwner}>Update</Button>
+                    <Button isSecondary callback={() => handleDeleteRecipe()} isHidden={!isOwner}>Delete</Button>
+                </>
+            }
         >
             {recipe ?
                 <RecipeWrapper>
                     <TopSideWrapper>
                         <LeftSideWrapper>
+                            <SectionWrapper>
+                                <SectionHeadline>
+                                    Name:
+                                </SectionHeadline>
+                                <TextContent>
+                                    {recipe.name}
+                                </TextContent>
+                            </SectionWrapper>
                             <SectionWrapper>
                                 <SectionHeadline>
                                     Description:
@@ -84,7 +98,7 @@ const Recipe = () => {
                                 </SectionHeadline>
                                 <IngredientsWrapper>
                                     {recipe.ingredients.map((ingredient, index) =>
-                                        <Chip key={index} name={ingredient} type="error" />
+                                        <Chip size="medium" key={index} name={ingredient} type="error" />
                                     )}
                                 </IngredientsWrapper>
                             </SectionWrapper>

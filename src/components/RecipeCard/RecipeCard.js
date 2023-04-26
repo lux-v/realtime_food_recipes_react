@@ -41,7 +41,7 @@ const RecipeCard = ({ onClick, recipe }) => {
                 <RecipeDescription>{recipe.description}</RecipeDescription>
 
                 <RecipeIngredientsWrapper>
-                    {recipe.ingredients.slice(0, 10).map((ingredient, index) => {
+                    {recipe.ingredients.map((ingredient, index) => {
                         return <Chip key={index} name={ingredient} type="error" />
                     })}
                 </RecipeIngredientsWrapper>

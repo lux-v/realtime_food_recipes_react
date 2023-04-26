@@ -108,9 +108,12 @@ export const FormRow = styled.div`
 `;
 
 export const TwoInRow = styled.div`
-  width: 272px;
+  width: ${(props) => props.width || `272px`};  
+
+  gap:10px;
+
   @media (${breakpoints.tablet}) {
-    width: 572px;
+    width: ${(props) => props.width || `572px`};
     display: flex;
     justify-content: space-between;
   }
@@ -160,6 +163,7 @@ const FieldStyleType1 = css`
   width:${(props) =>
     props.width ? props.width : '272px'
   };
+
   height: 48px;
   padding: 16px 24px;
   border: 1px solid ${colors.textSecondary};
@@ -273,46 +277,18 @@ export const Select = styled.select`
 `;
 
 export const SmallSelect = styled(Select)`
-  width: 272px;
-
+  width: ${(props) => props.width || `272px`};
   @media (${breakpoints.tablet}) {
-    width: 255px;
+    width: ${(props) => props.width || `255px`};
   }
 `;
 
 export const SmallField = styled(Field)`
-  width: 272px;
-
+  width: ${(props) => props.width || `272px`};
   @media (${breakpoints.tablet}) {
-    width: 255px;
+    width: ${(props) => props.width || `255px`};
   }
 
-  ${(props) =>
-    props.ingredient === 'isIngredient' &&
-    `
-      width: 145px; 
-    `}
-
-  ${(props) =>
-    props.ingredient === 'isAddIngredient' &&
-    props.isedit === 0 &&
-    `
-        height: 42px; 
-        width: 130px;
-        border: none;
-        pointer-events:none;
-        background-color: white;
-      `}
-
-  ${(props) =>
-    props.ingredient === 'isAddIngredient' &&
-    props.isedit === 1 &&
-    `
-        height: 42px; 
-        width: 100%;
-        border: 1px solid ${colors.textSecondary};
-        pointer-events: auto;
-    `}
 
   ${({ error }) =>
     error &&
@@ -376,8 +352,10 @@ export const TextArea = styled(Field).attrs({ component: 'textarea' })`
   height: 168px;
 
   @media (${breakpoints.tablet}) {
-    width: 572px;
-    height: 176px;
+    height: 176px;    
+    width:${(props) =>
+    props.width ? props.width : '572px'
+  }
   }
 `;
 export const LinkDelete = styled(Link)``;

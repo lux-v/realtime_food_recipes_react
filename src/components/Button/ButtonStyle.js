@@ -79,14 +79,13 @@ export const Button = style.button`
 
         }
     `}
-    ${(props) =>
-        props.btnHiddenMobile &&
+    
+    ${({ isHidden }) =>
+        isHidden &&
         `
         display: none;
-        @media (${breakpoints.tablet}) {
-            display: block;
-        }
-    `}
+        `
+    }
 
     ${(props) =>
         props.disabled &&

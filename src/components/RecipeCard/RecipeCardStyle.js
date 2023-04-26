@@ -7,7 +7,6 @@ import {
 
 import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite.svg";
 import { ReactComponent as ClockIcon } from "../../assets/img/clock-icon.svg";
-
 import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
 
 
@@ -16,8 +15,6 @@ const IconStyle = css`
   width:auto;
 
 `
-
-
 export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
 
@@ -96,6 +93,7 @@ export const TextWrapper = styled.div`
     flex-direction:column;
     gap:5px;
     width:100%;
+    overflow-wrap: anywhere;
 
 `;
 

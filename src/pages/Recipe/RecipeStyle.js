@@ -2,6 +2,14 @@ import styled from "styled-components";
 import { border, breakpoints, colors, fonts } from "../../lib/style/theme";
 
 
+export const RecipeName = styled.p`
+    color: ${colors.primary}; 
+    font-family: ${fonts.primary}; 
+    line-height: 40px; 
+    font-size: 36px; 
+    font-weight: 700;
+`
+
 export const RecipeWrapper = styled.div`
     height:100%;
     width:100%;
@@ -16,12 +24,14 @@ export const RecipeWrapper = styled.div`
 
 export const TopSideWrapper = styled.div`
     display:flex;
+    align-items:center;
     justify-items:center;
     flex-direction:column-reverse;
+    
 
     height:100%;
     width:100%;
-    gap:5px;
+    gap:20px;
 
     margin-bottom:20px;
     padding-bottom:5px;
@@ -65,26 +75,21 @@ export const LeftSideWrapper = styled.div`
         
     @media (${breakpoints.desktop}) {
         width:50%;
-        /* height:100%; */
-        height:550px;
+        min-height:550px;
     }
 `
 
 export const RightSideWrapper = styled.div`
     display:flex;
-    height:50%;
+    /* height:50%; */
+    height:550px;
     width:100%;
 
     justify-items:center;
 
-    @media (${breakpoints.tablet}) {
-
-    }
         
     @media (${breakpoints.desktop}) {
-         /* height:100%; */
         width:50%; 
-        /* width:550px; */
         height:550px;
     }
 `
@@ -110,6 +115,7 @@ export const RecipeImg = styled.img`
 
 
 export const SectionWrapper = styled.div`
+    width:100%;
     margin-bottom:20px;
 `
 
@@ -139,6 +145,7 @@ export const TextContent = styled.p`
     line-height: 16px; 
     font-size: 14px; 
     font-weight: 400;
+    overflow-wrap: anywhere;
 
     @media(${breakpoints.tablet}){
         line-height: 18px; 
@@ -152,13 +159,8 @@ export const TextContent = styled.p`
 
 `
 export const IngredientsWrapper = styled.div`
-    
     display:flex;
     flex-wrap:wrap;
     gap:5px;
     font-family:${fonts.primary};
-
-    height:50px;
-    overflow:hidden;
-
 `
