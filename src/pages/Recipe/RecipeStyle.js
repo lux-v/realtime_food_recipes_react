@@ -8,6 +8,7 @@ export const RecipeName = styled.p`
     line-height: 40px; 
     font-size: 36px; 
     font-weight: 700;
+    overflow-wrap: anywhere;
 `
 
 export const RecipeWrapper = styled.div`
@@ -53,13 +54,17 @@ export const BottomSideWrapper = styled.div`
     /* height:50%; */
     width:100%;
 
-    justify-items:center;
+
+    /* margin:auto; */
+    margin-top:50px;
+    margin-bottom: 100px;
 
     @media (${breakpoints.tablet}) {
-
+        margin-top:70px;
     }
         
     @media (${breakpoints.desktop}) {
+        margin-top:90px;
         height:100%;
         width:50%;
     }
@@ -69,10 +74,6 @@ export const LeftSideWrapper = styled.div`
     height:50%;
     width:100%;
 
-    @media (${breakpoints.tablet}) {
- 
-    }
-        
     @media (${breakpoints.desktop}) {
         width:50%;
         min-height:550px;
@@ -81,13 +82,10 @@ export const LeftSideWrapper = styled.div`
 
 export const RightSideWrapper = styled.div`
     display:flex;
-    /* height:50%; */
+    justify-items:center;
     height:550px;
     width:100%;
 
-    justify-items:center;
-
-        
     @media (${breakpoints.desktop}) {
         width:50%; 
         height:550px;
@@ -106,13 +104,9 @@ export const RecipeImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-
     border-radius: ${border.borderRadius};
-
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
-
-
 
 export const SectionWrapper = styled.div`
     width:100%;

@@ -31,9 +31,10 @@ export const getRecipeData = async (uid) => {
 
 
 export const postRecipeData = async (recipe) => {
-    return app.firestore().collection("recipes").doc().set({
+    const recipeRef = app.firestore().collection("recipes").doc()
+    return recipeRef.set({
         ...recipe
-    }).catch(error => {
+    }).then(() => { return recipeRef.id }).catch(error => {
         console.log("Error posting recipe data: ", error);
         throw error;
     });

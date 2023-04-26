@@ -93,7 +93,7 @@ const Recipe = () => {
                                     Ingredients:
                                 </SectionHeadline>
                                 <IngredientsWrapper>
-                                    {recipe.ingredients.map((ingredient, index) =>
+                                    {recipe && recipe.ingredients.map((ingredient, index) =>
                                         <Chip size="medium" key={index} name={ingredient} type="error" />
                                     )}
                                 </IngredientsWrapper>
@@ -104,16 +104,16 @@ const Recipe = () => {
                         </RightSideWrapper>
                     </TopSideWrapper>
                     <BottomSideWrapper>
-                        {recipe.ingredients.map((ingredient, index) =>
+                        {recipe && recipe.steps ? recipe.steps.map((step, index) =>
                             <SectionWrapper key={index}>
                                 <SectionHeadline>
                                     Step {index + 1}
                                 </SectionHeadline>
                                 <TextContent>
-                                    {ingredient}
+                                    {step}
                                 </TextContent>
                             </SectionWrapper>
-                        )}
+                        ) : null}
                     </BottomSideWrapper>
                 </RecipeWrapper>
                 :

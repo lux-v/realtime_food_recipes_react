@@ -97,10 +97,6 @@ export const TextWrapper = styled.div`
 
 `;
 
-
-
-
-
 export const NameFavoritesWrapper = styled.div`
     display:flex;
     align-items:center;
