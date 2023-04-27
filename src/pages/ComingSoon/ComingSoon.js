@@ -14,7 +14,7 @@ function ComingSoon({ title }) {
             title={title || " "}
             elements={
                 <>
-                    <Button callback={() => navigate(-1)} width="250px">
+                    <Button callback={() => navigate(-1)}>
                         Go back
                     </Button>
                 </>}
