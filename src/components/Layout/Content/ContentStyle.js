@@ -7,34 +7,20 @@ export const ContentWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-
+  padding: 16px 16px 25px 16px;
+  margin: auto 0;
+  overflow:auto;
   background-color: ${colors.bgPrimary};
 
   @media (${breakpoints.desktop}) {
     transition: width 0.2s ease-in;
+     padding: 20px;
   }
-`;
 
-export const Content = styled.div`
-  position: relative;
-  width: 100%;
-  height:100%;
-  padding: 16px 16px 25px 16px;
-
-  margin: auto 0;
-
-  overflow:auto;
-
-
-  @media (${breakpoints.tablet}) {
+    @media (${breakpoints.tablet}) {
     padding: 20px 36px;
   }
-
-  @media (${breakpoints.desktop}) {
-    padding: 20px;
-  }
 `;
-
 
 export const NavigationWrapper = styled.div`
   position:relative;

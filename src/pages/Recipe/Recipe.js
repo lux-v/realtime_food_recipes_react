@@ -38,7 +38,7 @@ const Recipe = () => {
 
     return (
         <Layout
-            title={recipe && <RecipeName>{recipe.name || "Recipe"}</RecipeName>}
+            title={"Recipe details"}
             elements={
                 <>
                     <Button callback={() => navigate(`update`)} isHidden={!isOwner}>Edit </Button>
