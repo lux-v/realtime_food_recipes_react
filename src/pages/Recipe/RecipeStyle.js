@@ -83,8 +83,16 @@ export const LeftSideWrapper = styled.div`
 export const RightSideWrapper = styled.div`
     display:flex;
     justify-items:center;
-    height:550px;
+    height:100%;
     width:100%;
+
+    @media (${breakpoints.mobile}) {
+        height:350px;
+    }
+
+    @media (${breakpoints.tablet}) {
+        height:450px;
+    }
 
     @media (${breakpoints.desktop}) {
         width:50%; 

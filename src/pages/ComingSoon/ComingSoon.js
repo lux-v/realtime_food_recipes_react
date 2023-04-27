@@ -6,12 +6,12 @@ import { GrayTextStyle, RedTextStyle } from '../Landing/LandingStyle';
 import Button from '../../components/Button/Button';
 import Layout from '../../components/Layout/Layout';
 
-function ComingSoon() {
+function ComingSoon({ title }) {
     const navigate = useNavigate();
 
     return (
         <Layout
-            title="Coming Soon"
+            title={title || " "}
             elements={
                 <>
                     <Button callback={() => navigate(-1)} width="250px">
@@ -21,11 +21,7 @@ function ComingSoon() {
         >
             <div style={{
                 height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center"
+                textAlign: "center",
             }}>
                 <RedTextStyle>
                     COMING SOON

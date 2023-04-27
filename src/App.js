@@ -13,7 +13,7 @@ import { AuthContext } from './context/AuthContext';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from "./pages/SignUp/SignUp"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
-import SoonPage from "./pages/ComingSoon/ComingSoon"
+import ComingSoon from "./pages/ComingSoon/ComingSoon"
 import Dashboard from "./pages/Dashboard/Dashboard"
 import PasswordReset from "./pages/PasswordReset/PasswordReset"
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -74,8 +74,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/password-reset" element={<PasswordReset />} />
 
-          <Route path="/about-us" element={<SoonPage />} />
-          <Route path="/how-it-works" element={<SoonPage />} />
+          <Route path="/about-us" element={<ComingSoon title="About us" />} />
+          <Route path="/how-it-works" element={<ComingSoon title="How it works" />} />
 
           <Route
             element={

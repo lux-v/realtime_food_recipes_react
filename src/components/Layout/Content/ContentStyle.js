@@ -62,7 +62,7 @@ export const ChildrenWrapper = styled.div`
   align-items:flex-start;
 
   z-index:2;
-  min-height: ${props => props.showHeading ? "calc(100% - 56px)" : "100%"};
+  min-height: ${props => props.showHeading ? "calc(100% - 50px)" : "100%"};
 `;
 
 
