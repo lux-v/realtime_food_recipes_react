@@ -54,11 +54,6 @@ export const HeaderProfileWrapper = styled.div`
   gap:5px;
 `;
 
-export const BreadcrumbsWrapper = styled.div`
-
-  width: calc(100% - 145px - 240px);
- 
-`;
 
 
 export const LogoLink = styled(Link)`
@@ -151,6 +146,7 @@ export const ProfileImg = styled.img`
   height: 40px;
   border-radius: 50%;
   border: 1px solid ${colors.iconsPrimary};
+  object-fit:cover;
 
   background:${colors.bgSecondary};
 `;

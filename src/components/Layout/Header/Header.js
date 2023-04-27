@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
+import useCheckImage from "../../../hooks/useCheckImage"
+
 import {
   HeaderWrapper,
   LogoLink,
@@ -11,7 +13,6 @@ import {
   Arrow,
   LeftSideWrapper,
   HeaderProfileWrapper,
-  BreadcrumbsWrapper,
 } from './HeaderStyle';
 
 
@@ -20,6 +21,7 @@ import {
   MenuText,
   ExitImg as ExitElement,
   HeaderNavLink,
+  Dashboard as DashboardIcon,
   Food as FoodIcon,
   AboutUs as AboutUsIcon,
   LogOut as LogOutIcon,
@@ -28,15 +30,16 @@ import {
   IconTextWrapper,
 } from '../../Layout/Sidebar/SidebarStyle';
 
+import Menu from '../../Menu/Menu';
 
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import LogoImg from '../../../assets/img/logo.png';
 import profileImg from '../../../assets/img/profile.svg';
 import ExitIcon from '../../../assets/img/exit-icon.svg';
-import Menu from '../../Menu/Menu';
+
 
 const Header = () => {
-  const { isSidebarOpen, setIsSidebarOpen, logout } = useContext(AuthContext)
+  const { isSidebarOpen, setIsSidebarOpen, logout, userData } = useContext(AuthContext)
+  const imageSrc = useCheckImage(userData?.photoURL, profileImg)
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -59,13 +62,9 @@ const Header = () => {
           </LogoLink>
           <HamburgerIcon left onClick={handleHamburgerClick} />
         </LeftSideWrapper>
-        <BreadcrumbsWrapper>
-          <Breadcrumbs />
-        </BreadcrumbsWrapper>
-
         <HeaderProfileWrapper >
           <HeaderProfile onClick={handleMenuClick}>
-            <ProfileImg src={profileImg} alt="profileImg" />
+            <ProfileImg src={imageSrc} alt="profileImg" />
             <Arrow />
           </HeaderProfile>
           <HamburgerIcon onClick={handleHamburgerClick} />
@@ -87,12 +86,18 @@ const Header = () => {
             <HeaderNavLink to="/">
               {isSidebarOpen ?
                 <IconTextWrapper >
+                  <DashboardIcon />
+                  Dashboard
+                </IconTextWrapper> : <DashboardIcon />}
+            </HeaderNavLink>
+            <HeaderNavLink to="/recipes">
+              {isSidebarOpen ?
+                <IconTextWrapper >
                   <FoodIcon />
                   Recipes
                 </IconTextWrapper> : <FoodIcon />}
             </HeaderNavLink>
             <HeaderNavLink className="mobileNav" to="/profile">
-
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <YourProfileIcon />

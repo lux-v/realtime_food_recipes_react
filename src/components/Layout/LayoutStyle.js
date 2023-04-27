@@ -13,27 +13,3 @@ export const BodyWrapper = styled.div`
   width: 100%;
   display: flex;
 `;
-
-
-export const SidebarWrapper = styled.nav`
-  display: none;
-  width: 260px;
-  height: 100%;
-
-  padding: 32px 14px;
-  box-shadow: 16px 12px 20px 0px #00000000;
-  background-color: ${colors.bgSecondary};
-
-
-  @media (${breakpoints.tablet}) {
-    width: 315px;
-  }
-
-  @media (${breakpoints.desktop}) {
-    display: block;
-    width: ${props => props.isSidebarOpen ? "240px" : "80px"};
-    transition: width 0.2s ease-in;
-  }
-`;
-
-

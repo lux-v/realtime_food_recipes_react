@@ -1,13 +1,19 @@
 import app from "./firebase"
 
-// this is put... needs to be refactored to accept more props dynamically
-export const postUserData = async (user) => {
-    return app.firestore().collection("users").doc(user.uid).set({
-        email: user.email,
-        displayName: user.displayName,
+export const postUserData = async (uid) => {
+    return app.firestore().collection("users").doc(uid).set({
 
     }).catch(error => {
         console.log("Error posting user data: ", error);
+        throw error;
+    });
+}
+export const putUserData = async (user) => {
+    return app.firestore().collection("users").doc(user.uid).set({
+
+
+    }).catch(error => {
+        console.log("Error updating user data: ", error);
         throw error;
     });
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { colors, breakpoints } from '../../../lib/style/theme';
+import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 
 export const ContentWrapper = styled.div`
@@ -9,7 +9,6 @@ export const ContentWrapper = styled.div`
   height: 100%;
 
   background-color: ${colors.bgPrimary};
-
 
   @media (${breakpoints.desktop}) {
     transition: width 0.2s ease-in;
@@ -36,35 +35,42 @@ export const Content = styled.div`
   }
 `;
 
-export const Heading = styled.div`
+
+export const NavigationWrapper = styled.div`
   position:relative;
   display: flex;
+  flex-direction:column;
+  flex-wrap:wrap;
   justify-content: space-between;
   align-items: center;
-  
-  /* height: 40px; */
-  margin:8px;
-  max-width: 60%;
+
+  background:${colors.lightRed};
+  border-radius:${border.borderRadius};
+  padding:5px;
   z-index:3;
 
-  ${(props) =>
-    props.isCentered === true &&
-    `
-      max-width: 100%;
-    `}
+  @media (${breakpoints.tablet}) {
+    flex-direction:row;
+  }
+
+
+`;
+
+export const TitleButtonWrapper = styled.div`
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:space-between;
 
   @media (${breakpoints.tablet}) {
-    ${(props) =>
-    props.floatLeft === true &&
-    `
-      align-items: flex-start;
-      gap: 48px;
-    `}
+    width:60%;
   }
 `;
 
 export const ChildrenWrapper = styled.div`
   position:relative;
+  padding-top:20px;
 
     /* display:grid; */
   align-items:flex-start;
@@ -77,11 +83,12 @@ export const ChildrenWrapper = styled.div`
 const TitleStyle = css`
   color: ${colors.textPrimary};
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 29px;
+  color:${colors.textTertiary};
 
   @media (${breakpoints.tablet}) {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 39px;   
   } 
 `;

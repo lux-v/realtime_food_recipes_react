@@ -1,10 +1,12 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Breadcrumbs as BreadcrumbsWrapper,
   BreadcrumbsLink,
   ChevronIcon,
+  Dashboard as DashboardIcon,
 } from './BreadcrumbsStyle';
-import { useLocation } from 'react-router-dom';
+
 import ChevronRight from '../../assets/img/chevron-right.svg';
 
 const Breadcrumbs = () => {
@@ -47,7 +49,18 @@ const Breadcrumbs = () => {
   };
 
   return (
-    <BreadcrumbsWrapper empty={pathNames.length===0}>
+    <BreadcrumbsWrapper empty={pathNames.length === 0}>
+      {pathNames.length > 0 &&
+        <>
+          <BreadcrumbsLink
+            to={"/"}
+          >
+            <DashboardIcon />
+          </BreadcrumbsLink>
+
+          <ChevronIcon src={ChevronRight} />
+        </>
+      }
       {pathNames.map((path, index) => {
         const routeTo = `/${pathNames.slice(0, index + 1).join('/')}`;
         return (

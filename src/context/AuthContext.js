@@ -19,21 +19,17 @@ const AuthProvider = ({ children }) => {
     const signup = async (email, password, displayName) => {
         try {
             const res = await app.auth().createUserWithEmailAndPassword(email, password)
-
             const user = res.user;
 
             user.updateProfile({
                 displayName: displayName
             })
 
-            const formattedUser = {
-                ...user,
-                displayName: displayName
-            }
             try {
-                postUserData(formattedUser)
+                //create DB entry for the user
+                postUserData(user.uid)
             } catch (err) {
-                console.log("error posting user data: ", err)
+                console.log("Error posting user data: ", err)
             }
 
             setToastType({
@@ -72,10 +68,21 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-
     const logout = async () => {
         await app.auth().signOut();
     }
+
+    const updateUserProfile = async (newUserData) => {
+        const currentUser = app.auth().currentUser;
+
+        //only display name and the imageURL - defined by Firebase
+        await currentUser.updateProfile(newUserData)
+            .then(async res => {
+
+            })
+            .catch(err => { throw err })
+    }
+
 
     // const googleSignin = async () => {
     //     let provider = new firebase.auth.GoogleAuthProvider()
@@ -90,18 +97,9 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = app.auth().onAuthStateChanged(async user => {
             if (user) {
                 //for now I am saving every data about the user...
+                setUserData(user)
                 setIsLoggedIn(true)
                 localStorage.setItem("accessToken", JSON.stringify(user))
-
-                //get the userData
-                try {
-                    const userData = await getUserData(user.uid)
-                    setUserData({ ...userData, uid: user.uid })
-                } catch (error) {
-                    alert("error getting user data :", error)
-                }
-
-
             } else {
                 setUserData(null)
                 setIsLoggedIn(false)
@@ -125,6 +123,7 @@ const AuthProvider = ({ children }) => {
                 login,
                 logout,
                 resetPassword,
+                updateUserProfile,
 
                 isSidebarOpen,
                 setIsSidebarOpen

@@ -17,8 +17,7 @@ export const RecipesWrapper = styled.div`
     }
         
     @media (${breakpoints.tablet}) {
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
     }
 `
 

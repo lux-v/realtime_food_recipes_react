@@ -5,11 +5,15 @@ import { LineEffectWrapper } from '../../../lib/style/generalStyles';
 import {
   ContentWrapper,
   Content as ContentWrapper1,
-  Heading,
+  NavigationWrapper,
   Title,
   ButtonWrapper,
   ChildrenWrapper,
+  TitleButtonWrapper,
+  // BreadcrumbsWrapper
 } from './ContentStyle';
+
+import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs"
 
 import LineEffect from '../../../assets/img/line-effect.png';
 
@@ -44,19 +48,19 @@ const Content = ({
         {/* ----------------------------- */}
 
         {showHeading && (
-          <Heading
-            isCentered={isCentered}
-            floatLeft={elements && elements.props.children.length === undefined}
-          >
-            {title && (
-              <Title isCentered={isCentered}>
-                {title}
-              </Title>
-            )}
-            {elements &&
-              <ButtonWrapper>{elements}</ButtonWrapper>
-            }
-          </Heading>
+          <NavigationWrapper>
+            <TitleButtonWrapper>
+              {title && (
+                <Title isCentered={isCentered}>
+                  {title}
+                </Title>
+              )}
+              {elements &&
+                <ButtonWrapper>{elements}</ButtonWrapper>
+              }
+            </TitleButtonWrapper>
+            <Breadcrumbs />
+          </NavigationWrapper>
         )}
         <ChildrenWrapper showHeading={showHeading}>
           {children}

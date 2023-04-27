@@ -5,6 +5,7 @@ import {
     SidebarWrapper,
     HeaderNavLink,
     Food as FoodIcon,
+    Dashboard as DashboardIcon,
     AboutUs as AboutUsIcon,
     HowItWorks as HowItWorksIcon,
     LogOut as LogOutIcon,
@@ -24,12 +25,18 @@ const Sidebar = () => {
                 <HeaderNavLink to="/">
                     {isSidebarOpen ?
                         <IconTextWrapper >
+                            <DashboardIcon />
+                            Dashboard
+                        </IconTextWrapper> : <DashboardIcon />}
+                </HeaderNavLink>
+                <HeaderNavLink to="/recipes">
+                    {isSidebarOpen ?
+                        <IconTextWrapper >
                             <FoodIcon />
                             Recipes
                         </IconTextWrapper> : <FoodIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink className="mobileNav" to="/profile">
-
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <YourProfileIcon />

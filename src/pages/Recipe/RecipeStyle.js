@@ -8,7 +8,7 @@ export const RecipeName = styled.p`
     line-height: 40px; 
     font-size: 36px; 
     font-weight: 700;
-    overflow-wrap: anywhere;
+    
 `
 
 export const RecipeWrapper = styled.div`
@@ -136,21 +136,15 @@ export const SectionHeadline = styled.p`
 export const TextContent = styled.p`
     color: ${colors.textPrimary}; 
     font-family: ${fonts.primary}; 
-    line-height: 16px; 
-    font-size: 14px; 
+    line-height: 18px; 
+    font-size: 16px; 
     font-weight: 400;
     overflow-wrap: anywhere;
 
     @media(${breakpoints.tablet}){
-        line-height: 18px; 
-        font-size: 16px; 
-    }
-
-    @media(${breakpoints.desktop}){
         line-height: 20px; 
         font-size: 18px; 
     }
-
 `
 export const IngredientsWrapper = styled.div`
     display:flex;

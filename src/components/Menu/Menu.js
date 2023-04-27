@@ -10,7 +10,9 @@ const Menu = () => {
   return (
     <MenuWrapper>
       <MenuLink to={`/profile`}>Your profile</MenuLink>
-      <MenuCard isLogOut={true} text='Log out'
+      <MenuCard
+        isLogOut={true}
+        text='Log out'
         callback={logout}
       />
     </MenuWrapper>

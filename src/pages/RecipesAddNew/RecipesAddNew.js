@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FieldArray, Formik } from 'formik'
 import * as Yup from "yup"
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 
-import { postRecipeData, putRecipeData } from '../../api/recipes'
+import { deleteRecipe, postRecipeData, putRecipeData } from '../../api/recipes'
 
 import {
     Form,
@@ -26,9 +26,6 @@ import {
     RightSideWrapper,
     SectionHeadline,
     SectionWrapper,
-
-    TextContent,
-
     TopSideWrapper
 } from '../Recipe/RecipeStyle'
 import {
@@ -48,6 +45,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     const formRef = useRef(null)
     const recipeId = useParams().id;
     const recipe = useFetchRecipe(recipeId);
+    const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
     const [imageUrl, setImageUrl] = useState("")
     const imageSrc = useCheckImage(imageUrl, RecipeImagePlaceholder);
@@ -56,7 +54,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     const [newIngredient, setNewIngredient] = useState("")
     const [newIngredientError, setNewIngredientError] = useState(false)
 
-    const ingredientErrorLengthMessage = "New ingredient name must be less than 20 characters";
+    const ingredientErrorLengthMessage = "New ingredient name must be less than 30 characters";
     const ingredientErrorRequiredMessage = "Ingredient cannot be empty";
     const ingredientUniqueErrorMessage = "This ingredient is already added";
 
@@ -65,7 +63,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
         formRef.current.handleBlur("ingredients")
 
         if (newIngredient !== "")
-            if (newIngredient.length <= 20)
+            if (newIngredient.length <= 30)
                 if (!formRef.current.values.ingredients.includes(newIngredient)) {
                     if (e.key === "Enter" || e.keyCode === 13 || e.type === "click") {
                         callback(newIngredient)
@@ -86,18 +84,35 @@ const RecipesAddNew = ({ isEditRecipe }) => {
 
     const handleNewIngredientChange = (e) => {
         formRef.current.handleBlur("ingredients")
-
         const newValue = e.target.value;
 
         newValue === "" ?
             setNewIngredientError(ingredientErrorRequiredMessage)
-            : newValue.length > 20 ?
+            : newValue.length > 30 ?
                 setNewIngredientError(ingredientErrorLengthMessage) :
                 formRef.current.values.ingredients.includes(newValue) ?
                     setNewIngredientError(ingredientUniqueErrorMessage)
                     : setNewIngredientError("")
 
         setNewIngredient(newValue)
+    }
+
+    const handleDeleteRecipe = () => {
+        deleteRecipe(recipeId).then(res => {
+
+            navigate("/recipes")
+            setToastType({
+                open: true,
+                message: "Recipe deleted successfuly!",
+                type: 'success',
+            });
+        }).catch(err => {
+            setToastType({
+                open: true,
+                message: err.message,
+                type: 'error',
+            });
+        })
     }
 
 
@@ -111,9 +126,12 @@ const RecipesAddNew = ({ isEditRecipe }) => {
             title={isEditRecipe ? "Update recipe" : "Add new recipe"}
             elements={
                 <>
-                    <Button callback={() => formRef.current.handleSubmit()}>
+                    <Button
+                        callback={() => formRef.current.handleSubmit()}
+                    >
                         {isEditRecipe ? "Update recipe" : "Add Recipe +"}
                     </Button>
+                    {isEditRecipe && <Button isSecondary callback={() => handleDeleteRecipe()} isHidden={!isOwner}>Delete</Button>}
                     <Button isTertiary callback={() => navigate(-1)}>Back</Button>
 
                 </>
@@ -135,7 +153,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 validationSchema={Yup.object({
                     name: Yup.string()
                         .required('Recipe name is required')
-                        .max(40, 'Recipe name must be less than 40 characters'),
+                        .max(60, 'Recipe name must be less than 60 characters'),
                     description: Yup.string()
                         .required('Description is required')
                         .min(30, 'Description must be at least 30 characters')
@@ -143,7 +161,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                     ingredients: Yup.array()
                         .of(Yup.string()
                             .required('Ingredient name is required')
-                            .max(20, 'Ingredient name must be less than 20 characters')
+                            .max(30, 'Ingredient name must be less than 30 characters')
                         )
                         .min(1, 'At least one ingredient is required')
                         .max(20, 'Maximum number of ingredients is 20'),
@@ -154,7 +172,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                         .min(1, 'Cook time must be at least 1 minute')
                         .max(1440, 'Cook time must be less than 1440 minutes (24 hours)'),
                     newIngredient: Yup.string()
-                        .max(20, 'New ingredient name must be less than 20 characters'),
+                        .max(30, 'New ingredient name must be less than 30 characters'),
                     steps: Yup.array()
                         .of(Yup.string()
                             .required('Step description is required')
@@ -220,7 +238,6 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 }}
             >
                 {(formik) => (
-                    console.log("formik: ", formik.values),
                     <Form>
                         <RecipeWrapper>
                             <TopSideWrapper>
@@ -264,8 +281,8 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                             </SectionHeadline>
                                             <SmallField
                                                 id="cookTimeMin"
+                                                type="number"
                                                 name="cookTimeMin"
-                                                type='cookTimeMin'
                                                 error={formik.touched.cookTimeMin && formik.errors.cookTimeMin}
                                                 placeholder="Cook time(min)"
                                                 disabled={formik.isSubmitting}
@@ -345,7 +362,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                 <RecipeIngredientsWrapper>
                                                     {formik.values.ingredients.map((ingredient, index) => (
                                                         <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                                                            <Chip size="large" name={ingredient} type="error" icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                                            <Chip size="medium" name={ingredient} type="error" icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
                                                         </div>
                                                     ))}
                                                 </RecipeIngredientsWrapper>
@@ -363,7 +380,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                     render={arrayHelpers => (
                                         <>
                                             <SectionWrapper>
-                                                <TwoInRow>
+                                                <TwoInRow width="100%">
                                                     <SectionHeadline>
                                                         Cooking steps:
                                                     </SectionHeadline>
@@ -375,7 +392,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                             <RecipeStepsWrapper>
                                                 {formik.values.steps.map((step, index) => (
                                                     <SectionWrapper key={index}>
-                                                        <TwoInRow>
+                                                        <TwoInRow width="100%">
                                                             <SectionHeadline>
                                                                 Step {index + 1}
                                                             </SectionHeadline>

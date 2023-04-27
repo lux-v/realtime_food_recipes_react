@@ -24,6 +24,7 @@ import Recipes from './pages/Recipes/Recipes';
 import Recipe from './pages/Recipe/Recipe';
 import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
 import Backdrop from './components/Backdrop/Backdrop';
+import Profile from './pages/Profile/Profile';
 
 
 function App() {
@@ -51,10 +52,10 @@ function App() {
         <Routes>
           <Route path="/" element={isLoggedIn ? isLoading ?
             <Backdrop>
-              <Recipes />
+              <Dashboard />
             </Backdrop>
             :
-            <Recipes />
+            <Dashboard />
             : isLoading ?
               <Backdrop>
                 <Landing />
@@ -86,11 +87,13 @@ function App() {
               />
             }
           >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/recipes/:id" element={<Recipe />} />
-            <Route path="/recipes/update/:id" element={<RecipesAddNew isEditRecipe={true} />} />
+            <Route path="/dashboard" element={<Navigate replace to="/" />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/recipes/:id" element={<Recipe />} />
+            <Route path="/recipes/:id/update" element={<RecipesAddNew isEditRecipe={true} />} />
             <Route path="/recipes/add-new" element={<RecipesAddNew isEditRecipe={false} />} />
+
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

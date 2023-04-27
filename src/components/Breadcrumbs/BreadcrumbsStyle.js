@@ -1,34 +1,44 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { colors, breakpoints } from '../../lib/style/theme';
+import { ReactComponent as DashboardIcon } from '../../assets/img/dashboard-icon.svg';
+
+export const Dashboard = styled(DashboardIcon)`
+  height:20px;
+  width:auto;
+  cursor:pointer;
+  stroke: ${colors.primary};
+`;
+
 
 export const Breadcrumbs = styled.div`
-  display: none;
-
-
-
-  @media (${breakpoints.desktop}) {
-    ${props=>props.empty!==true &&`
-      display: initial;
+    ${props => props.empty !== true && `
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+      height:40px;
+      width: 100%;
       padding:2px 10px;
       border-radius:20px;
-    `}
 
-    background:${colors.lightRed};
-  }
+      @media (${breakpoints.tablet}) {
+        width:40%;
+      } 
+    `}
 `;
 
 export const BreadcrumbsLink = styled(Link)`
   font-weight: 500;
   font-size: 12.5px;
-  line-height: 19px;
   color: ${colors.textPrimary};
+  
 
   ${(props) =>
     props.index + 1 < props.pathLength &&
-    `text-decoration: none; 
-    color: ${colors.primary};
-
+    `
+      text-decoration: none; 
+      color: ${colors.primary};
     `}
 
   &:hover {

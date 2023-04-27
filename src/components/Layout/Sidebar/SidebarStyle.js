@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 import { ReactComponent as LecturesIcon } from '../../../assets/img/lectures-icon.svg';
+import { ReactComponent as DashboardIcon } from '../../../assets/img/dashboard-icon.svg';
 import { ReactComponent as FoodIcon } from '../../../assets/img/food-icon.svg';
 import { ReactComponent as AboutUsIcon } from '../../../assets/img/about-us-icon.svg';
 import { ReactComponent as HowItWorksIcon } from '../../../assets/img/how-it-works-icon.svg';
@@ -135,18 +136,23 @@ export const IconTextWrapper = styled.div`
 const IconStyle = css`
   height:20px;
   width:auto;
+  cursor:pointer;
 
-    :hover{
-      stroke:${colors.primary}
-    }
+  :hover{
+    stroke:${colors.primary}
+  }
 `
 
 export const Lectures = styled(LecturesIcon)`
   ${IconStyle}
 `;
 
-export const Food = styled(FoodIcon)`
+export const Dashboard = styled(DashboardIcon)`
+  ${IconStyle}
+`;
 
+
+export const Food = styled(FoodIcon)`
   ${IconStyle}
 `;
 
@@ -197,10 +203,10 @@ export const HeaderNavLink = styled(NavLink)`
     ${Food} {
       stroke: ${colors.primary};
     }
-    ${AboutUs } {
+    ${AboutUs} {
       stroke: ${colors.primary};
     }
-    ${ HowItWorks} {
+    ${HowItWorks} {
       stroke: ${colors.primary};
     }
   }
@@ -236,10 +242,10 @@ export const HeaderNavLink = styled(NavLink)`
       ${Food} {
         stroke: ${colors.primary};
       }
-      ${AboutUs } {
+      ${AboutUs} {
         stroke: ${colors.primary};
       }
-      ${ HowItWorks} {
+      ${HowItWorks} {
         stroke: ${colors.primary};
       }
     }

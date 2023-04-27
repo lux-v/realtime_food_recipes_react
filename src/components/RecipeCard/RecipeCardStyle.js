@@ -50,7 +50,6 @@ export const RecipieCardWrapper = styled.div`
     max-width: 650px;
     max-height:500px;
     padding: 10px;
-    margin: 10px;
 
     background: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -71,7 +70,6 @@ export const RecipieCardWrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-    ${border.borderRadius};
 `;
 
 export const RecipeImage = styled.img`
@@ -95,6 +93,9 @@ export const TextWrapper = styled.div`
     width:100%;
     overflow-wrap: anywhere;
 
+    @media (${breakpoints.tablet}) {
+        width: calc(100% - 188px);
+    }
 `;
 
 export const NameFavoritesWrapper = styled.div`
