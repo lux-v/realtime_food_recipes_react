@@ -12,13 +12,12 @@ import {
     YourProfile as YourProfileIcon,
     ItemsWrapper,
     IconTextWrapper,
+    IconText,
 } from './SidebarStyle';
 
 
 const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);
-
-
     return (
         <SidebarWrapper isSidebarOpen={isSidebarOpen}>
             <ItemsWrapper>
@@ -26,21 +25,21 @@ const Sidebar = () => {
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <DashboardIcon />
-                            Dashboard
+                            <IconText>Dashboard</IconText>
                         </IconTextWrapper> : <DashboardIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink to="/recipes">
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <FoodIcon />
-                            Recipes
+                            <IconText>Recipes</IconText>
                         </IconTextWrapper> : <FoodIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink className="mobileNav" to="/profile">
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <YourProfileIcon />
-                            Your profile
+                            <IconText>Your profile</IconText>
                         </IconTextWrapper> : <YourProfileIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink to="/how-it-works">
@@ -48,7 +47,7 @@ const Sidebar = () => {
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <HowItWorksIcon />
-                            How It Works
+                            <IconText>How It Works</IconText>
                         </IconTextWrapper> : <HowItWorksIcon />}
                 </HeaderNavLink>
                 <HeaderNavLink to="/about-us">
@@ -56,7 +55,7 @@ const Sidebar = () => {
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <AboutUsIcon />
-                            About us
+                            <IconText>About us</IconText>
                         </IconTextWrapper> : <AboutUsIcon />}
                 </HeaderNavLink>
 

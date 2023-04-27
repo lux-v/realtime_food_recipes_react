@@ -132,12 +132,17 @@ export const IconTextWrapper = styled.div`
   height:100%;
 `;
 
+export const IconText = styled.p`
+  white-space:none;
+
+  width:calc(100% - 36px);
+`
+
 
 const IconStyle = css`
   height:20px;
-  width:auto;
+  width:20px;
   cursor:pointer;
-
   :hover{
     stroke:${colors.primary}
   }
