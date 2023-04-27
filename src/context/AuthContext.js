@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import app from "../api/firebase"
-import { getUserData, postUserData } from '../api/users';
+
+import { postUserData } from '../api/users';
 
 
 const AuthContext = createContext();
@@ -70,6 +71,7 @@ const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         await app.auth().signOut();
+
     }
 
     const updateUserProfile = async (newUserData) => {

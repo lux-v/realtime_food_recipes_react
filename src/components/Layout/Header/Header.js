@@ -83,28 +83,28 @@ const Header = () => {
             />
           </MenuWrapper>
           <ItemsWrapper>
-            <HeaderNavLink to="/">
+            <HeaderNavLink to="/" onClick={() => setIsSidebarOpen(false)}>
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <DashboardIcon />
                   Dashboard
                 </IconTextWrapper> : <DashboardIcon />}
             </HeaderNavLink>
-            <HeaderNavLink to="/recipes">
+            <HeaderNavLink to="/recipes" onClick={() => setIsSidebarOpen(false)}>
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <FoodIcon />
                   Recipes
                 </IconTextWrapper> : <FoodIcon />}
             </HeaderNavLink>
-            <HeaderNavLink className="mobileNav" to="/profile">
+            <HeaderNavLink className="mobileNav" to="/profile" onClick={() => setIsSidebarOpen(false)}>
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <YourProfileIcon />
                   Your profile
                 </IconTextWrapper> : <YourProfileIcon />}
             </HeaderNavLink>
-            <HeaderNavLink to="/how-it-works">
+            <HeaderNavLink to="/how-it-works" onClick={() => setIsSidebarOpen(false)}>
 
               {isSidebarOpen ?
                 <IconTextWrapper >
@@ -112,7 +112,7 @@ const Header = () => {
                   How It Works
                 </IconTextWrapper> : <AboutUsIcon />}
             </HeaderNavLink>
-            <HeaderNavLink to="/about-us">
+            <HeaderNavLink to="/about-us" onClick={() => setIsSidebarOpen(false)}>
 
               {isSidebarOpen ?
                 <IconTextWrapper >

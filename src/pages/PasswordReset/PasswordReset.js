@@ -24,8 +24,6 @@ export default function AddNewStudent() {
     const navigate = useNavigate()
     const { toastType, setToastType, resetPassword } = useContext(AuthContext);
 
-
-
     return (
         <Content title="Password Reset" isCentered bottomRightEffect topLeftEffect >
             <Formik

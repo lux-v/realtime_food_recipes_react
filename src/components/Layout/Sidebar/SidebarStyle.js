@@ -134,7 +134,6 @@ export const IconTextWrapper = styled.div`
 
 export const IconText = styled.p`
   white-space:none;
-
   width:calc(100% - 36px);
 `
 
