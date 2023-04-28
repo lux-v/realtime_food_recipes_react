@@ -24,7 +24,8 @@ import Recipes from './pages/Recipes/Recipes';
 import Recipe from './pages/Recipe/Recipe';
 import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
 import Backdrop from './components/Backdrop/Backdrop';
-import Profile from './pages/Profile/Profile';
+import AccountSettings from './pages/AccountSettings/AccountSettings';
+import AccountStats from './pages/AccountStats/AccountStats';
 
 
 function App() {
@@ -37,7 +38,6 @@ function App() {
     const isLoggedIn = accessToken !== null && accessToken !== undefined;
 
     setIsLoggedIn(isLoggedIn);
-
   });
 
   useEffect(() => {
@@ -93,7 +93,8 @@ function App() {
             <Route path="/recipes/:id/update" element={<RecipesAddNew isEditRecipe={true} />} />
             <Route path="/recipes/add-new" element={<RecipesAddNew isEditRecipe={false} />} />
 
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
+            <Route path="/profile/account-stats" element={<AccountStats />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

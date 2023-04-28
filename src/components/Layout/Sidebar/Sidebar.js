@@ -35,7 +35,7 @@ const Sidebar = () => {
                             <IconText>Recipes</IconText>
                         </IconTextWrapper> : <FoodIcon />}
                 </HeaderNavLink>
-                <HeaderNavLink className="mobileNav" to="/profile">
+                <HeaderNavLink className="mobileNav" to="/account-settings">
                     {isSidebarOpen ?
                         <IconTextWrapper >
                             <YourProfileIcon />

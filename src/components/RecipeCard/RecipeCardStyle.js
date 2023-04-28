@@ -18,6 +18,8 @@ const IconStyle = css`
 export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
 
+    
+
     :active{
         scale:1.1;
     }

@@ -68,7 +68,7 @@ const Header = () => {
             <Arrow />
           </HeaderProfile>
           <HamburgerIcon onClick={handleHamburgerClick} />
-          {openMenu && <Menu open={openMenu} />}
+          {openMenu && <Menu closePopup={() => setOpenMenu(false)} />}
         </HeaderProfileWrapper>
       </HeaderWrapper>
 
@@ -97,7 +97,7 @@ const Header = () => {
                   Recipes
                 </IconTextWrapper> : <FoodIcon />}
             </HeaderNavLink>
-            <HeaderNavLink className="mobileNav" to="/profile" onClick={() => setIsSidebarOpen(false)}>
+            <HeaderNavLink className="mobileNav" to="/account-settings" onClick={() => setIsSidebarOpen(false)}>
               {isSidebarOpen ?
                 <IconTextWrapper >
                   <YourProfileIcon />

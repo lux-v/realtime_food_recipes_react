@@ -1,50 +1,40 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useContext, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 import { Menu as MenuWrapper } from './MenuStyle';
 import MenuCard from '../MenuCard/MenuCard';
 
-const handleYourProfile = (navigate, setIsSidebarOpen) => () => {
-  navigate("/profile");
-  setIsSidebarOpen(false);
-};
 
-
-
-const Menu = () => {
+const Menu = ({ closePopup }) => {
   const navigate = useNavigate();
-  const { logout, setIsSidebarOpen } = useContext(AuthContext);
-
-  const handleProfile = useMemo(() => handleYourProfile(navigate, setIsSidebarOpen), [navigate, setIsSidebarOpen]);
-
-  const handleChildClick = useCallback((callback) => {
-    callback(navigate);
-    setIsSidebarOpen(false);
-  }, [navigate, setIsSidebarOpen]);
+  const { logout } = useContext(AuthContext);
 
   const menuItems = [
     {
       id: 1,
-      text: "Your profile",
-      callback: handleYourProfile,
-      children: [
-        {
-          text: "Account settings",
-          callback: navigate => navigate("/profile/account-settings"),
-        },
-        {
-          text: "Billing information",
-          callback: navigate => navigate("/profile/billing-information"),
-        },
-      ],
+      text: "Account settings",
+      callback: () => {
+        navigate("/account-settings"); closePopup()
+      },
+      // children: [
+      //   {
+      //     text: "Account settings",
+      //     callback: () => { navigate("/account-settings"); closePopup() },
+      //   },
+      //   {
+      //     text: "Account statistics",
+      //     callback: () => { navigate("/profile/account-stats"); closePopup() },
+      //   },
+      // ],
     },
     {
       id: 2,
       text: "Log out",
-      callback: logout => logout(),
+      callback: () => logout(),
     },
   ];
+
 
   return (
     <MenuWrapper>
@@ -52,7 +42,7 @@ const Menu = () => {
         <MenuCard
           key={item.id}
           text={item.text}
-          callback={item.children ? handleProfile : () => handleChildClick(item.callback)}
+          callback={item.callback}
           subMenuItems={item.children}
         />
       ))}

@@ -25,6 +25,12 @@ import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.pn
 const RecipeCard = ({ onClick, recipe }) => {
     const imageSrc = useCheckImage(recipe.imgUrl, RecipeImagePlaceholder);
 
+    const handleLikeRecipe = (e) => {
+        e.stopPropagation()
+
+        console.log("recipe: ", recipe)
+    }
+
     return (
         <RecipieCardWrapper onClick={onClick}>
             <ImageWrapper>
@@ -34,7 +40,7 @@ const RecipeCard = ({ onClick, recipe }) => {
                 <NameFavoritesWrapper>
                     <RecipeName className='RecipeName' >{recipe.name}</RecipeName>
                     <FavoriteIconWrapper>
-                        <AddFavorite isfavorite={true} />
+                        <AddFavorite onClick={(e) => handleLikeRecipe(e)} isfavorite={true} />
                     </FavoriteIconWrapper>
 
                 </NameFavoritesWrapper>
