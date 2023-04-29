@@ -1,7 +1,8 @@
-import app from "./firebase";
+import { firestore, arrayRemove, arrayUnion } from "./firebase";
+
 
 export const getAllRecipesData = async () => {
-    return app.firestore().collection("recipes").get().then(res => {
+    return firestore().collection("recipes").get().then(res => {
         let recipesList = [];
         if (res.size > 0) {
             res.docs.forEach(recipe => {
@@ -17,7 +18,7 @@ export const getAllRecipesData = async () => {
 }
 
 export const getRecipeData = async (uid) => {
-    return app.firestore().collection("recipes").doc(uid).get().then(res => {
+    return firestore().collection("recipes").doc(uid).get().then(res => {
 
         if (res.exists)
             return res.data()
@@ -31,7 +32,7 @@ export const getRecipeData = async (uid) => {
 
 
 export const postRecipeData = async (recipe) => {
-    const recipeRef = app.firestore().collection("recipes").doc()
+    const recipeRef = firestore().collection("recipes").doc()
     return recipeRef.set({
         ...recipe
     }).then(() => { return recipeRef.id }).catch(error => {
@@ -41,20 +42,30 @@ export const postRecipeData = async (recipe) => {
 }
 
 export const putRecipeData = async (recipe, recipeId) => {
-    return app.firestore().collection("recipes").doc(recipeId).update({
-        ...recipe
-    }).catch(error => {
-        console.log("Error posting recipe data: ", error);
-        throw error;
-    });
+    return firestore().collection("recipes").doc(recipeId).update(recipe)
+        .catch(error => {
+            console.log("Error posting recipe data: ", error);
+            throw error;
+        });
 }
 
 
-
 export const deleteRecipe = async (recipeId) => {
-    return app.firestore().collection("recipes").doc(recipeId).delete().catch(error => {
+    return firestore().collection("recipes").doc(recipeId).delete().catch(error => {
         console.log("Error deleting recipe: ", error);
         throw error;
     });
 }
 
+
+export const addRemoveLikedBy = async (userId, recipeId, isLikedByUser) => {
+    const action = isLikedByUser ?
+        firestore().collection("recipes").doc(recipeId).update({ likedBy: arrayRemove(userId) })
+        :
+        firestore().collection("recipes").doc(recipeId).update({ likedBy: arrayUnion(userId) })
+
+    action.catch(error => {
+        console.log("Error updating recipe likedBy: ", error);
+        throw error;
+    });
+}

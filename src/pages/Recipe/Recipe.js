@@ -51,6 +51,17 @@ const Recipe = () => {
                     <RecipeWrapper>
                         <TopSideWrapper >
                             <LeftSideWrapper>
+
+                                <SectionWrapper>
+                                    {recipe?.likedBy?.length &&
+                                        <SectionHeadline>
+                                            Likes: {recipe.likedBy.length}
+                                        </SectionHeadline>
+                                    }
+                                    <TextContent>
+                                        {recipe.name}
+                                    </TextContent>
+                                </SectionWrapper>
                                 <SectionWrapper>
                                     <SectionHeadline>
                                         Name:

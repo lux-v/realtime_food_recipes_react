@@ -1,7 +1,10 @@
-import app from "./firebase"
+import { firestore, arrayUnion, arrayRemove } from "./firebase"
 
 export const postUserData = async (uid) => {
-    return app.firestore().collection("users").doc(uid).set({
+    return firestore().collection("users").doc(uid).set({
+        likedRecipes: [],
+        myRecipes: [],
+
 
     }).catch(error => {
         console.log("Error posting user data: ", error);
@@ -9,7 +12,7 @@ export const postUserData = async (uid) => {
     });
 }
 export const putUserData = async (user) => {
-    return app.firestore().collection("users").doc(user.uid).set({
+    return firestore().collection("users").doc(user.uid).update({
 
 
     }).catch(error => {
@@ -18,12 +21,25 @@ export const putUserData = async (user) => {
     });
 }
 
-export const getUserData = async (uid) => {
-    return app.firestore().collection("users").doc(uid).get().then(res => {
-        if (res.exists)
-            return res.data()
 
-        return []
+
+// export const addRemoveLikedRecipe = async (userId, recipeId, isAdd) => {
+//     const action = isAdd ?
+//         firestore().collection("users").doc(userId).update({ likedRecipes: arrayUnion(recipeId) })
+//         :
+//         firestore().collection("users").doc(userId).update({ likedRecipes: arrayRemove(recipeId) })
+
+//     action.catch(error => {
+//         console.log("Error updating user data: ", error);
+//         throw error;
+//     });
+// }
+
+
+export const getUserData = async (uid) => {
+    return await firestore().collection("users").doc(uid).get().then(res => {
+        return res.exists ? res.data() : {}
+
     }).catch(error => {
         console.log("Error getting user data: ", error)
         throw error;
@@ -32,16 +48,20 @@ export const getUserData = async (uid) => {
 
 
 export const getAllUsersData = async () => {
-    await app.firestore().collection("users").get().then(res => {
-        const usersList = [];
+    await firestore().collection("users").get().then(res => {
 
+        // --------- DON'T DELETE THIS, it is NOT tested with using reducer---------
+        // const usersList = [];
         if (res.size > 0) {
-            res.docs.forEach(user => {
-                usersList.push(user.data())
-            });
+            return res.docs.reduce((acc, currentUser) => {
+                return acc.push(currentUser.data())
+            }, [])
+            // res.docs.forEach(user => {
+            //     usersList.push(user.data())
+            // });
         }
-
-        return usersList
+        // return usersList
+        // ------------------------------------------------------------------------
     }).catch(error => {
         console.log("Error getting all users data: ", error)
         throw error;
