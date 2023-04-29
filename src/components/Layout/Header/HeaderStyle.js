@@ -82,12 +82,12 @@ export const HamburgerIcon = styled(Hamburger)`
   border-radius:${border.borderRadius};
   padding:5px;
   
+  :hover{
+    background: ${colors.lightRed};
+    stroke:${colors.primary}
+  }
   @media (hover: hover) and (pointer: fine) {
-    :hover{
-      background: ${colors.lightRed};
-      stroke:${colors.primary}
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
   transition: all 0.1s ease-in;
 

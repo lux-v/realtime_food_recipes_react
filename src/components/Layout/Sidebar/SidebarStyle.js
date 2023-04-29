@@ -146,10 +146,11 @@ export const IconText = styled.p`
 const IconStyle = css`
   height:20px;
   width:20px;
+
+  :hover{
+    stroke:${colors.primary}
+  }
   @media (hover: hover) and (pointer: fine) {
-    :hover{
-      stroke:${colors.primary}
-    }
     cursor:pointer;
   }
 `
@@ -205,23 +206,22 @@ export const HeaderNavLink = styled(NavLink)`
   
   color: ${colors.textPrimary};
 
-  @media (hover: hover) and (pointer: fine) {
-    :hover{
-      cursor: pointer;
-      background:${colors.lightRed};
-      color:${colors.primary};
-
-      
-      ${Food} {
-        stroke: ${colors.primary};
-      }
-      ${AboutUs} {
-        stroke: ${colors.primary};
-      }
-      ${HowItWorks} {
-        stroke: ${colors.primary};
-      }
+  :hover{
+    background:${colors.lightRed};
+    color:${colors.primary};
+    
+    ${Food} {
+      stroke: ${colors.primary};
     }
+    ${AboutUs} {
+      stroke: ${colors.primary};
+    }
+    ${HowItWorks} {
+      stroke: ${colors.primary};
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
   }
 
   ${(props) =>
