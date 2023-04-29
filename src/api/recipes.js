@@ -17,13 +17,11 @@ export const getAllRecipesData = async () => {
     })
 }
 
-export const getRecipeData = async (uid) => {
-    return firestore().collection("recipes").doc(uid).get().then(res => {
+export const getRecipeData = async (recipeId) => {
+    return firestore().collection("recipes").doc(recipeId).get().then(recipeData => {
+        const formattedRecipe = { ...recipeData.data(), id: recipeId }
+        return recipeData.exists ? formattedRecipe : {}
 
-        if (res.exists)
-            return res.data()
-
-        return []
     }).catch(error => {
         console.log("Error getting recipe data: ", error);
         throw error;

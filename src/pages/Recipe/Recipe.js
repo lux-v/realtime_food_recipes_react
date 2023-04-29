@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
+import { useRecipeLike } from '../../hooks/useRecipeLike'
 
 import {
     LeftSideWrapper,
@@ -15,8 +16,13 @@ import {
     IngredientsWrapper,
     BottomSideWrapper,
     RecipeWrapper,
-    RecipeName
+    RecipeLikesWrapper,
+    LikesNumber
 } from './RecipeStyle'
+import {
+    AddFavorite,
+    FavoriteIconWrapper
+} from '../../components/RecipeCard/RecipeCardStyle'
 
 import Layout from '../../components/Layout/Layout'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
@@ -32,6 +38,7 @@ const Recipe = () => {
     const { userData } = useContext(AuthContext)
     const recipe = useFetchRecipe(recipeId)
 
+    const { isLikedByUser, recipeLikes, handleLikeRecipe } = useRecipeLike(recipe, userData)
     const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
     const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
@@ -51,17 +58,14 @@ const Recipe = () => {
                     <RecipeWrapper>
                         <TopSideWrapper >
                             <LeftSideWrapper>
-
-                                <SectionWrapper>
-                                    {recipe?.likedBy?.length &&
-                                        <SectionHeadline>
-                                            Likes: {recipe.likedBy.length}
-                                        </SectionHeadline>
-                                    }
-                                    <TextContent>
-                                        {recipe.name}
-                                    </TextContent>
-                                </SectionWrapper>
+                                <RecipeLikesWrapper>
+                                    <LikesNumber>
+                                        {recipeLikes}
+                                    </LikesNumber>
+                                    <FavoriteIconWrapper>
+                                        <AddFavorite onClick={(e) => handleLikeRecipe(e)} isfavorite={isLikedByUser} />
+                                    </FavoriteIconWrapper>
+                                </RecipeLikesWrapper>
                                 <SectionWrapper>
                                     <SectionHeadline>
                                         Name:

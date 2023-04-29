@@ -2,11 +2,19 @@ import styled from "styled-components";
 import { border, breakpoints, colors, fonts } from "../../lib/style/theme";
 
 
-export const RecipeName = styled.p`
-    color: ${colors.primary}; 
+export const RecipeLikesWrapper = styled.p`
+    position:absolute;
+    right:0;
+    display:flex;
+    gap:5px;
+    align-items:center;    
+`
+
+export const LikesNumber = styled.p`
+    color: ${colors.textMenu}; 
     font-family: ${fonts.primary}; 
-    line-height: 40px; 
-    font-size: 36px; 
+    line-height: 20px; 
+    font-size: 18px; 
     font-weight: 700;
     
 `
@@ -48,14 +56,8 @@ export const TopSideWrapper = styled.div`
     }
 `
 
-
-
 export const BottomSideWrapper = styled.div`
-    /* height:50%; */
     width:100%;
-
-
-    /* margin:auto; */
     margin-top:50px;
     margin-bottom: 100px;
 
@@ -71,6 +73,7 @@ export const BottomSideWrapper = styled.div`
 `
 
 export const LeftSideWrapper = styled.div`
+    position:relative;
     height:50%;
     width:100%;
 

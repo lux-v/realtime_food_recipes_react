@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useContext } from 'react'
+import React, { useContext } from 'react'
 
 import useCheckImage from '../../hooks/useCheckImage';
 import { AuthContext } from '../../context/AuthContext';
-import { addRemoveLikedBy } from '../../api/recipes';
+import { useRecipeLike } from '../../hooks/useRecipeLike';
 
 import {
     RecipeDescription,
@@ -27,22 +27,8 @@ import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.pn
 const RecipeCard = ({ onClick, recipe }) => {
     const { userData } = useContext(AuthContext)
     const imageSrc = useCheckImage(recipe.imgUrl, RecipeImagePlaceholder);
+    const { isLikedByUser, handleLikeRecipe } = useRecipeLike(recipe, userData)
 
-    const [isLikedByUser, setIsLikedByUser] = useState(false)
-    useMemo(() => { setIsLikedByUser(recipe?.likedBy?.includes(userData.uid) || false) }, [userData, recipe])
-
-
-    const handleLikeRecipe = async (e) => {
-        e.stopPropagation();
-
-        try {
-            await addRemoveLikedBy(userData.uid, recipe.id, isLikedByUser).then(async res => {
-                setIsLikedByUser(!isLikedByUser)
-            })
-        } catch (error) {
-            console.log("error:", error)
-        }
-    }
 
     return (
         <RecipieCardWrapper onClick={onClick}>
@@ -55,7 +41,6 @@ const RecipeCard = ({ onClick, recipe }) => {
                     <FavoriteIconWrapper>
                         <AddFavorite onClick={(e) => handleLikeRecipe(e)} isfavorite={isLikedByUser} />
                     </FavoriteIconWrapper>
-
                 </NameFavoritesWrapper>
                 <RecipeDescription>{recipe.description}</RecipeDescription>
 

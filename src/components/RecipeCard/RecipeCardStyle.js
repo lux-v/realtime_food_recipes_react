@@ -112,6 +112,7 @@ export const FavoriteIconWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-content:center;
+    cursor:pointer;
 
     width:30px;
     height:30px;
@@ -134,8 +135,6 @@ export const RecipeName = styled.p`
     font-size: 16px;
     font-weight: 700;
     line-height: 29px;
-
-
 
     @media (${breakpoints.tablet}) {
         line-height: 39px;
