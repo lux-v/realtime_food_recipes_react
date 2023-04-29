@@ -29,10 +29,13 @@ export const Button = style.button`
 
     &:hover {
         transition: all 0.3s ease-in-out;
-        cursor: pointer;
         background-color: ${colors.darkRed};
-
     }
+
+    @media (hover: hover) and (pointer: fine) {
+        cursor: pointer;
+    }
+
     ${(props) =>
         props.isSecondary &&
         `
@@ -41,11 +44,13 @@ export const Button = style.button`
         color: ${colors.primary};
         border: 1px solid ${colors.whiteBorder}; 
 
-        &:hover {
-               
+        &:hover{
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
             background-color: ${colors.lightRed};
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            cursor: pointer;
         }
     `}
 
@@ -57,11 +62,12 @@ export const Button = style.button`
         color: ${colors.primary};
         border: 1px solid ${colors.primary}; 
 
-        &:hover {
-               
+        &:hover {   
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
             background-color: ${colors.lightRed};
+        }
+        @media (hover: hover) and (pointer: fine) {
+            cursor: pointer;
         }
     `}
 
@@ -71,12 +77,14 @@ export const Button = style.button`
         padding: 12px 24px;
         background-color: ${colors.bgPrimary};
         color: ${colors.textPrimary};
+
         &:hover {
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
             background-color: ${colors.cancelBackground};
             color: ${colors.textPrimary};
-
+        }
+        @media (hover: hover) and (pointer: fine) {
+            cursor: pointer;
         }
     `}
     
@@ -103,12 +111,13 @@ export const Button = style.button`
           color: ${colors.textPrimary};
           border: none; 
   
-          &:hover {
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            background-color: transparent;
-            
-        }
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+                background-color: transparent;
+            }
+          }
         @media (${breakpoints.tablet}) {
             padding: 12px 24px;
           }

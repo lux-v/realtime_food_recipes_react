@@ -170,7 +170,9 @@ export const Title = styled.span`
 
 export const XButton = styled.img`
   display: none;
-  cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 
   @media (${breakpoints.tablet}) {
     display: block;

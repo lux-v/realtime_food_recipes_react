@@ -5,7 +5,6 @@ import { colors } from "../../lib/style/theme";
 export const CardsWrapper = styled.div`
     display:flex;
     flex-wrap:wrap;
-
     gap:10px;
 
 `

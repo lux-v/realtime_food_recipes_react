@@ -17,16 +17,17 @@ const IconStyle = css`
 `
 export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
-
-    
-
+ 
     :active{
         scale:1.1;
     }
 
-    :hover{
-        fill:${colors.primary}
-      }
+    @media (hover: hover) and (pointer: fine) {
+        :hover{
+            fill:${colors.primary}
+        }
+    } 
+
 
     ${props => props.isfavorite && `
         fill:${colors.primary};
@@ -62,13 +63,13 @@ export const RecipieCardWrapper = styled.div`
         height: 210px;
         flex-direction:row;
     }
-
-    &:hover {
-        transition: all 0.2s ease-in-out;
-        cursor: pointer;
-        box-shadow: ${colors.primary} 0px 1px 8px;
+    @media (hover: hover) and (pointer: fine) {
+        :hover {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            box-shadow: ${colors.primary} 0px 1px 8px;
+        }
     }
-
 `;
 
 export const ImageWrapper = styled.div`
@@ -112,7 +113,10 @@ export const FavoriteIconWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-content:center;
-    cursor:pointer;
+    
+    @media (hover: hover) and (pointer: fine) {
+        cursor:pointer;
+    }
 
     width:30px;
     height:30px;
@@ -158,7 +162,10 @@ export const RecipeDescription = styled.p`
 export const CloseIcon = styled(Close)`
   width: 10px;
   height: 10px;
-  cursor: pointer;
+  
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 
   path {
     fill: white;

@@ -42,10 +42,12 @@ export const LogoLink = styled(Link)`
   padding-left: 28px;
   display: none;
 
-  &:hover {
-    cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      cursor: pointer;
+    }
   }
-
+  
   @media (${breakpoints.desktop}) {
     padding-top: 0;
     padding-left: 14px;
@@ -92,9 +94,12 @@ export const ExitImg = styled.img`
   width: 18.67px;
   height: 18.67px;
 
-  &:hover {
-    cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      cursor: pointer;
+    }
   }
+  
 `;
 
 export const MenuText = styled.p`
@@ -141,9 +146,11 @@ export const IconText = styled.p`
 const IconStyle = css`
   height:20px;
   width:20px;
-  cursor:pointer;
-  :hover{
-    stroke:${colors.primary}
+  @media (hover: hover) and (pointer: fine) {
+    :hover{
+      stroke:${colors.primary}
+    }
+    cursor:pointer;
   }
 `
 
@@ -197,21 +204,23 @@ export const HeaderNavLink = styled(NavLink)`
 
   
   color: ${colors.textPrimary};
-  cursor: pointer;
 
-  :hover{
-    background:${colors.lightRed};
-    color:${colors.primary};
+  @media (hover: hover) and (pointer: fine) {
+    :hover{
+      cursor: pointer;
+      background:${colors.lightRed};
+      color:${colors.primary};
 
-    
-    ${Food} {
-      stroke: ${colors.primary};
-    }
-    ${AboutUs} {
-      stroke: ${colors.primary};
-    }
-    ${HowItWorks} {
-      stroke: ${colors.primary};
+      
+      ${Food} {
+        stroke: ${colors.primary};
+      }
+      ${AboutUs} {
+        stroke: ${colors.primary};
+      }
+      ${HowItWorks} {
+        stroke: ${colors.primary};
+      }
     }
   }
 

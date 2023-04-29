@@ -12,13 +12,17 @@ export const Card = styled.div`
   background-color: ${colors.secondary};
   color: ${colors.textMenu};
   width: 100%;
-  cursor: pointer;
+
   position: relative;
 
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: ${colors.lightRed};
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      background-color: ${colors.lightRed};
+      cursor: pointer;
+    }
   }
+
 `;
 
 export const SubMenu = styled.div`

@@ -82,13 +82,13 @@ export const HamburgerIcon = styled(Hamburger)`
   border-radius:${border.borderRadius};
   padding:5px;
   
-  cursor: pointer;
-
-  :hover{
-    background: ${colors.lightRed};
-    stroke:${colors.primary}
+  @media (hover: hover) and (pointer: fine) {
+    :hover{
+      background: ${colors.lightRed};
+      stroke:${colors.primary}
+      cursor: pointer;
+    }
   }
-
   transition: all 0.1s ease-in;
 
   ${props =>
@@ -167,15 +167,17 @@ export const HeaderProfile = styled.nav`
   background:${colors.mediumRed};
   border-radius:50px;
 
-  cursor: pointer;
-
   :hover{
-    background:${colors.primary};
-
-    ${Arrow} {
-      stroke: white;
+      background:${colors.primary};
+      ${Arrow} {
+        stroke: white;
+      }
     }
+
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
   }
+
   transition:all 0.2s ease-in;
 
   @media (${breakpoints.tablet}) {

@@ -6,7 +6,9 @@ import { ReactComponent as DashboardIcon } from '../../assets/img/dashboard-icon
 export const Dashboard = styled(DashboardIcon)`
   height:20px;
   width:auto;
-  cursor:pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor:pointer;
+  }
   stroke: ${colors.primary};
 `;
 
@@ -32,16 +34,14 @@ export const BreadcrumbsLink = styled(Link)`
   font-weight: 500;
   font-size: 12.5px;
   color: ${colors.textPrimary};
-  
-
   ${(props) =>
     props.index + 1 < props.pathLength &&
     `
       text-decoration: none; 
       color: ${colors.primary};
-    `}
+  `}
 
-  &:hover {
+  @media (hover: hover) and (pointer: fine) {
     cursor: pointer;
   }
 `;

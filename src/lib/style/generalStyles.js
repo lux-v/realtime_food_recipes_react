@@ -236,7 +236,10 @@ export const PasswordIcon = styled.img`
   position: relative;
   top: -31.8px;
   left: 241px;
-  cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
+  
 
   @media (${breakpoints.tablet}) {
     left: 533px;
@@ -384,9 +387,12 @@ export const PasswordText = styled.p`
   line-height: 17px;
   text-align: right;
   color: ${colors.link};
-  cursor: pointer;
   margin-top: -9px;
   margin-bottom: 30px;
+
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 
   @media (${breakpoints.tablet}) {
     line-height: 20px;
@@ -530,9 +536,12 @@ ${(props) =>
   text-align: left;
   background-color: ${colors.columnBackground};
 
-  &:hover {
-    color: ${colors.columnHover};
-    cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: ${colors.columnHover};
+      cursor: pointer;
+    }
   }
 
   @media (${breakpoints.tablet}) {
@@ -774,18 +783,23 @@ export const Functions = styled.div`
   width: 64px;
 `;
 
+
 export const TrashCan = styled(Trash)`
   fill: ${colors.iconsPrimary};
   width: 14px;
   height: 18px;
-  cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 `;
 
 export const EditIcon = styled(Edit)`
   fill: ${colors.iconsPrimary};
   width: 18px;
   height: 18px;
-  cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 `;
 
 
@@ -804,7 +818,9 @@ export const LogoContainer = styled.div`
 
 export const LogoImg = styled.img`
   height: 70px;
-  cursor:pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor:pointer;
+  }
 
   @media (${breakpoints.tablet}) {
     height:100px;

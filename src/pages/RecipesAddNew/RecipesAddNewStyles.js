@@ -4,7 +4,9 @@ import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
 export const CloseIcon = styled(Close)`
   width: 10px;
   height: 10px;
-  cursor: pointer;
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 
   path {
     fill: white;
