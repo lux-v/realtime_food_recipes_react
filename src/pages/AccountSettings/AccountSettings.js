@@ -11,9 +11,7 @@ import { ProfileImageWrapper, ProfileImage, CardsWrapper, CardWrapper } from './
 import Button from '../../components/Button/Button'
 import Card from '../../components/Card/Card'
 import Layout from '../../components/Layout/Layout'
-
 import profileImg from '../../assets/img/profile.svg'
-
 
 
 const AccountSettings = () => {
