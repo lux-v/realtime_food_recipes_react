@@ -19,12 +19,12 @@ export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
  
     :active{
-        scale:1.1;
+        scale:1.2;
     }
 
     @media (hover: hover) and (pointer: fine) {
         :hover{
-            fill:${colors.primary}
+            fill:${colors.primary};
         }
     } 
 

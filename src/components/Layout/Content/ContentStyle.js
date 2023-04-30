@@ -9,7 +9,8 @@ export const ContentWrapper = styled.main`
   flex-grow: 1;
   padding: 16px;
   background-color: ${colors.bgPrimary};
-  border-radius: ${border.borderRadius};
+  border-top-left-radius: ${border.borderRadius};
+  border-top-right-radius: ${border.borderRadius};
 
   ${props=> props.isLoggedIn &&`
     min-height: calc(100vh - 60px);

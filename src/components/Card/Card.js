@@ -11,7 +11,7 @@ import {
 const Card = ({
     title,
     children,
-    headingElements=["test"],
+    headingElements=[],
     elements = [],
 
 }) => {
