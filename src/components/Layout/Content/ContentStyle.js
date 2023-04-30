@@ -11,6 +11,7 @@ export const ContentWrapper = styled.main`
   background-color: ${colors.bgPrimary};
   border-top-left-radius: ${border.borderRadius};
   border-top-right-radius: ${border.borderRadius};
+  padding:20px;
 
   ${props=> props.isLoggedIn &&`
     min-height: calc(100vh - 60px);
@@ -19,15 +20,10 @@ export const ContentWrapper = styled.main`
 
   @media (${breakpoints.desktop}) {
     transition: all 0.2s ease-in;
-    ${props=> props.isLoggedIn &&`
-    margin: 60px 20px 0 0;
-  `}
-    margin-left: ${props => props.isSidebarOpen===false && props.isLoggedIn && "-180px"}; 
+    margin-left: ${props => props.isSidebarOpen===false && props.isLoggedIn===true && "-180px"}; 
 
 
-    padding:20px;
   }
-
 `;
 
 export const NavigationWrapper = styled.div`
@@ -44,7 +40,6 @@ export const NavigationWrapper = styled.div`
   border-radius:${border.borderRadius};
   padding:5px 15px;
   z-index:3;
-
 `;
 
 export const TitleButtonWrapper = styled.div`

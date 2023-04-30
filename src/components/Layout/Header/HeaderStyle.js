@@ -131,7 +131,6 @@ export const HamburgerContent = styled.div`
 
   @media (${breakpoints.desktop}) {
     display: none;
-    position: fixed;
   }
 
   ${(props) =>
