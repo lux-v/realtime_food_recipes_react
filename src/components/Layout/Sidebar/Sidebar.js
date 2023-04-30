@@ -18,6 +18,7 @@ import {
 
 const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);
+    
     return (
         <NavWrapper isSidebarOpen={isSidebarOpen}>
             <ItemsWrapper isSidebarOpen={isSidebarOpen}>

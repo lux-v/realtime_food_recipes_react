@@ -97,8 +97,9 @@ const Recipe = () => {
                                 <RecipeImg src={imageSrc} />
                             </RightSideWrapper>
                         </TopSideWrapper >
+                        {recipe && recipe?.steps ?
                         <BottomSideWrapper>
-                            {recipe && recipe?.steps ? recipe?.steps.map((step, index) =>
+                           { recipe?.steps.map((step, index) =>
                                 <SectionWrapper key={index}>
                                     <SectionHeadline>
                                         Step {index + 1}
@@ -107,8 +108,9 @@ const Recipe = () => {
                                         {step}
                                     </TextContent>
                                 </SectionWrapper>
-                            ) : null}
+                            )}
                         </BottomSideWrapper>
+                        : null}
                     </RecipeWrapper >
                     :
                     <LoadingSpinnerWrapper>

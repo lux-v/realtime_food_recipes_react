@@ -108,7 +108,7 @@ const Toast = ({ toastType, setToastType }) => {
             <ContentWrapper>
                 {toastType.message}
             </ContentWrapper>
-            <TimerBar remainingTime={remainingTime} totalTime={5000} toastType={toastType.type} />
+            {/* <TimerBar remainingTime={remainingTime} totalTime={5000} toastType={toastType.type} /> */}
         </ToastWrapper>
     );
 };

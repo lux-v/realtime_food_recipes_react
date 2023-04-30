@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { border, breakpoints, colors, fonts } from "../../lib/style/theme";
 
 
-export const RecipeLikesWrapper = styled.p`
+export const RecipeLikesWrapper = styled.div`
     position:absolute;
     right:0;
     display:flex;
