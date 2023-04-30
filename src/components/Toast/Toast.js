@@ -98,8 +98,8 @@ const Toast = ({ toastType, setToastType }) => {
                 <XButton
                     src={xButtonIcon}
                     alt="xButton"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
 
                     onClick={() => handleClose()}
                 />

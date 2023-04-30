@@ -11,6 +11,7 @@ import {
 const Card = ({
     title,
     children,
+    headingElements=["test"],
     elements = [],
 
 }) => {
@@ -18,6 +19,10 @@ const Card = ({
         <CardWrapper>
             <CardHeading>
                 {title}
+                <div>
+                {headingElements.map((element, index) => <React.Fragment key={index}>{element}</React.Fragment>)}
+
+                </div>
             </CardHeading>
             <CardContent>
                 {children}

@@ -17,9 +17,8 @@ export const Toast = styled.div`
   justify-content:space-between;
 
   @media (${breakpoints.tablet}) {
-    right: 300px;
-    width: 450px;
-    min-height: 85px;
+    right: 230px;
+    width: 330px;
 
     @keyframes fadeIn {
       from {
@@ -130,11 +129,9 @@ export const TimerBar = styled.div.attrs(props => ({
   left: 0;
 `;
 
-// export const TimerBar = styled.div`
-// `
 
 export const Icon = styled.img`
-  width: 20px;
+  width: 18x;
 `;
 
 export const IconTitleWrapper = styled.div`
@@ -163,8 +160,8 @@ export const Title = styled.span`
 
   @media (${breakpoints.tablet}) {
     font-weight: 500;
-    font-size: 22px;
-    line-height: 27px;
+    font-size: 18px;
+    line-height: 20px;
   }
 `;
 
