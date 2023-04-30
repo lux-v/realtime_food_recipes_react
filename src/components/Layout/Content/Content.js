@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 
-import { LineEffectWrapper } from '../../../lib/style/generalStyles';
 import {
   ContentWrapper,
   NavigationWrapper,
@@ -12,36 +11,20 @@ import {
 } from './ContentStyle';
 
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs"
-import LineEffect from '../../../assets/img/line-effect.png';
 
 const Content = ({
   title,
-  topLeftEffect = true,
-  bottomRightEffect = true,
   isCentered = false,
 
   elements,
   children,
 }) => {
 
-  const { isSidebarOpen } = useContext(AuthContext);
+  const { isSidebarOpen, isLoggedIn } = useContext(AuthContext);
   const showHeading = title || elements
 
   return (
-    <ContentWrapper isSidebarOpen={isSidebarOpen}>
-      {/* ----------- styles ----------- */}
-      {topLeftEffect &&
-        <LineEffectWrapper login topLeft maxWidth="50vh">
-          <img alt="LineEffect" src={LineEffect} />
-        </LineEffectWrapper>
-      }
-      {bottomRightEffect &&
-        <LineEffectWrapper login>
-          <img alt="LineEffect" src={LineEffect} />
-        </LineEffectWrapper>
-      }
-      {/* ----------------------------- */}
-
+    <ContentWrapper isSidebarOpen={isSidebarOpen}  isLoggedIn={isLoggedIn}>
       {showHeading && (
         <NavigationWrapper>
           <TitleButtonWrapper>

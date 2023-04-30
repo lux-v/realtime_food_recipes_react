@@ -891,7 +891,6 @@ export const ImageContainer = styled.div`
 export const LineEffectWrapper = styled.div`
   position:absolute;
 
-  height:100%;
   overflow:hidden;
 
   max-width: ${props => props.maxWidth && props.maxWidth};
@@ -906,6 +905,7 @@ export const LineEffectWrapper = styled.div`
   ${props =>
     props.topLeft ?
       `
+      height:100%;
       rotate: 180deg;
       top:0;
       left:0;

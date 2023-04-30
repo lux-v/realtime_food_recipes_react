@@ -3,48 +3,53 @@ import { css } from 'styled-components';
 import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 
-export const ContentWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 16px 16px 25px 16px;
-  margin: auto 0;
-  overflow:auto;
+export const ContentWrapper = styled.main`
+  min-height: 100vh;
+
+  flex-grow: 1;
+  padding: 16px;
   background-color: ${colors.bgPrimary};
+  border-radius: ${border.borderRadius};
+
+  ${props=> props.isLoggedIn &&`
+    min-height: calc(100vh - 60px);
+    margin: 60px 10px 0 10px;
+  `}
 
   @media (${breakpoints.desktop}) {
-    transition: width 0.2s ease-in;
-     padding: 20px;
+    transition: all 0.2s ease-in;
+    ${props=> props.isLoggedIn &&`
+    margin: 60px 20px 0 0;
+  `}
+    margin-left: ${props => props.isSidebarOpen===false && props.isLoggedIn && "-180px"}; 
+
+
+    padding:20px;
   }
 
-    @media (${breakpoints.tablet}) {
-    padding: 20px 36px;
-  }
 `;
 
 export const NavigationWrapper = styled.div`
   position:relative;
   display: flex;
-  flex-direction:column;
+  flex-flow: wrap;
   flex-wrap:wrap;
   justify-content: space-between;
   align-items: center;
 
-  background:${colors.lightRed};
+  min-height:50px;
+
+  background:${colors.white};
   border-radius:${border.borderRadius};
-  padding:5px;
+  padding:5px 15px;
   z-index:3;
-
-  @media (${breakpoints.tablet}) {
-    flex-direction:row;
-  }
-
 
 `;
 
 export const TitleButtonWrapper = styled.div`
   width:100%;
   display:flex;
+  align-items:center;
   flex-wrap:wrap;
   gap:10px;
   justify-content:space-between;
@@ -57,8 +62,6 @@ export const TitleButtonWrapper = styled.div`
 export const ChildrenWrapper = styled.div`
   position:relative;
   padding-top:20px;
-
-    /* display:grid; */
   align-items:flex-start;
 
   z-index:2;
@@ -68,15 +71,9 @@ export const ChildrenWrapper = styled.div`
 
 const TitleStyle = css`
   color: ${colors.textPrimary};
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 29px;
-  color:${colors.textTertiary};
-
-  @media (${breakpoints.tablet}) {
-    font-size: 28px;
-    line-height: 39px;   
-  } 
+  line-height: 22px;
 `;
 
 export const Title = styled.h1`

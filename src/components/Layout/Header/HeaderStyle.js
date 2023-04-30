@@ -7,13 +7,14 @@ import { ReactComponent as ArrowIcon } from '../../../assets/img/arrow-icon.svg'
 
 
 export const HeaderWrapper = styled.header`
-  position: relative;
+  position: fixed;
+  top:0;
+  left:0;
   width: 100%;
   height: 60px;
   padding: 9px 24px;
   user-select: none;
   background-color: ${colors.bgSecondary};
-  box-shadow: 0px 3px 2px 0px #0000000a;
   z-index: 4;
 
   display: flex;
@@ -142,8 +143,8 @@ export const HamburgerContent = styled.div`
 
 
 export const ProfileImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid ${colors.iconsPrimary};
   object-fit:cover;
@@ -162,9 +163,9 @@ export const HeaderProfile = styled.nav`
   display: none;
   width:100px;
   padding: 4px;
-  height:48px;
+  height: 42px;
   
-  background:${colors.mediumRed};
+  background:${colors.lightRed};
   border-radius:50px;
 
   :hover{

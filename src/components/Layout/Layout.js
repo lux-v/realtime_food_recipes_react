@@ -6,8 +6,6 @@ import Content from './Content/Content';
 
 import {
     LayoutWrapper,
-    BodyWrapper,
-
 } from './LayoutStyle';
 
 
@@ -21,16 +19,14 @@ export default function Layout({
     return (
         <LayoutWrapper>
             <Header />
-            <BodyWrapper>
-                <Sidebar />
-                <Content
-                    title={title}
-                    elements={elements}
-                    isCentered={isCentered}
-                >
-                    {children}
-                </Content>
-            </BodyWrapper>
+            <Sidebar />
+            <Content
+                title={title}
+                elements={elements}
+                isCentered={isCentered}
+            >
+                {children}
+            </Content>
         </LayoutWrapper>
     );
 }

@@ -55,7 +55,7 @@ export const RecipieCardWrapper = styled.div`
     padding: 10px;
 
     background: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
     border:1px solid ${colors.tableBorder};
     border-radius: ${border.borderRadius};
 
@@ -67,7 +67,8 @@ export const RecipieCardWrapper = styled.div`
         :hover {
             transition: all 0.2s ease-in-out;
             cursor: pointer;
-            box-shadow: ${colors.primary} 0px 1px 8px;
+            // box-shadow: ${colors.primary} 0px 1px 8px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
     }
 `;
@@ -129,11 +130,11 @@ export const FavoriteIconWrapper = styled.div`
 `;
 
 
-
 export const RecipeName = styled.p`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    width:calc(100% - 35px);
 
     color: ${colors.textPrimary};
     font-size: 16px;
@@ -200,4 +201,3 @@ export const CookTimeLabel = styled.p`
     font-weight: 500;
 
 `;
-

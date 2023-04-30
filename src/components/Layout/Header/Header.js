@@ -28,6 +28,7 @@ import {
   YourProfile as YourProfileIcon,
   ItemsWrapper,
   IconTextWrapper,
+  HowItWorks,
 } from '../../Layout/Sidebar/SidebarStyle';
 
 import Menu from '../../Menu/Menu';
@@ -108,9 +109,9 @@ const Header = () => {
 
               {isSidebarOpen ?
                 <IconTextWrapper >
-                  <AboutUsIcon />
+                  <HowItWorks />
                   How It Works
-                </IconTextWrapper> : <AboutUsIcon />}
+                </IconTextWrapper> : <HowItWorks />}
             </HeaderNavLink>
             <HeaderNavLink to="/about-us" onClick={() => setIsSidebarOpen(false)}>
 

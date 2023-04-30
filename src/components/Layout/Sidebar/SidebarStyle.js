@@ -12,12 +12,11 @@ import { ReactComponent as YourProfileIcon } from '../../../assets/img/yourProfi
 
 
 
-export const SidebarWrapper = styled.nav`
+export const NavWrapper = styled.nav`
   display: none;
   width: 260px;
-  height: 100%;
+  flex-shrink:0;
 
-  padding: 8px;
   box-shadow: 16px 12px 20px 0px #00000000;
   background-color: ${colors.bgSecondary};
 
@@ -28,7 +27,7 @@ export const SidebarWrapper = styled.nav`
 
   @media (${breakpoints.desktop}) {
     display: block;
-    width: ${props => props.isSidebarOpen ? "240px" : "60px"};
+    width: 240px;
     transition: width 0.2s ease-in;
   }
 `;
@@ -117,18 +116,17 @@ export const ItemsWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width:100%;
-  padding: 44px 0;
+  
+  margin-top: 60px;
+  position:fixed;
 
   gap:5px;
 
   @media (${breakpoints.desktop}) {
-    padding: 0;
+    width: ${props => props.isSidebarOpen ? "240px" : "60px"};
+    padding: 8px;
   }
 `;
-
-
-
-
 
 export const IconTextWrapper = styled.div`
   display:flex;
@@ -158,31 +156,22 @@ const IconStyle = css`
 export const Lectures = styled(LecturesIcon)`
   ${IconStyle}
 `;
-
 export const Dashboard = styled(DashboardIcon)`
   ${IconStyle}
 `;
-
-
 export const Food = styled(FoodIcon)`
   ${IconStyle}
 `;
-
 export const AboutUs = styled(AboutUsIcon)`
   ${IconStyle}
-
 `;
 export const HowItWorks = styled(HowItWorksIcon)`
   ${IconStyle}
 `;
-
 export const LogOut = styled(LogOutIcon)`
-
   ${IconStyle}
 `;
-
 export const YourProfile = styled(YourProfileIcon)`
-
   ${IconStyle}
 `;
 
@@ -209,7 +198,10 @@ export const HeaderNavLink = styled(NavLink)`
   :hover{
     background:${colors.lightRed};
     color:${colors.primary};
-    
+
+    ${Dashboard} {
+      stroke: ${colors.primary};
+    }
     ${Food} {
       stroke: ${colors.primary};
     }
@@ -252,6 +244,9 @@ export const HeaderNavLink = styled(NavLink)`
     &.active {
       background:${colors.lightRed};
       color:${colors.primary};
+      ${Dashboard} {
+        stroke: ${colors.primary};
+      }
       ${Food} {
         stroke: ${colors.primary};
       }

@@ -1,6 +1,6 @@
 export const fonts = {
-    primary: '"Century Gothic", "sans-serif"',
-    secondary: '"Roboto", "sans-serif"',
+    secondary: '"Century Gothic", "sans-serif"',
+    primary: '"Roboto", "sans-serif"',
 };
 
 export const colors = {
@@ -9,10 +9,11 @@ export const colors = {
     primary: '#EB2828', //red-orange
     secondary: '#FFFFFF', // white
     //background
-    bgPrimary: '#E9E9E9', // gray
+    bgPrimary: 'rgb(238, 242, 246)', // gray
     bgSecondary: '#FFFFFF', //white
     //text
-    textPrimary: '#081131', //gray1
+    textPrimary: "#121926", //darkgray
+    // textPrimary: '#081131', //gray1
     textSecondary: '#455439', //green
     textTertiary: 'rgba(0, 0, 0, 0.5)', // gray 4
     textToast: "0D150D",
@@ -37,7 +38,9 @@ export const colors = {
     darkRed: '#AA1D1D', //dark red
     logoText: '#626267', // logo text
 
+
     white05: "rgba(255, 255, 255, 0.5)", //white opacity 0.5
+    white: "white",
     columnHover: '#1ABBB9', // table column hover
     columnBackground: '#F9F9F9', // table column background
     tableBorder: '#E0E7ED', // table border

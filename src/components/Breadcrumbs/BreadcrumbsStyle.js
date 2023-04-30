@@ -21,7 +21,7 @@ export const Breadcrumbs = styled.div`
       justify-content:flex-end;
       height:40px;
       width: 100%;
-      padding:2px 10px;
+      padding-left:10px;
       border-radius:20px;
 
       @media (${breakpoints.tablet}) {
@@ -37,8 +37,8 @@ export const BreadcrumbsLink = styled(Link)`
   ${(props) =>
     props.index + 1 < props.pathLength &&
     `
+      font-weight: 700;
       text-decoration: none; 
-      color: ${colors.primary};
   `}
 
   @media (hover: hover) and (pointer: fine) {

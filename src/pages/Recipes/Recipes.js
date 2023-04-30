@@ -8,6 +8,7 @@ import { AuthContext } from '../../context/AuthContext'
 
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import Button from '../../components/Button/Button';
+import  Card  from '../../components/Card/Card'
 
 
 const Recipes = () => {
@@ -47,6 +48,7 @@ const Recipes = () => {
             }
         >
             {recipes ?
+             <Card title="Filter">
                 <RecipesWrapper>
                     {
                         recipes.map(recipe => {
@@ -54,6 +56,7 @@ const Recipes = () => {
                         })
                     }
                 </RecipesWrapper>
+                </Card>
                 :
                 <LoadingSpinnerWrapper>
                     <LoadingSpinner size="120px" />

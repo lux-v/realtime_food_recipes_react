@@ -2,7 +2,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { useContext } from 'react';
 
 import {
-    SidebarWrapper,
+    NavWrapper,
     HeaderNavLink,
     Food as FoodIcon,
     Dashboard as DashboardIcon,
@@ -19,8 +19,8 @@ import {
 const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);
     return (
-        <SidebarWrapper isSidebarOpen={isSidebarOpen}>
-            <ItemsWrapper>
+        <NavWrapper isSidebarOpen={isSidebarOpen}>
+            <ItemsWrapper isSidebarOpen={isSidebarOpen}>
                 <HeaderNavLink to="/">
                     {isSidebarOpen ?
                         <IconTextWrapper >
@@ -70,7 +70,7 @@ const Sidebar = () => {
                     </IconTextWrapper>
                 </HeaderNavLink>
             </ItemsWrapper>
-        </SidebarWrapper>
+        </NavWrapper>
     );
 };
 export default Sidebar;
