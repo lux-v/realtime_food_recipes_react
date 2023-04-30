@@ -75,27 +75,23 @@ export const Toast = styled.div`
    
 
   ${(props) =>
-    props.toastType === "success"
-      ? `
+    props.toastType === "success"? `
       background-color: ${colors.primarySuccess};
       border: 1px solid ${colors.secondarySuccess};
     `
-      :
-      props.toastType === "error" ? `
-    background-color:${colors.primaryError};
-    border: 1px solid ${colors.secondaryError};
+    :
+    props.toastType === "error" ? `
+      background-color:${colors.primaryError};
+      border: 1px solid ${colors.secondaryError};
     `
-        :
-        props.toastType === "warning" ?
-          `
-    background-color:${colors.primaryWarning};
-    border: 1px solid ${colors.secondaryWarning};
+    :
+    props.toastType === "warning" ?`
+      background-color:${colors.primaryWarning};
+      border: 1px solid ${colors.secondaryWarning};
     `
-          :
-
-          `
-    background-color:${colors.primaryInfo};
-    border: 1px solid ${colors.secondaryInfo};
+    :`
+      background-color:${colors.primaryInfo};
+      border: 1px solid ${colors.secondaryInfo};
     `
   }
 `;
@@ -103,7 +99,7 @@ export const Toast = styled.div`
 export const ToastHeader = styled.div`
   display: flex;
   width: 100%;
-  padding:5px;
+  padding:5px 15px 5px 5px;
   align-items: center;
   justify-content: space-between;
 `

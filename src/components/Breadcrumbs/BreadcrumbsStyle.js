@@ -20,13 +20,8 @@ export const Breadcrumbs = styled.div`
       align-items:center;
       justify-content:flex-end;
       height:40px;
-      width: 100%;
       padding-left:10px;
       border-radius:20px;
-
-      @media (${breakpoints.tablet}) {
-        width:40%;
-      } 
     `}
 `;
 

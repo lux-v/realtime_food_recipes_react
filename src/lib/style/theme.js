@@ -21,7 +21,7 @@ export const colors = {
     iconsPrimary: '#7F8590', // gray body
 
     //status colors
-    primarySuccess: '#B6F8C4',
+    primarySuccess:"#e1fae5",
     secondarySuccess: "#36e05a",
     primaryError: '#FFB7B7',
     secondaryError: "#db6e6e",

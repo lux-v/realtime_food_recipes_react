@@ -7,22 +7,23 @@ export const ContentWrapper = styled.main`
   min-height: 100vh;
   z-index:1;
   flex-grow: 1;
-  padding: 16px;
   background-color: ${colors.bgPrimary};
   border-top-left-radius: ${border.borderRadius};
   border-top-right-radius: ${border.borderRadius};
-  padding:20px;
+  padding: 12px;
 
   ${props=> props.isLoggedIn &&`
     min-height: calc(100vh - 60px);
     margin: 60px 10px 0 10px;
   `}
 
+  @media(${breakpoints.tablet}){
+    padding: 20px;
+  }
+
   @media (${breakpoints.desktop}) {
     transition: all 0.2s ease-in;
     margin-left: ${props => props.isSidebarOpen===false && props.isLoggedIn===true && "-180px"}; 
-
-
   }
 `;
 
@@ -33,8 +34,9 @@ export const NavigationWrapper = styled.div`
   flex-wrap:wrap;
   justify-content: space-between;
   align-items: center;
+  gap:20px;
 
-  min-height:50px;
+  min-height: 50px;
 
   background:${colors.white};
   border-radius:${border.borderRadius};
@@ -43,16 +45,12 @@ export const NavigationWrapper = styled.div`
 `;
 
 export const TitleButtonWrapper = styled.div`
-  width:100%;
-  display:flex;
+  display: flex;
   align-items:center;
   flex-wrap:wrap;
   gap:10px;
   justify-content:space-between;
-
-  @media (${breakpoints.tablet}) {
-    width:60%;
-  }
+  width:60%;
 `;
 
 export const ChildrenWrapper = styled.div`

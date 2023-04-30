@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border, colors } from "../../lib/style/theme";
+import { border, breakpoints, colors } from "../../lib/style/theme";
 
 
 export const CardWrapper = styled.div`
@@ -23,7 +23,11 @@ export const CardHeading = styled.div`
 
 export const CardContent = styled.div`
     width:100%;
-    padding:24px;
+    padding:12px;
+
+    @media(${breakpoints.tablet}){
+        padding:24px;
+    }
 `
 
 export const CardBottom = styled.div`
