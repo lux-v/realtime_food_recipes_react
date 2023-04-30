@@ -5,7 +5,7 @@ import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 export const ContentWrapper = styled.main`
   min-height: 100vh;
-
+  z-index:1;
   flex-grow: 1;
   padding: 16px;
   background-color: ${colors.bgPrimary};
