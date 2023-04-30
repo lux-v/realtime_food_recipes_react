@@ -54,7 +54,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     const [newIngredient, setNewIngredient] = useState("")
     const [newIngredientError, setNewIngredientError] = useState(false)
 
-    const ingredientErrorLengthMessage = "New ingredient name must be less than 30 characters";
+    const ingredientErrorLengthMessage = "New ingredient name must be less than 50 characters";
     const ingredientErrorRequiredMessage = "Ingredient cannot be empty";
     const ingredientUniqueErrorMessage = "This ingredient is already added";
 
@@ -63,7 +63,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
         formRef.current.handleBlur("ingredients")
 
         if (newIngredient !== "")
-            if (newIngredient.length <= 30)
+            if (newIngredient.length <= 50)
                 if (!formRef.current.values.ingredients.includes(newIngredient)) {
                     if (e.key === "Enter" || e.keyCode === 13 || e.type === "click") {
                         callback(newIngredient)
@@ -88,7 +88,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
 
         newValue === "" ?
             setNewIngredientError(ingredientErrorRequiredMessage)
-            : newValue.length > 30 ?
+            : newValue.length > 50 ?
                 setNewIngredientError(ingredientErrorLengthMessage) :
                 formRef.current.values.ingredients.includes(newValue) ?
                     setNewIngredientError(ingredientUniqueErrorMessage)
@@ -161,7 +161,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                     ingredients: Yup.array()
                         .of(Yup.string()
                             .required('Ingredient name is required')
-                            .max(30, 'Ingredient name must be less than 30 characters')
+                            .max(50, 'Ingredient name must be less than 50 characters')
                         )
                         .min(1, 'At least one ingredient is required')
                         .max(20, 'Maximum number of ingredients is 20'),
@@ -172,7 +172,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                         .min(1, 'Cook time must be at least 1 minute')
                         .max(1440, 'Cook time must be less than 1440 minutes (24 hours)'),
                     newIngredient: Yup.string()
-                        .max(30, 'New ingredient name must be less than 30 characters'),
+                        .max(50, 'New ingredient name must be less than 50 characters'),
                     steps: Yup.array()
                         .of(Yup.string()
                             .required('Step description is required')
