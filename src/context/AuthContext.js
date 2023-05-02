@@ -16,6 +16,10 @@ const AuthProvider = ({ children }) => {
         open: false,
     });
 
+    const [modalType, setModalType] = useState({
+        openModal: false,
+    });
+
 
     const signup = async (email, password, displayName) => {
         try {
@@ -128,7 +132,10 @@ const AuthProvider = ({ children }) => {
                 updateUserProfile,
 
                 isSidebarOpen,
-                setIsSidebarOpen
+                setIsSidebarOpen,
+
+                modalType,
+                setModalType
 
             }}
         >

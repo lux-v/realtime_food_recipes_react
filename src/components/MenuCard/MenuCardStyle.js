@@ -32,7 +32,6 @@ export const SubMenu = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
   box-shadow: ${colors.boxShadow};
   width: 100%;
 `;

@@ -5,31 +5,30 @@ import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
 export const ModalBackground = styled.div`
   position: fixed;
   display: none;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: ${colors.modalBackground};
   z-index: 3;
+  
 
   ${(props) =>
     props.openModal === true &&
     `
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     `}
 `;
 
 export const ModalCard = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 272px;
   min-height: 215px;
   background-color: ${colors.secondary};
-  border: 1px solid ${colors.modalBorder};
-  border-radius: 4px;
+  border-radius: 16px;
+
 
   @media (${breakpoints.tablet}) {
     width: 560px;
@@ -44,7 +43,7 @@ export const ModalHeader = styled.div`
   width: 100%;
   height: 68px;
   padding: 25px 16px;
-  border-bottom: 1px solid ${colors.modalBorder};
+  /* border-bottom: 1px solid ${colors.modalBorder}; */
 
   @media (${breakpoints.tablet}) {
     padding: 22px 24px;
@@ -93,11 +92,27 @@ export const ModalButtons = styled.div`
 `;
 
 export const CloseIcon = styled(Close)`
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
+  width: 14px;
+  height: 14px;
 
   path {
     fill: ${colors.textSecondary};
+  }
+`;
+
+export const CloseIconWrapper = styled.div`
+  padding: 5px; 
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+
+  @media (hover: hover) and (pointer: fine) {
+    :hover{
+      background: rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
   }
 `;

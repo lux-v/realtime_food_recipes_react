@@ -183,7 +183,6 @@ const FieldStyleType1 = css`
     `}
 
   @media (${breakpoints.tablet}) {
-    height: 56px;
     width:${(props) =>
     props.width ? props.width : '572px'
   };
@@ -220,7 +219,6 @@ const FieldStyleType2 = css`
     `}
 
   @media (${breakpoints.tablet}) {
-    height: 56px;
     width: ${(props) => props.width || `572px`};
   }
 
@@ -267,16 +265,11 @@ export const Select = styled.select`
       FieldStyleType2 : FieldStyleType1
   };
 
-  height: 56px;
   ${(props) =>
     props.value === '' &&
     `
     color: ${colors.iconsPrimary};
   `}
-
-  /* @media (${breakpoints.tablet}) {
-    width: 572px;
-  } */
 `;
 
 export const SmallSelect = styled(Select)`
@@ -291,7 +284,6 @@ export const SmallField = styled(Field)`
   @media (${breakpoints.tablet}) {
     width: ${(props) => props.width || `255px`};
   }
-
 
   ${({ error }) =>
     error &&
@@ -311,6 +303,22 @@ export const CriteriaSelect = styled(Select)`
   @media (${breakpoints.desktop}) {
     width: 100%;
   }
+`;
+
+export const SearchBar = styled.input`
+    ${(props) =>
+    props.isSecondary ?
+      FieldStyleType2 : FieldStyleType1
+  };
+
+  padding: 12.5px 8px 12.5px 32px;
+  height: 40px;
+
+  width: auto;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+    no-repeat 12px center;
+ 
 `;
 
 export const Option = styled.option`
@@ -544,13 +552,6 @@ ${(props) =>
     }
   }
 
-  @media (${breakpoints.tablet}) {
-    height: 56px;
-  }
-
-  @media (${breakpoints.desktop}) {
-    height: 56px;
-  }
 `;
 
 export const TableCell = styled.td`
@@ -860,7 +861,8 @@ export const SignUpWrapper = styled.div`
 
 
 export const FormWrapper = styled.div`
-  z-index: 1;
+  position:relative;
+  z-index:1;
   margin:auto;
 `;
 

@@ -26,10 +26,11 @@ import RecipesAddNew from './pages/RecipesAddNew/RecipesAddNew';
 import Backdrop from './components/Backdrop/Backdrop';
 import AccountSettings from './pages/AccountSettings/AccountSettings';
 import AccountStats from './pages/AccountStats/AccountStats';
+import ModalCard from './components/ModalCard/ModalCard';
 
 
 function App() {
-  const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
+  const { toastType, setToastType, modalType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true)
 
 
@@ -100,6 +101,7 @@ function App() {
         </Routes>
       </Router>
       <Toast toastType={toastType} setToastType={setToastType} />
+      <ModalCard modalType={modalType} />
     </>
 
   );

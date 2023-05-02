@@ -20,8 +20,10 @@ export const Button = style.button`
 
     font-family: ${fonts.primary};
     font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
+    font-spacing:2px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 14px;
     line-height: 19px;
 
     background-color: ${colors.primary};

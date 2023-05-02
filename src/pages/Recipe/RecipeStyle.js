@@ -23,12 +23,12 @@ export const RecipeWrapper = styled.div`
     height:100%;
     width:100%;
 
-    background: white;
+    /* background: white;
     border-radius: ${border.borderRadius};
     padding: 10px;
 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border:1px solid ${colors.tableBorder};
+    border:1px solid ${colors.tableBorder}; */
 `
 
 export const TopSideWrapper = styled.div`
@@ -41,32 +41,19 @@ export const TopSideWrapper = styled.div`
     height:100%;
     width:100%;
     gap:20px;
-
-    margin-bottom:20px;
     padding-bottom:5px;
-    border-bottom:0.5px solid ${colors.primaryError};
 
-    @media (${breakpoints.tablet}) {
-        margin-bottom:30px;
-    }
-        
     @media (${breakpoints.desktop}) {
-        margin-bottom:40px;
         flex-direction:row;
     }
 `
 
 export const BottomSideWrapper = styled.div`
     width:100%;
-    margin-top:50px;
     margin-bottom: 100px;
-
-    @media (${breakpoints.tablet}) {
-        margin-top:70px;
-    }
+    margin-top:50px;
         
     @media (${breakpoints.desktop}) {
-        margin-top:90px;
         height:100%;
         width:50%;
     }

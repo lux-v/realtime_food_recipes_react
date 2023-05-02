@@ -15,12 +15,10 @@ export const HeaderWrapper = styled.header`
   padding: 9px 24px;
   user-select: none;
   background-color: ${colors.bgSecondary};
-  z-index: 4;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-      
+  z-index:3;      
 
   @media (${breakpoints.tablet}) {
     padding: 8px 87px 8px 8px;
@@ -120,9 +118,6 @@ export const HamburgerContent = styled.div`
   width: 260px;
   height:100%;
   background-color: ${colors.bgSecondary};
-
-  z-index: 5;
-  
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   
   @media (${breakpoints.tablet}) {

@@ -5,14 +5,14 @@ import { colors, breakpoints, border } from '../../../lib/style/theme';
 
 export const ContentWrapper = styled.main`
   min-height: 100vh;
-  z-index:1;
   flex-grow: 1;
   background-color: ${colors.bgPrimary};
   border-top-left-radius: ${border.borderRadius};
   border-top-right-radius: ${border.borderRadius};
   padding: 12px;
+  z-index:0;
 
-  ${props=> props.isLoggedIn &&`
+  ${props => props.isLoggedIn && `
     min-height: calc(100vh - 60px);
     margin: 60px 10px 0 10px;
   `}
@@ -23,7 +23,7 @@ export const ContentWrapper = styled.main`
 
   @media (${breakpoints.desktop}) {
     transition: all 0.2s ease-in;
-    margin-left: ${props => props.isSidebarOpen===false && props.isLoggedIn===true && "-180px"}; 
+    margin-left: ${props => props.isSidebarOpen === false && props.isLoggedIn === true && "-180px"}; 
   }
 `;
 
@@ -41,7 +41,6 @@ export const NavigationWrapper = styled.div`
   background:${colors.white};
   border-radius:${border.borderRadius};
   padding:5px 15px;
-  z-index:3;
 `;
 
 export const TitleButtonWrapper = styled.div`
@@ -57,8 +56,6 @@ export const ChildrenWrapper = styled.div`
   position:relative;
   padding-top:20px;
   align-items:flex-start;
-
-  z-index:2;
   min-height: ${props => props.showHeading ? "calc(100% - 50px)" : "100%"};
 `;
 

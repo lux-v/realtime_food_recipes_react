@@ -10,10 +10,14 @@ import Layout from '../../components/Layout/Layout';
 import Content from '../../components/Layout/Content/Content';
 
 const ComingSoonContent = () => {
+    const navigate = useNavigate()
     return (
         <div style={{
             height: "100%",
             textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
         }}>
             <RedTextStyle>
                 COMING SOON
@@ -21,30 +25,26 @@ const ComingSoonContent = () => {
             <GrayTextStyle>
                 This page is under construction...
             </GrayTextStyle>
+            <Button width="250px" callback={() => navigate(-1)}>
+                Go back
+            </Button>
         </div >
     )
 }
 
 function ComingSoon({ title }) {
     const { isLoggedIn } = useContext(AuthContext)
-    const navigate = useNavigate();
+
 
     return (
         <>
             {isLoggedIn ?
                 <Layout
-                    title={title || " "}
-                    elements={
-                        <>
-                            <Button callback={() => navigate(-1)}>
-                                Go back
-                            </Button>
-                        </>}
+                    title={title}
                 >
                     <ComingSoonContent />
                 </Layout >
-
-                : <Content title={title || " "}>
+                : <Content title={title}>
                     <ComingSoonContent />
                 </Content>
             }

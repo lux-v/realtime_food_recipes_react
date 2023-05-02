@@ -7,12 +7,19 @@ import {
   ModalButtons,
   CloseIcon,
   Title,
+  CloseIconWrapper,
 } from './ModalCardStyle';
 
-function ModalCard({ children, openModal, setOpenModal, title, elements }) {
+function ModalCard({ modalType }) {
+  const { content, openModal, closeModal, title, elements } = modalType;
+
   const handleClose = () => {
-    setOpenModal(false);
+    closeModal();
   };
+
+  const handleBackdropClick = (e) => {
+    handleClose()
+  }
 
   useEffect(() => {
     if (openModal === true) {
@@ -25,14 +32,21 @@ function ModalCard({ children, openModal, setOpenModal, title, elements }) {
   }, [openModal]);
 
   return (
-    <ModalBackground openModal={openModal}>
-      <ModalCardWrapper>
+    <ModalBackground openModal={openModal} onClick={handleBackdropClick}>
+      <ModalCardWrapper onClick={(e) => { e.stopPropagation() }}>
         <ModalHeader>
           <Title>{title}</Title>
-          <CloseIcon onClick={() => handleClose()} />
+          <CloseIconWrapper onClick={() => handleClose()}>
+            <CloseIcon />
+          </CloseIconWrapper>
         </ModalHeader>
-        <ModalContent>{children}</ModalContent>
-        <ModalButtons>{elements}</ModalButtons>
+        <ModalContent>{content}</ModalContent>
+        <ModalButtons>
+          {elements &&
+            elements.map(button => {
+              return button;
+            })}
+        </ModalButtons>
       </ModalCardWrapper>
     </ModalBackground>
   );

@@ -15,12 +15,17 @@ export const CardHeading = styled.div`
     gap: 20px;
     justify-content: space-between;
     width:100%;
-    height: 72px;
+    min-height:72px;
     font-size:18px;
     padding:24px;
     border-bottom:1px solid ${colors.mediumRed};
 `
 
+export const HeadingElementsWrapper = styled.div`
+    display:flex;
+    align-items: center;
+    gap: 10px;
+`
 export const CardContent = styled.div`
     width:100%;
     padding:12px;
@@ -31,6 +36,9 @@ export const CardContent = styled.div`
 `
 
 export const CardBottom = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
     width:100%;
     padding:24px;
     border-top:1px solid ${colors.mediumRed};

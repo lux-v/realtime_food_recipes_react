@@ -9,7 +9,8 @@ export const LandingContainer = styled.div`
 `
 
 export const LandingHeader = styled.div`
-   position: absolute;
+    position: absolute;
+    z-index:1;
     top: 0;
     right: 0;
     height: 70px;
@@ -21,7 +22,6 @@ export const LandingHeader = styled.div`
     gap: 15px;
     background: linear-gradient(269.98deg, #FFFFFF 49.25%, rgba(255, 255, 255, 0) 84.94%);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    z-index: 2;
 `
 
 
@@ -30,7 +30,6 @@ export const LogoWrapper = styled.div`
     position: absolute; 
     top: 20px; 
     left: 20px; 
-    z-index: 1;
 
     @media(${breakpoints.tablet}){
         display:block;
@@ -61,7 +60,6 @@ export const TextWrapper = styled.div`
     align-content:space-around;
     
     margin-top: 100px ;
-    z-index: 1; 
   
     text-align: right;
     padding:10px;

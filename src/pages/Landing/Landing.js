@@ -1,18 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { AnswerText, 
-    GrayTextStyle, 
-    GreenTextStyle, 
-    LandingContainer, 
-    LandingHeader, 
-    LogoWrapper, 
-    MainTextWrapper, 
-    QuestionText, 
-    RedTextStyle, 
-    SecondaryTextWrapper, 
-    TextWrapper, 
-    TwoFoodPlatesWrapper 
+import {
+    AnswerText,
+    GrayTextStyle,
+    GreenTextStyle,
+    LandingContainer,
+    LandingHeader,
+    LogoWrapper,
+    MainTextWrapper,
+    QuestionText,
+    RedTextStyle,
+    SecondaryTextWrapper,
+    TextWrapper,
+    TwoFoodPlatesWrapper
 } from './LandingStyle';
 
 import Button from '../../components/Button/Button'
@@ -28,7 +29,6 @@ const Landing = () => {
     const navigate = useNavigate()
 
     return (
-
         <LandingContainer>
             <LandingHeader>
                 <Button
@@ -62,7 +62,7 @@ const Landing = () => {
             </LineEffectWrapper>
 
             <LineEffectWrapper login>
-                <img alt="LineEffect" src={LineEffect} height="100%"/>
+                <img alt="LineEffect" src={LineEffect} height="100%" />
             </LineEffectWrapper>
 
             <LogoWrapper>

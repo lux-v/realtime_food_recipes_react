@@ -13,7 +13,7 @@ import {
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs"
 
 const Content = ({
-  title,
+  title = " ",
   isCentered = false,
 
   elements,
@@ -24,7 +24,7 @@ const Content = ({
   const showHeading = title || elements
 
   return (
-    <ContentWrapper isSidebarOpen={isSidebarOpen}  isLoggedIn={isLoggedIn}>
+    <ContentWrapper isSidebarOpen={isSidebarOpen} isLoggedIn={isLoggedIn}>
       {showHeading && (
         <NavigationWrapper>
           <TitleButtonWrapper>

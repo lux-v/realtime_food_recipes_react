@@ -3,10 +3,10 @@ import { colors, breakpoints, border } from '../../lib/style/theme';
 
 export const Toast = styled.div`
   position: fixed;
+  /* z-index:3; */
   top: 78px;
   right: 50%;
   transform: translate(50%);
-  z-index: 6;
 
   width: 272px;
   min-height: 40px;
@@ -75,21 +75,21 @@ export const Toast = styled.div`
    
 
   ${(props) =>
-    props.toastType === "success"? `
+    props.toastType === "success" ? `
       background-color: ${colors.primarySuccess};
       border: 1px solid ${colors.secondarySuccess};
     `
-    :
-    props.toastType === "error" ? `
+      :
+      props.toastType === "error" ? `
       background-color:${colors.primaryError};
       border: 1px solid ${colors.secondaryError};
     `
-    :
-    props.toastType === "warning" ?`
+        :
+        props.toastType === "warning" ? `
       background-color:${colors.primaryWarning};
       border: 1px solid ${colors.secondaryWarning};
     `
-    :`
+          : `
       background-color:${colors.primaryInfo};
       border: 1px solid ${colors.secondaryInfo};
     `

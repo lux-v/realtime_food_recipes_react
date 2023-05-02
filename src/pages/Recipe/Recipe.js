@@ -31,6 +31,7 @@ import Chip from '../../components/Chip/Chip'
 
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 import useFetchRecipe from '../../hooks/useFetchRecipe'
+import Card from '../../components/Card/Card'
 
 const Recipe = () => {
     const navigate = useNavigate()
@@ -45,16 +46,16 @@ const Recipe = () => {
 
     return (
         <Layout
-            title={"Recipe details"}
-            elements={
-                <>
-                    <Button callback={() => navigate(`update`)} isHidden={!isOwner}>Edit </Button>
-                    <Button isTertiary callback={() => navigate(-1)}>Back</Button>
-                </>
-            }
+            title="Recipe details"
         >
-            {
-                recipe ?
+            {recipe ?
+                <Card
+                    headingElements={[
+                        <Button callback={() => navigate(`update`)} isHidden={!isOwner}>Edit </Button>,
+                        <Button isTertiary callback={() => navigate(-1)}>Back</Button>
+
+                    ]}
+                >
                     <RecipeWrapper>
                         <TopSideWrapper >
                             <LeftSideWrapper>
@@ -98,24 +99,25 @@ const Recipe = () => {
                             </RightSideWrapper>
                         </TopSideWrapper >
                         {recipe && recipe?.steps ?
-                        <BottomSideWrapper>
-                           { recipe?.steps.map((step, index) =>
-                                <SectionWrapper key={index}>
-                                    <SectionHeadline>
-                                        Step {index + 1}
-                                    </SectionHeadline>
-                                    <TextContent>
-                                        {step}
-                                    </TextContent>
-                                </SectionWrapper>
-                            )}
-                        </BottomSideWrapper>
-                        : null}
-                    </RecipeWrapper >
-                    :
-                    <LoadingSpinnerWrapper>
-                        <LoadingSpinner size="120px" />
-                    </LoadingSpinnerWrapper>
+                            <BottomSideWrapper>
+                                {recipe?.steps.map((step, index) =>
+                                    <SectionWrapper key={index}>
+                                        <SectionHeadline>
+                                            Step {index + 1}
+                                        </SectionHeadline>
+                                        <TextContent>
+                                            {step}
+                                        </TextContent>
+                                    </SectionWrapper>
+                                )}
+                            </BottomSideWrapper>
+                            : null}
+                    </RecipeWrapper>
+                </Card>
+                :
+                <LoadingSpinnerWrapper>
+                    <LoadingSpinner size="120px" />
+                </LoadingSpinnerWrapper>
             }
         </Layout >
     )

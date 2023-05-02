@@ -1,11 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-
-
-import Button from '../../components/Button/Button';
-import Toast from '../../components/Toast/Toast';
-
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
@@ -17,6 +12,7 @@ import {
     RequiredSpan,
     BlueLink,
 } from '../../lib/style/generalStyles';
+import Button from '../../components/Button/Button';
 import Content from '../../components/Layout/Content/Content';
 
 
@@ -94,7 +90,6 @@ export default function AddNewStudent() {
                     </Form>
                 )}
             </Formik>
-            <Toast toastType={toastType} setToastType={setToastType} />
         </Content>
 
     );
