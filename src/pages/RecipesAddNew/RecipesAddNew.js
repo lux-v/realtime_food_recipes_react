@@ -260,7 +260,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                 })
 
 
-                            setModalType({ openModal: false })
+                             setModalType({ openModal: false })
                         }
                         catch (err) {
                             actions.setSubmitting(false);
@@ -446,6 +446,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                         type="button"
                                                         callback={() => arrayHelpers.push("")}
                                                         height="100%"
+                                                        isSecondary
                                                     >
                                                         Add cooking step +
                                                     </Button>

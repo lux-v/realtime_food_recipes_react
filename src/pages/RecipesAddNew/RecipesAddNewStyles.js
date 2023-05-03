@@ -27,6 +27,7 @@ export const RecipeStepsWrapper = styled.div`
     flex-wrap:wrap;
     align-items:center;
     gap:5px;
+    padding-bottom:8px;
     
     overflow:hidden;
 `;
