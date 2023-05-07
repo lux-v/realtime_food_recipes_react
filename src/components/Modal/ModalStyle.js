@@ -1,40 +1,28 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { colors, breakpoints } from '../../lib/style/theme';
 import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
 
-export const ModalBackground = styled.div`
-  position: fixed;
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: ${colors.modalBackground};
-  z-index: 3;
-  
+export const Modal = styled.dialog`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 272px;
+    min-height: 215px;
 
-  ${(props) =>
-    props.openModal === true &&
-    `
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    `}
-`;
+    border: none;
+    border-radius: 16px;
 
-export const ModalCard = styled.div`
-  width: 272px;
-  min-height: 215px;
-  background-color: ${colors.secondary};
-  border-radius: 16px;
+    @media (${breakpoints.tablet}) {
+        width: 560px;
+        min-height: 257px;
+    }
 
+    ::backdrop {
+        background-color: ${colors.modalBackground};
+    }
 
-  @media (${breakpoints.tablet}) {
-    width: 560px;
-    min-height: 257px;
-  }
-`;
+`
 
 export const ModalHeader = styled.div`
   display: flex;
@@ -43,7 +31,6 @@ export const ModalHeader = styled.div`
   width: 100%;
   height: 68px;
   padding: 25px 16px;
-  /* border-bottom: 1px solid ${colors.modalBorder}; */
 
   @media (${breakpoints.tablet}) {
     padding: 22px 24px;

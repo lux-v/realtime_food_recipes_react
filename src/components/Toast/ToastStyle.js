@@ -3,7 +3,7 @@ import { colors, breakpoints, border } from '../../lib/style/theme';
 
 export const Toast = styled.div`
   position: fixed;
-  /* z-index:3; */
+  z-index:3;
   top: 78px;
   right: 50%;
   transform: translate(50%);

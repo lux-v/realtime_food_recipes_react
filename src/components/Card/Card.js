@@ -19,7 +19,7 @@ const Card = ({
     return (
         <CardWrapper>
             <CardHeading>
-                <p>{title}</p>
+                {title || <p></p>}
                 <HeadingElementsWrapper>
                     {headingElements.map((element, index) => <React.Fragment key={index}>{element}</React.Fragment>)}
                 </HeadingElementsWrapper>

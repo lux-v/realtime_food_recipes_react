@@ -1,5 +1,35 @@
 import styled from "styled-components";
-import { breakpoints } from "../../lib/style/theme";
+import { border, breakpoints, colors } from "../../lib/style/theme";
+import { ReactComponent as FilterIcon } from '../../assets/img/filter-icon.svg'
+
+
+export const Filter = styled(FilterIcon)`
+    width: 20px;
+    margin-right: 0.5rem;
+
+`
+
+export const FilterWrapper = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: 40px;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: ${border.borderRadius};
+    background-color: ${colors.lightRed};
+    user-select: none;
+
+    &:hover {
+        color: ${colors.white};
+        background-color: ${colors.primary};
+        cursor: pointer;
+        ${Filter} {
+            stroke: ${colors.white};
+        }
+    }
+`
+
 
 
 export const RecipesWrapper = styled.div`

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FieldArray, Formik } from 'formik'
-import * as Yup from "yup"
+import { AddNewRecipeSchema } from '../../utils/validationSchema'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 
@@ -40,6 +40,8 @@ import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 import useFetchRecipe from '../../hooks/useFetchRecipe'
 
+import Modal from '../../components/Modal/Modal'
+
 
 const RecipesAddNew = ({ isEditRecipe }) => {
     const { setToastType, userData, setModalType } = useContext(AuthContext)
@@ -56,6 +58,9 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     const [newIngredient, setNewIngredient] = useState("")
     const [newIngredientError, setNewIngredientError] = useState(false)
 
+    const isDisabled = useMemo(() => {
+        return !formRef.current?.isValid || !formRef.current?.dirty || formRef.current?.isSubmitting
+    }, [formRef.current?.isValid, formRef.current?.dirty])
 
     const ingredientErrorLengthMessage = "New ingredient name must be less than 50 characters";
     const ingredientErrorRequiredMessage = "Ingredient cannot be empty";
@@ -126,12 +131,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 openModal: true,
                 title: "Delete",
                 content: "Are you sure you want to delete this recipe?",
-                closeModal: () => setModalType({ openModal: false }),
-                elements:
-                    [
-                        <Button isTertiary callback={() => setModalType({ openModal: false })}>Cancel</Button>,
-                        <Button callback={() => handleDeleteRecipe()} isHidden={!isOwner}>Delete</Button>
-                    ]
+                actionCallback: handleDeleteRecipe,
             })
     }
 
@@ -141,12 +141,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 openModal: true,
                 title: isEditRecipe ? "Update" : "Create",
                 content: `Are you sure you want to ${isEditRecipe ? "update this" : "create a new"} recipe?`,
-                closeModal: () => setModalType({ openModal: false }),
-                elements:
-                    [
-                        <Button isTertiary callback={() => setModalType({ openModal: false })}>Cancel</Button>,
-                        <Button callback={() => formRef.current.handleSubmit()} >{isEditRecipe ? "Update" : "Create"}</Button>
-                    ]
+                actionCallback: () => formRef.current.handleSubmit(),
             })
     }
 
@@ -166,7 +161,9 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 ]}
                 elements={
                     [
-                        <Button callback={handleCreateUpdateModal}>
+                        <Button callback={handleCreateUpdateModal}
+                            disabled={isDisabled}
+                        >
                             {isEditRecipe ? "Update recipe" : "Create recipe +"}
                         </Button>,
                     ]
@@ -185,37 +182,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                         newIngredient: "",
 
                     }}
-                    validationSchema={Yup.object({
-                        name: Yup.string()
-                            .required('Recipe name is required')
-                            .max(60, 'Recipe name must be less than 60 characters'),
-                        description: Yup.string()
-                            .required('Description is required')
-                            .min(30, 'Description must be at least 30 characters')
-                            .max(1500, 'Description must be less than 1500 characters'),
-                        ingredients: Yup.array()
-                            .of(Yup.string()
-                                .required('Ingredient name is required')
-                                .max(50, 'Ingredient name must be less than 50 characters')
-                            )
-                            .min(1, 'At least one ingredient is required')
-                            .max(20, 'Maximum number of ingredients is 20'),
-                        imgUrl: Yup.string()
-                            .url('Image URL is not valid'),
-                        cookTimeMin: Yup.number()
-                            .typeError('The cook time must be a number')
-                            .min(1, 'Cook time must be at least 1 minute')
-                            .max(1440, 'Cook time must be less than 1440 minutes (24 hours)'),
-                        newIngredient: Yup.string()
-                            .max(50, 'New ingredient name must be less than 50 characters'),
-                        steps: Yup.array()
-                            .of(Yup.string()
-                                .required('Step description is required')
-                                .max(1500, 'Step must be less than 1500 characters')
-                            )
-                            .max(20, 'Maximum number of steps is 20'),
-
-                    })}
+                    validationSchema={AddNewRecipeSchema}
                     onSubmit={async (values, actions) => {
                         try {
                             const formattedValues = isEditRecipe ?
@@ -260,7 +227,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                 })
 
 
-                             setModalType({ openModal: false })
+                            setModalType({ openModal: false })
                         }
                         catch (err) {
                             actions.setSubmitting(false);
@@ -360,7 +327,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                                 id="newIngredient"
                                                                 name="newIngredient"
                                                                 type='newIngredient'
-                                                                error={newIngredientError}
+                                                                error={newIngredientError ? true : false}
                                                                 placeholder="Add ingredient"
                                                                 disabled={formik.isSubmitting}
                                                                 isSecondary
@@ -446,7 +413,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                         type="button"
                                                         callback={() => arrayHelpers.push("")}
                                                         height="100%"
-                                                        isSecondary
+                                                        isTertiary
                                                     >
                                                         Add cooking step +
                                                     </Button>

@@ -14,6 +14,7 @@ import {
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
 import Content from '../../components/Layout/Content/Content';
+import { PasswordResetSchema } from '../../utils/validationSchema';
 
 
 export default function AddNewStudent() {
@@ -26,11 +27,7 @@ export default function AddNewStudent() {
                 initialValues={{
                     email: "",
                 }}
-                validationSchema={Yup.object({
-                    email: Yup.string()
-                        .email('Invalid e-mail address')
-                        .required('Email is required'),
-                })}
+                validationSchema={PasswordResetSchema}
                 onSubmit={async (values, actions) => {
                     try {
                         await resetPassword(values.email)

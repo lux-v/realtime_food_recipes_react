@@ -12,12 +12,22 @@ import Button from '../../components/Button/Button'
 import Card from '../../components/Card/Card'
 import Layout from '../../components/Layout/Layout'
 import profileImg from '../../assets/img/profile.svg'
+import { AccountSettingSchema } from '../../utils/validationSchema'
 
 
 const AccountSettings = () => {
-    const { userData, setToastType, updateUserProfile } = useContext(AuthContext)
+    const { userData, setToastType, setModalType, updateUserProfile } = useContext(AuthContext)
     const imageSrc = useCheckImage(userData?.photoURL, profileImg)
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+    const handleOpenModal = (formik) => {
+        setModalType({
+            openModal: true,
+            title: "Update account",
+            content: "Are you sure you want to update your account?",
+            actionCallback: () => formik.handleSubmit(),
+        })
+    }
 
     return (
         <Layout title=" ">
@@ -25,17 +35,14 @@ const AccountSettings = () => {
                 <CardWrapper>
                     <Card title="Acount settings">
                         <Formik
+                            enableReinitialize
                             initialValues={{
                                 displayName: userData?.displayName || "",
                                 // phoneNumber: userData?.phoneNumber || "",
                                 photoURL: userData?.photoURL || "",
 
                             }}
-                            validationSchema={Yup.object({
-                                displayName: Yup.string().required("Display name is required."),
-                                // phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-                                photoURL: Yup.string(),
-                            })}
+                            validationSchema={AccountSettingSchema}
                             onSubmit={async (values, actions) => {
                                 const user = { ...values }
 
@@ -90,7 +97,7 @@ const AccountSettings = () => {
                                         />
                                         <ErrorMesagge as={"div"}>{formik.errors.photoURL}</ErrorMesagge>
                                     </FormRow>
-                                    <Button>Update</Button>
+                                    <Button type='button' callback={() => handleOpenModal(formik)} disabled={Boolean(JSON.stringify(formik.values) === JSON.stringify(formik.initialValues)) || formik.isSubmitting}>Update</Button>
                                 </Form>
                             }
                         </Formik>

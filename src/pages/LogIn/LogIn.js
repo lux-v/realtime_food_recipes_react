@@ -33,6 +33,7 @@ import IconProfile from '../../assets/img/profile.svg';
 import IconKey from '../../assets/img/key.png';
 import LineEffect from '../../assets/img/line-effect.png';
 import GoogleIcon from '../../assets/img/google-icon.png';
+import { LoginSchema } from '../../utils/validationSchema';
 
 
 
@@ -76,17 +77,7 @@ const LogIn = () => {
             password: '',
             isAdmin: false,
           }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email('Invalid e-mail address')
-              .required('Email is required'),
-            password: Yup.string()
-              .min(
-                8,
-                'Password must be at least 8 characters long'
-              )
-              .required('Password is required'),
-          })}
+          validationSchema={LoginSchema}
           onSubmit={async (values, actions) => {
 
             try {
