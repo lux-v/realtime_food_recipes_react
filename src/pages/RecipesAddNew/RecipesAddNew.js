@@ -156,7 +156,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
             <Card
                 title={isEditRecipe ? "Edit this recipe" : "Create your own recipe"}
                 headingElements={[
-                    <Button isSecondary callback={handleDeleteModal} isHidden={!isOwner}>Delete</Button>,
+                    isEditRecipe && <Button isSecondary callback={handleDeleteModal}>Delete</Button>,
                     <Button isTertiary callback={() => navigate(-1)}>Back</Button>
                 ]}
                 elements={
