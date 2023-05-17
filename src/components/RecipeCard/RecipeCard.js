@@ -49,10 +49,12 @@ const RecipeCard = ({ onClick, recipe }) => {
                         return <Chip key={index} name={ingredient} type="error" />
                     })}
                 </RecipeIngredientsWrapper>
-                <CookTimeWrapper>
-                    <CookTime />
-                    <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
-                </CookTimeWrapper>
+                {recipe?.cookTimeMin &&
+                    <CookTimeWrapper>
+                        <CookTime />
+                        <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
+                    </CookTimeWrapper>
+                }
             </TextWrapper>
         </RecipieCardWrapper>
     )

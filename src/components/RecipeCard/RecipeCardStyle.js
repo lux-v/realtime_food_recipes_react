@@ -17,9 +17,15 @@ const IconStyle = css`
 `
 export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
+
+
  
-    :active{
-        scale:1.2;
+// i want to make animation on click that would increase scale of the icon to the 1.2 and back to the 1.0
+// let it be animated so whenever is clicked it would increase scale to 1.2 and back to 1.0
+    :active{    
+        transform: scale(1.2);
+
+        
     }
 
     @media (hover: hover) and (pointer: fine) {

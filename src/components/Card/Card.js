@@ -16,14 +16,19 @@ const Card = ({
     elements = [],
 
 }) => {
+
+    const isHeading = title || headingElements.length > 0
+
     return (
         <CardWrapper>
-            <CardHeading>
-                {title || <p></p>}
-                <HeadingElementsWrapper>
-                    {headingElements.map((element, index) => <React.Fragment key={index}>{element}</React.Fragment>)}
-                </HeadingElementsWrapper>
-            </CardHeading>
+            {isHeading &&
+                <CardHeading>
+                    {title || <p></p>}
+                    <HeadingElementsWrapper>
+                        {headingElements.map((element, index) => <React.Fragment key={index}>{element}</React.Fragment>)}
+                    </HeadingElementsWrapper>
+                </CardHeading>
+            }
             <CardContent>
                 {children}
             </CardContent>

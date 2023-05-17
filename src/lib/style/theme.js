@@ -9,7 +9,10 @@ export const colors = {
     primary: '#EB2828', //red-orange
     secondary: '#FFFFFF', // white
     //background
-    bgPrimary: 'rgb(238, 242, 246)', // gray
+    // I will need to define the theme presets for the background colors
+    // bgPrimary: 'rgb(238, 242, 246)', // gray
+
+    bgPrimary: "rgba(191, 57, 57, 0.08)",
     bgSecondary: '#FFFFFF', //white
     //text
     textPrimary: "#121926", //darkgray
@@ -21,7 +24,7 @@ export const colors = {
     iconsPrimary: '#7F8590', // gray body
 
     //status colors
-    primarySuccess:"#e1fae5",
+    primarySuccess: "#e1fae5",
     secondarySuccess: "#36e05a",
     primaryError: '#FFB7B7',
     secondaryError: "#db6e6e",
@@ -54,7 +57,7 @@ export const colors = {
 };
 
 export const border = {
-    borderRadius:"8px",
+    borderRadius: "8px",
 };
 
 

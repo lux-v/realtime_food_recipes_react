@@ -3,15 +3,17 @@ import { border, breakpoints, colors, fonts } from "../../lib/style/theme";
 
 
 export const RecipeLikesWrapper = styled.div`
-    position:absolute;
-    right:0;
+    /* position:absolute;
+    right:0; */
     display:flex;
     gap:5px;
-    align-items:center;    
+    align-items:center;   
+    
 `
 
 export const LikesNumber = styled.p`
-    color: ${colors.textMenu}; 
+    /* color: ${colors.textMenu};  */
+    color: white;
     font-family: ${fonts.primary}; 
     line-height: 20px; 
     font-size: 18px; 
@@ -36,12 +38,19 @@ export const TopSideWrapper = styled.div`
     align-items:center;
     justify-items:center;
     flex-direction:column-reverse;
+
+    background: ${colors.darkRed};
+    border-radius: 48px;
+
+    padding:20px;
+    margin:auto;
     
 
     height:100%;
     width:100%;
+    max-width:1200px;
     gap:20px;
-    padding-bottom:5px;
+
 
     @media (${breakpoints.desktop}) {
         flex-direction:row;
@@ -49,14 +58,23 @@ export const TopSideWrapper = styled.div`
 `
 
 export const BottomSideWrapper = styled.div`
+    display:flex;
+    align-items:center;
+    justify-items:center;
+    flex-direction:column-reverse;
+
+    background: ${colors.mediumRed};
+    border-radius: 48px;
+
+    padding:20px;
+    margin:auto;
+
+ 
+    max-width:1200px;
+
     width:100%;
-    margin-bottom: 100px;
     margin-top:50px;
-        
-    @media (${breakpoints.desktop}) {
-        height:100%;
-        width:50%;
-    }
+    margin-bottom:50px;
 `
 
 export const LeftSideWrapper = styled.div`
@@ -102,7 +120,8 @@ export const RecipeImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: ${border.borderRadius};
+    /* border-radius: ${border.borderRadius}; */
+    border-radius: 48px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
 
@@ -111,8 +130,18 @@ export const SectionWrapper = styled.div`
     margin-bottom:20px;
 `
 
+export const RecipeNameWrapper = styled.div`
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    margin-bottom:20px;
+`
+
+
 export const SectionHeadline = styled.p`
-    color: ${colors.secondaryError}; 
+    color: ${props => props.secondary ? colors.secondaryError : "white"};
     font-family: ${fonts.primary}; 
     line-height: 18px; 
     font-size: 16px; 
@@ -132,17 +161,12 @@ export const SectionHeadline = styled.p`
 `
 
 export const TextContent = styled.p`
-    color: ${colors.textPrimary}; 
+    color: ${props => props.secondary ? colors.textPrimary : "white"};
     font-family: ${fonts.primary}; 
-    line-height: 18px; 
-    font-size: 16px; 
+    font-size: ${props => props.fontSize || "16px"}; 
     font-weight: 400;
     overflow-wrap: anywhere;
 
-    @media(${breakpoints.tablet}){
-        line-height: 20px; 
-        font-size: 18px; 
-    }
 `
 export const IngredientsWrapper = styled.div`
     display:flex;
@@ -150,3 +174,5 @@ export const IngredientsWrapper = styled.div`
     gap:5px;
     font-family:${fonts.primary};
 `
+
+

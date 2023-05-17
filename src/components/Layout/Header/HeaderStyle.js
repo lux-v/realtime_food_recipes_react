@@ -161,7 +161,7 @@ export const HeaderProfile = styled.nav`
   padding: 4px;
   height: 42px;
   
-  background:${colors.lightRed};
+  background:${colors.mediumRed};
   border-radius:50px;
 
   :hover{

@@ -14,7 +14,7 @@ const AccountStats = () => {
 
     return (
         <Layout>
-            <Card title="Acount statistics">
+            <Card title="Account statistics">
 
             </Card >
         </Layout >

@@ -199,6 +199,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                     description: values.description,
                                     ingredients: values.ingredients,
                                     cookTimeMin: values.cookTimeMin,
+                                    likedBy: [],
                                     imgUrl: values.imgUrl,
                                     steps: values.steps,
                                     createdBy: userData.uid || "",
@@ -393,7 +394,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                     {formik.values.steps.map((step, index) => (
                                                         <SectionWrapper key={index}>
                                                             <TwoInRow width="100%">
-                                                                <SectionHeadline>
+                                                                <SectionHeadline secondary>
                                                                     Step {index + 1}
                                                                 </SectionHeadline>
                                                                 <Button isSecondary type="button" callback={() => arrayHelpers.remove(index)}>Remove step {index + 1}</Button>

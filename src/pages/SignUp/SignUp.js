@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 // import { loginUser, getUserByID } from '../../api/users';
 import { AuthContext } from '../../context/AuthContext';
 
-import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
     Form,
@@ -33,12 +32,12 @@ import FruitBowls from '../../assets/img/3-bowel-fruit.png';
 import IconProfile from "../../assets/img/profile.svg"
 import IconKey from "../../assets/img/key.png"
 import LineEffect from "../../assets/img/line-effect.png"
-import GoogleIcon from '../../assets/img/google-icon.png';
+// import GoogleIcon from '../../assets/img/google-icon.png';
 import { SignUpSchema } from '../../utils/validationSchema';
 
 export default function SignUp() {
-    const { setToastType, signup,
-        // googleSignin, handleUser 
+    const { signup,
+        // googleSignin, handleUser , setToastType,
     } = useContext(AuthContext);
     const navigate = useNavigate();
 

@@ -104,7 +104,7 @@ const AccountSettings = () => {
                     </Card>
                 </CardWrapper>
                 <CardWrapper>
-                    <Card title="Acount statistics">
+                    <Card title="Account statistics">
                         <h1>Ove info mozda stavit u dashboard a ne tu</h1>
                         <p>Number of published recipes: xy </p>
                         <p>Saved recipes: xy </p>
