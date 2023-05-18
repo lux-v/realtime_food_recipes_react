@@ -10,9 +10,9 @@ export const colors = {
     secondary: '#FFFFFF', // white
     //background
     // I will need to define the theme presets for the background colors
-    // bgPrimary: 'rgb(238, 242, 246)', // gray
+    bgPrimary: 'rgb(238, 242, 246)', // gray
 
-    bgPrimary: "rgba(191, 57, 57, 0.08)",
+    // bgPrimary: "rgba(191, 57, 57, 0.08)",
     bgSecondary: '#FFFFFF', //white
     //text
     textPrimary: "#121926", //darkgray
