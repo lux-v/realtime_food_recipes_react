@@ -8,9 +8,9 @@ export const Menu = styled.div`
     z-index:1;
   
     width: 306px;
-    box-shadow: ${colors.boxShadow};
+    box-shadow: ${({ theme }) => theme.boxShadow};
         
-    background-color: ${colors.secondary};
+    background-color: ${({ theme }) => theme.secondary};
     border-radius: ${border.borderRadius}; 
     > :first-child {
         border-top-left-radius: 8px;

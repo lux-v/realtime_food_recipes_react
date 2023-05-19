@@ -9,7 +9,7 @@ export const Loading = styled.span`
     }
 
     border: 5px solid #FFF;
-    border-bottom-color: #FF3D00;
+    border-bottom-color: ${({ theme }) => theme.primaryMain};
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;

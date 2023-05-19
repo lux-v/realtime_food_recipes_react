@@ -6,6 +6,8 @@ export const CardWrapper = styled.div`
     width:100%;
     background:white;
     border-radius:${border.borderRadius};
+
+    margin-bottom:10px;
     
 `
 
@@ -18,7 +20,7 @@ export const CardHeading = styled.div`
     min-height:72px;
     font-size:18px;
     padding:24px;
-    border-bottom:1px solid ${colors.mediumRed};
+    border-bottom:1px solid ${({ theme }) => theme.bgPrimaryLight300};
 `
 
 export const HeadingElementsWrapper = styled.div`
@@ -41,5 +43,5 @@ export const CardBottom = styled.div`
     gap:10px;
     width:100%;
     padding:24px;
-    border-top:1px solid ${colors.mediumRed};
+    border-top:1px solid ${({ theme }) => theme.bgPrimaryLight300};
 `

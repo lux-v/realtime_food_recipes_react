@@ -19,24 +19,21 @@ export const AddFavorite = styled(AddFavoriteIcon)`
     ${IconStyle}
 
 
- 
 // i want to make animation on click that would increase scale of the icon to the 1.2 and back to the 1.0
 // let it be animated so whenever is clicked it would increase scale to 1.2 and back to 1.0
     :active{    
         transform: scale(1.2);
-
-        
     }
 
     @media (hover: hover) and (pointer: fine) {
         :hover{
-            fill:${colors.primary};
+            fill:${({ theme }) => theme.errorMain};
         }
     } 
 
 
     ${props => props.isfavorite && `
-        fill:${colors.primary};
+        fill:${props.theme.errorMain};
     `}
 `;
 
@@ -62,7 +59,7 @@ export const RecipieCardWrapper = styled.div`
 
     background: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
-    border:1px solid ${colors.tableBorder};
+    border:1px solid ${({ theme }) => theme.tableBorder};
     border-radius: ${border.borderRadius};
 
     @media (${breakpoints.tablet}) {
@@ -73,7 +70,7 @@ export const RecipieCardWrapper = styled.div`
         :hover {
             transition: all 0.2s ease-in-out;
             cursor: pointer;
-            // box-shadow: ${colors.primary} 0px 1px 8px;
+            // box-shadow: ${({ theme }) => theme.primaryMain} 0px 1px 8px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
     }
@@ -129,7 +126,7 @@ export const FavoriteIconWrapper = styled.div`
     width:30px;
     height:30px;
 
-    border:1px solid ${colors.modalBorder};
+    border:1px solid ${({ theme }) => theme.modalBorder};
     border-radius:50%;
 
     background-color: white;
@@ -143,7 +140,7 @@ export const RecipeName = styled.p`
     white-space: nowrap;
     width:calc(100% - 35px);
 
-    color: ${colors.textPrimary};
+    color: ${({ theme }) => theme.textPrimary};
     font-size: 16px;
     font-weight: 700;
     line-height: 29px;
@@ -160,7 +157,7 @@ export const RecipeDescription = styled.p`
     overflow: hidden;
     line-height:14.5px;
     
-    color: ${colors.textPrimary};
+    color: ${({ theme }) => theme.textPrimary};
     font-size: 14px;
     font-weight: 500;
 
@@ -203,7 +200,7 @@ export const CookTimeIcon = styled.img`
     
 `;
 export const CookTimeLabel = styled.p`
-    color: ${colors.textPrimary};
+    color: ${({ theme }) => theme.textPrimary};
     font-size: 12px;
     font-weight: 500;
 

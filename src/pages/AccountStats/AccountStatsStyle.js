@@ -12,8 +12,8 @@ export const ProfileImage = styled.img`
 
     object-fit:cover;
     
-    border: 1px solid ${colors.iconsPrimary};
-    background:${colors.bgSecondary};
+    border: 1px solid ${({ theme }) => theme.iconsPrimary};
+    background:${({ theme }) => theme.bgSecondary};
 `
 
 

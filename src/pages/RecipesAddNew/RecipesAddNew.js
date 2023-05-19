@@ -259,6 +259,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                 disabled={formik.isSubmitting}
                                                 isSecondary
                                                 width="100%"
+                                                textSecondary
                                             />
                                             <ErrorMesagge component={'div'} name="name" />
                                         </SectionWrapper>
@@ -275,6 +276,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                 disabled={formik.isSubmitting}
                                                 isSecondary
                                                 width="100%"
+                                                textSecondary
                                             />
                                             <ErrorMesagge component={'div'} name="description" />
                                         </SectionWrapper>
@@ -291,6 +293,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                     placeholder="Cook time(min)"
                                                     disabled={formik.isSubmitting}
                                                     isSecondary
+                                                    textSecondary
                                                     width="100%"
                                                 />
                                                 <ErrorMesagge component={'div'} name="cookTimeMin" />
@@ -307,6 +310,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                     placeholder="Image URL"
                                                     disabled={formik.isSubmitting}
                                                     isSecondary
+                                                    textSecondary
                                                     width="100%"
 
                                                     onChange={(e) => { formik.setFieldValue("imgUrl", e.target.value); setImageUrl(e.target.value) }}
@@ -342,6 +346,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                                         );
                                                                     })
                                                                 }
+                                                                textSecondary
                                                                 onChange={(e) => handleNewIngredientChange(e)}
                                                             />
                                                             <Button
@@ -366,7 +371,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                     <RecipeIngredientsWrapper>
                                                         {formik.values.ingredients.map((ingredient, index) => (
                                                             <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                                                                <Chip size="medium" name={ingredient} type="error" icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                                                <Chip size="medium" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
                                                             </div>
                                                         ))}
                                                     </RecipeIngredientsWrapper>
@@ -385,7 +390,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                             <>
                                                 <SectionWrapper>
                                                     <TwoInRow width="100%">
-                                                        <SectionHeadline>
+                                                        <SectionHeadline fontSize="24px">
                                                             Cooking steps:
                                                         </SectionHeadline>
                                                     </TwoInRow>

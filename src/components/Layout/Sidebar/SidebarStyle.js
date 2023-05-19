@@ -18,7 +18,7 @@ export const NavWrapper = styled.nav`
   flex-shrink:0;
 
   box-shadow: 16px 12px 20px 0px #00000000;
-  background-color: ${colors.bgSecondary};
+  background-color: ${({ theme }) => theme.bgSecondary};
 
 
   @media (${breakpoints.tablet}) {
@@ -86,7 +86,7 @@ export const LogoText = styled.p`
   letter-spacing: 0.1em;
   width: 131px;
   height: 12px;
-  color: ${colors.logoText};
+  color: ${({ theme }) => theme.logoText};
 `;
 
 export const ExitImg = styled.img`
@@ -107,7 +107,7 @@ export const MenuText = styled.p`
   line-height: 24px;
   width: 106px;
   height: 24px;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const ItemsWrapper = styled.div`
@@ -146,7 +146,7 @@ const IconStyle = css`
   width:20px;
 
   :hover{
-    stroke:${colors.primary}
+    stroke:${({ theme }) => theme.primaryMain}
   }
   @media (hover: hover) and (pointer: fine) {
     cursor:pointer;
@@ -193,23 +193,23 @@ export const HeaderNavLink = styled(NavLink)`
   border-radius: ${border.borderRadius};
 
   
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 
   :hover{
-    background:${colors.lightRed};
-    color:${colors.primary};
+    background:${({ theme }) => theme.bgPrimaryLight50};
+    color:${({ theme }) => theme.primaryMain};
 
     ${Dashboard} {
-      stroke: ${colors.primary};
+      stroke: ${({ theme }) => theme.primaryMain};
     }
     ${Food} {
-      stroke: ${colors.primary};
+      stroke: ${({ theme }) => theme.primaryMain};
     }
     ${AboutUs} {
-      stroke: ${colors.primary};
+      stroke: ${({ theme }) => theme.primaryMain};
     }
     ${HowItWorks} {
-      stroke: ${colors.primary};
+      stroke: ${({ theme }) => theme.primaryMain};
     }
   }
   @media (hover: hover) and (pointer: fine) {
@@ -242,19 +242,19 @@ export const HeaderNavLink = styled(NavLink)`
 
   @media (${breakpoints.tablet}) {
     &.active {
-      background:${colors.lightRed};
-      color:${colors.primary};
+      background:${({ theme }) => theme.bgPrimaryLight50};
+      color:${({ theme }) => theme.primaryMain};
       ${Dashboard} {
-        stroke: ${colors.primary};
+        stroke: ${({ theme }) => theme.primaryMain};
       }
       ${Food} {
-        stroke: ${colors.primary};
+        stroke: ${({ theme }) => theme.primaryMain};
       }
       ${AboutUs} {
-        stroke: ${colors.primary};
+        stroke: ${({ theme }) => theme.primaryMain};
       }
       ${HowItWorks} {
-        stroke: ${colors.primary};
+        stroke: ${({ theme }) => theme.primaryMain};
       }
     }
   }

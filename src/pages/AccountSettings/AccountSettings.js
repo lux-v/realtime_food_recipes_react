@@ -16,8 +16,9 @@ import { AccountSettingSchema } from '../../utils/validationSchema'
 
 
 const AccountSettings = () => {
-    const { userData, setToastType, setModalType, updateUserProfile } = useContext(AuthContext)
+    const { userData, setToastType, setModalType, updateUserProfile, presetColor, setPresetColor } = useContext(AuthContext)
     const imageSrc = useCheckImage(userData?.photoURL, profileImg)
+
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const handleOpenModal = (formik) => {
@@ -28,6 +29,9 @@ const AccountSettings = () => {
             actionCallback: () => formik.handleSubmit(),
         })
     }
+
+
+    console.log("presetColor", presetColor)
 
     return (
         <Layout title=" ">
@@ -104,6 +108,20 @@ const AccountSettings = () => {
                     </Card>
                 </CardWrapper>
                 <CardWrapper>
+                    <Card title="Preset color" >
+                        <div>
+                            <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "10px" }}>
+                                <input type="radio" id="color1" name="color" value={"theme1"} checked={presetColor === "theme1"} onChange={() => setPresetColor("theme1")} />
+                                <p>Theme1</p>
+                            </div>
+                            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                                <input type="radio" id="color2" name="color" value={"theme2"} checked={presetColor === "theme2"} onChange={() => setPresetColor("theme2")} />
+                                <p>Theme2</p>
+                            </div>
+                        </div>
+
+                    </Card>
+
                     <Card title="Account statistics">
                         <h1>Ove info mozda stavit u dashboard a ne tu</h1>
                         <p>Number of published recipes: xy </p>

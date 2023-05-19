@@ -17,15 +17,15 @@ export const FilterWrapper = styled.div`
     font-size: 14px;
     padding: 8px;
     border-radius: ${border.borderRadius};
-    background-color: ${colors.lightRed};
+    background-color: ${({ theme }) => theme.bgPrimaryLight50};
     user-select: none;
 
     &:hover {
-        color: ${colors.white};
-        background-color: ${colors.primary};
+        color: ${({ theme }) => theme.white};
+        background-color: ${({ theme }) => theme.primaryMain};
         cursor: pointer;
         ${Filter} {
-            stroke: ${colors.white};
+            stroke: ${({ theme }) => theme.white};
         }
     }
 `

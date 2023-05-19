@@ -33,6 +33,7 @@ const Menu = ({ closePopup }) => {
       text: "Log out",
       callback: () => logout(),
     },
+
   ];
 
 

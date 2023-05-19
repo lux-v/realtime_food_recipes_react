@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { colors, breakpoints, border } from '../../../lib/style/theme';
+import { breakpoints, border } from '../../../lib/style/theme';
 import { ReactComponent as Hamburger } from '../../../assets/img/hamburger-icon.svg';
 import { ReactComponent as ArrowIcon } from '../../../assets/img/arrow-icon.svg';
 
@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.header`
   height: 60px;
   padding: 9px 24px;
   user-select: none;
-  background-color: ${colors.bgSecondary};
+  background-color: ${({ theme }) => theme.bgSecondary};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +70,7 @@ export const LogoText = styled.p`
   width: 75px;
   height: 10px;
   text-align: center;
-  color: ${colors.logoText};
+  color: ${({ theme }) => theme.logoText};
 `;
 
 
@@ -82,8 +82,8 @@ export const HamburgerIcon = styled(Hamburger)`
   padding:5px;
   
   :hover{
-    background: ${colors.lightRed};
-    stroke:${colors.primary}
+    background: ${({ theme }) => theme.bgPrimaryLight50};
+    stroke:${({ theme }) => theme.primaryMain}
   }
   @media (hover: hover) and (pointer: fine) {
     cursor: pointer;
@@ -117,7 +117,7 @@ export const HamburgerContent = styled.div`
   top: 0;
   width: 260px;
   height:100%;
-  background-color: ${colors.bgSecondary};
+  background-color: ${({ theme }) => theme.bgSecondary};
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   z-index: 3;
 
@@ -142,16 +142,16 @@ export const ProfileImg = styled.img`
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid ${colors.iconsPrimary};
+  border: 1px solid ${({ theme }) => theme.iconsPrimary};
   object-fit:cover;
 
-  background:${colors.bgSecondary};
+  background:${({ theme }) => theme.bgSecondary};
 `;
 
 export const Arrow = styled(ArrowIcon)`
   width: 24px;
 
-  stroke:${colors.primary};
+  stroke:${({ theme }) => theme.primaryMain};
 `;
 
 
@@ -161,11 +161,11 @@ export const HeaderProfile = styled.nav`
   padding: 4px;
   height: 42px;
   
-  background:${colors.mediumRed};
+  background:${({ theme }) => theme.bgPrimaryLight200};
   border-radius:50px;
 
   :hover{
-      background:${colors.primary};
+      background:${({ theme }) => theme.primaryMain};
       ${Arrow} {
         stroke: white;
       }

@@ -38,7 +38,7 @@ export const Form = styled(FormFormik)`
 
 export const FormLabel = styled.label`
   display: block;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-family: ${fonts.secondary};
   font-size: 16px;
   line-height: 150%;
@@ -166,7 +166,7 @@ const FieldStyleType1 = css`
 
   height: 48px;
   padding: 16px 24px;
-  border: 1px solid ${colors.textSecondary};
+  border: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
   border-radius: ${border.borderRadius};
 
   outline: none;
@@ -175,11 +175,11 @@ const FieldStyleType1 = css`
   font-weight: 400;
   font-family: ${fonts.secondary};
 
-  ${({ error }) =>
+  ${({ error, theme }) =>
     error &&
     css`
       outline: none;
-      border: 2px solid ${colors.primary};
+      border: 2px solid ${theme.primaryMain};
     `}
 
   @media (${breakpoints.tablet}) {
@@ -192,7 +192,7 @@ const FieldStyleType1 = css`
   @media (${breakpoints.desktop}) {
     font-size: 16px;
     &:focus {
-      border: 2px solid ${colors.link};
+      border: 2px solid ${({ theme }) => theme.link};
     }
   }
 `;
@@ -202,8 +202,11 @@ const FieldStyleType2 = css`
   height: 48px;
   padding: 16px 24px;
   border:0;
-  border-bottom: 1px solid ${colors.textSecondary};
+  border-bottom: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
   background-color: unset;
+  
+  color: ${({ textSecondary, theme }) => textSecondary ? theme.white : theme.textPrimary};
+
 
   outline: none;
   font-size: 16px;
@@ -211,11 +214,11 @@ const FieldStyleType2 = css`
   font-weight: 400;
   font-family: ${fonts.secondary};
 
-  ${({ error }) =>
+  ${({ error, theme }) =>
     error &&
     css`
       outline: none;
-      border-bottom: 2px solid ${colors.primary};
+      border-bottom: 2px solid ${theme.errorMain};
     `}
 
   @media (${breakpoints.tablet}) {
@@ -225,7 +228,7 @@ const FieldStyleType2 = css`
   @media (${breakpoints.desktop}) {
     font-size: 16px;
     &:focus {
-      border-bottom: 2px solid ${colors.link};
+      border-bottom: 2px solid ${({ theme }) => theme.link};
     }
   }
 `;
@@ -268,7 +271,7 @@ export const Select = styled.select`
   ${(props) =>
     props.value === '' &&
     `
-    color: ${colors.iconsPrimary};
+    color: ${props.theme.iconsPrimary};
   `}
 `;
 
@@ -285,11 +288,11 @@ export const SmallField = styled(Field)`
     width: ${(props) => props.width || `255px`};
   }
 
-  ${({ error }) =>
+  ${({ error, theme }) =>
     error &&
     css`
       outline: none;
-      border: 2px solid ${colors.primary};
+      border: 2px solid ${theme.primaryMain};
     `}
 `;
 
@@ -322,12 +325,12 @@ export const SearchBar = styled.input`
 `;
 
 export const Option = styled.option`
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 `;
 
 export const ErrorMesagge = styled(ErrorMessageFormik)`
   font-size: 12px;
-  color: ${colors.primary};
+  color: ${({ theme }) => theme.primaryMain};
   padding-top: 8px;
   font-weight: 400;
 
@@ -336,7 +339,7 @@ export const ErrorMesagge = styled(ErrorMessageFormik)`
 
 export const ErrorMessageCustom = styled.p`
   font-size: 12px;
-  color: ${colors.primary};
+  color: ${({ theme }) => theme.primaryMain};
   padding-top: 8px;
   font-weight: 400;
 
@@ -353,7 +356,7 @@ export const ErrorMessageCustom = styled.p`
 export const RequiredSpan = styled.span`
   //margin-left: 8px;
   font-size: inherit;
-  color: ${colors.primary};
+  color: ${({ theme }) => theme.primaryMain};
 `;
 
 export const TextArea = styled(Field).attrs({ component: 'textarea' })`
@@ -376,16 +379,16 @@ export const Delete = styled(DeleteIcon)`
   height: auto;
   cursor: pointer;
   path {
-    fill: ${colors.textSecondary};
+    fill: ${({ theme }) => theme.textSecondary};
   }
 
   ${(props) =>
     props.isblack === 'isBlack' &&
     `
-  path {
-    fill: ${colors.textPrimary};
-  } 
-  `}
+      path {
+        fill: ${props.theme.textPrimary};
+      } 
+    `}
 `;
 
 export const PasswordText = styled.p`
@@ -394,7 +397,7 @@ export const PasswordText = styled.p`
   font-size: 14px;
   line-height: 17px;
   text-align: right;
-  color: ${colors.link};
+  color: ${({ theme }) => theme.link};
   margin-top: -9px;
   margin-bottom: 30px;
 
@@ -418,7 +421,7 @@ export const TableColumn = styled.th`
   ${(props) =>
     props.nosort === true &&
     `
-      background: ${colors.columnBackground} 
+      background: ${props.theme.columnBackground} 
       url(${Nosort})
       no-repeat 
       100%
@@ -429,7 +432,7 @@ export const TableColumn = styled.th`
   ${(props) =>
     props.ascending === true &&
     `
-    background: ${colors.columnBackground}
+    background: ${props.theme.columnBackground}
       url(${Ascending})
       no-repeat 
       100%
@@ -440,7 +443,7 @@ export const TableColumn = styled.th`
   ${(props) =>
     props.descending === true &&
     `
-    background: ${colors.columnBackground}
+    background: ${props.theme.columnBackground}
       url(${Descending})
       no-repeat 
       100%
@@ -540,14 +543,14 @@ ${(props) =>
 
   height: 54px;
   padding: 18px 12px;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
   text-align: left;
-  background-color: ${colors.columnBackground};
+  background-color: ${({ theme }) => theme.columnBackground};
 
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: ${colors.columnHover};
+      color: ${({ theme }) => theme.columnHover};
       cursor: pointer;
     }
   }
@@ -558,12 +561,12 @@ export const TableCell = styled.td`
   width: inherit;
   height: 50px;
   padding: 18px 12px;
-  background-color: ${colors.bgPrimary};
+  background-color: ${({ theme }) => theme.bgSecondaryLight100};
   margin: 0;
-  border-top: 1px solid ${colors.tableBorder};
+  border-top: 1px solid ${({ theme }) => theme.tableBorder};
   @media (${breakpoints.desktop}) {
     padding: 13px 16px;
-    background-color: ${colors.bgSecondary};
+    background-color: ${({ theme }) => theme.bgSecondary};
   }
 `;
 
@@ -581,7 +584,7 @@ export const TableHead = styled.thead`
 export const TableBody = styled.tbody``;
 
 export const TableTable = styled.table`
-  border: 1px solid ${colors.tableBorder};
+  border: 1px solid ${({ theme }) => theme.tableBorder};
   border-radius: 12px 0 0 12px;
   border-collapse: separate;
   border-spacing: 0;
@@ -610,9 +613,9 @@ export const NumberPicker = styled(Select)`
   padding: 11px 36px 11px 12px;
   font-style: normal;
   font-weight: 400;
-  background-color: ${colors.secondary};
+  background-color: ${({ theme }) => theme.secondary};
   &:focus {
-    border: 1px solid ${colors.textSecondary};
+    border: 1px solid ${({ theme }) => theme.textSecondary};
   }
   display: inline-block;
   vertical-align: middle;
@@ -679,7 +682,7 @@ export const SearchLabel = styled.label`
 
 export const NavigationLine = styled.div`
   width: 272px;
-  background-color: ${colors.bgSecondary};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: ${border.borderRadius};
   height: 48px;
   vertical-align: middle;
@@ -744,7 +747,7 @@ export const NavigationLabel = styled.label`
 `;
 
 export const SearchBarOverlay = styled.div`
-  border: 1px solid ${colors.textPrimary};
+  border: 1px solid ${({ theme }) => theme.textPrimary};
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
@@ -765,7 +768,7 @@ export const SearchBarOverlay = styled.div`
 
 export const X = styled(XIcon)`
   display: inline-block;
-  fill: ${colors.textSecondary};
+  fill: ${({ theme }) => theme.textSecondary};
   height: 14px;
   width: auto;
   margin: 0;
@@ -786,7 +789,7 @@ export const Functions = styled.div`
 
 
 export const TrashCan = styled(Trash)`
-  fill: ${colors.iconsPrimary};
+  fill: ${({ theme }) => theme.iconsPrimary};
   width: 14px;
   height: 18px;
   @media (hover: hover) and (pointer: fine) {
@@ -795,7 +798,7 @@ export const TrashCan = styled(Trash)`
 `;
 
 export const EditIcon = styled(Edit)`
-  fill: ${colors.iconsPrimary};
+  fill: ${({ theme }) => theme.iconsPrimary};
   width: 18px;
   height: 18px;
   @media (hover: hover) and (pointer: fine) {
@@ -833,7 +836,7 @@ export const LogoImg = styled.img`
 `;
 
 export const BlueLink = styled(Link)`
-  color: ${colors.link};
+  color: ${({ theme }) => theme.link};
     
   font-size: 14px;
   font-family: ${fonts.secondary};
@@ -855,7 +858,7 @@ export const SignUpWrapper = styled.div`
   justify-content:center;
 
   padding: 20px;
-  background-color: ${colors.bgPrimary};
+  background-color: ${({ theme }) => theme.bgSecondaryLight100};
 
 `;
 

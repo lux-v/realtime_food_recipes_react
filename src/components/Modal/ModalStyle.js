@@ -19,7 +19,7 @@ export const Modal = styled.dialog`
     }
 
     ::backdrop {
-        background-color: ${colors.modalBackground};
+        background-color: ${({ theme }) => theme.modalBackground};
     }
 
 `
@@ -42,7 +42,7 @@ export const Title = styled.div`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
 
   @media (${breakpoints.tablet}) {
     height: 24px;
@@ -60,7 +60,7 @@ export const ModalContent = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: ${colors.textSecondary};
+  color: ${({ theme }) => theme.textSecondary};
 
   @media (${breakpoints.tablet}) {
     min-height: 131px;
@@ -83,7 +83,7 @@ export const CloseIcon = styled(Close)`
   height: 14px;
 
   path {
-    fill: ${colors.textSecondary};
+    fill: ${({ theme }) => theme.textSecondary};
   }
 `;
 

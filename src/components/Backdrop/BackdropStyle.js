@@ -14,14 +14,12 @@ export const ContentWrapper = styled.div`
     user-select: none;
     pointer-events:none;
     
-    background: ${props=>props.children ? `
+    background: ${props => props.children ? `
     filter: blur(8px);
     -webkit-filter: blur(8px);
-    `:`
-        ${colors.bgPrimary}
+    `: `
+        ${props.theme.bgSecondaryLight100}
     `}
-
-
 `
 
 export const BackdropLoader = styled.div`
@@ -33,7 +31,7 @@ export const BackdropLoader = styled.div`
     height: 4.8px;
     display: inline-block;
 
-    background: ${colors.mediumRed};
+    background: ${({ theme }) => theme.bgPrimaryLight300};
     overflow: hidden;
     }
 
@@ -41,7 +39,7 @@ export const BackdropLoader = styled.div`
     content: '';
     width: 192px;
     height: 4.8px;
-    background: ${colors.primary};
+    background: ${({ theme }) => theme.primaryMain};
     position: absolute;
     top: 0;
     left: 0;
@@ -59,4 +57,3 @@ export const BackdropLoader = styled.div`
     transform: translateX(0%);
     }
 `
-    

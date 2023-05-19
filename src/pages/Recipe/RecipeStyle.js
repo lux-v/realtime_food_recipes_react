@@ -12,7 +12,7 @@ export const RecipeLikesWrapper = styled.div`
 `
 
 export const LikesNumber = styled.p`
-    /* color: ${colors.textMenu};  */
+    /* color: ${({ theme }) => theme.textMenu};  */
     color: white;
     font-family: ${fonts.primary}; 
     line-height: 20px; 
@@ -30,7 +30,7 @@ export const RecipeWrapper = styled.div`
     padding: 10px;
 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border:1px solid ${colors.tableBorder}; */
+    border:1px solid ${({ theme }) => theme.tableBorder}; */
 `
 
 export const TopSideWrapper = styled.div`
@@ -39,7 +39,7 @@ export const TopSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column-reverse;
 
-    background: ${colors.darkRed};
+    background: ${({ theme }) => theme.bgPrimaryLight300};
     border-radius: 48px;
 
     padding:20px;
@@ -61,9 +61,9 @@ export const BottomSideWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-items:center;
-    flex-direction:column-reverse;
+    flex-direction:column;
 
-    background: ${colors.mediumRed};
+    background: ${({ theme }) => theme.bgPrimaryLight200};
     border-radius: 48px;
 
     padding:20px;
@@ -141,27 +141,19 @@ export const RecipeNameWrapper = styled.div`
 
 
 export const SectionHeadline = styled.p`
-    color: ${props => props.secondary ? colors.secondaryError : "white"};
+    color: ${props => props.secondary ? props.theme.primary700 : "white"};
     font-family: ${fonts.primary}; 
-    line-height: 18px; 
-    font-size: 16px; 
+
+    font-size:  ${props => props.fontSize || "18px"};
     font-weight: 700;
 
     margin: 0 10px 10px 10px;
 
-    @media(${breakpoints.tablet}){
-        line-height: 20px; 
-        font-size: 18px; 
-    }
 
-    @media(${breakpoints.desktop}){
-        line-height: 22px; 
-        font-size: 20px; 
-    }
 `
 
 export const TextContent = styled.p`
-    color: ${props => props.secondary ? colors.textPrimary : "white"};
+    color: ${props => props.secondary ? props.theme.textPrimary : "white"};
     font-family: ${fonts.primary}; 
     font-size: ${props => props.fontSize || "16px"}; 
     font-weight: 400;

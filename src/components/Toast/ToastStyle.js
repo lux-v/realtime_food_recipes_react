@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, breakpoints, border } from '../../lib/style/theme';
+import { breakpoints, border } from '../../lib/style/theme';
 
 export const Toast = styled.div`
   position: fixed;
@@ -74,24 +74,24 @@ export const Toast = styled.div`
   `}
    
 
-  ${(props) =>
-    props.toastType === "success" ? `
-      background-color: ${colors.primarySuccess};
-      border: 1px solid ${colors.secondarySuccess};
+  ${({ toastType, theme }) =>
+    toastType === "success" ? `
+      background-color: ${theme.primarySuccess};
+      border: 1px solid ${theme.secondarySuccess};
     `
       :
-      props.toastType === "error" ? `
-      background-color:${colors.primaryError};
-      border: 1px solid ${colors.secondaryError};
+      toastType === "error" ? `
+      background-color:${theme.primaryError};
+      border: 1px solid ${theme.secondaryError};
     `
         :
-        props.toastType === "warning" ? `
-      background-color:${colors.primaryWarning};
-      border: 1px solid ${colors.secondaryWarning};
+        toastType === "warning" ? `
+      background-color:${theme.primaryWarning};
+      border: 1px solid ${theme.secondaryWarning};
     `
           : `
-      background-color:${colors.primaryInfo};
-      border: 1px solid ${colors.secondaryInfo};
+      background-color:${theme.primaryInfo};
+      border: 1px solid ${theme.secondaryInfo};
     `
   }
 `;
@@ -108,11 +108,11 @@ export const TimerBar = styled.div.attrs(props => ({
   style: {
     width: `${(props.remainingTime / props.totalTime) * 100}% `,
     backgroundColor:
-      props.toastType === "success" ? colors.secondarySuccess
+      props.toastType === "success" ? props.theme.secondarySuccess
         :
-        props.toastType === "error" ? colors.secondaryError
+        props.toastType === "error" ? props.theme.secondaryError
           :
-          props.toastType === "warning" ? colors.secondaryWarning : colors.secondaryInfo,
+          props.toastType === "warning" ? props.theme.secondaryWarning : props.theme.secondaryInfo,
 
   }
 }))`
@@ -141,7 +141,7 @@ export const ContentWrapper = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: ${colors.textToast};
+  color: ${({ theme }) => theme.textToast};
 
   padding: 8px 8px 12px 8px;
   font-size: 14px;
@@ -152,7 +152,7 @@ export const Title = styled.span`
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
-  color: ${colors.textToast};
+  color: ${({ theme }) => theme.textToast};
 
   @media (${breakpoints.tablet}) {
     font-weight: 500;

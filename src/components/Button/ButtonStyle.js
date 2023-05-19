@@ -26,12 +26,12 @@ export const Button = style.button`
     font-size: 14px;
     line-height: 19px;
 
-    background-color: ${colors.primary};
-    color: ${colors.secondary};
+    background-color: ${({ theme }) => theme.primaryMain};
+    color: ${({ theme }) => theme.secondary};
 
     &:hover {
         transition: all 0.3s ease-in-out;
-        background-color: ${colors.darkRed};
+        background-color: ${({ theme }) => theme.primaryDark};
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -43,12 +43,12 @@ export const Button = style.button`
         `
         background-color: transparent;
         padding: 12px 16px;
-        color: ${colors.primary};
-        border: 1px solid ${colors.whiteBorder}; 
+        color: ${props.theme.primaryMain};
+        border: 1px solid ${props.theme.whiteBorder}; 
 
         &:hover{
             transition: all 0.3s ease-in-out;
-            background-color: ${colors.lightRed};
+            background-color: ${props.theme.bgPrimaryLight50};
         }
         
         @media (hover: hover) and (pointer: fine) {
@@ -61,12 +61,12 @@ export const Button = style.button`
         `
         background-color: transparent;
         padding: 12px 16px;
-        color: ${colors.primary};
-        border: 1px solid ${colors.primary}; 
+        color: ${props.theme.primaryMain};
+        border: 1px solid ${props.theme.primaryMain}; 
 
         &:hover {   
             transition: all 0.3s ease-in-out;
-            background-color: ${colors.lightRed};
+            background-color: ${props.theme.bgPrimaryLight50};
         }
         @media (hover: hover) and (pointer: fine) {
             cursor: pointer;
@@ -77,13 +77,13 @@ export const Button = style.button`
         props.isCancel &&
         `
         padding: 12px 24px;
-        background-color: ${colors.bgPrimary};
-        color: ${colors.textPrimary};
+        background-color: ${props.theme.bgSecondaryLight100};
+        color: ${props.theme.textPrimary};
 
         &:hover {
             transition: all 0.3s ease-in-out;
-            background-color: ${colors.cancelBackground};
-            color: ${colors.textPrimary};
+            background-color: ${props.theme.cancelBackground};
+            color: ${props.theme.textPrimary};
         }
         @media (hover: hover) and (pointer: fine) {
             cursor: pointer;
@@ -110,7 +110,7 @@ export const Button = style.button`
           background-color: transparent;
           padding-right: 8px;
           padding-left: 15px;
-          color: ${colors.textPrimary};
+          color: ${props.theme.textPrimary};
           border: none; 
   
           @media (hover: hover) and (pointer: fine) {

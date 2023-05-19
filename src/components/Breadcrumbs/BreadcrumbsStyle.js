@@ -9,7 +9,7 @@ export const Dashboard = styled(DashboardIcon)`
   @media (hover: hover) and (pointer: fine) {
     cursor:pointer;
   }
-  stroke: ${colors.primary};
+  stroke: ${({ theme }) => theme.primaryMain};
 `;
 
 
@@ -28,7 +28,7 @@ export const Breadcrumbs = styled.div`
 export const BreadcrumbsLink = styled(Link)`
   font-weight: 500;
   font-size: 12.5px;
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   ${(props) =>
     props.index + 1 < props.pathLength &&
     `

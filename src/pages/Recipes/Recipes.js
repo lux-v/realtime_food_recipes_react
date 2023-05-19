@@ -165,7 +165,7 @@ const FilterContent = ({ formikRef }) => {
                                 <RecipeIngredientsWrapper>
                                     {formik.values.ingredients.map((ingredient, index) => (
                                         <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                                            <Chip size="small" name={ingredient} type="error" icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                            <Chip size="small" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
                                         </div>
                                     ))}
                                 </RecipeIngredientsWrapper>

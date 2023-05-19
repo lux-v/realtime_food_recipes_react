@@ -99,7 +99,7 @@ const Recipe = () => {
                                     </SectionHeadline>
                                     <IngredientsWrapper>
                                         {recipe && recipe?.ingredients && recipe?.ingredients.map((ingredient, index) =>
-                                            <Chip size="medium" key={index} name={ingredient} type="error" />
+                                            <Chip size="medium" key={index} name={ingredient} />
                                         )}
                                     </IngredientsWrapper>
                                 </SectionWrapper>

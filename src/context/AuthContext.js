@@ -12,6 +12,8 @@ const AuthProvider = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     const [userData, setUserData] = useState(null);
+
+    const [presetColor, setPresetColor] = useState(localStorage.getItem('presetColor') || 'theme1');
     const [toastType, setToastType] = useState({
         open: false,
     });
@@ -100,6 +102,11 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        localStorage.setItem('presetColor', presetColor)
+
+    }, [presetColor])
+
+    useEffect(() => {
         const unsubscribe = app.auth().onAuthStateChanged(async user => {
             if (user) {
                 //for now I am saving every data about the user...
@@ -135,7 +142,10 @@ const AuthProvider = ({ children }) => {
                 setIsSidebarOpen,
 
                 modalType,
-                setModalType
+                setModalType,
+
+                presetColor,
+                setPresetColor,
 
             }}
         >

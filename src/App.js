@@ -1,13 +1,13 @@
 
 import './App.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
-
+import { ThemeProvider } from 'styled-components';
 import { AuthContext } from './context/AuthContext';
 
 import LogIn from './pages/LogIn/LogIn';
@@ -28,10 +28,16 @@ import AccountSettings from './pages/AccountSettings/AccountSettings';
 import AccountStats from './pages/AccountStats/AccountStats';
 import Modal from './components/Modal/Modal';
 
+import Palette from './lib/style/theme/palette';
+
+
+
 
 function App() {
-  const { toastType, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
+  const { toastType, presetColor, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true)
+
+  const theme = useMemo(() => Palette(presetColor), [presetColor])
 
 
   useEffect(() => {
@@ -46,9 +52,8 @@ function App() {
   }, [])
 
 
-
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Router>
         <Routes>
           <Route path="/" element={isLoggedIn ? isLoading ?
@@ -102,7 +107,7 @@ function App() {
       </Router>
       <Toast toastType={toastType} setToastType={setToastType} />
       <Modal />
-    </>
+    </ThemeProvider>
 
   );
 }

@@ -27,6 +27,6 @@ export const ProfileImage = styled.img`
     height:100px;
     border-radius:50%; 
     object-fit:cover;
-    border: 1px solid ${colors.iconsPrimary};
-    background:${colors.bgSecondary};
+    border: 1px solid ${({ theme }) => theme.iconsPrimary};
+    background:${({ theme }) => theme.bgSecondary};
 `

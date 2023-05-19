@@ -6,7 +6,7 @@ import { colors, breakpoints, border } from '../../../lib/style/theme';
 export const ContentWrapper = styled.main`
   min-height: 100vh;
   flex-grow: 1;
-  background-color: ${colors.bgPrimary};
+  background-color: ${({ theme }) => theme.bgSecondaryLight100 || theme.bgPrimaryLight100};
   border-top-left-radius: ${border.borderRadius};
   border-top-right-radius: ${border.borderRadius};
   padding: 12px;
@@ -38,7 +38,7 @@ export const NavigationWrapper = styled.div`
 
   min-height: 50px;
 
-  background:${colors.white};
+  background:${({ theme }) => theme.white};
   border-radius:${border.borderRadius};
   padding:5px 15px;
 `;
@@ -61,7 +61,7 @@ export const ChildrenWrapper = styled.div`
 
 
 const TitleStyle = css`
-  color: ${colors.textPrimary};
+  color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
   font-weight: 600;
   line-height: 22px;

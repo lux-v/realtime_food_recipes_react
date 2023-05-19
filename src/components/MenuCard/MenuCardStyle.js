@@ -9,8 +9,8 @@ export const Card = styled.div`
   align-items: flex-start;
   padding: 12px 18px;
   gap: 10px;
-  background-color: ${colors.secondary};
-  color: ${colors.textMenu};
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.textMenu};
   width: 100%;
 
   position: relative;
@@ -18,7 +18,7 @@ export const Card = styled.div`
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transition: all 0.3s ease-in-out;
-      background-color: ${colors.lightRed};
+      background-color: ${({ theme }) => theme.bgPrimaryLight50};
       cursor: pointer;
     }
   }
@@ -28,22 +28,22 @@ export const Card = styled.div`
 export const SubMenu = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${colors.secondary};
+  background-color: ${({ theme }) => theme.secondary};
   position: absolute;
   top: 100%;
   left: 0;
-  box-shadow: ${colors.boxShadow};
+  box-shadow: ${({ theme }) => theme.boxShadow};
   width: 100%;
 `;
 
 export const SubMenuItem = styled(Card)`
   padding-left: 30px;
-  background-color: ${colors.secondary};
-  color: ${colors.textMenu};
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.textMenu};
 `;
 
 export const CaretIcon = styled(ChevronRight)`
-  color: ${colors.textMenu};
+  color: ${({ theme }) => theme.textMenu};
   position: absolute;
   top: 50%;
   right: 10px;

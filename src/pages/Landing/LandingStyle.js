@@ -5,7 +5,7 @@ export const LandingContainer = styled.div`
     position: relative;
     overflow:auto;
     height: 100%;
-    background: ${colors.bgPrimary};
+    background: ${({ theme }) => theme.bgSecondaryLight100};
 `
 
 export const LandingHeader = styled.div`
@@ -78,7 +78,7 @@ export const MainTextWrapper = styled.div`
 
 
 export const RedTextStyle = styled.p`
-    color: ${colors.primary}; 
+    color: ${({ theme }) => theme.primaryMain}; 
     font-family: ${fonts.primary}; 
     line-height: 56px; 
     font-size: 54px; 
@@ -103,7 +103,7 @@ export const RedTextStyle = styled.p`
 `
 
 export const GrayTextStyle = styled.p`
-    color: ${colors.textTertiary}; 
+    color: ${({ theme }) => theme.textTertiary}; 
     font-family: ${fonts.primary}; 
     line-height: 38px; 
     font-size: 36px; 
@@ -130,7 +130,7 @@ export const GrayTextStyle = styled.p`
 `
 
 export const GreenTextStyle = styled.p`
-    color: ${colors.textSecondary}; 
+    color: ${({ theme }) => theme.textSecondary}; 
     font-family: ${fonts.primary}; 
     line-height: 38px; 
     font-size: 36px; 
@@ -167,8 +167,8 @@ export const SecondaryTextWrapper = styled.div`
 
 
     --b: 0.2em;   /* the thickness of the line */
-    --c: ${colors.primary}; /* the color */
-    --textMenu: ${colors.textMenu}; 
+    --c: ${({ theme }) => theme.primaryMain}; /* the color */
+    --textMenu: ${({ theme }) => theme.textMenu}; 
 
     color:var(--textMenu);
 
@@ -181,7 +181,7 @@ export const SecondaryTextWrapper = styled.div`
     -webkit-background-clip: text,padding-box;
             background-clip: text,padding-box;
     transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
-    background-color: ${colors.white05};
+    background-color: ${({ theme }) => theme.white05};
 
 
   &:hover{
