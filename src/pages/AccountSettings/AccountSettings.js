@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Formik } from 'formik'
-import * as Yup from "yup"
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 
@@ -15,8 +14,10 @@ import profileImg from '../../assets/img/profile.svg'
 import { AccountSettingSchema } from '../../utils/validationSchema'
 
 
+import PresetColor from '../../components/PresetColor/PresetColor'
+
 const AccountSettings = () => {
-    const { userData, setToastType, setModalType, updateUserProfile, presetColor, setPresetColor } = useContext(AuthContext)
+    const { userData, setToastType, setModalType, updateUserProfile } = useContext(AuthContext)
     const imageSrc = useCheckImage(userData?.photoURL, profileImg)
 
     // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -29,9 +30,6 @@ const AccountSettings = () => {
             actionCallback: () => formik.handleSubmit(),
         })
     }
-
-
-    console.log("presetColor", presetColor)
 
     return (
         <Layout title=" ">
@@ -109,7 +107,11 @@ const AccountSettings = () => {
                 </CardWrapper>
                 <CardWrapper>
                     <Card title="Preset color" >
-                        <div>
+
+                        <PresetColor />
+
+
+                        {/* <div>
                             <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "10px" }}>
                                 <input type="radio" id="color1" name="color" value={"theme1"} checked={presetColor === "theme1"} onChange={() => setPresetColor("theme1")} />
                                 <p>Theme1</p>
@@ -118,7 +120,7 @@ const AccountSettings = () => {
                                 <input type="radio" id="color2" name="color" value={"theme2"} checked={presetColor === "theme2"} onChange={() => setPresetColor("theme2")} />
                                 <p>Theme2</p>
                             </div>
-                        </div>
+                        </div> */}
 
                     </Card>
 
