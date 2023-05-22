@@ -14,11 +14,12 @@ import {
     IconTextWrapper,
     IconText,
 } from './SidebarStyle';
+import PresetColor from '../../PresetColor/PresetColor';
 
 
 const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);
-    
+
     return (
         <NavWrapper isSidebarOpen={isSidebarOpen}>
             <ItemsWrapper isSidebarOpen={isSidebarOpen}>
@@ -59,6 +60,8 @@ const Sidebar = () => {
                             <IconText>About us</IconText>
                         </IconTextWrapper> : <AboutUsIcon />}
                 </HeaderNavLink>
+
+
 
                 <HeaderNavLink
                     onClick={logout}

@@ -107,21 +107,17 @@ const AccountSettings = () => {
                 </CardWrapper>
                 <CardWrapper>
                     <Card title="Preset color" >
-
                         <PresetColor />
-
-
-                        {/* <div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "10px" }}>
-                                <input type="radio" id="color1" name="color" value={"theme1"} checked={presetColor === "theme1"} onChange={() => setPresetColor("theme1")} />
-                                <p>Theme1</p>
-                            </div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                                <input type="radio" id="color2" name="color" value={"theme2"} checked={presetColor === "theme2"} onChange={() => setPresetColor("theme2")} />
-                                <p>Theme2</p>
-                            </div>
-                        </div> */}
-
+                    </Card>
+                    <Card title="Mode">
+                        <div style={{ display: "flex", gap: "5px" }}>
+                            <input type="radio" id="dark" name="mode" value="dark" />
+                            <label htmlFor="dark">Dark</label><br />
+                        </div>
+                        <div style={{ display: "flex", gap: "5px" }}>
+                            <input type="radio" id="light" name="mode" value="light" />
+                            <label htmlFor="light">Light</label><br />
+                        </div>
                     </Card>
 
                     <Card title="Account statistics">

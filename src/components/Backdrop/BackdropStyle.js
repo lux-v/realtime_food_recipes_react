@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { colors } from "../../lib/style/theme";
-
-export const LoadingWrapper = styled.div`
 
 
-`
+export const LoadingWrapper = styled.div``
 
 export const ContentWrapper = styled.div`
     position:relative;
@@ -19,7 +16,7 @@ export const ContentWrapper = styled.div`
     -webkit-filter: blur(8px);
     `: `
         ${props.theme.bgSecondaryLight100}
-    `}
+    `};
 `
 
 export const BackdropLoader = styled.div`

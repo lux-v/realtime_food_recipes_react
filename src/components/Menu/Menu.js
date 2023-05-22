@@ -4,11 +4,15 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { Menu as MenuWrapper } from './MenuStyle';
 import MenuCard from '../MenuCard/MenuCard';
+import PresetColor from '../PresetColor/PresetColor';
+
+import styled from "styled-components";
+
 
 
 const Menu = ({ closePopup }) => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout, presetColor } = useContext(AuthContext);
 
   const menuItems = [
     {
@@ -33,8 +37,9 @@ const Menu = ({ closePopup }) => {
       text: "Log out",
       callback: () => logout(),
     },
-
   ];
+
+  console.log("presetColor", presetColor)
 
 
   return (
@@ -47,6 +52,14 @@ const Menu = ({ closePopup }) => {
           subMenuItems={item.children}
         />
       ))}
+
+      <div style={{ border: `1px solid #c5d0de`, borderRadius: "8px", margin: "30px 10px 10px 10px" }}>
+        <p style={{ borderBottom: "1px solid #c5d0de", padding: "10px", fontWeight: "600" }}>Preset Color</p>
+
+        <div style={{ padding: "10px" }}>
+          <PresetColor />
+        </div>
+      </div>
     </MenuWrapper>
   );
 };

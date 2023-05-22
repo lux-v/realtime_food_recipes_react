@@ -5,6 +5,7 @@ import { ReactComponent as DoubleTick } from '../../assets/icons/double-tick.svg
 import theme1 from '../../assets/scss/_theme1.module.scss'
 import theme2 from '../../assets/scss/_theme2.module.scss'
 import theme3 from '../../assets/scss/_theme3.module.scss'
+import theme4 from '../../assets/scss/_theme4.module.scss'
 
 import { PresetColorContainer, PresetColorStyle } from './PresetColorStyle'
 
@@ -24,15 +25,18 @@ const allPresetColors = [
         id: 3,
         name: "theme3",
         color: theme3
-    }
-
+    },
+    {
+        id: 4,
+        name: "theme4",
+        color: theme4
+    },
 ]
 
 const PresetColor = () => {
     const { presetColor, setPresetColor } = useContext(AuthContext)
 
     return (
-
         <PresetColorContainer>
             {allPresetColors.map((color) => (
                 <PresetColorStyle
@@ -42,11 +46,10 @@ const PresetColor = () => {
                     themeName={color.name}
                     presetColor={presetColor}
                 >
-                    {presetColor === color.name && <DoubleTick />}
+                    {presetColor === color.name && <DoubleTick style={{ width: "30px", height: "30px", }} />}
                 </PresetColorStyle>
             ))}
         </PresetColorContainer>
-
     )
 }
 

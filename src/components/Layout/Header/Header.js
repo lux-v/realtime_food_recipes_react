@@ -36,6 +36,7 @@ import Menu from '../../Menu/Menu';
 import LogoImg from '../../../assets/img/logo.png';
 import profileImg from '../../../assets/img/profile.svg';
 import ExitIcon from '../../../assets/img/exit-icon.svg';
+import PresetColor from '../../PresetColor/PresetColor';
 
 
 const Header = () => {
@@ -121,6 +122,14 @@ const Header = () => {
                   About us
                 </IconTextWrapper> : <AboutUsIcon />}
             </HeaderNavLink>
+
+            <div style={{ border: `1px solid #c5d0de`, borderRadius: "8px", margin: "10px" }}>
+              <p style={{ borderBottom: "1px solid #c5d0de", padding: "10px", fontWeight: "600" }}>Preset Color</p>
+
+              <div style={{ padding: "10px" }}>
+                <PresetColor />
+              </div>
+            </div>
 
             <HeaderNavLink
               onClick={logout}

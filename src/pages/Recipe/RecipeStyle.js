@@ -12,8 +12,8 @@ export const RecipeLikesWrapper = styled.div`
 `
 
 export const LikesNumber = styled.p`
-    /* color: ${({ theme }) => theme.textMenu};  */
-    color: white;
+    color: ${({ theme }) => theme.textMenu}; 
+    
     font-family: ${fonts.primary}; 
     line-height: 20px; 
     font-size: 18px; 
@@ -24,13 +24,6 @@ export const LikesNumber = styled.p`
 export const RecipeWrapper = styled.div`
     height:100%;
     width:100%;
-
-    /* background: white;
-    border-radius: ${border.borderRadius};
-    padding: 10px;
-
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border:1px solid ${({ theme }) => theme.tableBorder}; */
 `
 
 export const TopSideWrapper = styled.div`
@@ -39,7 +32,7 @@ export const TopSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column-reverse;
 
-    background: ${({ theme }) => theme.bgPrimaryLight300};
+    background: ${({ theme }) => theme.primary200};
     border-radius: 48px;
 
     padding:20px;
@@ -141,7 +134,8 @@ export const RecipeNameWrapper = styled.div`
 
 
 export const SectionHeadline = styled.p`
-    color: ${props => props.secondary ? props.theme.primary700 : "white"};
+    color: ${({ theme, secondary }) => secondary ? theme.primary700 : theme.textPrimary};
+
     font-family: ${fonts.primary}; 
 
     font-size:  ${props => props.fontSize || "18px"};
@@ -153,7 +147,7 @@ export const SectionHeadline = styled.p`
 `
 
 export const TextContent = styled.p`
-    color: ${props => props.secondary ? props.theme.textPrimary : "white"};
+    color: ${({ secondary, theme }) => secondary ? theme.textPrimary : theme.textPrimary};
     font-family: ${fonts.primary}; 
     font-size: ${props => props.fontSize || "16px"}; 
     font-weight: 400;

@@ -63,7 +63,6 @@ const Recipe = () => {
                     <RecipeWrapper>
                         <TopSideWrapper >
                             <LeftSideWrapper>
-
                                 <RecipeNameWrapper>
                                     <TextContent fontSize="42px">
                                         {recipe.name}
@@ -107,8 +106,8 @@ const Recipe = () => {
                                     <SectionHeadline>
                                         Share recipe
                                     </SectionHeadline>
-                                    <PrinterIcon stroke='white' style={{ cursor: "pointer" }} onClick={() => alert("Print")} />
-                                    <FacebookIcon stroke='white' style={{ cursor: "pointer" }} onClick={() => alert("Facebook share")} />
+                                    <PrinterIcon style={{ cursor: "pointer" }} onClick={() => alert("Print")} />
+                                    <FacebookIcon style={{ cursor: "pointer" }} onClick={() => alert("Facebook share")} />
 
                                 </SectionWrapper>
                             </LeftSideWrapper>
