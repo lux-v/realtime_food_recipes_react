@@ -39,8 +39,6 @@ const Menu = ({ closePopup }) => {
     },
   ];
 
-  console.log("presetColor", presetColor)
-
 
   return (
     <MenuWrapper>

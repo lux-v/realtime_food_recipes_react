@@ -13,12 +13,14 @@ function Button({
     disabled,
     isHidden,
     isTransparent,
+    isError,
 }) {
     return (
         <ButtonWrapepr
             isSecondary={isSecondary}
             isTertiary={isTertiary}
             isCancel={isCancel}
+            isError={isError}
             width={width}
             height={height}
             disabled={disabled}

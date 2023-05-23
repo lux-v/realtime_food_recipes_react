@@ -179,7 +179,7 @@ const FieldStyleType1 = css`
     error &&
     css`
       outline: none;
-      border: 2px solid ${theme.primaryMain};
+      border: 2px solid ${theme.errorDark};
     `}
 
   @media (${breakpoints.tablet}) {
@@ -192,7 +192,7 @@ const FieldStyleType1 = css`
   @media (${breakpoints.desktop}) {
     font-size: 16px;
     &:focus {
-      border: 2px solid ${({ theme }) => theme.link};
+      border: 2px solid ${({ theme }) => theme.primaryDark};
     }
   }
 `;
@@ -218,7 +218,7 @@ const FieldStyleType2 = css`
     error &&
     css`
       outline: none;
-      border-bottom: 2px solid ${theme.errorMain};
+      border-bottom: 2px solid ${theme.errorDark};
     `}
 
   @media (${breakpoints.tablet}) {
@@ -228,7 +228,7 @@ const FieldStyleType2 = css`
   @media (${breakpoints.desktop}) {
     font-size: 16px;
     &:focus {
-      border-bottom: 2px solid ${({ theme }) => theme.link};
+      border-bottom: 2px solid ${({ theme }) => theme.primaryDark};
     }
   }
 `;
@@ -292,7 +292,7 @@ export const SmallField = styled(Field)`
     error &&
     css`
       outline: none;
-      border: 2px solid ${theme.primaryMain};
+      border-bottom: 2px solid ${theme.errorDark};
     `}
 `;
 
@@ -330,7 +330,7 @@ export const Option = styled.option`
 
 export const ErrorMesagge = styled(ErrorMessageFormik)`
   font-size: 12px;
-  color: ${({ theme }) => theme.primaryMain};
+  color: ${({ theme }) => theme.errorDark};
   padding-top: 8px;
   font-weight: 400;
 
@@ -339,7 +339,7 @@ export const ErrorMesagge = styled(ErrorMessageFormik)`
 
 export const ErrorMessageCustom = styled.p`
   font-size: 12px;
-  color: ${({ theme }) => theme.primaryMain};
+  color: ${({ theme }) => theme.errorDark};
   padding-top: 8px;
   font-weight: 400;
 
@@ -836,7 +836,7 @@ export const LogoImg = styled.img`
 `;
 
 export const BlueLink = styled(Link)`
-  color: ${({ theme }) => theme.link};
+  color: ${({ theme }) => theme.primaryDark};
     
   font-size: 14px;
   font-family: ${fonts.secondary};

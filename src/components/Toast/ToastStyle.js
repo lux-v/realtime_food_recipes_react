@@ -8,7 +8,7 @@ export const Toast = styled.div`
   right: 50%;
   transform: translate(50%);
 
-  width: 272px;
+  max-width: 272px;
   min-height: 40px;
   border-radius: ${border.borderRadius};
   display: flex;
@@ -17,8 +17,8 @@ export const Toast = styled.div`
   justify-content:space-between;
 
   @media (${breakpoints.tablet}) {
-    right: 230px;
-    width: 330px;
+    right: 180px;
+    max-width: 330px;
 
     @keyframes fadeIn {
       from {
@@ -90,8 +90,8 @@ export const Toast = styled.div`
       border: 1px solid ${theme.secondaryWarning};
     `
           : `
-      background-color:${theme.primaryInfo};
-      border: 1px solid ${theme.secondaryInfo};
+      background-color:${theme.primaryLight};
+      border: 1px solid ${theme.primaryDark};
     `
   }
 `;

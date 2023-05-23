@@ -56,7 +56,7 @@ const Recipe = () => {
                 <Card
                     headingElements={[
                         <Button callback={() => navigate(`update`)} isHidden={!isOwner}>Edit </Button>,
-                        <Button isTertiary callback={() => navigate(-1)}>Back</Button>
+                        // <Button isTertiary callback={() => navigate(-1)}>Back</Button>
 
                     ]}
                 >

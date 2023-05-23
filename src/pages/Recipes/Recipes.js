@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { getAllRecipesData } from '../../api/recipes'
@@ -13,10 +13,11 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card'
 import { FieldArray, Formik } from 'formik'
-import { Field, Form, InputField, SmallField, SearchBar, ErrorMesagge, ErrorMessageCustom } from "../../lib/style/generalStyles"
+import { Form, SmallField, SearchBar, ErrorMesagge, ErrorMessageCustom } from "../../lib/style/generalStyles"
 import { RecipeIngredientsWrapper } from '../RecipesAddNew/RecipesAddNewStyles'
 import Chip from '../../components/Chip/Chip'
 import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
+import Modal from '../../components/Modal/Modal'
 
 
 
@@ -36,6 +37,14 @@ const FilterContent = ({ formikRef }) => {
     // category should be a list of categories
     // name should be a string
 
+    setTimeout(() => {
+        const input = document.getElementById("newIngredient");
+        if (input) {
+            input.focus();
+        }
+    }, 0);
+
+
     const [newIngredient, setNewIngredient] = useState("")
     const [newIngredientError, setNewIngredientError] = useState(false)
 
@@ -47,12 +56,14 @@ const FilterContent = ({ formikRef }) => {
     const ingredientUniqueErrorMessage = "This ingredient is already added";
 
     const handleKeyDown = (e, callback, formik) => {
+
         formik.handleBlur("ingredients")
 
         if (newIngredient !== "")
             if (newIngredient.length <= 50)
                 if (!formik.values.ingredients.includes(newIngredient)) {
                     if (e.key === "Enter" || e.keyCode === 13 || e.type === "click") {
+                        e.preventDefault()
                         callback(newIngredient)
                         setNewIngredient("")
                         setNewIngredientError("")
@@ -67,6 +78,7 @@ const FilterContent = ({ formikRef }) => {
         else {
             setNewIngredientError(ingredientErrorRequiredMessage)
         }
+
     }
 
     const handleNewIngredientChange = (e, formik) => {
@@ -104,11 +116,8 @@ const FilterContent = ({ formikRef }) => {
                 category: filterValues?.category || [],
                 name: ""
             }}
-            onSubmit={(values, { setSubmitting }) => {
-
+            onSubmit={(values) => {
                 localStorage.setItem("filter", JSON.stringify(values))
-
-                setSubmitting(false);
             }}
         >
             {(formik) => (
@@ -122,7 +131,7 @@ const FilterContent = ({ formikRef }) => {
                                         Filter by ingredient:
                                     </a>
 
-                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", zIndex: "999" }}>
                                         <SmallField
                                             id="newIngredient"
                                             name="newIngredient"
@@ -181,11 +190,12 @@ const FilterContent = ({ formikRef }) => {
 
 const Recipes = () => {
     const navigate = useNavigate()
+    const { setToastType } = useContext(AuthContext)
 
     const [recipes, setRecipes] = useState(null)
     const [filteredRecipes, setFilteredRecipes] = useState(null)
     const [searchRecipe, setSearchRecipe] = useState("")
-    const { setToastType, setModalType } = useContext(AuthContext)
+    const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
 
     const formikRef = useRef()
 
@@ -223,92 +233,129 @@ const Recipes = () => {
         );
     };
 
+
+
     const handleFilterModal = () => {
-        setModalType({
-            openModal: true,
-            title: "Filter recipes",
-            content: <FilterContent formikRef={formikRef} />,
-            actionCallback: handleSubmitFilter,
-            actionText: "Filter",
-        })
+        setIsFilterModalOpen(true)
     }
 
-    const handleSubmitFilter = () => {
-        formikRef.current.submitForm().then(() => {
-            handleFilterRecipes()
-        })
-    }
+    const handleApplyFilter = useCallback(() => {
+        console.log("apply filter: ", formikRef.current)
+        formikRef.current &&
+            formikRef.current.submitForm().then(() => {
+                handleFilterRecipes()
+            })
+    }, [formikRef.current])
+
+    // const handleCloseCallback = useCallback(() => {
+    //     formikRef.current && formikRef.current.resetForm()
+    // }, [formikRef.current])
 
 
     const handleFilterRecipes = () => {
-        const filterValues = JSON.parse(localStorage.getItem("filter"))
+        try {
+            const filterValues = JSON.parse(localStorage.getItem("filter"))
+            if (filterValues) {
+                const filtered = recipes.filter(recipe => {
+                    return (
+                        recipe.likedBy?.length >= filterValues.likes.min &&
+                        recipe.likedBy?.length <= filterValues.likes.max &&
+                        recipe.cookTimeMin >= filterValues.time.min &&
+                        recipe.cookTimeMin <= filterValues.time.max &&
+                        // recipe.difficulty >= filterValues.difficulty.min &&
+                        // recipe.difficulty <= filterValues.difficulty.max &&
 
-        if (filterValues) {
-            const filtered = recipes.filter(recipe => {
-                return (
-                    recipe.likedBy?.length >= filterValues.likes.min &&
-                    recipe.likedBy?.length <= filterValues.likes.max &&
-                    recipe.cookTimeMin >= filterValues.time.min &&
-                    recipe.cookTimeMin <= filterValues.time.max &&
-                    // recipe.difficulty >= filterValues.difficulty.min &&
-                    // recipe.difficulty <= filterValues.difficulty.max &&
-                    (filterValues.ingredients.length === 0 || filterValues.ingredients.every(ingredient => recipe.ingredients.includes(ingredient)))
+                        // (filterValues.ingredients.length === 0 ||
+                        //     filterValues.ingredients.every((ingredient) =>
+                        //         recipe.ingredients.map(recipeIngredient => {
+                        //             console.log("recipeIngredient: ", recipeIngredient, "\ningredient: ", ingredient);
+                        //             return recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
+                        //         }
+                        //         )
 
-                    // &&
-                    // (filterValues.category.length === 0 || filterValues.category.every(category => recipe.category.includes(category)))
-                )
-            })
-            setFilteredRecipes(filtered)
-            setSearchRecipe(filtered)
-        }
-        else {
-            setFilteredRecipes(recipes)
-            setSearchRecipe(recipes)
+                        //     ))
+
+
+                        (filterValues.ingredients.length === 0 || filterValues.ingredients.every(ingredient => recipe.ingredients.includes(ingredient.toLowerCase())))
+                        // &&
+                        // (filterValues.category.length === 0 || filterValues.category.every(category => recipe.category.includes(category)))
+                    )
+                })
+                setFilteredRecipes(filtered)
+                setSearchRecipe(filtered)
+            }
+            else {
+                setFilteredRecipes(recipes)
+                setSearchRecipe(recipes)
+            }
+
+        } catch (error) {
+            setToastType({
+                open: true,
+                message: error.message,
+                type: 'error',
+            });
         }
     }
 
+
+    useEffect(() => {
+        recipes &&
+            handleFilterRecipes()
+    }, [recipes])
 
     useEffect(() => {
         fetchRecipes()
     }, [])
 
 
-    useEffect(() => {
-        recipes &&
-            handleFilterRecipes()
-
-    }, [recipes])
-
-
-
     return (
-        <Layout
-            title="Recipes"
-        >
-            {searchRecipe ?
-                <Card title={<FilterWrapper onClick={handleFilterModal}> <FilterIcon /> Filter</FilterWrapper>}
-                    headingElements={[
-                        <SearchBar
-                            placeholder="Search name or description"
-                            onChange={handleSearchInput}
-                        />
-                    ]}
-                >
-                    <div style={{ marginBottom: "25px" }}>
-                        <Button callback={() => navigate("/recipes/add-new")}>Add recipe +</Button>
-                    </div>
-                    <RecipesWrapper>
-                        {searchRecipe.map(recipe => {
-                            return <RecipeCard onClick={() => navigate(`/recipes/${recipe.id}`)} key={recipe.id} recipe={recipe} />
-                        })}
-                    </RecipesWrapper>
-                </Card>
-                :
-                <LoadingSpinnerWrapper>
-                    <LoadingSpinner size="120px" />
-                </LoadingSpinnerWrapper>
-            }
-        </Layout>
+        <>
+            <Layout
+                title="Recipes"
+            >
+                {searchRecipe ?
+                    <Card title={<FilterWrapper onClick={handleFilterModal}><FilterIcon />Filter</FilterWrapper>}
+                        headingElements={[
+                            <SearchBar
+                                placeholder="Search name or description"
+                                onChange={handleSearchInput}
+                            />
+                        ]}
+                    >
+                        <div style={{ marginBottom: "25px" }}>
+                            <Button callback={() => navigate("/recipes/add-new")}>Add recipe +</Button>
+                        </div>
+                        <RecipesWrapper>
+                            {searchRecipe.length === 0 ?
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+                                    <p>No recipes found</p>
+                                </div>
+                                :
+                                searchRecipe.map(recipe => {
+                                    return <RecipeCard onClick={() => navigate(`/recipes/${recipe.id}`)} key={recipe.id} recipe={recipe} />
+                                })
+                            }
+                        </RecipesWrapper>
+                    </Card>
+                    :
+                    <LoadingSpinnerWrapper>
+                        <LoadingSpinner size="120px" />
+                    </LoadingSpinnerWrapper>
+                }
+            </Layout>
+
+            <Modal
+                isOpen={isFilterModalOpen}
+                closeModal={() => setIsFilterModalOpen(false)}
+                title="Filter recipes"
+                actionCallback={handleApplyFilter}
+                // closeCallback={handleCloseCallback}
+                actionText="Apply"
+            >
+                <FilterContent formikRef={formikRef} />
+            </Modal>
+        </>
     )
 }
 

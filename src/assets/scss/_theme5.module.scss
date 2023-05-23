@@ -1,16 +1,20 @@
+
 // primary
-$primaryLight: #e2e5e8;
-$primaryMain: #0a2342;
-$primaryDark: #091f3c;
-$primary200: #94a1b3;
-$primary800: #05152b;
+
+$primaryLight: #e6f4f1;
+$primaryMain: #2ca58d;
+$primaryDark: #279d85;
+$primary200: #96d2c6;
+$primary800: #1b8a70;
+
 
 // secondary
-$secondaryLight: #e6f4f1;
-$secondaryMain: #2ca58d;
-$secondaryDark: #279d85;
-$secondary200: #96d2c6;
-$secondary800: #1b8a70;
+$secondaryLight: #e2e5e8;
+$secondaryMain: #0a2342;
+$secondaryDark: #091f3c;
+$secondary200: #94a1b3;
+$secondary800: #05152b;
+
 
 //background
 $bgPrimaryLight50: #e0e7ed; // gray
@@ -23,8 +27,6 @@ $bgPrimaryLight600: #6c7a8a; // gray
 $bgPrimaryLight700: #5c6978; // gray
 $bgPrimaryLight800: #5b697c; // gray
 $bgPrimaryLight900: #3d4755; // gray
-
-
 
 
 // success Colors
@@ -90,6 +92,7 @@ $darkTextSecondary: #8492c4;
 // ==============================|| JAVASCRIPT ||============================== //
 
 :export {
+
     // primary
     primaryLight: $primaryLight;
     primary200: $primary200;

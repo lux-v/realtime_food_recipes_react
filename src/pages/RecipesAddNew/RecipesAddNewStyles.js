@@ -23,11 +23,11 @@ export const RecipeIngredientsWrapper = styled.div`
 
 
 export const RecipeStepsWrapper = styled.div`
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:5px;
-    padding-bottom:8px;
-    
-    overflow:hidden;
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:5px;
+  padding-bottom:8px;
+  overflow:hidden;
 `;

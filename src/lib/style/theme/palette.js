@@ -2,6 +2,7 @@ import theme1 from '../../../assets/scss/_theme1.module.scss';
 import theme2 from '../../../assets/scss/_theme2.module.scss';
 import theme3 from '../../../assets/scss/_theme3.module.scss';
 import theme4 from '../../../assets/scss/_theme4.module.scss';
+import theme5 from '../../../assets/scss/_theme5.module.scss';
 import generalStyles from '../../../assets/scss/_general.module.scss';
 
 const Palette = (presetColor, mode) => {
@@ -20,6 +21,10 @@ const Palette = (presetColor, mode) => {
         case "theme4":
             colors = { mode: mode, ...theme4, ...generalStyles };
             break;
+        case "theme5":
+            colors = { mode: mode, ...theme5, ...generalStyles };
+            break;
+
         default:
             colors = { mode: mode, ...theme1, ...generalStyles };
     }

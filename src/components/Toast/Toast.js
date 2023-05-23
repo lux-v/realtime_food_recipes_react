@@ -17,6 +17,8 @@ import xButtonIcon from '../../assets/img/x-icon.svg';
 
 let intervalId = null;
 let intervalRemainingTimeId = null;
+
+
 const Toast = ({ toastType, setToastType }) => {
     const [remainingTime, setRemainingTime] = useState(5000)
 
@@ -76,34 +78,64 @@ const Toast = ({ toastType, setToastType }) => {
 
     }, [toastType.open, setToastType])
 
+
+
+
+
+
+    const [toastWidth, setToastWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const toastElement = document.getElementById('toastElement');
+            if (toastElement) {
+                const width = toastElement.offsetWidth;
+                setToastWidth(width);
+            }
+        };
+
+        handleResize(); // Initial width calculation
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     return (
         <ToastWrapper
+            id="toastElement"
             isOpen={toastType.open}
             toastType={toastType.type}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            toastWidth={toastWidth}
         >
-            <ToastHeader>
-                <IconTitleWrapper>
-                    {toastType.type === 'success' && (
-                        <Icon src={ApproveIcon} alt="imgApprove" />
-                    )}
-                    {toastType.type === 'error' && <Icon src={ErrorIcon} alt="imgError" />}
-                    {toastType.type === 'alert' && <Icon src={AlertIcon} alt="imgAlert" />}
-                    {toastType.type === 'success' && <Title>Success</Title>}
-                    {toastType.type === 'error' && <Title>Error</Title>}
-                    {toastType.type === 'alert' && <Title>Alert</Title>}
-                </IconTitleWrapper>
+            {toastType.isHeader &&
+                <ToastHeader>
 
-                <XButton
-                    src={xButtonIcon}
-                    alt="xButton"
-                    width="12px"
-                    height="12px"
+                    <IconTitleWrapper>
+                        {toastType.type === 'success' && (
+                            <Icon src={ApproveIcon} alt="imgApprove" />
+                        )}
+                        {toastType.type === 'error' && <Icon src={ErrorIcon} alt="imgError" />}
+                        {toastType.type === 'alert' && <Icon src={AlertIcon} alt="imgAlert" />}
+                        {toastType.type === "info" && <Title>Info</Title>}
 
-                    onClick={() => handleClose()}
-                />
-            </ToastHeader>
+                    </IconTitleWrapper>
+
+                    <XButton
+                        src={xButtonIcon}
+                        alt="xButton"
+                        width="12px"
+                        height="12px"
+
+                        onClick={() => handleClose()}
+                    />
+                </ToastHeader>
+            }
 
             <ContentWrapper>
                 {toastType.message}

@@ -18,11 +18,6 @@ const AuthProvider = ({ children }) => {
         open: false,
     });
 
-    const [modalType, setModalType] = useState({
-        openModal: false,
-    });
-
-
     const signup = async (email, password, displayName) => {
         try {
             const res = await app.auth().createUserWithEmailAndPassword(email, password)
@@ -61,7 +56,7 @@ const AuthProvider = ({ children }) => {
 
             setToastType({
                 open: true,
-                message: `Welcome back, ${user.displayName}.`,
+                message: <p>Welcome back, <span style={{ fontWeight: "600" }}>{user.displayName}</span>.</p>,
                 type: 'success',
             });
         }
@@ -141,8 +136,6 @@ const AuthProvider = ({ children }) => {
                 isSidebarOpen,
                 setIsSidebarOpen,
 
-                modalType,
-                setModalType,
 
                 presetColor,
                 setPresetColor,

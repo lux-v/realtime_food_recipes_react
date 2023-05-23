@@ -31,8 +31,6 @@ import Modal from './components/Modal/Modal';
 import Palette from './lib/style/theme/palette';
 
 
-
-
 function App() {
   const { toastType, presetColor, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true)
@@ -106,7 +104,7 @@ function App() {
         </Routes>
       </Router>
       <Toast toastType={toastType} setToastType={setToastType} />
-      <Modal />
+      {/* <Modal /> */}
     </ThemeProvider>
 
   );

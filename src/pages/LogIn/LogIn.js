@@ -136,11 +136,7 @@ const LogIn = () => {
                     name='password'
                   />
                 </FormRow>
-                <FormRow right>
-                  <BlueLink to='/password-reset'>
-                    Forgot your password?
-                  </BlueLink>
-                </FormRow>
+
                 <FormRow>
                   <ButtonWrapper>
                     <Button
@@ -172,6 +168,11 @@ const LogIn = () => {
                   </Button>
                 </ButtonWrapper>
               </FormRow> */}
+                <FormRow right>
+                  <BlueLink to='/password-reset'>
+                    Forgot your password?
+                  </BlueLink>
+                </FormRow>
                 <FormRow center>
                   <FormLabel italic>
                     Don't have an account?{' '}

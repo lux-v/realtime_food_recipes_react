@@ -61,7 +61,7 @@ export const RecipieCardWrapper = styled.div`
 
     color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textPrimary};
 
-    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : "white"};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : theme.bgPrimaryLight200};
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
     border:1px solid ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.tableBorder};
     border-radius: ${border.borderRadius};
@@ -75,7 +75,7 @@ export const RecipieCardWrapper = styled.div`
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             /* box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-            box-shadow: ${({ theme }) => theme.mode === "dark" ? "rgba(255, 255, 255, 0.24) 0px 3px 8px" : "rgba(0, 0, 0, 0.24) 0px 3px 8px"};
+            box-shadow: ${({ theme }) => theme.mode === "dark" ? `${theme.primary700} 0px 6px 15px` : `${theme.primary200} 0px 6px 15px`};
         }
     }
 `;

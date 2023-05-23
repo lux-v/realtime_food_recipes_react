@@ -22,7 +22,7 @@ export default function AddNewStudent() {
     const { toastType, setToastType, resetPassword } = useContext(AuthContext);
 
     return (
-        <Content title="Password Reset" isCentered bottomRightEffect topLeftEffect >
+        <Content title="Password Reset" bottomRightEffect topLeftEffect >
             <Formik
                 initialValues={{
                     email: "",
@@ -68,6 +68,7 @@ export default function AddNewStudent() {
                                 error={formik.touched.email && formik.errors.email}
                                 placeholder="Your email"
                                 disabled={formik.isSubmitting}
+                                width='100%'
                             />
                             <ErrorMesagge component={'div'} name="email" />
                         </FormRow>
@@ -78,7 +79,7 @@ export default function AddNewStudent() {
                         </FormRow>
                         <FormRow center>
                             <Button isSecondary type="button" width="100%" callback={() => navigate("/login")}>
-                                Go back to login
+                                Go back to Login
                             </Button>
                         </FormRow>
                         <FormRow center>

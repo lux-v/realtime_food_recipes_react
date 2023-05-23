@@ -26,35 +26,36 @@ export const Button = style.button`
     font-size: 14px;
     line-height: 19px;
 
-    background-color: ${({ theme }) => theme.primaryMain};
+    background-color: ${({ theme, isError }) => isError ? theme.errorMain : theme.primaryMain};
     color: ${({ theme }) => theme.secondary};
 
     &:hover {
         transition: all 0.3s ease-in-out;
-        background-color: ${({ theme }) => theme.primaryDark};
+        background-color: ${({ theme, isError }) => isError ? isError.errorMain : theme.primaryDark};
     }
 
     @media (hover: hover) and (pointer: fine) {
         cursor: pointer;
     }
 
-    ${(props) =>
-        props.isSecondary &&
+    ${({ isSecondary, theme, isError }) =>
+        isSecondary &&
         `
-        background-color: transparent;
-        padding: 12px 16px;
-        color: ${props.theme.primaryMain};
-        border: 1px solid ${props.theme.whiteBorder}; 
+            background-color: transparent;
+            padding: 12px 16px;
+            color: ${isError ? theme.errorMain : theme.primaryMain};
+            border: 1px solid ${theme.whiteBorder}; 
 
-        &:hover{
+            &:hover{
             transition: all 0.3s ease-in-out;
-            background-color: ${props.theme.bgPrimaryLight50};
-        }
-        
-        @media (hover: hover) and (pointer: fine) {
-            cursor: pointer;
-        }
-    `}
+            background-color: ${theme.bgPrimaryLight50};
+            }
+
+            @media(hover: hover) and(pointer: fine) {
+                cursor: pointer;
+            }
+        `
+    }
 
     ${(props) =>
         props.isTertiary &&
