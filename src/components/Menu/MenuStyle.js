@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, border } from '../../lib/style/theme.js';
+import { border } from '../../lib/style/theme.js';
 
 export const Menu = styled.div`
     position: absolute;
@@ -10,7 +10,7 @@ export const Menu = styled.div`
     width: 306px;
     box-shadow: ${({ theme }) => theme.boxShadow};
         
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.secondary};
     border-radius: ${border.borderRadius}; 
     > :first-child {
         border-top-left-radius: 8px;

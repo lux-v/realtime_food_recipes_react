@@ -14,7 +14,7 @@ export const HeaderWrapper = styled.header`
   height: 60px;
   padding: 9px 24px;
   user-select: none;
-  background-color: ${({ theme }) => theme.bgSecondary};
+  background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.bgSecondary};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +117,7 @@ export const HamburgerContent = styled.div`
   top: 0;
   width: 260px;
   height:100%;
-  background-color: ${({ theme }) => theme.bgSecondary};
+  background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.bgSecondary};
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   z-index: 3;
 

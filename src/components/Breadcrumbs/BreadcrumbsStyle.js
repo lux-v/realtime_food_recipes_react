@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { colors, breakpoints } from '../../lib/style/theme';
 import { ReactComponent as DashboardIcon } from '../../assets/img/dashboard-icon.svg';
 
 export const Dashboard = styled(DashboardIcon)`
@@ -9,7 +8,7 @@ export const Dashboard = styled(DashboardIcon)`
   @media (hover: hover) and (pointer: fine) {
     cursor:pointer;
   }
-  stroke: ${({ theme }) => theme.primaryMain};
+  stroke: ${({ theme }) => theme.mode === "dark" ? "black" : theme.primaryMain};
 `;
 
 
@@ -23,12 +22,13 @@ export const Breadcrumbs = styled.div`
       padding-left:10px;
       border-radius:20px;
     `}
+
 `;
 
 export const BreadcrumbsLink = styled(Link)`
   font-weight: 500;
   font-size: 12.5px;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textPrimary};
   ${(props) =>
     props.index + 1 < props.pathLength &&
     `

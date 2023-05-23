@@ -18,7 +18,7 @@ export const NavWrapper = styled.nav`
   flex-shrink:0;
 
   box-shadow: 16px 12px 20px 0px #00000000;
-  background-color: ${({ theme }) => theme.bgSecondary};
+  background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.bgSecondary};
 
 
   @media (${breakpoints.tablet}) {

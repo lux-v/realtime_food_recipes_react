@@ -61,12 +61,14 @@ export const Button = style.button`
         `
         background-color: transparent;
         padding: 12px 16px;
-        color: ${props.theme.primaryMain};
-        border: 1px solid ${props.theme.primaryMain}; 
+        color: ${props.theme.mode === "dark" ? "white" : props.theme.primaryMain};
+        border: 1px solid ${props.theme.mode === "dark" ? "white" : props.theme.primaryMain}; 
 
         &:hover {   
             transition: all 0.3s ease-in-out;
             background-color: ${props.theme.bgPrimaryLight50};
+            color: ${props.theme.primaryMain};
+            border: 1px solid ${props.theme.primaryMain}; 
         }
         @media (hover: hover) and (pointer: fine) {
             cursor: pointer;

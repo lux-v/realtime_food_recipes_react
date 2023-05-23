@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { colors, breakpoints, border } from '../../../lib/style/theme';
+import { breakpoints, border } from '../../../lib/style/theme';
 
 
 export const ContentWrapper = styled.main`
   min-height: 100vh;
   flex-grow: 1;
-  background-color: ${({ theme }) => theme.bgSecondaryLight100 || theme.bgPrimaryLight100};
+  background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : theme.bgSecondaryLight100 || theme.bgPrimaryLight100};
   border-top-left-radius: ${border.borderRadius};
   border-top-right-radius: ${border.borderRadius};
   padding: 12px;
@@ -14,7 +14,7 @@ export const ContentWrapper = styled.main`
 
   ${props => props.isLoggedIn && `
     min-height: calc(100vh - 60px);
-    margin: 60px 10px 0 10px;
+    margin: 60px 10px 0 0px;
   `}
 
   @media(${breakpoints.tablet}){
@@ -38,7 +38,9 @@ export const NavigationWrapper = styled.div`
 
   min-height: 50px;
 
-  background:${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textPrimary};
+
+  background:${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.white};
   border-radius:${border.borderRadius};
   padding:5px 15px;
 `;
@@ -61,7 +63,6 @@ export const ChildrenWrapper = styled.div`
 
 
 const TitleStyle = css`
-  color: ${({ theme }) => theme.textPrimary};
   font-size: 20px;
   font-weight: 600;
   line-height: 22px;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as ChevronRight } from '../../assets/img/chevron-right.svg';
-import { colors, fonts } from '../../lib/style/theme.js';
+import { fonts } from '../../lib/style/theme.js';
 
 export const Card = styled.div`
   font-family: ${fonts.primary};
@@ -9,8 +9,8 @@ export const Card = styled.div`
   align-items: flex-start;
   padding: 12px 18px;
   gap: 10px;
-  background-color: ${({ theme }) => theme.secondary};
-  color: ${({ theme }) => theme.textMenu};
+  background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.secondary};
+  color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textMenu};
   width: 100%;
 
   position: relative;
@@ -18,7 +18,7 @@ export const Card = styled.div`
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transition: all 0.3s ease-in-out;
-      background-color: ${({ theme }) => theme.bgPrimaryLight50};
+      background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : theme.bgPrimaryLight50};
       cursor: pointer;
     }
   }

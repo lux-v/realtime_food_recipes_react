@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border, breakpoints, colors } from "../../lib/style/theme";
+import { border, breakpoints } from "../../lib/style/theme";
 import { ReactComponent as FilterIcon } from '../../assets/img/filter-icon.svg'
 
 
@@ -36,10 +36,9 @@ export const RecipesWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 2rem;
-
     width:100%;
-
     justify-items:center;
+
 
     @media (${breakpoints.tablet}) {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

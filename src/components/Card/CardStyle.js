@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border, breakpoints, colors } from "../../lib/style/theme";
+import { border, breakpoints } from "../../lib/style/theme";
 
 
 export const CardWrapper = styled.div`
@@ -8,6 +8,10 @@ export const CardWrapper = styled.div`
     border-radius:${border.borderRadius};
 
     margin-bottom:10px;
+
+    background: ${({ theme }) => theme.mode === "dark" && theme.bgPrimaryLight700};
+
+    color: ${({ theme }) => theme.mode === "dark" && theme.white};
     
 `
 

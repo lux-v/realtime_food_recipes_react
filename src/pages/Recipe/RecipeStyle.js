@@ -32,7 +32,7 @@ export const TopSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column-reverse;
 
-    background: ${({ theme }) => theme.primary200};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.primary200};
     border-radius: 48px;
 
     padding:20px;
@@ -56,7 +56,7 @@ export const BottomSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column;
 
-    background: ${({ theme }) => theme.bgPrimaryLight200};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight600 : theme.bgPrimaryLight200};
     border-radius: 48px;
 
     padding:20px;
@@ -134,7 +134,7 @@ export const RecipeNameWrapper = styled.div`
 
 
 export const SectionHeadline = styled.p`
-    color: ${({ theme, secondary }) => secondary ? theme.primary700 : theme.textPrimary};
+    color: ${({ theme, secondary }) => secondary ? theme.primary700 : theme.mode === "dark" ? theme.white : theme.textPrimary};
 
     font-family: ${fonts.primary}; 
 
@@ -147,7 +147,7 @@ export const SectionHeadline = styled.p`
 `
 
 export const TextContent = styled.p`
-    color: ${({ secondary, theme }) => secondary ? theme.textPrimary : theme.textPrimary};
+    color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textPrimary};
     font-family: ${fonts.primary}; 
     font-size: ${props => props.fontSize || "16px"}; 
     font-weight: 400;

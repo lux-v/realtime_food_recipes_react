@@ -37,7 +37,7 @@ function App() {
   const { toastType, presetColor, setToastType, setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true)
 
-  const theme = useMemo(() => Palette(presetColor), [presetColor])
+  const theme = useMemo(() => Palette(presetColor, "light"), [presetColor])
 
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function App() {
 
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
       <Router>
         <Routes>
           <Route path="/" element={isLoggedIn ? isLoading ?
