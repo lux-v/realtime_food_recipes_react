@@ -12,17 +12,34 @@ $secondaryDark: #279d85;
 $secondary200: #96d2c6;
 $secondary800: #1b8a70;
 
+
+// bgPrimaryLight colors should be 
+//the same note as $primaryMain color
+
+$bgPrimaryLight50: #e2e5e8; //backgrou
+$bgPrimaryLight100: #eef2f6dc; // dark blue
+$bgPrimaryLight200: #c9daec; // dark blue
+$bgPrimaryLight300: #a3c2e2; // dark blue
+$bgPrimaryLight400: #7daad8; // dark blue
+$bgPrimaryLight500: #5792ce; // dark blue
+$bgPrimaryLight600: #4f84b8; // dark blue
+$bgPrimaryLight700: #4676a2; // dark blue
+$bgPrimaryLight800: #3e688c; // dark blue
+$bgPrimaryLight900: #355a76; // dark blue
+
+
+
 //background
-$bgPrimaryLight50: #e0e7ed; // gray
-$bgPrimaryLight100: #eef2f6dc; // gray
-$bgPrimaryLight200: #e0e7ed; // gray
-$bgPrimaryLight300: #c5d0de; // gray
-$bgPrimaryLight400: #9ba7b3; // gray
-$bgPrimaryLight500: #7b8b9a; // gray
-$bgPrimaryLight600: #6c7a8a; // gray
-$bgPrimaryLight700: #5c6978; // gray
-$bgPrimaryLight800: #5b697c; // gray
-$bgPrimaryLight900: #3d4755; // gray
+$bgSecondaryLight50: #e0e7ed; // gray
+$bgSecondaryLight100: #eef2f6dc; // gray
+$bgSecondaryLight200: #e0e7ed; // gray
+$bgSecondaryLight300: #c5d0de; // gray
+$bgSecondaryLight400: #9ba7b3; // gray
+$bgSecondaryLight500: #7b8b9a; // gray
+$bgSecondaryLight600: #6c7a8a; // gray
+$bgSecondaryLight700: #5c6978; // gray
+$bgSecondaryLight800: #5b697c; // gray
+$bgSecondaryLight900: #3d4755; // gray
 
 
 
@@ -114,6 +131,17 @@ $darkTextSecondary: #8492c4;
     bgPrimaryLight700: $bgPrimaryLight700;
     bgPrimaryLight800: $bgPrimaryLight800;
     bgPrimaryLight900: $bgPrimaryLight900;
+
+    bgSecondaryLight50: $bgSecondaryLight50;
+    bgSecondaryLight100: $bgSecondaryLight100;
+    bgSecondaryLight200: $bgSecondaryLight200;
+    bgSecondaryLight300: $bgSecondaryLight300;
+    bgSecondaryLight400: $bgSecondaryLight400;
+    bgSecondaryLight500: $bgSecondaryLight500;
+    bgSecondaryLight600: $bgSecondaryLight600;
+    bgSecondaryLight700: $bgSecondaryLight700;
+    bgSecondaryLight800: $bgSecondaryLight800;
+    bgSecondaryLight900: $bgSecondaryLight900;
     
 
     // success

@@ -22,6 +22,8 @@ import {
     ImageContainer,
     ButtonWrapper,
     LineEffectWrapper,
+    LoginHeadText,
+    EnterCredentialsText,
 
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
@@ -90,6 +92,12 @@ export default function SignUp() {
                             <LogoContainer>
                                 <LogoImg src={LogoPic} alt="logo" onClick={() => navigate("/")} />
                             </LogoContainer>
+                            <div>
+                                <LoginHeadText >Sign up</LoginHeadText>
+                                <EnterCredentialsText>
+                                    Enter your credentials to continue
+                                </EnterCredentialsText>
+                            </div>
                             <FormRow>
                                 <FormIcon src={IconProfile} />
                                 <Field

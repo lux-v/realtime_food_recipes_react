@@ -61,7 +61,7 @@ export const RecipieCardWrapper = styled.div`
 
     color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textPrimary};
 
-    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : theme.bgPrimaryLight200};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight900 : theme.primaryLight};
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
     border:1px solid ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.tableBorder};
     border-radius: ${border.borderRadius};

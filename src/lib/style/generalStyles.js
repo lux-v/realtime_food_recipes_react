@@ -14,6 +14,40 @@ import Descending from '../../assets/img/sort-descending.svg';
 import { ReactComponent as Trash } from '../../assets/img/delete.svg';
 import { ReactComponent as Edit } from '../../assets/img/edit.svg';
 
+
+
+export const LoginHeadText = styled.p`
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: ${({ theme }) => theme.primaryMain};
+  margin-bottom: 24px;
+  font-family: ${fonts.primary};
+`;
+
+export const EnterCredentialsText = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: ${({ theme }) => theme.grey500 || theme.primaryLight};
+  margin-bottom: 24px;
+  font-family: ${fonts.primary};
+`;
+
+// export const LogoImg = styled(Logo)`
+//  width: ${({ width }) => width || `100%`};
+//   height: ${({ height }) => height || `100%`};
+//   fill: ${({ theme }) => theme.primaryDark};
+
+//   @media (hover: hover) and (pointer: fine) {
+//     cursor:pointer;
+//   }
+// `;
+
 export const Form = styled(FormFormik)`
   width: 272px;
   margin: 0 auto;

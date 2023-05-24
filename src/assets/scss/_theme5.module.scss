@@ -15,18 +15,31 @@ $secondaryDark: #091f3c;
 $secondary200: #94a1b3;
 $secondary800: #05152b;
 
+//bgPrimaryLight notes should be greenish as the primary color
+$bgPrimaryLight50: #e6f4f1; //background
+$bgPrimaryLight100: #d5f4ed; // green
+$bgPrimaryLight200: #c9eee5; // green
+$bgPrimaryLight300: #b3e8d9; // green
+$bgPrimaryLight400: #9dd2c3; // green
+$bgPrimaryLight500: #8dc1b3; // green
+$bgPrimaryLight600: #7db0a3; // green
+$bgPrimaryLight700: #6da092; // green
+$bgPrimaryLight800: #5d8f82; // green
+$bgPrimaryLight900: #4d7e72; // green
+
+
 
 //background
-$bgPrimaryLight50: #e0e7ed; // gray
-$bgPrimaryLight100: #eef2f6dc; // gray
-$bgPrimaryLight200: #e0e7ed; // gray
-$bgPrimaryLight300: #c5d0de; // gray
-$bgPrimaryLight400: #9ba7b3; // gray
-$bgPrimaryLight500: #7b8b9a; // gray
-$bgPrimaryLight600: #6c7a8a; // gray
-$bgPrimaryLight700: #5c6978; // gray
-$bgPrimaryLight800: #5b697c; // gray
-$bgPrimaryLight900: #3d4755; // gray
+$bgSecondaryLight50: #e0e7ed; // gray
+$bgSecondaryLight100: #eef2f6dc; // gray
+$bgSecondaryLight200: #e0e7ed; // gray
+$bgSecondaryLight300: #c5d0de; // gray
+$bgSecondaryLight400: #9ba7b3; // gray
+$bgSecondaryLight500: #7b8b9a; // gray
+$bgSecondaryLight600: #6c7a8a; // gray
+$bgSecondaryLight700: #5c6978; // gray
+$bgSecondaryLight800: #5b697c; // gray
+$bgSecondaryLight900: #3d4755; // gray
 
 
 // success Colors
@@ -117,6 +130,17 @@ $darkTextSecondary: #8492c4;
     bgPrimaryLight700: $bgPrimaryLight700;
     bgPrimaryLight800: $bgPrimaryLight800;
     bgPrimaryLight900: $bgPrimaryLight900;
+
+    bgSecondaryLight50: $bgSecondaryLight50;
+    bgSecondaryLight100: $bgSecondaryLight100;
+    bgSecondaryLight200: $bgSecondaryLight200;
+    bgSecondaryLight300: $bgSecondaryLight300;
+    bgSecondaryLight400: $bgSecondaryLight400;
+    bgSecondaryLight500: $bgSecondaryLight500;
+    bgSecondaryLight600: $bgSecondaryLight600;
+    bgSecondaryLight700: $bgSecondaryLight700;
+    bgSecondaryLight800: $bgSecondaryLight800;
+    bgSecondaryLight900: $bgSecondaryLight900;
     
 
     // success

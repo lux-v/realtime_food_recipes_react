@@ -23,6 +23,8 @@ import {
   ImageImage,
   ImageContainer,
   LineEffectWrapper,
+  LoginHeadText,
+  EnterCredentialsText,
 
 } from '../../lib/style/generalStyles';
 import Button from '../../components/Button/Button';
@@ -101,6 +103,12 @@ const LogIn = () => {
                 <LogoContainer>
                   <LogoImg src={LogoPic} onClick={() => navigate("/")} />
                 </LogoContainer>
+                <div>
+                  <LoginHeadText>Welcome back</LoginHeadText>
+                  <EnterCredentialsText>
+                    Enter your credentials to continue
+                  </EnterCredentialsText>
+                </div>
                 <FormRow>
                   <FormIcon src={IconProfile} />
                   <Field

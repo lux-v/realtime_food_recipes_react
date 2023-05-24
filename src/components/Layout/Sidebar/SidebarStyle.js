@@ -74,10 +74,6 @@ export const MenuWrapper = styled.div`
   }
 `;
 
-export const LogoImg = styled.img`
-  
-  height: 75px;
-`;
 
 export const LogoText = styled.p`
   font-size: 10px;
@@ -118,8 +114,6 @@ export const ItemsWrapper = styled.div`
   width:100%;
   
   margin-top: 60px;
-  position:fixed;
-
   gap:5px;
 
   @media (${breakpoints.desktop}) {
@@ -188,12 +182,9 @@ export const HeaderNavLink = styled(NavLink)`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-
-  padding: 12px;
-  border-radius: ${border.borderRadius};
-
-  
   color: ${({ theme }) => theme.textPrimary};
+  padding: 12px;
+
 
   :hover{
     background:${({ theme }) => theme.bgPrimaryLight50};
@@ -231,8 +222,7 @@ export const HeaderNavLink = styled(NavLink)`
   }
 
   @media (${breakpoints.desktop}) {
-    ${border.borderRadius};
-
+   border-radius: ${border.borderRadius};
     ${(props) =>
     props.className === 'mobileNav' &&
     `
