@@ -400,6 +400,7 @@ export const TextArea = styled(Field).attrs({ component: 'textarea' })`
   margin-top: 15.5px;
   resize: none;
   height: 168px;
+  padding: 16px 16px 16px 16px;
 
   @media (${breakpoints.tablet}) {
     height: 176px;    
