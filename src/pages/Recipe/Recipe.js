@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 import { useRecipeLike } from '../../hooks/useRecipeLike'
@@ -36,9 +36,11 @@ import Card from '../../components/Card/Card'
 
 import { ReactComponent as PrinterIcon } from '../../assets/icons/printer.svg'
 import { ReactComponent as FacebookIcon } from '../../assets/icons/facebook.svg'
+import { FacebookShareButton } from 'react-share'
 
 const Recipe = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const recipeId = useParams().id;
     const { userData } = useContext(AuthContext)
     const recipe = useFetchRecipe(recipeId)
@@ -47,6 +49,7 @@ const Recipe = () => {
     const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
     const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
+    console.log("location: ", location)
 
     return (
         <Layout
@@ -107,8 +110,13 @@ const Recipe = () => {
                                         Share recipe
                                     </SectionHeadline>
                                     <PrinterIcon style={{ cursor: "pointer" }} onClick={() => alert("Print")} />
-                                    <FacebookIcon style={{ cursor: "pointer" }} onClick={() => alert("Facebook share")} />
-
+                                 <FacebookShareButton    
+                                        url={location.pathname}
+                                        quote={recipe.name}
+                                        hashtag="#recipes"
+                                    >
+                                        <FacebookIcon style={{ cursor: "pointer", stroke: "#2374E1" }} />
+                                    </FacebookShareButton>
                                 </SectionWrapper>
                             </LeftSideWrapper>
                             <RightSideWrapper>
