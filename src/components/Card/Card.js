@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 import {
     CardWrapper,
@@ -9,18 +9,19 @@ import {
 } from "./CardStyle"
 
 
-const Card = ({
-    title,
-    children,
-    headingElements = [],
-    elements = [],
-
-}) => {
+// const Card = ({
+//     title,
+//     children,
+//     headingElements = [],
+//     elements = [],
+// }) => {
+    const Card = forwardRef(({ title, children, headingElements = [], elements = [] }, ref) => {
+ 
 
     const isHeading = title || headingElements.length > 0
 
     return (
-        <CardWrapper>
+        <CardWrapper ref={ref}>
             {isHeading &&
                 <CardHeading>
                     {title || <p></p>}
@@ -39,6 +40,6 @@ const Card = ({
             }
         </CardWrapper>
     )
-}
+})
 
 export default Card

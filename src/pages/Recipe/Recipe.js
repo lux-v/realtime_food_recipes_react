@@ -37,6 +37,7 @@ import Card from '../../components/Card/Card'
 import { ReactComponent as PrinterIcon } from '../../assets/icons/printer.svg'
 import { ReactComponent as FacebookIcon } from '../../assets/icons/facebook.svg'
 import { FacebookShareButton } from 'react-share'
+import { useReactToPrint } from 'react-to-print'
 
 const Recipe = () => {
     const navigate = useNavigate()
@@ -49,17 +50,20 @@ const Recipe = () => {
     const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
 
-    console.log("window.location.href", window.location.href)
+    const componentRef = React.useRef();
+    const handlePrint =  useReactToPrint({
+        content: ()=> componentRef.current,
+    })
+
     return (
         <Layout
             title="Recipe details"
         >
             {recipe ?
                 <Card
+                    ref={componentRef}
                     headingElements={[
                         <Button callback={() => navigate(`update`)} isHidden={!isOwner}>Edit </Button>,
-                        // <Button isTertiary callback={() => navigate(-1)}>Back</Button>
-
                     ]}
                 >
                     <RecipeWrapper>
@@ -108,7 +112,7 @@ const Recipe = () => {
                                     <SectionHeadline>
                                         Share recipe
                                     </SectionHeadline>
-                                    <PrinterIcon style={{ cursor: "pointer" }} onClick={() => alert("Print")} />
+                                    <PrinterIcon style={{ cursor: "pointer" }} onClick={handlePrint} />
                                  <FacebookShareButton    
                                         url={window.location.href}
                                         quote={recipe.name}

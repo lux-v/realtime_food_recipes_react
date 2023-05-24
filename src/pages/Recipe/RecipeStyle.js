@@ -48,6 +48,10 @@ export const TopSideWrapper = styled.div`
     @media (${breakpoints.desktop}) {
         flex-direction:row;
     }
+
+    @media print {
+        page-break-inside: avoid;
+    }
 `
 
 export const BottomSideWrapper = styled.div`
@@ -68,6 +72,12 @@ export const BottomSideWrapper = styled.div`
     width:100%;
     margin-top:50px;
     margin-bottom:50px;
+
+        
+        
+    @media print {
+        page-break-before: always;
+    }
 `
 
 export const LeftSideWrapper = styled.div`
