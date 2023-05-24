@@ -2,7 +2,7 @@
 
 
 //primary
-$primaryLight: #F2F2F2;
+$primaryLight: #ffeff0;
 $primaryMain: #EB2828;
 $primaryDark: #B71C1C;
 $primary200: #ffb5bc;
@@ -28,16 +28,6 @@ $secondary700: #1976D2;
 $secondary800: #1565C0;
 $secondary900: #0D47A1;
 
-//background secondary
-$bgSecondaryLight100: #eef2f6; // gray
-$bgSecondaryLight200: #e0e7ed; // gray
-$bgSecondaryLight300: #c5d0de; // gray
-$bgSecondaryLight400: #9ba7b3; // gray
-$bgSecondaryLight500: #7b8b9a; // gray
-$bgSecondaryLight600: #6c7a8a; // gray
-$bgSecondaryLight700: #5c6978; // gray
-$bgSecondaryLight800: #4d5867; // gray
-$bgSecondaryLight900: #3d4755; // gray
 
 //background red
 $bgPrimaryLight50: #ffe6e8; // red
@@ -51,6 +41,17 @@ $bgPrimaryLight700: #e53935; // red
 $bgPrimaryLight800: #d32f2f; // red
 $bgPrimaryLight900: #c62828; // red
 $bgPrimaryTransparent: #bf393933;
+
+//background secondary
+$bgSecondaryLight100: #eef2f6; // gray
+$bgSecondaryLight200: #e0e7ed; // gray
+$bgSecondaryLight300: #c5d0de; // gray
+$bgSecondaryLight400: #9ba7b3; // gray
+$bgSecondaryLight500: #7b8b9a; // gray
+$bgSecondaryLight600: #6c7a8a; // gray
+$bgSecondaryLight700: #5c6978; // gray
+$bgSecondaryLight800: #4d5867; // gray
+$bgSecondaryLight900: #3d4755; // gray
 
 
 //success
