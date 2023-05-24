@@ -51,7 +51,7 @@ export const AddNewRecipeSchema = Yup.object({
     ingredients: Yup.array()
         .of(Yup.string()
             .required('Ingredient name is required')
-            .max(50, 'Ingredient name must be less than 50 characters')
+            .max(100, 'Ingredient name must be less than 100 characters')
         )
         .min(1, 'At least one ingredient is required')
         .max(20, 'Maximum number of ingredients is 20'),

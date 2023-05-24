@@ -240,7 +240,6 @@ const Recipes = () => {
     }
 
     const handleApplyFilter = useCallback(() => {
-        console.log("apply filter: ", formikRef.current)
         formikRef.current &&
             formikRef.current.submitForm().then(() => {
                 handleFilterRecipes()

@@ -42,13 +42,12 @@ import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 import useFetchRecipe from '../../hooks/useFetchRecipe'
 import Modal from '../../components/Modal/Modal'
-import { ModalAlert, ModalAlertIcon } from '../../components/Modal/ModalStyle'
 
 
 const categoryOptions = ["Appetizers", "Beverages", "Breads", "Breakfast and Brunch", "Desserts", "Main Dishes", "Salads", "Sandwiches", "Side Dishes", "Soups and Stews", "Grilling and BBQ", "Holiday", "Cocktails", "Smoothies", "Snacks"]
-const dieateryRestrictionsOptions = ["Vegetarian/Vegan", "Gluten-Free", "Dairy-Free", "Low Carb", "Keto-Friendly", "Paleo", "Nut-Free"]
-const cookingMethodOptions = ["Bake", "Boil", "Broil", "Fry", "Grill", "Microwave", "Poach", "Roast", "Saute", "Steam", "Stew"]
-const cuisineOptions = ["American", "Asian", "British", "Caribbean", "Central Europe", "Chinese", "Eastern Europe", "French", "Indian", "Italian", "Japanese", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian"]
+const dieateryRestrictionsOptions = ["None", "Vegetarian/Vegan", "Gluten-Free", "Dairy-Free", "Low Carb", "Keto-Friendly", "Paleo", "Nut-Free"]
+const cookingMethodOptions = ["Bake", "Boil", "Broil", "Fry", "Grill", "Microwave", "Poach", "Roast", "Saute", "Steam", "Stew", "Stir-fry", "Stovetop", "Slow Cooker"]
+const cuisineOptions = ["American", "Asian", "British", "Caribbean", "Central Europe", "Chinese", "Eastern Europe", "French", "Indian", "Italian", "Japanese", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian", "Thai"]
 
 const RecipesAddNew = ({ isEditRecipe }) => {
     const { setToastType, userData } = useContext(AuthContext)
@@ -66,7 +65,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
 
 
 
-    const ingredientErrorLengthMessage = "New ingredient name must be less than 50 characters";
+    const ingredientErrorLengthMessage = "New ingredient name must be less than 100 characters";
     const ingredientErrorRequiredMessage = "Ingredient cannot be empty";
     const ingredientUniqueErrorMessage = "This ingredient is already added";
 
@@ -75,7 +74,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
         formikRef.current.handleBlur("ingredients")
 
         if (newIngredient !== "")
-            if (newIngredient.length <= 50)
+            if (newIngredient.length <= 100)
                 if (!formikRef.current.values.ingredients.includes(newIngredient)) {
                     if (e.key === "Enter" || e.keyCode === 13 || e.type === "click") {
                         callback(newIngredient)
@@ -100,7 +99,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
 
         newValue === "" ?
             setNewIngredientError(ingredientErrorRequiredMessage)
-            : newValue.length > 50 ?
+            : newValue.length > 100 ?
                 setNewIngredientError(ingredientErrorLengthMessage) :
                 formikRef.current.values.ingredients.includes(newValue) ?
                     setNewIngredientError(ingredientUniqueErrorMessage)
