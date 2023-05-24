@@ -1,0 +1,4 @@
+export const categoryOptions = ["Appetizers", "Beverages", "Breads", "Breakfast and Brunch", "Desserts", "Main Dishes", "Salads", "Sandwiches", "Side Dishes", "Soups and Stews", "Grilling and BBQ", "Holiday", "Cocktails", "Smoothies", "Snacks"]
+export const dieateryRestrictionsOptions = ["None", "Vegetarian/Vegan", "Gluten-Free", "Dairy-Free", "Low Carb", "Keto-Friendly", "Paleo", "Nut-Free"]
+export const cookingMethodOptions = ["Bake", "Boil", "Broil", "Fry", "Grill", "Microwave", "Poach", "Roast", "Saute", "Steam", "Stew", "Stir-fry", "Stovetop", "Slow Cooker"]
+export const cuisineOptions = ["American", "Asian", "British", "Caribbean", "Central Europe", "Chinese", "Eastern Europe", "French", "Indian", "Italian", "Japanese", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian", "Thai"]

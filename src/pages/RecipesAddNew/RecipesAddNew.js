@@ -42,12 +42,8 @@ import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 import useFetchRecipe from '../../hooks/useFetchRecipe'
 import Modal from '../../components/Modal/Modal'
+import { categoryOptions, cookingMethodOptions, cuisineOptions, dieateryRestrictionsOptions } from '../../lib/constants'
 
-
-const categoryOptions = ["Appetizers", "Beverages", "Breads", "Breakfast and Brunch", "Desserts", "Main Dishes", "Salads", "Sandwiches", "Side Dishes", "Soups and Stews", "Grilling and BBQ", "Holiday", "Cocktails", "Smoothies", "Snacks"]
-const dieateryRestrictionsOptions = ["None", "Vegetarian/Vegan", "Gluten-Free", "Dairy-Free", "Low Carb", "Keto-Friendly", "Paleo", "Nut-Free"]
-const cookingMethodOptions = ["Bake", "Boil", "Broil", "Fry", "Grill", "Microwave", "Poach", "Roast", "Saute", "Steam", "Stew", "Stir-fry", "Stovetop", "Slow Cooker"]
-const cuisineOptions = ["American", "Asian", "British", "Caribbean", "Central Europe", "Chinese", "Eastern Europe", "French", "Indian", "Italian", "Japanese", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian", "Thai"]
 
 const RecipesAddNew = ({ isEditRecipe }) => {
     const { setToastType, userData } = useContext(AuthContext)

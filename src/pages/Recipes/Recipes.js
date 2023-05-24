@@ -13,29 +13,25 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card'
 import { FieldArray, Formik } from 'formik'
-import { Form, SmallField, SearchBar, ErrorMesagge, ErrorMessageCustom } from "../../lib/style/generalStyles"
+import { Form, SmallField, SearchBar, ErrorMesagge, ErrorMessageCustom, TwoInRow, SmallSelect, Option } from "../../lib/style/generalStyles"
 import { RecipeIngredientsWrapper } from '../RecipesAddNew/RecipesAddNewStyles'
 import Chip from '../../components/Chip/Chip'
 import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
 import Modal from '../../components/Modal/Modal'
+import { SectionHeadline, SectionWrapper } from '../Recipe/RecipeStyle'
+import { categoryOptions, cookingMethodOptions, cuisineOptions, dieateryRestrictionsOptions } from '../../lib/constants'
 
 
 
 const FilterContent = ({ formikRef }) => {
     // I want to have an ability to filter by:
     // number of likes
-    // specific ingredients
-    // time to cook
+    // cookTimeMin to cook
     // difficulty
-    // category
-    // name
 
     // likes should be a range option
-    // ingredients should be a list of ingredients
-    // time should be a range option
+    // cookTimeMin should be a range option
     // difficulty should be from 1 to 5
-    // category should be a list of categories
-    // name should be a string
 
     setTimeout(() => {
         const input = document.getElementById("newIngredient");
@@ -100,21 +96,13 @@ const FilterContent = ({ formikRef }) => {
         <Formik
             innerRef={formikRef}
             initialValues={{
-                likes: filterValues?.likes || {
-                    min: 0,
-                    max: 10000
-                },
+                name: "",
                 ingredients: filterValues?.ingredients || [],
-                time: filterValues?.time || {
-                    min: 0,
-                    max: 1440
-                },
-                difficulty: filterValues?.difficulty || {
-                    min: 0,
-                    max: 5
-                },
-                category: filterValues?.category || [],
-                name: ""
+                category: filterValues?.category || "",
+                dietaryRestrictions: filterValues?.dietaryRestrictions || "",
+                cuisine: filterValues?.cuisine || "",
+                cookingMethod: filterValues?.cookingMethod || "",
+
             }}
             onSubmit={(values) => {
                 localStorage.setItem("filter", JSON.stringify(values))
@@ -122,65 +110,168 @@ const FilterContent = ({ formikRef }) => {
         >
             {(formik) => (
                 <Form>
-                    <FieldArray
-                        name="ingredients"
-                        render={arrayHelpers => (
-                            <>
-                                <div style={{ marginBottom: "10px" }}>
-                                    <a>
-                                        Filter by ingredient:
-                                    </a>
+                    <SectionWrapper>
+                        <FieldArray
+                            name="ingredients"
+                            render={arrayHelpers => (
+                                <>
+                                    <SectionWrapper>
+                                        <SectionHeadline>
+                                            Filter by ingredients:
+                                        </SectionHeadline>
 
-                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", zIndex: "999" }}>
-                                        <SmallField
-                                            id="newIngredient"
-                                            name="newIngredient"
-                                            type='newIngredient'
-                                            placeholder="Add ingredient"
-                                            error={newIngredientError ? true : false}
-                                            disabled={formik.isSubmitting}
-                                            isSecondary
-                                            width="100%"
-                                            value={newIngredient}
-                                            onKeyDown={(e) =>
-                                                handleKeyDown(e, (newValue) => {
-                                                    arrayHelpers.insert(
-                                                        formik.values.ingredients.length - 1,
-                                                        newValue
-                                                    );
-                                                }, formik)
-                                            }
-                                            onChange={(e) => handleNewIngredientChange(e, formik)}
-                                        />
-                                        <Button
-                                            type="button"
-                                            callback={(e) =>
-                                                handleKeyDown(e, (newValue) => {
-                                                    arrayHelpers.insert(
-                                                        formik.values.ingredients.length - 1,
-                                                        newValue
-                                                    );
-                                                }, formik)
-                                            }
-                                            height="100%"
-                                        >
-                                            +
-                                        </Button>
-                                    </div>
-                                    <ErrorMessageCustom isError={newIngredientError}>{newIngredientError}</ErrorMessageCustom>
-                                    <ErrorMesagge component={'div'} name="ingredients" />
 
-                                </div>
-                                <RecipeIngredientsWrapper>
-                                    {formik.values.ingredients.map((ingredient, index) => (
-                                        <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                                            <Chip size="small" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                        <div style={{ display: "flex", alignItems: "center", gap: "10px", zIndex: "999" }}>
+                                            <SmallField
+                                                id="newIngredient"
+                                                name="newIngredient"
+                                                type='newIngredient'
+                                                placeholder="Add ingredient"
+                                                error={newIngredientError ? true : false}
+                                                disabled={formik.isSubmitting}
+                                                isSecondary
+                                                width="100%"
+                                                value={newIngredient}
+                                                onKeyDown={(e) =>
+                                                    handleKeyDown(e, (newValue) => {
+                                                        arrayHelpers.insert(
+                                                            formik.values.ingredients.length - 1,
+                                                            newValue
+                                                        );
+                                                    }, formik)
+                                                }
+                                                onChange={(e) => handleNewIngredientChange(e, formik)}
+                                            />
+                                            <Button
+                                                type="button"
+                                                callback={(e) =>
+                                                    handleKeyDown(e, (newValue) => {
+                                                        arrayHelpers.insert(
+                                                            formik.values.ingredients.length - 1,
+                                                            newValue
+                                                        );
+                                                    }, formik)
+                                                }
+                                                height="100%"
+                                            >
+                                                +
+                                            </Button>
                                         </div>
-                                    ))}
-                                </RecipeIngredientsWrapper>
-                            </>
-                        )}
-                    />
+                                        <ErrorMessageCustom isError={newIngredientError}>{newIngredientError}</ErrorMessageCustom>
+                                        <ErrorMesagge component={'div'} name="ingredients" />
+
+                                    </SectionWrapper>
+                                    <RecipeIngredientsWrapper>
+                                        {formik.values.ingredients.map((ingredient, index) => (
+                                            <div key={index} style={{ display: "flex", alignItems: "center" }}>
+                                                <Chip size="small" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                            </div>
+                                        ))}
+                                    </RecipeIngredientsWrapper>
+                                </>
+                            )}
+                        />
+                    </SectionWrapper>
+                    <TwoInRow width="100%">
+                        <SectionWrapper>
+                            <SectionHeadline>
+                                Filter by Category
+                            </SectionHeadline>
+                            <SmallSelect
+                                id="category"
+                                name="category"
+                                error={formik.touched.category && formik.errors.category}
+                                disabled={formik.isSubmitting}
+                                isSecondary
+                                width="100%"
+                                onChange={(e) => { formik.setFieldValue("category", e.target.value) }}
+                                value={formik.values.category}
+
+                            >
+                                <Option key={-2} value="All">All</Option>
+                                <Option key={-1} value="Not defined">Not defined</Option>
+                                {categoryOptions.map((category, index) => (
+                                    <Option key={index} value={category}>{category}</Option>
+                                ))
+                                }
+                            </SmallSelect>
+                            <ErrorMesagge component={'div'} name="category" />
+                        </SectionWrapper>
+                        <SectionWrapper>
+                            <SectionHeadline>
+                                Filter by Dietary Restrictions
+                            </SectionHeadline>
+                            <SmallSelect
+                                id="dietaryRestrictions"
+                                name="dietaryRestrictions"
+                                error={formik.touched.dietaryRestrictions && formik.errors.dietaryRestrictions}
+                                disabled={formik.isSubmitting}
+                                isSecondary
+                                width="100%"
+                                onChange={(e) => { formik.setFieldValue("dietaryRestrictions", e.target.value) }}
+                                value={formik.values.dietaryRestrictions}
+                            // multiple
+                            >
+                                <Option key={-2} value="All">All</Option>
+                                <Option key={-1} value="Not defined">Not defined</Option>
+                                {dieateryRestrictionsOptions.map((dietaryRestriction, index) => (
+                                    <Option key={index} value={dietaryRestriction}>{dietaryRestriction}</Option>
+                                ))
+                                }
+                            </SmallSelect>
+                            <ErrorMesagge component={'div'} name="dietaryRestrictions" />
+                        </SectionWrapper>
+                    </TwoInRow>
+                    <TwoInRow width="100%">
+                        <SectionWrapper>
+                            <SectionHeadline>
+                                Filter by Cooking method
+                            </SectionHeadline>
+                            <SmallSelect
+                                id="cookingMethod"
+                                name="cookingMethod"
+                                error={formik.touched.cookingMethod && formik.errors.cookingMethod}
+                                disabled={formik.isSubmitting}
+                                isSecondary
+                                width="100%"
+                                onChange={(e) => { formik.setFieldValue("cookingMethod", e.target.value) }}
+                                value={formik.values.cookingMethod}
+
+                            >
+                                <Option key={-2} value="All">All</Option>
+                                <Option key={-1} value="Not defined">Not defined</Option>
+                                {cookingMethodOptions.map((cookingMethod, index) => (
+                                    <Option key={index} value={cookingMethod}>{cookingMethod}</Option>
+                                ))
+                                }
+                            </SmallSelect>
+                            <ErrorMesagge component={'div'} name="cookingMethod" />
+                        </SectionWrapper>
+                        <SectionWrapper>
+                            <SectionHeadline>
+                                Filter by Cuisine
+                            </SectionHeadline>
+                            <SmallSelect
+                                id="cuisine"
+                                name="cuisine"
+                                error={formik.touched.cuisine && formik.errors.cuisine}
+                                disabled={formik.isSubmitting}
+                                isSecondary
+                                width="100%"
+                                onChange={(e) => { formik.setFieldValue("cuisine", e.target.value) }}
+                                value={formik.values.cuisine}
+                            >
+                                <Option key={-2} value="All">All</Option>
+                                <Option key={-1} value="Not defined">Not defined</Option>
+                                {cuisineOptions.map((cuisine, index) => (
+                                    <Option key={index} value={cuisine}>{cuisine}</Option>
+                                ))
+                                }
+                            </SmallSelect>
+                            <ErrorMesagge component={'div'} name="cuisine" />
+                        </SectionWrapper>
+
+                    </TwoInRow>
                 </Form>
             )}
         </Formik>
@@ -246,38 +337,25 @@ const Recipes = () => {
             })
     }, [formikRef.current])
 
-    // const handleCloseCallback = useCallback(() => {
-    //     formikRef.current && formikRef.current.resetForm()
-    // }, [formikRef.current])
-
 
     const handleFilterRecipes = () => {
         try {
             const filterValues = JSON.parse(localStorage.getItem("filter"))
+
             if (filterValues) {
                 const filtered = recipes.filter(recipe => {
                     return (
-                        recipe.likedBy?.length >= filterValues.likes.min &&
-                        recipe.likedBy?.length <= filterValues.likes.max &&
-                        recipe.cookTimeMin >= filterValues.time.min &&
-                        recipe.cookTimeMin <= filterValues.time.max &&
-                        // recipe.difficulty >= filterValues.difficulty.min &&
-                        // recipe.difficulty <= filterValues.difficulty.max &&
+                        (filterValues.category === "All" || (!recipe?.category && filterValues.category === "Not defined" || recipe.category === "" && filterValues.category === "Not defined") ? true : recipe?.category?.toLowerCase().includes(filterValues?.category?.toLowerCase())) &&
+                        (filterValues.cuisine === "All" || (!recipe?.cuisine && filterValues.cuisine === "Not defined" || recipe.cuisine === "" && filterValues.cuisine === "Not defined") ? true : recipe?.cuisine?.toLowerCase().includes(filterValues.cuisine?.toLowerCase())) &&
+                        (filterValues.cookingMethod === "All" || (!recipe?.cookingMethod && filterValues.cookingMethod === "Not defined" || recipe.cookingMethod === "" && filterValues.cookingMethod === "Not defined") ? true : recipe?.cookingMethod?.toLowerCase().includes(filterValues.cookingMethod?.toLowerCase())) &&
+                        (filterValues.dietaryRestrictions === "All" || (!recipe?.dietaryRestrictions && filterValues.dietaryRestrictions === "Not defined" || recipe.dietaryRestrictions === "" && filterValues.dietaryRestrictions === "Not defined") ? true : recipe?.dietaryRestrictions?.toLowerCase().includes(filterValues.dietaryRestrictions?.toLowerCase())) &&
 
-                        // (filterValues.ingredients.length === 0 ||
-                        //     filterValues.ingredients.every((ingredient) =>
-                        //         recipe.ingredients.map(recipeIngredient => {
-                        //             console.log("recipeIngredient: ", recipeIngredient, "\ningredient: ", ingredient);
-                        //             return recipeIngredient.toLowerCase().includes(ingredient.toLowerCase())
-                        //         }
-                        //         )
-
-                        //     ))
-
-
-                        (filterValues.ingredients.length === 0 || filterValues.ingredients.every(ingredient => recipe.ingredients.includes(ingredient.toLowerCase())))
-                        // &&
-                        // (filterValues.category.length === 0 || filterValues.category.every(category => recipe.category.includes(category)))
+                        filterValues.ingredients.every((ingredient) => {
+                            return recipe.ingredients.some((recipeIngredient) => {
+                                // Case-insensitive comparison
+                                return recipeIngredient.toLowerCase().includes(ingredient.toLowerCase());
+                            });
+                        })
                     )
                 })
                 setFilteredRecipes(filtered)
