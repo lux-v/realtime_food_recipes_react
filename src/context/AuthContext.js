@@ -7,7 +7,8 @@ import { postUserData } from '../api/users';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(!!JSON.parse(localStorage.getItem('accessToken')));
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 

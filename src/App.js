@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     const accessToken = JSON.parse(localStorage.getItem('accessToken'))
-    const isLoggedIn = accessToken !== null && accessToken !== undefined;
+    const isLoggedIn = !!accessToken;
 
     setIsLoggedIn(isLoggedIn);
   });
@@ -104,7 +104,6 @@ function App() {
         </Routes>
       </Router>
       <Toast toastType={toastType} setToastType={setToastType} />
-      {/* <Modal /> */}
     </ThemeProvider>
 
   );
