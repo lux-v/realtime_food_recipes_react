@@ -40,7 +40,6 @@ import { FacebookShareButton } from 'react-share'
 
 const Recipe = () => {
     const navigate = useNavigate()
-    const location = useLocation()
     const recipeId = useParams().id;
     const { userData } = useContext(AuthContext)
     const recipe = useFetchRecipe(recipeId)
@@ -49,8 +48,8 @@ const Recipe = () => {
     const imageSrc = useCheckImage(recipe?.imgUrl || "", RecipeImagePlaceholder);
     const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
-    console.log("location: ", location)
 
+    console.log("window.location.href", window.location.href)
     return (
         <Layout
             title="Recipe details"
@@ -111,7 +110,7 @@ const Recipe = () => {
                                     </SectionHeadline>
                                     <PrinterIcon style={{ cursor: "pointer" }} onClick={() => alert("Print")} />
                                  <FacebookShareButton    
-                                        url={location.pathname}
+                                        url={window.location.href}
                                         quote={recipe.name}
                                         hashtag="#recipes"
                                     >
