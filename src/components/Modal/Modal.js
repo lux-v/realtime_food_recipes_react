@@ -28,7 +28,6 @@ const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallb
     }
 
     const handleOpen = () => {
-        console.log("opened")
         if (modalWrapperRef.current && !modalWrapperRef.current.open) modalWrapperRef.current.showModal()
         document.addEventListener("mousedown", handleClickOutside);
     }

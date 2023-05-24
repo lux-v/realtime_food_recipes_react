@@ -173,7 +173,6 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                     elements={
                         [
                             <Button callback={handleCreateUpdateModal}
-
                             >
                                 {isEditRecipe ? "Update recipe" : "Create recipe +"}
                             </Button>,
@@ -201,19 +200,24 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                         validationSchema={AddNewRecipeSchema}
                         onSubmit={async (values, actions) => {
                             try {
+
+                                const submitValues = {
+                                    ...values
+                                }
+                                delete submitValues.newIngredient
+
                                 const formattedValues = isEditRecipe ?
                                     {
-                                        ...values,
-                                        likedBy: recipe.likedBy,
+                                        ...submitValues,
+                                        likedBy: recipe.likedBy || [],
                                         updatedAt: new Date()
                                     } :
                                     {
-                                        ...values,
+                                        ...submitValues,
                                         likedBy: [],
                                         createdBy: userData.uid || "",
                                         createdAt: new Date()
                                     }
-
 
                                 const afterSubmit = (recipeId) => {
                                     actions.setSubmitting(false);
