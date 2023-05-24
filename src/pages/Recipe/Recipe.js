@@ -127,25 +127,29 @@ const Recipe = () => {
                                     </TextContent>
                                 </SectionWrapper>
                                 <TwoInRow width="100%">
-                                    <SectionWrapper>
-                                        <SectionHeadline>
-                                            Cook time
-                                        </SectionHeadline>
-                                        <TextContent>
-                                            {recipe.cookTimeMin} mins
-                                        </TextContent>
-                                    </SectionWrapper>
-                                    <SectionWrapper >
-                                        <SectionHeadline>
-                                            Servings
-                                        </SectionHeadline>
-                                        <TextContent>
-                                            {recipe.servings > 1 ? `${recipe.servings} servings` : `${recipe.servings} serving`}
-                                        </TextContent>
-                                    </SectionWrapper>
+                                    {recipe.cookTimeMin &&
+                                        <SectionWrapper>
+                                            <SectionHeadline>
+                                                Cook time
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.cookTimeMin > 1 ? `${recipe.cookTimeMin} minutes` : `${recipe.cookTimeMin} minute`}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
+                                    {recipe.servings &&
+                                        <SectionWrapper >
+                                            <SectionHeadline>
+                                                Servings
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.servings > 1 ? `${recipe.servings} servings` : `${recipe.servings} serving`}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
                                 </TwoInRow>
                                 <TwoInRow width="100%">
-                                    {["Not defined", " "].includes(recipe.category) &&
+                                    {recipe.category && recipe.category !== "Not defined" &&
                                         <SectionWrapper>
                                             <SectionHeadline>
                                                 Category
@@ -155,7 +159,7 @@ const Recipe = () => {
                                             </TextContent>
                                         </SectionWrapper>
                                     }
-                                    {["Not defined", " "].includes(recipe.dietaryRestrictions) &&
+                                    {recipe.dietaryRestrictions && recipe.dietaryRestrictions !== "Not defined" &&
                                         <SectionWrapper >
                                             <SectionHeadline>
                                                 Dietary restrictions
@@ -167,7 +171,7 @@ const Recipe = () => {
                                     }
                                 </TwoInRow>
                                 <TwoInRow width="100%">
-                                    {["Not defined", " "].includes(recipe.cookingMethod) &&
+                                    {recipe.cookingMethod && recipe.cookingMethod !== "Not defined" &&
                                         <SectionWrapper>
                                             <SectionHeadline>
                                                 Cooking method
@@ -177,7 +181,7 @@ const Recipe = () => {
                                             </TextContent>
                                         </SectionWrapper>
                                     }
-                                    {["Not defined", " "].includes(recipe.cuisine) &&
+                                    {recipe.cuisine && recipe.cuisine !== "Not defined" &&
                                         <SectionWrapper >
                                             <SectionHeadline>
                                                 Cuisine
