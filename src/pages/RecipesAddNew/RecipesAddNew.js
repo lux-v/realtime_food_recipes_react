@@ -461,11 +461,11 @@ const RecipesAddNew = ({ isEditRecipe }) => {
             <Modal
                 isOpen={removeCookingStepModal.isOpen}
                 closeModal={() => setRemoveCookingStepModal({ isOpen: false, params: null })}
-                title="Delete"
+                title="Remove"
 
                 actionCallback={() => removeCookingStepModal.params?.callback(removeCookingStepModal.params?.stepNumber)}
             >
-                <p>Are you sure you want to delete <span style={{ fontWeight: "600" }}>Step {removeCookingStepModal.params?.stepNumber + 1} </span>?</p>
+                <p>Are you sure you want to remove <span style={{ fontWeight: "600" }}>Step {removeCookingStepModal.params?.stepNumber + 1} </span>?</p>
             </Modal>
             <Modal
                 isOpen={isCreateUpdateModalOpen}
