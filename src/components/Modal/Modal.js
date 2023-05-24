@@ -5,11 +5,11 @@ import Button from '../Button/Button';
 import {
     CloseIcon,
     CloseIconWrapper,
-    Modal as ModalWrapper, ModalButtons, ModalContent, ModalHeader, Title,
+    Modal as ModalWrapper, ModalAlert, ModalAlertIcon, ModalButtons, ModalContent, ModalHeader, Title,
 } from './ModalStyle'
 
 
-const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallback, actionText, showAction = true, showCancel = true }) => {
+const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallback, actionText, showAction = true, showCancel = true, isAlert }) => {
     const modalWrapperRef = React.useRef(null);
 
     const handleAction = () => {
@@ -66,7 +66,16 @@ const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallb
                     <CloseIcon />
                 </CloseIconWrapper>
             </ModalHeader>
-            <ModalContent>{children}</ModalContent>
+            <ModalContent>
+                {isAlert ?
+                    <ModalAlert>
+                        <ModalAlertIcon />
+                        {children}
+                    </ModalAlert>
+                    :
+                    children
+                }
+            </ModalContent>
             <ModalButtons>
                 {showCancel && <Button isTertiary callback={handleClose}>Cancel</Button>}
                 {showAction && <Button callback={handleAction}>{actionText || title}</Button>}

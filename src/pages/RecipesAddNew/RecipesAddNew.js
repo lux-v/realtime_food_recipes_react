@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FieldArray, Formik } from 'formik'
 import { AddNewRecipeSchema } from '../../utils/validationSchema'
@@ -16,7 +16,9 @@ import {
     TextArea,
     TwoInRow,
     InputField,
-    ErrorMessageCustom
+    ErrorMessageCustom,
+    SmallSelect,
+    Option
 } from '../../lib/style/generalStyles'
 import {
     BottomSideWrapper,
@@ -40,7 +42,13 @@ import { ReactComponent as CloseIcon } from '../../assets/img/x-icon.svg';
 import RecipeImagePlaceholder from '../../assets/img/recipe-image-placeholder.png';
 import useFetchRecipe from '../../hooks/useFetchRecipe'
 import Modal from '../../components/Modal/Modal'
+import { ModalAlert, ModalAlertIcon } from '../../components/Modal/ModalStyle'
 
+
+const categoryOptions = ["Appetizers", "Beverages", "Breads", "Breakfast and Brunch", "Desserts", "Main Dishes", "Salads", "Sandwiches", "Side Dishes", "Soups and Stews", "Grilling and BBQ", "Holiday", "Cocktails", "Smoothies", "Snacks"]
+const dieateryRestrictionsOptions = ["Vegetarian/Vegan", "Gluten-Free", "Dairy-Free", "Low Carb", "Keto-Friendly", "Paleo", "Nut-Free"]
+const cookingMethodOptions = ["Bake", "Boil", "Broil", "Fry", "Grill", "Microwave", "Poach", "Roast", "Saute", "Steam", "Stew"]
+const cuisineOptions = ["American", "Asian", "British", "Caribbean", "Central Europe", "Chinese", "Eastern Europe", "French", "Indian", "Italian", "Japanese", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian"]
 
 const RecipesAddNew = ({ isEditRecipe }) => {
     const { setToastType, userData } = useContext(AuthContext)
@@ -48,7 +56,6 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     const formikRef = useRef(null)
     const recipeId = useParams().id;
     const recipe = useFetchRecipe(recipeId);
-    const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
 
     const [imageUrl, setImageUrl] = useState("")
     const imageSrc = useCheckImage(imageUrl, RecipeImagePlaceholder);
@@ -179,9 +186,14 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                         initialValues={{
                             name: recipe?.name || "",
                             description: recipe?.description || "",
-                            ingredients: recipe?.ingredients || [],
-                            imgUrl: recipe?.imgUrl || "",
                             cookTimeMin: recipe?.cookTimeMin || "",
+                            servings: recipe?.servings || "",
+                            category: recipe?.category || "",
+                            dietaryRestrictions: recipe?.dietaryRestrictions || "",
+                            cuisine: recipe?.cuisine || "",
+                            cookingMethod: recipe?.cookingMethod || "",
+                            imgUrl: recipe?.imgUrl || "",
+                            ingredients: recipe?.ingredients || [],
                             steps: recipe?.steps || [],
                             newIngredient: "",
 
@@ -191,21 +203,13 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                             try {
                                 const formattedValues = isEditRecipe ?
                                     {
-                                        name: values.name,
-                                        description: values.description,
-                                        ingredients: values.ingredients,
-                                        cookTimeMin: values.cookTimeMin,
-                                        imgUrl: values.imgUrl,
-                                        steps: values.steps,
+                                        ...values,
+                                        likedBy: recipe.likedBy,
+                                        updatedAt: new Date()
                                     } :
                                     {
-                                        name: values.name,
-                                        description: values.description,
-                                        ingredients: values.ingredients,
-                                        cookTimeMin: values.cookTimeMin,
+                                        ...values,
                                         likedBy: [],
-                                        imgUrl: values.imgUrl,
-                                        steps: values.steps,
                                         createdBy: userData.uid || "",
                                         createdAt: new Date()
                                     }
@@ -292,10 +296,29 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                 />
                                                 <ErrorMesagge component={'div'} name="description" />
                                             </SectionWrapper>
+                                            <SectionWrapper>
+                                                <SectionHeadline>
+                                                    Image URL
+                                                </SectionHeadline>
+                                                <SmallField
+                                                    id="imgUrl"
+                                                    name="imgUrl"
+                                                    type='imgUrl'
+                                                    error={formik.touched.imgUrl && formik.errors.imgUrl}
+                                                    placeholder="Image URL"
+                                                    disabled={formik.isSubmitting}
+                                                    isSecondary
+
+                                                    width="100%"
+
+                                                    onChange={(e) => { formik.setFieldValue("imgUrl", e.target.value); setImageUrl(e.target.value) }}
+                                                />
+                                                <ErrorMesagge component={'div'} name="imgUrl" />
+                                            </SectionWrapper>
                                             <TwoInRow width="100%">
                                                 <SectionWrapper>
                                                     <SectionHeadline>
-                                                        Cook time (minutes)
+                                                        Cook time (minutes) <RequiredSpan>*</RequiredSpan>
                                                     </SectionHeadline>
                                                     <SmallField
                                                         id="cookTimeMin"
@@ -312,23 +335,118 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                 </SectionWrapper>
                                                 <SectionWrapper>
                                                     <SectionHeadline>
-                                                        Image URL
+                                                        Servings <RequiredSpan>*</RequiredSpan>
                                                     </SectionHeadline>
                                                     <SmallField
-                                                        id="imgUrl"
-                                                        name="imgUrl"
-                                                        type='imgUrl'
-                                                        error={formik.touched.imgUrl && formik.errors.imgUrl}
-                                                        placeholder="Image URL"
+                                                        id="servings"
+                                                        name="servings"
+                                                        type='number'
+                                                        error={formik.touched.servings && formik.errors.servings}
+                                                        placeholder="Servings"
                                                         disabled={formik.isSubmitting}
                                                         isSecondary
-
                                                         width="100%"
-
-                                                        onChange={(e) => { formik.setFieldValue("imgUrl", e.target.value); setImageUrl(e.target.value) }}
                                                     />
-                                                    <ErrorMesagge component={'div'} name="imgUrl" />
+                                                    <ErrorMesagge component={'div'} name="servings" />
                                                 </SectionWrapper>
+
+
+                                            </TwoInRow>
+                                            <TwoInRow width="100%">
+                                                <SectionWrapper>
+                                                    <SectionHeadline>
+                                                        Category
+                                                    </SectionHeadline>
+                                                    <SmallSelect
+                                                        id="category"
+                                                        name="category"
+                                                        error={formik.touched.category && formik.errors.category}
+                                                        disabled={formik.isSubmitting}
+                                                        isSecondary
+                                                        width="100%"
+                                                        onChange={(e) => { formik.setFieldValue("category", e.target.value) }}
+                                                        value={formik.values.category}
+
+                                                    >
+                                                        <Option key={-1} value="Not defined">Not defined</Option>
+                                                        {categoryOptions.map((category, index) => (
+                                                            <Option key={index} value={category}>{category}</Option>
+                                                        ))
+                                                        }
+                                                    </SmallSelect>
+                                                    <ErrorMesagge component={'div'} name="category" />
+                                                </SectionWrapper>
+                                                <SectionWrapper>
+                                                    <SectionHeadline>
+                                                        Dietary Restrictions
+                                                    </SectionHeadline>
+                                                    <SmallSelect
+                                                        id="dietaryRestrictions"
+                                                        name="dietaryRestrictions"
+                                                        error={formik.touched.dietaryRestrictions && formik.errors.dietaryRestrictions}
+                                                        disabled={formik.isSubmitting}
+                                                        isSecondary
+                                                        width="100%"
+                                                        onChange={(e) => { formik.setFieldValue("dietaryRestrictions", e.target.value) }}
+                                                        value={formik.values.dietaryRestrictions}
+                                                    // multiple
+                                                    >
+                                                        <Option key={-1} value="Not defined">Not defined</Option>
+                                                        {dieateryRestrictionsOptions.map((dietaryRestriction, index) => (
+                                                            <Option key={index} value={dietaryRestriction}>{dietaryRestriction}</Option>
+                                                        ))
+                                                        }
+                                                    </SmallSelect>
+                                                    <ErrorMesagge component={'div'} name="dietaryRestrictions" />
+                                                </SectionWrapper>
+                                            </TwoInRow>
+                                            <TwoInRow width="100%">
+                                                <SectionWrapper>
+                                                    <SectionHeadline>
+                                                        Cooking method
+                                                    </SectionHeadline>
+                                                    <SmallSelect
+                                                        id="cookingMethod"
+                                                        name="cookingMethod"
+                                                        error={formik.touched.cookingMethod && formik.errors.cookingMethod}
+                                                        disabled={formik.isSubmitting}
+                                                        isSecondary
+                                                        width="100%"
+                                                        onChange={(e) => { formik.setFieldValue("cookingMethod", e.target.value) }}
+                                                        value={formik.values.cookingMethod}
+
+                                                    >
+                                                        <Option key={-1} value="Not defined">Not defined</Option>
+                                                        {cookingMethodOptions.map((cookingMethod, index) => (
+                                                            <Option key={index} value={cookingMethod}>{cookingMethod}</Option>
+                                                        ))
+                                                        }
+                                                    </SmallSelect>
+                                                    <ErrorMesagge component={'div'} name="cookingMethod" />
+                                                </SectionWrapper>
+                                                <SectionWrapper>
+                                                    <SectionHeadline>
+                                                        Cuisine
+                                                    </SectionHeadline>
+                                                    <SmallSelect
+                                                        id="cuisine"
+                                                        name="cuisine"
+                                                        error={formik.touched.cuisine && formik.errors.cuisine}
+                                                        disabled={formik.isSubmitting}
+                                                        isSecondary
+                                                        width="100%"
+                                                        onChange={(e) => { formik.setFieldValue("cuisine", e.target.value) }}
+                                                        value={formik.values.cuisine}
+                                                    >
+                                                        <Option key={-1} value="Not defined">Not defined</Option>
+                                                        {cuisineOptions.map((cuisine, index) => (
+                                                            <Option key={index} value={cuisine}>{cuisine}</Option>
+                                                        ))
+                                                        }
+                                                    </SmallSelect>
+                                                    <ErrorMesagge component={'div'} name="cuisine" />
+                                                </SectionWrapper>
+
                                             </TwoInRow>
                                             <FieldArray
                                                 name="ingredients"
@@ -455,15 +573,16 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                 closeModal={() => setIsDeleteModalOpen(false)}
                 title="Delete"
                 actionCallback={handleDeleteRecipe}
+                isAlert
             >
-                Are you sure you want to delete this recipe?
+                This action cannot be undone. Are you sure you want to delete this recipe?
             </Modal>
             <Modal
                 isOpen={removeCookingStepModal.isOpen}
                 closeModal={() => setRemoveCookingStepModal({ isOpen: false, params: null })}
                 title="Remove"
-
                 actionCallback={() => removeCookingStepModal.params?.callback(removeCookingStepModal.params?.stepNumber)}
+                isAlert
             >
                 <p>Are you sure you want to remove <span style={{ fontWeight: "600" }}>Step {removeCookingStepModal.params?.stepNumber + 1} </span>?</p>
             </Modal>

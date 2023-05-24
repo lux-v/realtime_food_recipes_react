@@ -32,7 +32,7 @@ export const TopSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column-reverse;
 
-    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.primary200};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight800 : theme.bgPrimaryLight200};
     border-radius: 48px;
 
     padding:20px;
@@ -60,7 +60,7 @@ export const BottomSideWrapper = styled.div`
     justify-items:center;
     flex-direction:column;
 
-    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight600 : theme.bgPrimaryLight200};
+    background: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight600 : theme.primaryLight};
     border-radius: 48px;
 
     padding:20px;
@@ -150,10 +150,7 @@ export const SectionHeadline = styled.p`
 
     font-size:  ${props => props.fontSize || "18px"};
     font-weight: 700;
-
-    margin: 0 10px 10px 10px;
-
-
+    margin: ${({ margin }) => margin || "0 10px 10px 10px"};
 `
 
 export const TextContent = styled.p`

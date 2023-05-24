@@ -199,7 +199,7 @@ const FieldStyleType1 = css`
   };
 
   height: 48px;
-  padding: 16px 24px;
+  padding: 0 24px;
   border: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
   border-radius: ${border.borderRadius};
 
@@ -234,7 +234,7 @@ const FieldStyleType1 = css`
 const FieldStyleType2 = css`
   width: ${(props) => props.width || `272px`};
   height: 48px;
-  padding: 16px 24px;
+  padding: 0 24px;
   border:0;
   border-bottom: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
   background-color: unset;
@@ -307,6 +307,8 @@ export const Select = styled.select`
     `
     color: ${props.theme.iconsPrimary};
   `}
+
+  
 `;
 
 export const SmallSelect = styled(Select)`

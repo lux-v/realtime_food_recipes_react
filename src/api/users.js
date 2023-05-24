@@ -1,10 +1,12 @@
 import { firestore, arrayUnion, arrayRemove } from "./firebase"
 
-export const postUserData = async (uid) => {
-    return firestore().collection("users").doc(uid).set({
-        likedRecipes: [],
-        myRecipes: [],
-
+export const postUserData = async (user, displayName) => {
+    console.log("user: ", user)
+    return firestore().collection("users").doc(user.uid).set({
+        uid: user.uid,
+        displayName: displayName,
+        email: user.email,
+        photoURL: user.photoURL,
 
     }).catch(error => {
         console.log("Error posting user data: ", error);
@@ -12,9 +14,9 @@ export const postUserData = async (uid) => {
     });
 }
 export const putUserData = async (user) => {
+    console.log("user", user)
     return firestore().collection("users").doc(user.uid).update({
-
-
+        ...user
     }).catch(error => {
         console.log("Error updating user data: ", error);
         throw error;

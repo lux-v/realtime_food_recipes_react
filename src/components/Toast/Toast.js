@@ -10,7 +10,7 @@ import {
     TimerBar,
 } from './ToastStyle';
 
-import AlertIcon from '../../assets/img/alert-icon.svg';
+import AlertIcon from '../../assets/icons/alert-icon.svg';
 import ApproveIcon from '../../assets/img/approve-icon.svg';
 import ErrorIcon from '../../assets/img/error-icon.svg';
 import xButtonIcon from '../../assets/img/x-icon.svg';

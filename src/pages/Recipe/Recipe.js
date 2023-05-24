@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 import { useRecipeLike } from '../../hooks/useRecipeLike'
+import useFetchUser from '../../hooks/useFetchUser'
 
 import {
     LeftSideWrapper,
@@ -36,15 +37,20 @@ import Card from '../../components/Card/Card'
 
 import { ReactComponent as PrinterIcon } from '../../assets/icons/printer.svg'
 import { ReactComponent as FacebookIcon } from '../../assets/icons/facebook.svg'
-import {ReactComponent as TwitterIcon} from '../../assets/icons/twitter.svg'
+import { ReactComponent as TwitterIcon } from '../../assets/icons/twitter.svg'
 import { FacebookShareButton, TwitterShareButton } from 'react-share'
 import { useReactToPrint } from 'react-to-print'
+import { ProfileImg } from '../../components/Layout/Header/HeaderStyle'
+
+import profileImg from '../../assets/img/profile.svg';
+import { TwoInRow } from '../../lib/style/generalStyles'
 
 const Recipe = () => {
     const navigate = useNavigate()
     const recipeId = useParams().id;
     const { userData } = useContext(AuthContext)
     const recipe = useFetchRecipe(recipeId)
+    const recipeOwnerDetails = useFetchUser(recipe)
     const componentRef = React.useRef();
 
     const { isLikedByUser, recipeLikes, handleLikeRecipe } = useRecipeLike(recipe, userData)
@@ -52,10 +58,24 @@ const Recipe = () => {
     const isOwner = useMemo(() => { return userData?.uid === recipe?.createdBy || userData?.isAdmin }, [recipe, userData])
     const isMobileDevice = localStorage.getItem("isMobileDevice") === "true"
 
-    const handlePrint =  useReactToPrint({
-        content: ()=> componentRef.current,
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
     })
-   
+
+    const profileImgSrc = useCheckImage(recipeOwnerDetails?.user?.photoURL, profileImg)
+
+    const recipeDate = useMemo(() => {
+        if (recipe?.createdAt === undefined && recipe?.updatedAt === undefined) return null
+        const timestamp = recipe?.updatedAt ? recipe.updatedAt : recipe?.createdAt
+        const date = new Date(timestamp.seconds * 1000)
+        const day = date.getDate()
+        const month = date.toLocaleString('default', { month: 'long' })
+        const year = date.getFullYear()
+        const recipeDateFormatted = `${day} ${month} ${year}`
+        return recipeDateFormatted
+
+    }, [recipe?.createdAt, recipe?.updatedAt])
+
 
     return (
         <Layout
@@ -85,6 +105,20 @@ const Recipe = () => {
                                     </RecipeLikesWrapper>
                                 </RecipeNameWrapper>
                                 <SectionWrapper>
+                                    <div style={{ display: "flex", gap: "5px" }} >
+                                        <ProfileImg src={profileImgSrc} alt="profileImg" />
+                                        <div>
+                                            <TextContent>
+                                                By <span style={{ fontWeight: "600" }}>{recipeOwnerDetails?.user?.displayName || "-"}</span>
+                                            </TextContent>
+                                            <p style={{ fontSize: "0.9rem" }}>
+                                                {recipe?.updatedAt ? `Last updated at: ${recipeDate}` : `Created at: ${recipeDate}`}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </SectionWrapper>
+                                <SectionWrapper>
                                     <SectionHeadline>
                                         Description
                                     </SectionHeadline>
@@ -92,14 +126,68 @@ const Recipe = () => {
                                         {recipe.description}
                                     </TextContent>
                                 </SectionWrapper>
-                                <SectionWrapper>
-                                    <SectionHeadline>
-                                        Cook time
-                                    </SectionHeadline>
-                                    <TextContent>
-                                        {recipe.cookTimeMin} min
-                                    </TextContent>
-                                </SectionWrapper>
+                                <TwoInRow width="100%">
+                                    <SectionWrapper>
+                                        <SectionHeadline>
+                                            Cook time
+                                        </SectionHeadline>
+                                        <TextContent>
+                                            {recipe.cookTimeMin} mins
+                                        </TextContent>
+                                    </SectionWrapper>
+                                    <SectionWrapper >
+                                        <SectionHeadline>
+                                            Servings
+                                        </SectionHeadline>
+                                        <TextContent>
+                                            {recipe.servings > 1 ? `${recipe.servings} servings` : `${recipe.servings} serving`}
+                                        </TextContent>
+                                    </SectionWrapper>
+                                </TwoInRow>
+                                <TwoInRow width="100%">
+                                    {["Not defined", " "].includes(recipe.category) &&
+                                        <SectionWrapper>
+                                            <SectionHeadline>
+                                                Category
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.category}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
+                                    {["Not defined", " "].includes(recipe.dietaryRestrictions) &&
+                                        <SectionWrapper >
+                                            <SectionHeadline>
+                                                Dietary restrictions
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.dietaryRestrictions}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
+                                </TwoInRow>
+                                <TwoInRow width="100%">
+                                    {["Not defined", " "].includes(recipe.cookingMethod) &&
+                                        <SectionWrapper>
+                                            <SectionHeadline>
+                                                Cooking method
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.cookingMethod}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
+                                    {["Not defined", " "].includes(recipe.cuisine) &&
+                                        <SectionWrapper >
+                                            <SectionHeadline>
+                                                Cuisine
+                                            </SectionHeadline>
+                                            <TextContent>
+                                                {recipe.cuisine}
+                                            </TextContent>
+                                        </SectionWrapper>
+                                    }
+                                </TwoInRow>
                                 <SectionWrapper>
                                     <SectionHeadline>
                                         Ingredients
@@ -114,22 +202,22 @@ const Recipe = () => {
                                     <SectionHeadline>
                                         Share recipe
                                     </SectionHeadline>
-                                    { !isMobileDevice &&
+                                    {!isMobileDevice &&
                                         <PrinterIcon style={{ cursor: "pointer" }} onClick={handlePrint} />
                                     }
-                                 <FacebookShareButton    
+                                    <FacebookShareButton
                                         url={window.location.href}
                                         quote={recipe.name}
                                         hashtag="#recipes"
                                     >
                                         <FacebookIcon style={{ cursor: "pointer", stroke: "#2374E1" }} />
                                     </FacebookShareButton>
-                                <TwitterShareButton
+                                    <TwitterShareButton
                                         url={window.location.href}
                                         title={recipe.name}
                                         hashtags={["recipes"]}
                                     >
-                                        <TwitterIcon style={{ cursor: "pointer", stroke: "#179CF0", color:"#179CF0" }} />
+                                        <TwitterIcon style={{ cursor: "pointer", stroke: "#179CF0", color: "#179CF0" }} />
                                     </TwitterShareButton>
                                 </SectionWrapper>
                             </LeftSideWrapper>
@@ -138,7 +226,7 @@ const Recipe = () => {
                             </RightSideWrapper>
                         </TopSideWrapper >
 
-                        {recipe && recipe?.steps ?
+                        {recipe && recipe?.steps ? recipe.steps.length > 0 &&
                             <BottomSideWrapper>
                                 {recipe?.steps.map((step, index) =>
                                     <SectionWrapper key={index}>

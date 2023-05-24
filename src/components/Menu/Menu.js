@@ -6,9 +6,6 @@ import { Menu as MenuWrapper } from './MenuStyle';
 import MenuCard from '../MenuCard/MenuCard';
 import PresetColor from '../PresetColor/PresetColor';
 
-import styled from "styled-components";
-
-
 
 const Menu = ({ closePopup }) => {
   const navigate = useNavigate();

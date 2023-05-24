@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
-import app from "../api/firebase"
+import firebase from "../api/firebase"
 
-import { postUserData } from '../api/users';
+import { postUserData, putUserData } from '../api/users';
 
 
 const AuthContext = createContext();
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
     const signup = async (email, password, displayName) => {
         try {
-            const res = await app.auth().createUserWithEmailAndPassword(email, password)
+            const res = await firebase.auth().createUserWithEmailAndPassword(email, password)
             const user = res.user;
 
             user.updateProfile({
@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
 
             try {
                 //create DB entry for the user
-                postUserData(user.uid)
+                postUserData(user, displayName)
             } catch (err) {
                 console.log("Error posting user data: ", err)
             }
@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const res = await app.auth().signInWithEmailAndPassword(email, password)
+            const res = await firebase.auth().signInWithEmailAndPassword(email, password)
             const user = res.user;
 
             setToastType({
@@ -72,17 +72,18 @@ const AuthProvider = ({ children }) => {
     }
 
     const logout = async () => {
-        await app.auth().signOut();
+        await firebase.auth().signOut();
 
     }
 
     const updateUserProfile = async (newUserData) => {
-        const currentUser = app.auth().currentUser;
+        const currentUser = firebase.auth().currentUser;
+        const userUid = currentUser.uid
 
         //only display name and the imageURL - defined by Firebase
         await currentUser.updateProfile(newUserData)
-            .then(async res => {
-
+            .then(res => {
+                putUserData({ ...newUserData, uid: userUid })
             })
             .catch(err => { throw err })
     }
@@ -90,11 +91,11 @@ const AuthProvider = ({ children }) => {
 
     // const googleSignin = async () => {
     //     let provider = new firebase.auth.GoogleAuthProvider()
-    //     return app.auth().signInWithPopup(provider)
+    //     return firebase.auth().signInWithPopup(provider)
     // }
 
     const resetPassword = (email) => {
-        return app.auth().sendPasswordResetEmail(email)
+        return firebase.auth().sendPasswordResetEmail(email)
     }
 
     useEffect(() => {
@@ -103,7 +104,7 @@ const AuthProvider = ({ children }) => {
     }, [presetColor])
 
     useEffect(() => {
-        const unsubscribe = app.auth().onAuthStateChanged(async user => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(async user => {
             if (user) {
                 //for now I am saving every data about the user...
                 setUserData(user)

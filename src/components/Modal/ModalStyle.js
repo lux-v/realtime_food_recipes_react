@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { colors, breakpoints } from '../../lib/style/theme';
+import { breakpoints } from '../../lib/style/theme';
 import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
+import { ReactComponent as Alert } from '../../assets/icons/alert-icon.svg';
 
 export const Modal = styled.dialog`
     position: fixed;
@@ -55,8 +56,8 @@ export const Title = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   min-height: 89px;
-  width: 239px;
-  padding: 17px 0px 32px 17px;
+  width: 100%;
+  padding: 20px 15px 15px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -64,11 +65,28 @@ export const ModalContent = styled.div`
 
   @media (${breakpoints.tablet}) {
     min-height: 131px;
-    padding: 25px 0px 40px 24px;
     font-size: 16px;
     line-height: 22px;
-    width: 495px;
   }
+`;
+
+export const ModalAlert = styled.div`
+  background: ${({ theme }) => theme.errorLight};
+  color: ${({ theme }) => theme.errorDark};
+  height:fit-content;
+  width:100%;
+  padding:15px;
+  border-radius: 8px;
+  display:flex;
+  align-items:center;
+`;
+
+export const ModalAlertIcon = styled(Alert)`
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  
+  fill: ${({ theme }) => theme.errorDark};
 `;
 
 export const ModalButtons = styled.div`

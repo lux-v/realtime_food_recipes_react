@@ -36,7 +36,7 @@ const AccountSettings = () => {
             <Layout title=" ">
                 <CardsWrapper>
                     <CardWrapper>
-                        <Card title="Acount settings">
+                        <Card title="Account settings">
                             <Formik
                                 innerRef={formikRef}
                                 enableReinitialize
@@ -112,14 +112,18 @@ const AccountSettings = () => {
                             <PresetColor />
                         </Card>
                         <Card title="Mode">
-                            <div style={{ display: "flex", gap: "5px" }}>
+                            {/* <div style={{ display: "flex", gap: "5px" }}>
                                 <input type="radio" id="dark" name="mode" value="dark" />
                                 <label htmlFor="dark">Dark</label><br />
                             </div>
                             <div style={{ display: "flex", gap: "5px" }}>
                                 <input type="radio" id="light" name="mode" value="light" />
                                 <label htmlFor="light">Light</label><br />
-                            </div>
+
+                            </div> */}
+                            <p>
+                                Ability to change the mode of the application (light / dark)
+                            </p>
                         </Card>
 
                         <Card title="Account statistics">
