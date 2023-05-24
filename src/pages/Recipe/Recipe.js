@@ -36,7 +36,8 @@ import Card from '../../components/Card/Card'
 
 import { ReactComponent as PrinterIcon } from '../../assets/icons/printer.svg'
 import { ReactComponent as FacebookIcon } from '../../assets/icons/facebook.svg'
-import { FacebookShareButton } from 'react-share'
+import {ReactComponent as TwitterIcon} from '../../assets/icons/twitter.svg'
+import { FacebookShareButton, TwitterShareButton } from 'react-share'
 import { useReactToPrint } from 'react-to-print'
 
 const Recipe = () => {
@@ -123,6 +124,13 @@ const Recipe = () => {
                                     >
                                         <FacebookIcon style={{ cursor: "pointer", stroke: "#2374E1" }} />
                                     </FacebookShareButton>
+                                <TwitterShareButton
+                                        url={window.location.href}
+                                        title={recipe.name}
+                                        hashtags={["recipes"]}
+                                    >
+                                        <TwitterIcon style={{ cursor: "pointer", stroke: "#179CF0", color:"#179CF0" }} />
+                                    </TwitterShareButton>
                                 </SectionWrapper>
                             </LeftSideWrapper>
                             <RightSideWrapper>
