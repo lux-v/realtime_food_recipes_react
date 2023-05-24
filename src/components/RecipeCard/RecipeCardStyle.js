@@ -191,6 +191,20 @@ export const RecipeIngredientsWrapper = styled.div`
 `;
 
 
+export const BottomTextWrapper = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+`;
+
+export const RecipeCategory = styled.p`
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.mode === "dark" ? theme.white : theme.textSecondary};
+`;
+
 
 export const CookTimeWrapper = styled.div`
     display:flex;

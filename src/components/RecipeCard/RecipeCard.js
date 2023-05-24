@@ -17,7 +17,9 @@ import {
     CookTimeWrapper,
     CookTime,
     CookTimeLabel,
-    AddFavorite
+    AddFavorite,
+    BottomTextWrapper,
+    RecipeCategory
 } from './RecipeCardStyle';
 
 import Chip from '../Chip/Chip';
@@ -50,10 +52,15 @@ const RecipeCard = ({ onClick, recipe }) => {
                     })}
                 </RecipeIngredientsWrapper>
                 {recipe?.cookTimeMin &&
-                    <CookTimeWrapper>
-                        <CookTime />
-                        <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
-                    </CookTimeWrapper>
+                    <BottomTextWrapper>
+                        <RecipeCategory>
+                            {recipe.category}
+                        </RecipeCategory>
+                        <CookTimeWrapper>
+                            <CookTime />
+                            <CookTimeLabel>{recipe.cookTimeMin}<span style={{ fontSize: "10px" }}>(min)</span></CookTimeLabel>
+                        </CookTimeWrapper>
+                    </BottomTextWrapper>
                 }
             </TextWrapper>
         </RecipieCardWrapper>
