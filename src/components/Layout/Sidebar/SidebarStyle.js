@@ -112,6 +112,8 @@ export const ItemsWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width:100%;
+
+  position: fixed;
   
   margin-top: 60px;
   gap:5px;
