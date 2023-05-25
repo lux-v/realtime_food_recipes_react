@@ -527,8 +527,8 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                                                     <RecipeStepsWrapper>
                                                         {formik.values.steps.map((step, index) => (
                                                             <SectionWrapper key={index}>
-                                                                <TwoInRow width="100%">
-                                                                    <SectionHeadline secondary>
+                                                                <TwoInRow width="100%" flex>
+                                                                    <SectionHeadline secondary margin="0" >
                                                                         Step {index + 1}
                                                                     </SectionHeadline>
                                                                     <Button isSecondary isError type="button" callback={() => removeCookingStep(index, (stepNumber) => arrayHelpers.remove(stepNumber))}>Remove step {index + 1}</Button>

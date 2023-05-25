@@ -143,13 +143,15 @@ export const FormRow = styled.div`
 
 export const TwoInRow = styled.div`
   width: ${(props) => props.width || `272px`};  
-
+  
+  display: ${({flex}) => flex ? "flex" : "block"};
+  justify-content: space-between;
   gap:10px;
+
 
   @media (${breakpoints.tablet}) {
     width: ${(props) => props.width || `572px`};
     display: flex;
-    justify-content: space-between;
   }
 
   ${(props) =>

@@ -10,6 +10,7 @@ export const Modal = styled.dialog`
     transform: translate(-50%, -50%);
     min-width: 272px;
     min-height: 215px;
+    width: 100%;
 
     border: none;
     border-radius: 16px;

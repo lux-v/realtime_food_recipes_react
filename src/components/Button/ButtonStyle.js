@@ -14,6 +14,8 @@ export const Button = style.button`
     height: ${(props) => props.height || `38px`};
     width: ${(props) => props.width || `auto`};
 
+    white-space: nowrap;
+
     user-select:none;
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

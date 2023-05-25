@@ -98,10 +98,10 @@ const FilterContent = ({ formikRef }) => {
             initialValues={{
                 name: "",
                 ingredients: filterValues?.ingredients || [],
-                category: filterValues?.category || "",
-                dietaryRestrictions: filterValues?.dietaryRestrictions || "",
-                cuisine: filterValues?.cuisine || "",
-                cookingMethod: filterValues?.cookingMethod || "",
+                category: filterValues?.category || "All",
+                dietaryRestrictions: filterValues?.dietaryRestrictions || "All",
+                cuisine: filterValues?.cuisine || "All",
+                cookingMethod: filterValues?.cookingMethod || "All",
 
             }}
             onSubmit={(values) => {
