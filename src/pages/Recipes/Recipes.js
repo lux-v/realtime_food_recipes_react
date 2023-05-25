@@ -346,9 +346,9 @@ const Recipes = () => {
                 const filtered = recipes.filter(recipe => {
                     return (
                         (filterValues.category === "All" || (!recipe?.category && filterValues.category === "Not defined" || recipe.category === "" && filterValues.category === "Not defined") ? true : recipe?.category?.toLowerCase().includes(filterValues?.category?.toLowerCase())) &&
-                        (filterValues.cuisine === "All" || (!recipe?.cuisine && filterValues.cuisine === "Not defined" || recipe.cuisine === "" && filterValues.cuisine === "Not defined") ? true : recipe?.cuisine?.toLowerCase().includes(filterValues.cuisine?.toLowerCase())) &&
-                        (filterValues.cookingMethod === "All" || (!recipe?.cookingMethod && filterValues.cookingMethod === "Not defined" || recipe.cookingMethod === "" && filterValues.cookingMethod === "Not defined") ? true : recipe?.cookingMethod?.toLowerCase().includes(filterValues.cookingMethod?.toLowerCase())) &&
-                        (filterValues.dietaryRestrictions === "All" || (!recipe?.dietaryRestrictions && filterValues.dietaryRestrictions === "Not defined" || recipe.dietaryRestrictions === "" && filterValues.dietaryRestrictions === "Not defined") ? true : recipe?.dietaryRestrictions?.toLowerCase().includes(filterValues.dietaryRestrictions?.toLowerCase())) &&
+                        (filterValues.cuisine === "All" || (!recipe?.cuisine && filterValues.cuisine === "Not defined" || recipe.cuisine === "" && filterValues.cuisine === "Not defined") ? true : recipe?.cuisine?.toLowerCase().includes(filterValues?.cuisine?.toLowerCase())) &&
+                        (filterValues.cookingMethod === "All" || (!recipe?.cookingMethod && filterValues.cookingMethod === "Not defined" || recipe.cookingMethod === "" && filterValues.cookingMethod === "Not defined") ? true : recipe?.cookingMethod?.toLowerCase().includes(filterValues?.cookingMethod?.toLowerCase())) &&
+                        (filterValues.dietaryRestrictions === "All" || (!recipe?.dietaryRestrictions && filterValues.dietaryRestrictions === "Not defined" || recipe.dietaryRestrictions === "" && filterValues.dietaryRestrictions === "Not defined") ? true : recipe?.dietaryRestrictions?.toLowerCase().includes(filterValues?.dietaryRestrictions?.toLowerCase())) &&
 
                         filterValues.ingredients.every((ingredient) => {
                             return recipe.ingredients.some((recipeIngredient) => {
