@@ -14,8 +14,6 @@ import {
     IconTextWrapper,
     IconText,
 } from './SidebarStyle';
-import PresetColor from '../../PresetColor/PresetColor';
-
 
 const Sidebar = () => {
     const { logout, isSidebarOpen } = useContext(AuthContext);

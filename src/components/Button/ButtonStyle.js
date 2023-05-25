@@ -1,4 +1,4 @@
-import { border, breakpoints, colors, fonts } from '../../lib/style/theme.js';
+import { border, breakpoints, fonts } from '../../lib/style/theme.js';
 import style from 'styled-components';
 
 export const Button = style.button`

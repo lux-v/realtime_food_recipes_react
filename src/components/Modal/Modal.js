@@ -16,14 +16,14 @@ const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallb
         actionCallback && actionCallback()
 
         closeModal()
-        if (modalWrapperRef.current) modalWrapperRef.current.close()
+        modalWrapperRef?.current?.close()
         document.addEventListener("mousedown", handleClickOutside);
     }
 
     const handleClose = () => {
         closeModal()
         closeCallback && closeCallback()
-        if (modalWrapperRef.current) modalWrapperRef.current.close()
+        modalWrapperRef?.current?.close()
         document.addEventListener("mousedown", handleClickOutside);
     }
 
@@ -37,9 +37,8 @@ const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallb
 
         const isInDialog = (dialogDimensions.top <= event.clientY && event.clientY <= dialogDimensions.top + dialogDimensions.height
             && dialogDimensions.left <= event.clientX && event.clientX <= dialogDimensions.left + dialogDimensions.width);
-        if (!isInDialog) {
-            isOpen &&
-                handleClose()
+        if (!isInDialog && isOpen) {
+            handleClose()
         }
 
     };
@@ -50,7 +49,7 @@ const Modal = ({ isOpen, closeModal, closeCallback, title, children, actionCallb
             handleOpen()
         else {
             closeModal()
-            if (modalWrapperRef.current) modalWrapperRef.current.close()
+            modalWrapperRef?.current?.close()
             document.addEventListener("mousedown", handleClickOutside);
         }
     }, [isOpen]);

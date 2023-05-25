@@ -1,4 +1,4 @@
-import { firestore, arrayUnion, arrayRemove } from "./firebase"
+import { firestore } from "./firebase"
 
 export const postUserData = async (user, displayName) => {
     console.log("user: ", user)

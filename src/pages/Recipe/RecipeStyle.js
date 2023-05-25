@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border, breakpoints, colors, fonts } from "../../lib/style/theme";
+import { border, breakpoints, fonts } from "../../lib/style/theme";
 
 
 export const RecipeLikesWrapper = styled.div`

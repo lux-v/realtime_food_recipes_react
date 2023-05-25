@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import useCheckImage from '../../hooks/useCheckImage'
 import { useRecipeLike } from '../../hooks/useRecipeLike'
@@ -81,7 +81,7 @@ const Recipe = () => {
         <Layout
             title="Recipe details"
         >
-            {recipe ?
+            {recipe && recipeOwnerDetails?.user ?
                 <Card
                     ref={componentRef}
                     headingElements={[

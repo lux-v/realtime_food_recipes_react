@@ -158,7 +158,8 @@ const RecipesAddNew = ({ isEditRecipe }) => {
     return (
         <>
             <Layout
-                title={isEditRecipe ? "Update recipe" : "Add new recipe"}>
+                title={isEditRecipe ? "Update recipe" : "Add new recipe"}
+            >
                 <Card
                     title={isEditRecipe ? "Edit this recipe" : "Create your own recipe"}
                     headingElements={[

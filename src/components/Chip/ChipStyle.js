@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../lib/style/theme";
 
 export const ChipWrapper = styled.div`
   display: flex;

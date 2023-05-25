@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
-import { colors, breakpoints, border } from '../../../lib/style/theme';
+import { breakpoints, border } from '../../../lib/style/theme';
 
 import { ReactComponent as LecturesIcon } from '../../../assets/img/lectures-icon.svg';
 import { ReactComponent as DashboardIcon } from '../../../assets/img/dashboard-icon.svg';

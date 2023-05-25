@@ -9,15 +9,7 @@ import {
 } from "./CardStyle"
 
 
-// const Card = ({
-//     title,
-//     children,
-//     headingElements = [],
-//     elements = [],
-// }) => {
-    const Card = forwardRef(({ title, children, headingElements = [], elements = [] }, ref) => {
- 
-
+const Card = forwardRef(({ title, children, headingElements = [], elements = [] }, ref) => {
     const isHeading = title || headingElements.length > 0
 
     return (

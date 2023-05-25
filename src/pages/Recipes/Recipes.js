@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { getAllRecipesData } from '../../api/recipes'
@@ -95,6 +95,7 @@ const FilterContent = ({ formikRef }) => {
     return (
         <Formik
             innerRef={formikRef}
+            enableReinitialize
             initialValues={{
                 name: "",
                 ingredients: filterValues?.ingredients || [],
@@ -119,8 +120,6 @@ const FilterContent = ({ formikRef }) => {
                                         <SectionHeadline>
                                             Filter by ingredients:
                                         </SectionHeadline>
-
-
                                         <div style={{ display: "flex", alignItems: "center", gap: "10px", zIndex: "999" }}>
                                             <SmallField
                                                 id="newIngredient"
@@ -161,13 +160,15 @@ const FilterContent = ({ formikRef }) => {
                                         <ErrorMesagge component={'div'} name="ingredients" />
 
                                     </SectionWrapper>
-                                    <RecipeIngredientsWrapper>
-                                        {formik.values.ingredients.map((ingredient, index) => (
-                                            <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                                                <Chip size="small" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
-                                            </div>
-                                        ))}
-                                    </RecipeIngredientsWrapper>
+                                    {formik.values.ingredients.length > 0 && (
+                                        <RecipeIngredientsWrapper>
+                                            {formik.values.ingredients.map((ingredient, index) => (
+                                                <div key={index} style={{ display: "flex", alignItems: "center" }}>
+                                                    <Chip size="small" name={ingredient} icon={CloseIcon} iconCallback={() => arrayHelpers.remove(index)} />
+                                                </div>
+                                            ))}
+                                        </RecipeIngredientsWrapper>
+                                    )}
                                 </>
                             )}
                         />
@@ -270,7 +271,6 @@ const FilterContent = ({ formikRef }) => {
                             </SmallSelect>
                             <ErrorMesagge component={'div'} name="cuisine" />
                         </SectionWrapper>
-
                     </TwoInRow>
                 </Form>
             )}
@@ -325,39 +325,36 @@ const Recipes = () => {
     };
 
 
-
     const handleFilterModal = () => {
         setIsFilterModalOpen(true)
     }
 
-    const handleApplyFilter = useCallback(() => {
+    const handleApplyFilter = () => {
         formikRef.current &&
             formikRef.current.submitForm().then(() => {
                 handleFilterRecipes()
             })
-    }, [formikRef.current])
-
+    }
 
     const handleFilterRecipes = () => {
         try {
             const filterValues = JSON.parse(localStorage.getItem("filter"))
 
-            if (filterValues) {
+            if (filterValues && recipes) {
                 const filtered = recipes.filter(recipe => {
                     return (
-                        (filterValues.category === "All" || (!recipe?.category && filterValues.category === "Not defined" || recipe.category === "" && filterValues.category === "Not defined") ? true : recipe?.category?.toLowerCase().includes(filterValues?.category?.toLowerCase())) &&
-                        (filterValues.cuisine === "All" || (!recipe?.cuisine && filterValues.cuisine === "Not defined" || recipe.cuisine === "" && filterValues.cuisine === "Not defined") ? true : recipe?.cuisine?.toLowerCase().includes(filterValues?.cuisine?.toLowerCase())) &&
-                        (filterValues.cookingMethod === "All" || (!recipe?.cookingMethod && filterValues.cookingMethod === "Not defined" || recipe.cookingMethod === "" && filterValues.cookingMethod === "Not defined") ? true : recipe?.cookingMethod?.toLowerCase().includes(filterValues?.cookingMethod?.toLowerCase())) &&
-                        (filterValues.dietaryRestrictions === "All" || (!recipe?.dietaryRestrictions && filterValues.dietaryRestrictions === "Not defined" || recipe.dietaryRestrictions === "" && filterValues.dietaryRestrictions === "Not defined") ? true : recipe?.dietaryRestrictions?.toLowerCase().includes(filterValues?.dietaryRestrictions?.toLowerCase())) &&
-
-                        filterValues.ingredients.every((ingredient) => {
-                            return recipe.ingredients.some((recipeIngredient) => {
+                        (filterValues.category === "All" || (!recipe.category && filterValues.category === "Not defined") || (recipe.category === "" && filterValues.category === "Not defined") || (recipe.category && recipe.category.toLowerCase().includes(filterValues.category.toLowerCase()))) &&
+                        (filterValues.cuisine === "All" || (!recipe.cuisine && filterValues.cuisine === "Not defined") || (recipe.cuisine === "" && filterValues.cuisine === "Not defined") || (recipe.cuisine && recipe.cuisine.toLowerCase().includes(filterValues.cuisine.toLowerCase()))) &&
+                        (filterValues.cookingMethod === "All" || (!recipe.cookingMethod && filterValues.cookingMethod === "Not defined") || (recipe.cookingMethod === "" && filterValues.cookingMethod === "Not defined") || (recipe.cookingMethod && recipe.cookingMethod.toLowerCase().includes(filterValues.cookingMethod.toLowerCase()))) &&
+                        (filterValues.dietaryRestrictions === "All" || (!recipe.dietaryRestrictions && filterValues.dietaryRestrictions === "Not defined") || (recipe.dietaryRestrictions === "" && filterValues.dietaryRestrictions === "Not defined") || (recipe.dietaryRestrictions && recipe.dietaryRestrictions.toLowerCase().includes(filterValues.dietaryRestrictions.toLowerCase()))) &&
+                        filterValues.ingredients.every(ingredient => {
+                            return recipe.ingredients.some(recipeIngredient => {
                                 // Case-insensitive comparison
                                 return recipeIngredient.toLowerCase().includes(ingredient.toLowerCase());
                             });
                         })
-                    )
-                })
+                    );
+                });
                 setFilteredRecipes(filtered)
                 setSearchRecipe(filtered)
             }
@@ -375,14 +372,12 @@ const Recipes = () => {
         }
     }
 
-
     useEffect(() => {
-        recipes &&
-            handleFilterRecipes()
+        handleFilterRecipes() // eslint-disable-next-line
     }, [recipes])
 
     useEffect(() => {
-        fetchRecipes()
+        fetchRecipes() // eslint-disable-next-line
     }, [])
 
 
@@ -427,7 +422,6 @@ const Recipes = () => {
                 closeModal={() => setIsFilterModalOpen(false)}
                 title="Filter recipes"
                 actionCallback={handleApplyFilter}
-                // closeCallback={handleCloseCallback}
                 actionText="Apply"
             >
                 <FilterContent formikRef={formikRef} />

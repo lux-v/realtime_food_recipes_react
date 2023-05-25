@@ -1,4 +1,4 @@
-import React, { useContext, } from 'react';
+import React, { useContext, useEffect, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -9,7 +9,8 @@ import PresetColor from '../PresetColor/PresetColor';
 
 const Menu = ({ closePopup }) => {
   const navigate = useNavigate();
-  const { logout, presetColor } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
+  const menuRef = React.useRef(null);
 
   const menuItems = [
     {
@@ -37,8 +38,28 @@ const Menu = ({ closePopup }) => {
   ];
 
 
+  const handleClickOutside = (e) => {
+    const menuDimensions = menuRef.current?.getBoundingClientRect() || { top: 0, left: 0, width: 0, height: 0 };
+
+    const isInMenu = (menuDimensions.top <= e.clientY && e.clientY <= menuDimensions.top + menuDimensions.height
+      && menuDimensions.left <= e.clientX && e.clientX <= menuDimensions.left + menuDimensions.width);
+    if (!isInMenu) {
+      closePopup()
+    }
+  };
+
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return (
-    <MenuWrapper>
+    <MenuWrapper ref={menuRef}>
       {menuItems.map(item => (
         <MenuCard
           key={item.id}
