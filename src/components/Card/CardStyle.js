@@ -18,6 +18,7 @@ export const CardWrapper = styled.div`
 export const CardHeading = styled.div`
     display:flex;
     align-items: center;
+    flex-direction:column;
     gap: 20px;
     justify-content: space-between;
     width:100%;
@@ -25,6 +26,9 @@ export const CardHeading = styled.div`
     font-size:18px;
     padding:24px;
     border-bottom:1px solid ${({ theme }) => theme.bgPrimaryLight300};
+
+    @media(${breakpoints.tablet}){
+        flex-direction:row;
 `
 
 export const HeadingElementsWrapper = styled.div`

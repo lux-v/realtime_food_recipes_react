@@ -8,6 +8,7 @@ import {
   ButtonWrapper,
   ChildrenWrapper,
   TitleButtonWrapper,
+  Background,
 } from './ContentStyle';
 
 import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs"
@@ -25,6 +26,7 @@ const Content = ({
 
   return (
     <ContentWrapper isSidebarOpen={isSidebarOpen} isLoggedIn={isLoggedIn}>
+         <Background />
       {showHeading && (
         <NavigationWrapper>
           <TitleButtonWrapper>

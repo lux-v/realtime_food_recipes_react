@@ -8,6 +8,7 @@ import {
 import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite.svg";
 import { ReactComponent as ClockIcon } from "../../assets/img/clock-icon.svg";
 import { ReactComponent as Close } from '../../assets/img/x-icon.svg';
+import { ReactComponent as Servings } from '../../assets/icons/servings-icon.svg';
 
 
 const IconStyle = css`
@@ -39,6 +40,16 @@ export const AddFavorite = styled(AddFavoriteIcon)`
 `;
 
 export const CookTime = styled(ClockIcon)`
+    ${IconStyle}
+    
+
+    :hover{
+        fill: none;
+    }
+`;
+
+
+export const ServingsIcon = styled(Servings)`
     ${IconStyle}
     
 

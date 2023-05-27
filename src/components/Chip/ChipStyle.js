@@ -10,6 +10,8 @@ export const ChipWrapper = styled.div`
   padding: ${({ size = 'small' }) => size === 'medium' ? '8px' : size === 'large' ? '10px' : '6px'};
   font-size: ${({ size = 'small' }) => size === 'medium' ? '18px' : size === 'large' ? '20px' : '16px'};
   background-color: ${({ type = 'default', theme }) => theme[`secondary${type.charAt(0).toUpperCase()}${type.slice(1)}`] || theme.primaryMain};
+
+  ${({style}) => style && Object.keys(style).map(key => {return `${key}: ${style[key]};`})}
 `;
 
 export const StyledIcon = styled(props => <props.as {...props} />)`
