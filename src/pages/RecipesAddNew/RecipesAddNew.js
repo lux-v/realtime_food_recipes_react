@@ -164,7 +164,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                     title={isEditRecipe ? "Edit this recipe" : "Create your own recipe"}
                     headingElements={[
                         isEditRecipe && <Button isSecondary isError callback={handleDeleteModal}>Delete</Button>,
-                        <Button isTertiary callback={() => navigate(-1)}>Exit edit mode</Button>
+                        isEditRecipe&& <Button isTertiary callback={() => navigate(-1)}>Exit edit mode</Button>
                     ]}
                     elements={
                         [

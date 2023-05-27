@@ -26,7 +26,9 @@ const Sidebar = () => {
                         <IconTextWrapper >
                             <DashboardIcon />
                             <IconText>Dashboard</IconText>
-                        </IconTextWrapper> : <DashboardIcon />}
+                        </IconTextWrapper>
+                         :  <DashboardIcon />
+                         }
                 </HeaderNavLink>
                 <HeaderNavLink to="/recipes">
                     {isSidebarOpen ?
@@ -57,19 +59,6 @@ const Sidebar = () => {
                             <AboutUsIcon />
                             <IconText>About us</IconText>
                         </IconTextWrapper> : <AboutUsIcon />}
-                </HeaderNavLink>
-
-
-
-                <HeaderNavLink
-                    onClick={logout}
-                    className="mobileNav"
-                    to="/login"
-                >
-                    <IconTextWrapper >
-                        <LogOutIcon />
-                        Log out
-                    </IconTextWrapper>
                 </HeaderNavLink>
             </ItemsWrapper>
         </NavWrapper>

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
-import { breakpoints, border } from '../../../lib/style/theme';
+import { NavLink } from 'react-router-dom';
+import { breakpoints } from '../../../lib/style/theme';
 
 import { ReactComponent as LecturesIcon } from '../../../assets/img/lectures-icon.svg';
 import { ReactComponent as DashboardIcon } from '../../../assets/img/dashboard-icon.svg';
@@ -13,27 +13,78 @@ import { ReactComponent as YourProfileIcon } from '../../../assets/img/yourProfi
 
 
 export const NavWrapper = styled.nav`
-  display: none;
-  flex-shrink:0;
+  display: ${({ isSidebarOpen }) => (isSidebarOpen ? "block" : "none")};
+  width: 260px;
+  height:100vh;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  z-index:3;
 
   box-shadow: 16px 12px 20px 0px #00000000;
   background-color: ${({ theme }) => theme.mode === "dark" ? theme.bgPrimaryLight700 : theme.bgSecondary};
 
 
+  @media (${breakpoints.tablet}) {
+    width: 315px;
+  }
+
   @media (${breakpoints.desktop}) {
-    display: block;
-    width: 240px;
-    transition: width 0.2s ease-in;
+    display: none;
   }
 `;
 
-export const ItemsWrapper = styled.div`  
+export const MenuWrapper = styled.div`
   display: flex;
-  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 60px;
+  padding: 0 16px;
+
+  @media (${breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export const MenuText = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  width: 106px;
+  height: 24px;
+  color: ${({ theme }) => theme.textPrimary};
+`;
+
+export const ExitImg = styled.img`
+  width: 18.67px;
+  height: 18.67px;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+`;
+
+
+export const ItemsWrapper = styled.div`
+  display: flex;
   flex-direction: column;
-  width: ${props => props.isSidebarOpen ? "240px" : "60px"};
-  padding: 8px;
-  margin-top:60px;  
+  align-items: flex-start;
+  justify-content: flex-start;
+  width:100%;
+
+  
+  margin: 20px 0;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  gap:5px;
+
 `;
 
 export const IconTextWrapper = styled.div`
@@ -92,17 +143,13 @@ export const HeaderNavLink = styled(NavLink)`
 
   width: 100%;
   height: 43px;
-  padding: 12px;
 
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
   color: ${({ theme }) => theme.textPrimary};
+  padding: 12px;
 
-
-  @media (hover: hover) and (pointer: fine) {
-    cursor: pointer;
-  }
 
   :hover{
     background:${({ theme }) => theme.bgPrimaryLight50};
@@ -121,9 +168,26 @@ export const HeaderNavLink = styled(NavLink)`
       stroke: ${({ theme }) => theme.primaryMain};
     }
   }
+  @media (hover: hover) and (pointer: fine) {
+    cursor: pointer;
+  }
 
+  ${(props) =>
+    props.className === 'login' &&
+    `
+        position: absolute;
+    `}
 
   @media (${breakpoints.tablet}) {
+      ${(props) =>
+    props.className === 'mobileNav' &&
+    `
+        display:none;
+    `}
+  }
+
+
+
     &.active {
       background:${({ theme }) => theme.bgPrimaryLight50};
       color:${({ theme }) => theme.primaryMain};
@@ -140,9 +204,5 @@ export const HeaderNavLink = styled(NavLink)`
         stroke: ${({ theme }) => theme.primaryMain};
       }
     }
-  }
-
-  @media (${breakpoints.desktop}) {
-    border-radius: ${border.borderRadius};
-   }
+  
 `;
