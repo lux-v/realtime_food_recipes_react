@@ -211,7 +211,7 @@ export const RecipeDetailsWrapper = styled.div`
     width:100%;
     align-items:center;
 
-    @media (${breakpoints.tablet}) {
+    @media (${breakpoints.mobile}) {
         flex-direction:row;
     }
 
