@@ -13,10 +13,8 @@ import {
     ExitImg as ExitElement,
     ItemsWrapper,
     IconTextWrapper,
-    IconText,
     MenuWrapper,
     MenuText,
-    HowItWorks,
 } from './SidemenuStyle';
 
 import ExitIcon from '../../../assets/img/exit-icon.svg';
@@ -25,7 +23,6 @@ import PresetColor from '../../PresetColor/PresetColor';
 
 const Sidemenu = () => {
     const { logout, isSidebarOpen,setIsSidebarOpen } = useContext(AuthContext);
-
     const navWrapperRef = useRef(null);
 
 
@@ -35,8 +32,7 @@ const Sidemenu = () => {
 
     const handleClickOutside = (event) => {
         const sidemenuDimensions = navWrapperRef.current?.getBoundingClientRect()   || { top: 0, left: 0, width: 0, height: 0 };
-  
-  
+
         const isInNav = (sidemenuDimensions.top <= event.clientY && event.clientY <= sidemenuDimensions.top + sidemenuDimensions.height
             && sidemenuDimensions.left <= event.clientX && event.clientX <= sidemenuDimensions.left + sidemenuDimensions.width);
         if (!isInNav && navWrapperRef.current.clientHeight > 0 && navWrapperRef.current.clientWidth > 0 ) {
@@ -44,7 +40,6 @@ const Sidemenu = () => {
         }
     };
 
-  
     useEffect(() => {
       navWrapperRef.current &&
         document.addEventListener('mousedown', handleClickOutside);
@@ -52,7 +47,6 @@ const Sidemenu = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-
 
     return (
         <NavWrapper ref={navWrapperRef} isSidebarOpen={isSidebarOpen}>
@@ -66,43 +60,35 @@ const Sidemenu = () => {
         </MenuWrapper>
         <ItemsWrapper>
           <HeaderNavLink to="/" onClick={() => setIsSidebarOpen(false)}>
-            {isSidebarOpen ?
               <IconTextWrapper >
                 <DashboardIcon />
                 Dashboard
-              </IconTextWrapper> : <DashboardIcon />}
+              </IconTextWrapper>
           </HeaderNavLink>
           <HeaderNavLink to="/recipes" onClick={() => setIsSidebarOpen(false)}>
-            {isSidebarOpen ?
               <IconTextWrapper >
                 <FoodIcon />
                 Recipes
-              </IconTextWrapper> : <FoodIcon />}
+              </IconTextWrapper>
           </HeaderNavLink>
           <HeaderNavLink className="mobileNav" to="/account-settings" onClick={() => setIsSidebarOpen(false)}>
-            {isSidebarOpen ?
               <IconTextWrapper >
                 <YourProfileIcon />
                 Your profile
-              </IconTextWrapper> : <YourProfileIcon />}
+              </IconTextWrapper>
           </HeaderNavLink>
           <HeaderNavLink to="/how-it-works" onClick={() => setIsSidebarOpen(false)}>
-
-            {isSidebarOpen ?
               <IconTextWrapper >
-                <HowItWorks />
+                <HowItWorksIcon />
                 How It Works
-              </IconTextWrapper> : <HowItWorks />}
+              </IconTextWrapper>
           </HeaderNavLink>
           <HeaderNavLink to="/about-us" onClick={() => setIsSidebarOpen(false)}>
-
-            {isSidebarOpen ?
               <IconTextWrapper >
                 <AboutUsIcon />
                 About us
-              </IconTextWrapper> : <AboutUsIcon />}
+              </IconTextWrapper>
           </HeaderNavLink>
-
           <div style={{ border: `1px solid #c5d0de`, borderRadius: "8px", margin: "10px" }}>
             <p style={{ borderBottom: "1px solid #c5d0de", padding: "10px", fontWeight: "600" }}>Preset Color</p>
 
@@ -110,7 +96,6 @@ const Sidemenu = () => {
               <PresetColor />
             </div>
           </div>
-
           <HeaderNavLink
             onClick={logout}
             className="mobileNav"
