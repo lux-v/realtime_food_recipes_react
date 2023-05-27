@@ -180,7 +180,8 @@ export const RecipeName = styled.p`
     padding: 0.5125rem;
     width:100%;
 
-    $media (${breakpoints.tablet}) {
+
+    @media (${breakpoints.tablet}) {
         font-size:56px;
     }
 `
