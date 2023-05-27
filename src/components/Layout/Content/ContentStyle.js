@@ -3,6 +3,22 @@ import { css } from 'styled-components';
 import { breakpoints, border } from '../../../lib/style/theme';
 
 
+import BackgroundImage from "../../../assets/img/pattern.jpg";
+
+export const Background = styled.img`
+    background-image: url(${BackgroundImage});
+    background-repeat: repeat;
+    width: calc(100% - 20px);
+    height:  calc(100% - 20px);
+
+    opacity: 0.03;
+
+    position: absolute;
+    z-index: -1;
+`
+
+
+
 export const ContentWrapper = styled.main`
   min-height: 100vh;
   flex-grow: 1;
@@ -11,6 +27,7 @@ export const ContentWrapper = styled.main`
   border-top-right-radius: ${border.borderRadius};
   padding: 12px;
   z-index:0;
+  position:relative;
 
   ${props => props.isLoggedIn && `
     min-height: calc(100vh - 60px);
