@@ -213,10 +213,11 @@ const RecipeNew = () => {
                     {isLikedByUser ? "Unsave" : "Save"}
                   </Button>
                   <Button
+                    isTertiary
                     callback={() => scrollToRef(commentSectionRef)}
                     style={{ marginBottom: "20px" }}
                   >
-                    Comment
+                    Comment this recipe
                   </Button>
                 </LikeCommentButtonWrapper>
               </LeftSideWrapper>

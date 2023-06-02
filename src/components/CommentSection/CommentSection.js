@@ -15,27 +15,12 @@ import {
   SendIcon,
 } from "./CommentSectionStyles";
 
-import {
-  ErrorMesagge,
-  TextArea,
-  FormRow,
-  TrashCan,
-} from "../../lib/style/generalStyles";
+import { ErrorMesagge, TextArea, FormRow } from "../../lib/style/generalStyles";
 import { ProfileImg } from "../../components/Layout/Header/HeaderStyle";
 import profileImg from "../../assets/img/profile.svg";
 
 import DeleteCommentModal from "../../components/Modal/Modal";
-
-const recipeCommentDate = (commentDate) => {
-  if (commentDate === undefined) return null;
-  const timestamp = commentDate;
-  const date = new Date(timestamp.seconds * 1000);
-  const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "long" });
-  const year = date.getFullYear();
-  const recipeDateFormatted = `${day} ${month} ${year}`;
-  return recipeDateFormatted;
-};
+import CommentCard from "./CommentCard";
 
 const commentByDisplayName = async (commentById) => {
   const userData = await getUserData(commentById).then((res) => {
@@ -123,21 +108,12 @@ const CommentSection = React.forwardRef(
               createdAt: new Date(),
             });
 
-            const formattedData = recipeComments.map((comment) => {
-              return {
-                id: comment.id,
-                commentBy: comment.commentBy,
-                comment: comment.comment,
-                createdAt: comment.createdAt,
-              };
-            });
-
             try {
-              await putRecipeData({ comments: formattedData }, recipe.id).then(
+              await putRecipeData({ comments: recipeComments }, recipe.id).then(
                 () => {
                   setRecipe((prev) => ({
                     ...prev,
-                    comments: formattedData,
+                    comments: recipeComments,
                   }));
                 }
               );
@@ -216,64 +192,12 @@ const CommentSection = React.forwardRef(
           >
             {recipe?.comments?.map((comment, index) => {
               return (
-                <div
+                <CommentCard
                   key={index}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "15px",
-                    width: "100%",
-                    background: "#ffffff",
-                    padding: "20px",
-                    borderRadius: "8px",
-                  }}
-                >
-                  <p>{comment.comment}</p>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: "15px",
-                      width: "100%",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "5px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <>
-                        <ProfileImg
-                          src={profileImgSrc}
-                          alt="profileImg"
-                          style={{ width: "20px", height: "20px" }}
-                        />
-                        <p style={{ fontSize: "0.9rem" }}>
-                          {/* {commentByDisplayName(comment.commentBy)} */}
-                        </p>
-                      </>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignContent: "center",
-                        gap: "15px",
-                      }}
-                    >
-                      <p style={{ fontSize: "0.7rem" }}>
-                        {recipeCommentDate(recipe.createdAt)}
-                      </p>
-                      {comment.commentBy === userData?.uid && (
-                        <TrashCan
-                          onClick={handleDeleteCommentModal(comment.id)}
-                        />
-                      )}
-                    </div>
-                  </div>
-                </div>
+                  comment={comment}
+                  recipe={recipe}
+                  handleDeleteCommentModal={handleDeleteCommentModal}
+                />
               );
             })}
           </div>
