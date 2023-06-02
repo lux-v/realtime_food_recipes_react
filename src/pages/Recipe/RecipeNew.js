@@ -31,6 +31,7 @@ import {
 } from "./RecipeNewStyle";
 import {
   AddFavorite,
+  CommentIcon,
   FavoriteIconWrapper,
   ServingsIcon,
 } from "../../components/RecipeCard/RecipeCardStyle";
@@ -259,10 +260,10 @@ const RecipeNew = () => {
               <LeftSideWrapper style={{ background: "white" }}>
                 <LikeCommentButtonWrapper>
                   <Button
-                    isSecondary={!isLikedByUser}
                     callback={handleLikeRecipe}
                     style={{ marginBottom: "20px" }}
                   >
+                    <AddFavorite isfavorite={isLikedByUser} />
                     {isLikedByUser ? "Unsave" : "Save"}
                   </Button>
                   <Button
@@ -270,6 +271,7 @@ const RecipeNew = () => {
                     callback={() => scrollToRef(commentSectionRef)}
                     style={{ marginBottom: "20px" }}
                   >
+                    <CommentIcon />
                     Comment this recipe
                   </Button>
                 </LikeCommentButtonWrapper>

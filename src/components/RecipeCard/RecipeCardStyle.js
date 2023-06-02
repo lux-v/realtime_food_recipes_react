@@ -5,6 +5,7 @@ import { ReactComponent as AddFavoriteIcon } from "../../assets/img/add-favorite
 import { ReactComponent as ClockIcon } from "../../assets/img/clock-icon.svg";
 import { ReactComponent as Close } from "../../assets/img/x-icon.svg";
 import { ReactComponent as Servings } from "../../assets/icons/servings-icon.svg";
+import { ReactComponent as Comment } from "../../assets/icons/comment-icon.svg";
 
 const IconStyle = css`
   height:20px;
@@ -15,9 +16,6 @@ const IconStyle = css`
 export const AddFavorite = styled(AddFavoriteIcon)`
   height: 20px;
   width: auto;
-
-  // i want to make animation on click that would increase scale of the icon to the 1.2 and back to the 1.0
-  // let it be animated so whenever is clicked it would increase scale to 1.2 and back to 1.0
   :active {
     transform: scale(1.2);
   }
@@ -29,9 +27,12 @@ export const AddFavorite = styled(AddFavoriteIcon)`
   }
 
   ${(props) =>
-    props.isfavorite &&
-    `
+    props.isfavorite
+      ? `
         fill:${props.theme.errorMain};
+    `
+      : `
+        fill:${props.theme.white};
     `}
 `;
 
@@ -43,8 +44,15 @@ export const CookTime = styled(ClockIcon)`
   }
 `;
 
+export const CommentIcon = styled(Comment)`
+  ${IconStyle};
+
+  fill: ${({ theme }) => theme.primaryMain};
+  stroke: ${({ theme }) => theme.primaryMain};
+`;
+
 export const ServingsIcon = styled(Servings)`
-  ${IconStyle}
+  ${IconStyle};
 
   :hover {
     fill: none;
