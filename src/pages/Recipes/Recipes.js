@@ -25,6 +25,7 @@ import {
   TwoInRow,
   SmallSelect,
   Option,
+  FormRow,
 } from "../../lib/style/generalStyles";
 import { RecipeIngredientsWrapper } from "../RecipesAddNew/RecipesAddNewStyles";
 import Chip from "../../components/Chip/Chip";
@@ -108,12 +109,12 @@ const FilterContent = ({ formikRef }) => {
       innerRef={formikRef}
       enableReinitialize
       initialValues={{
-        name: "",
         ingredients: filterValues?.ingredients || [],
         category: filterValues?.category || "All",
         dietaryRestrictions: filterValues?.dietaryRestrictions || "All",
         cuisine: filterValues?.cuisine || "All",
         cookingMethod: filterValues?.cookingMethod || "All",
+        myRecipes: filterValues?.myRecipes || false,
       }}
       onSubmit={(values) => {
         localStorage.setItem("filter", JSON.stringify(values));
@@ -121,6 +122,23 @@ const FilterContent = ({ formikRef }) => {
     >
       {(formik) => (
         <Form>
+          <SectionWrapper>
+            <SectionHeadline>Show only my recipes</SectionHeadline>
+            <FormRow>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "5px" }}
+              >
+                <input
+                  id="myRecipes"
+                  name="myRecipes"
+                  type="checkbox"
+                  checked={formik.values.myRecipes}
+                  onChange={formik.handleChange}
+                />
+                <label htmlFor="myRecipes">Show only my recipes</label>
+              </div>
+            </FormRow>
+          </SectionWrapper>
           <SectionWrapper>
             <FieldArray
               name="ingredients"
@@ -337,7 +355,7 @@ const FilterContent = ({ formikRef }) => {
 
 const Recipes = () => {
   const navigate = useNavigate();
-  const { setToastType } = useContext(AuthContext);
+  const { userData, setToastType } = useContext(AuthContext);
 
   const [recipes, setRecipes] = useState(null);
   const [filteredRecipes, setFilteredRecipes] = useState(null);
@@ -394,6 +412,9 @@ const Recipes = () => {
       if (filterValues && recipes) {
         const filtered = recipes.filter((recipe) => {
           return (
+            (filterValues.myRecipes === false ||
+              (filterValues.myRecipes === true &&
+                recipe.createdBy === userData.uid)) &&
             (filterValues.category === "All" ||
               (!recipe.category && filterValues.category === "Not defined") ||
               (recipe.category === "" &&

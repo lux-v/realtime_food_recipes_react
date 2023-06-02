@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import useCheckImage from "../../hooks/useCheckImage";
 import { useRecipeLike } from "../../hooks/useRecipeLike";
@@ -49,7 +49,13 @@ import { ProfileImg } from "../../components/Layout/Header/HeaderStyle";
 import profileImg from "../../assets/img/profile.svg";
 import { CookTime } from "../../components/RecipeCard/RecipeCardStyle";
 
+import { ReactComponent as PrinterIcon } from "../../assets/icons/printer.svg";
+import { ReactComponent as FacebookIcon } from "../../assets/icons/facebook.svg";
+import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+
 const RecipeNew = () => {
+  const navigate = useNavigate();
   const recipeId = useParams().id;
   const { userData } = useContext(AuthContext);
   const fetchedRecipe = useFetchRecipe(recipeId);
@@ -68,6 +74,9 @@ const RecipeNew = () => {
   }, [recipe, userData]);
   const isMobileDevice = localStorage.getItem("isMobileDevice") === "true";
 
+  console.log("isRecipeOwner: ", isRecipeOwner);
+  console.log("recipe: ", recipe);
+  console.log("userData: ", userData);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -111,7 +120,7 @@ const RecipeNew = () => {
           <LoadingSpinner />
         </LoadingSpinnerWrapper>
       ) : (
-        <>
+        <div ref={componentRef}>
           <TopSideWrapper>
             <SummaryAndImageWrapper>
               <LeftSideWrapper>
@@ -123,12 +132,13 @@ const RecipeNew = () => {
                     alignItems: "center",
                   }}
                 >
-                  <ProfileImg
-                    src={profileImgSrc}
-                    alt="profileImg"
-                    style={{ width: "50px", height: "50px" }}
-                  />
                   <div>
+                    <ProfileImg
+                      src={profileImgSrc}
+                      alt="profileImg"
+                      style={{ width: "50px", height: "50px" }}
+                    />
+
                     <TextContent>
                       By{" "}
                       <span style={{ fontWeight: "600" }}>
@@ -140,6 +150,18 @@ const RecipeNew = () => {
                         ? `Last updated at: ${recipeDate}`
                         : `Created at: ${recipeDate}`}
                     </p>
+                  </div>
+
+                  <div style={{ marginLeft: "auto" }}>
+                    {isRecipeOwner && (
+                      <Button
+                        callback={() => navigate(`update`)}
+                        height={"30px"}
+                        isSecondary
+                      >
+                        Edit this recipe
+                      </Button>
+                    )}
                   </div>
                 </div>
                 <RecipeNameWrapper>
@@ -193,6 +215,37 @@ const RecipeNew = () => {
                     </RecipeDetailItem>
                   )}
                 </RecipeDetailsWrapper>
+                <SectionWrapper>
+                  <SectionHeadline>Share recipe</SectionHeadline>
+                  {!isMobileDevice && (
+                    <PrinterIcon
+                      style={{ cursor: "pointer" }}
+                      onClick={handlePrint}
+                    />
+                  )}
+                  <FacebookShareButton
+                    url={window.location.href}
+                    quote={recipe.name}
+                    hashtag="#recipes"
+                  >
+                    <FacebookIcon
+                      style={{ cursor: "pointer", stroke: "#2374E1" }}
+                    />
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    url={window.location.href}
+                    title={recipe.name}
+                    hashtags={["recipes"]}
+                  >
+                    <TwitterIcon
+                      style={{
+                        cursor: "pointer",
+                        stroke: "#179CF0",
+                        color: "#179CF0",
+                      }}
+                    />
+                  </TwitterShareButton>
+                </SectionWrapper>
               </LeftSideWrapper>
 
               <RightSideWrapper>
@@ -281,7 +334,7 @@ const RecipeNew = () => {
               />
             </div>
           </BottomSideWrapper>
-        </>
+        </div>
       )}
     </Layout>
   );
