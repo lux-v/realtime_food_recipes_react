@@ -1,20 +1,18 @@
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { breakpoints, colors, fonts, border } from './theme';
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import { breakpoints, colors, fonts, border } from "./theme";
 import {
   Form as FormFormik,
   Field as FieldFormik,
   ErrorMessage as ErrorMessageFormik,
-} from 'formik';
-import { ReactComponent as DeleteIcon } from '../../assets/img/delete-icon.svg';
-import { ReactComponent as XIcon } from '../../assets/img/x-icon.svg';
-import Nosort from '../../assets/img/sort.svg';
-import Ascending from '../../assets/img/sort-ascending.svg';
-import Descending from '../../assets/img/sort-descending.svg';
-import { ReactComponent as Trash } from '../../assets/img/delete.svg';
-import { ReactComponent as Edit } from '../../assets/img/edit.svg';
-
-
+} from "formik";
+import { ReactComponent as DeleteIcon } from "../../assets/img/delete-icon.svg";
+import { ReactComponent as XIcon } from "../../assets/img/x-icon.svg";
+import Nosort from "../../assets/img/sort.svg";
+import Ascending from "../../assets/img/sort-ascending.svg";
+import Descending from "../../assets/img/sort-descending.svg";
+import { ReactComponent as Trash } from "../../assets/img/delete.svg";
+import { ReactComponent as Edit } from "../../assets/img/edit.svg";
 
 export const LoginHeadText = styled.p`
   font-style: normal;
@@ -38,33 +36,23 @@ export const EnterCredentialsText = styled.p`
   font-family: ${fonts.primary};
 `;
 
-// export const LogoImg = styled(Logo)`
-//  width: ${({ width }) => width || `100%`};
-//   height: ${({ height }) => height || `100%`};
-//   fill: ${({ theme }) => theme.primaryDark};
-
-//   @media (hover: hover) and (pointer: fine) {
-//     cursor:pointer;
-//   }
-// `;
-
 export const Form = styled(FormFormik)`
   width: 272px;
   margin: 0 auto;
-    width:100%;
+  width: 100%;
 
   @media (${breakpoints.tablet}) {
     margin: unset;
 
     ${(props) =>
-    props.isCentered === true &&
-    `
+      props.isCentered === true &&
+      `
       margin: 0 auto;
   `}
 
     ${(props) =>
-    props.profile === true &&
-    `
+      props.profile === true &&
+      `
       width: 572px;
   `}
   }
@@ -78,49 +66,44 @@ export const FormLabel = styled.label`
   line-height: 150%;
   margin-bottom: 8px;
 
-  font-style: ${props => props.italic ? "italic" : "default"};
-  
+  font-style: ${(props) => (props.italic ? "italic" : "default")};
 `;
 
 export const FormIcon = styled.img`
-    width:35px;
-    height:35px;
-    
-    position:absolute;
-    top:5px;
-    left:-15px;
+  width: 35px;
+  height: 35px;
 
+  position: absolute;
+  top: 5px;
+  left: -15px;
 `;
 
 export const FormRow = styled.div`
-  position:relative;
+  position: relative;
 
   margin-bottom: 16px;
 
   &:last-child {
     margin-bottom: 0;
   }
- 
 
   ${(props) =>
-    props.right ?
-      `
+    props.right
+      ? `
        display:flex;
        justify-content:flex-end;
      `
       : props.center &&
-      `
+        `
         display:flex;
         justify-content: center;
-      `
-
-  }
+      `}
 
   @media (${breakpoints.tablet}) {
     margin-bottom: 24px;
     ${(props) =>
-    props.profileButton &&
-    `
+      props.profileButton &&
+      `
       width: 185px;
   `}
   }
@@ -142,12 +125,11 @@ export const FormRow = styled.div`
 `;
 
 export const TwoInRow = styled.div`
-  width: ${(props) => props.width || `272px`};  
-  
-  display: ${({flex}) => flex ? "flex" : "block"};
-  justify-content: space-between;
-  gap:10px;
+  width: ${(props) => props.width || `272px`};
 
+  display: ${({ flex }) => (flex ? "flex" : "block")};
+  justify-content: space-between;
+  gap: 10px;
 
   @media (${breakpoints.tablet}) {
     width: ${(props) => props.width || `572px`};
@@ -196,13 +178,13 @@ export const DeleteWrapper = styled.div`
 `;
 
 const FieldStyleType1 = css`
-  width:${(props) =>
-    props.width ? props.width : '272px'
-  };
+  width: ${(props) => (props.width ? props.width : "272px")};
 
   height: 48px;
   padding: 0 24px;
-  border: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
+  border: 1px solid
+    ${({ theme, textSecondary }) =>
+      textSecondary ? theme.white : theme.textPrimary};
   border-radius: ${border.borderRadius};
 
   outline: none;
@@ -219,10 +201,7 @@ const FieldStyleType1 = css`
     `}
 
   @media (${breakpoints.tablet}) {
-    width:${(props) =>
-    props.width ? props.width : '572px'
-  };
-  
+    width: ${(props) => (props.width ? props.width : "572px")};
   }
 
   @media (${breakpoints.desktop}) {
@@ -237,12 +216,14 @@ const FieldStyleType2 = css`
   width: ${(props) => props.width || `272px`};
   height: 48px;
   padding: 0 24px;
-  border:0;
-  border-bottom: 1px solid ${({ theme, textSecondary }) => textSecondary ? theme.white : theme.textPrimary};
+  border: 0;
+  border-bottom: 1px solid
+    ${({ theme, textSecondary }) =>
+      textSecondary ? theme.white : theme.textPrimary};
   background-color: unset;
-  
-  color: ${({ textSecondary, theme }) => textSecondary ? theme.white : theme.textPrimary};
 
+  color: ${({ textSecondary, theme }) =>
+    textSecondary ? theme.white : theme.textPrimary};
 
   outline: none;
   font-size: 16px;
@@ -276,7 +257,6 @@ export const PasswordIcon = styled.img`
   @media (hover: hover) and (pointer: fine) {
     cursor: pointer;
   }
-  
 
   @media (${breakpoints.tablet}) {
     left: 533px;
@@ -284,33 +264,21 @@ export const PasswordIcon = styled.img`
 `;
 
 export const InputField = styled.input`
-    ${(props) =>
-    props.isSecondary ?
-      FieldStyleType2 : FieldStyleType1
-  };
-`
+  ${(props) => (props.isSecondary ? FieldStyleType2 : FieldStyleType1)};
+`;
 
 export const Field = styled(FieldFormik)`
-  ${(props) =>
-    props.isSecondary ?
-      FieldStyleType2 : FieldStyleType1
-  };
-
+  ${(props) => (props.isSecondary ? FieldStyleType2 : FieldStyleType1)};
 `;
 
 export const Select = styled.select`
-  ${(props) =>
-    props.isSecondary ?
-      FieldStyleType2 : FieldStyleType1
-  };
+  ${(props) => (props.isSecondary ? FieldStyleType2 : FieldStyleType1)};
 
   ${(props) =>
-    props.value === '' &&
+    props.value === "" &&
     `
     color: ${props.theme.iconsPrimary};
   `}
-
-  
 `;
 
 export const SmallSelect = styled(Select)`
@@ -347,10 +315,7 @@ export const CriteriaSelect = styled(Select)`
 `;
 
 export const SearchBar = styled.input`
-    ${(props) =>
-    props.isSecondary ?
-      FieldStyleType2 : FieldStyleType1
-  };
+  ${(props) => (props.isSecondary ? FieldStyleType2 : FieldStyleType1)};
 
   padding: 12.5px 8px 12.5px 32px;
   height: 40px;
@@ -359,7 +324,6 @@ export const SearchBar = styled.input`
   background: transparent
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
     no-repeat 12px center;
- 
 `;
 
 export const Option = styled.option`
@@ -383,13 +347,14 @@ export const ErrorMessageCustom = styled.p`
 
   font-family: ${fonts.secondary};
 
-  display:none;
+  display: none;
 
-  ${props => props.isError && `
+  ${(props) =>
+    props.isError &&
+    `
     display:block;
-  `
-  }
-`
+  `}
+`;
 
 export const RequiredSpan = styled.span`
   //margin-left: 8px;
@@ -397,18 +362,15 @@ export const RequiredSpan = styled.span`
   color: ${({ theme }) => theme.primaryMain};
 `;
 
-export const TextArea = styled(Field).attrs({ component: 'textarea' })`
+export const TextArea = styled(Field).attrs({ component: "textarea" })`
   ${FieldStyleType1}
-  margin-top: 15.5px;
   resize: none;
-  height: 168px;
+  height: auto;
+  width: ${(props) => (props.width ? props.width : "100%")};
   padding: 16px 16px 16px 16px;
 
   @media (${breakpoints.tablet}) {
-    height: 176px;    
-    width:${(props) =>
-    props.width ? props.width : '572px'
-  }
+    width: ${(props) => (props.width ? props.width : "572px")};
   }
 `;
 export const LinkDelete = styled(Link)``;
@@ -422,7 +384,7 @@ export const Delete = styled(DeleteIcon)`
   }
 
   ${(props) =>
-    props.isblack === 'isBlack' &&
+    props.isblack === "isBlack" &&
     `
       path {
         fill: ${props.theme.textPrimary};
@@ -586,14 +548,12 @@ ${(props) =>
   text-align: left;
   background-color: ${({ theme }) => theme.columnBackground};
 
-
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       color: ${({ theme }) => theme.columnHover};
       cursor: pointer;
     }
   }
-
 `;
 
 export const TableCell = styled.td`
@@ -767,8 +727,8 @@ export const ShowingEntries = styled.div`
 
   @media (${breakpoints.tablet}) {
     ${(props) =>
-    props.clicked === 1 &&
-    `
+      props.clicked === 1 &&
+      `
       display: flex;
     `}
   }
@@ -826,9 +786,8 @@ export const Functions = styled.div`
   width: 64px;
 `;
 
-
 export const TrashCan = styled(Trash)`
-  fill: ${({ theme }) => theme.iconsPrimary};
+  fill: ${({ theme }) => theme.errorMain};
   width: 14px;
   height: 18px;
   @media (hover: hover) and (pointer: fine) {
@@ -845,38 +804,36 @@ export const EditIcon = styled(Edit)`
   }
 `;
 
-
-
 // logo login and signup
 export const LogoContainer = styled.div`
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 
   margin-bottom: 32px;
 
-    @media (${breakpoints.desktop}) {
-      margin-bottom: 64px;
-    }
+  @media (${breakpoints.desktop}) {
+    margin-bottom: 64px;
+  }
 `;
 
 export const LogoImg = styled.img`
   height: 70px;
   @media (hover: hover) and (pointer: fine) {
-    cursor:pointer;
+    cursor: pointer;
   }
 
   @media (${breakpoints.tablet}) {
-    height:100px;
+    height: 100px;
   }
 
   @media (${breakpoints.desktop}) {
-    height:155px;
+    height: 155px;
   }
 `;
 
 export const BlueLink = styled(Link)`
   color: ${({ theme }) => theme.primaryDark};
-    
+
   font-size: 14px;
   font-family: ${fonts.secondary};
   font-style: italic;
@@ -888,88 +845,78 @@ export const BlueLink = styled(Link)`
   }
 `;
 
-
 export const SignUpWrapper = styled.div`
   position: relative;
-  min-height:100%;
-  overflow:auto;
-  display:flex;
-  justify-content:center;
+  min-height: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
 
   padding: 20px;
   background-color: ${({ theme }) => theme.bgSecondaryLight100};
-
 `;
 
-
 export const FormWrapper = styled.div`
-  position:relative;
-  z-index:1;
-  margin:auto;
+  position: relative;
+  z-index: 1;
+  margin: auto;
 `;
 
 export const ButtonWrapper = styled.div`
-  display:flex;
-  justify-content:center;
-  width:100%;
-`
-
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 
 export const ImageContainer = styled.div`
   display: none;
-  height:100%;
+  height: 100%;
   overflow-y: hidden;
 
   position: absolute;
-  top:0;
-  ${props => props.login ? "left:0" : "right:0"};
+  top: 0;
+  ${(props) => (props.login ? "left:0" : "right:0")};
 
   @media (${breakpoints.tablet}) {
-    display: block; 
+    display: block;
   }
-  
 `;
 
-
-
 export const LineEffectWrapper = styled.div`
-  position:absolute;
-  height:100%;
-  overflow:hidden;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
 
-  max-width: ${props => props.maxWidth && props.maxWidth};
+  max-width: ${(props) => props.maxWidth && props.maxWidth};
 
-
-  ${props => props.login !== true && `
+  ${(props) =>
+    props.login !== true &&
+    `
       bottom:0;
       left:0;
-    `
-  }
+    `}
 
-  ${props =>
-    props.topLeft ?
-      `
+  ${(props) =>
+    props.topLeft
+      ? `
       height:100%;
       rotate: 180deg;
       top:0;
       left:0;
     `
-      :
-      `
+      : `
       bottom:0;
       right:0;
-      `
-  }
-`
+      `}
+`;
 
 export const ImageImage = styled.img`
   height: 100%;
   object-fit: cover;
 
-  ${props => props.login !== true && `
+  ${(props) =>
+    props.login !== true &&
+    `
     transform: scaleX(-1);
   `}
-
 `;
-
-
