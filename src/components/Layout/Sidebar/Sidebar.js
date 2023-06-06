@@ -41,7 +41,7 @@ const Sidebar = () => {
             <FoodIcon />
           )}
         </HeaderNavLink>
-        <HeaderNavLink className="mobileNav" to="/account-settings">
+        {/* <HeaderNavLink className="mobileNav" to="/account-settings">
           {isSidebarOpen ? (
             <IconTextWrapper>
               <YourProfileIcon />
@@ -50,7 +50,7 @@ const Sidebar = () => {
           ) : (
             <YourProfileIcon />
           )}
-        </HeaderNavLink>
+        </HeaderNavLink> */}
         <HeaderNavLink to="/how-it-works">
           {isSidebarOpen ? (
             <IconTextWrapper>
