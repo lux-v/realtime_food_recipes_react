@@ -75,9 +75,6 @@ const RecipeNew = () => {
   }, [recipe, userData]);
   const isMobileDevice = localStorage.getItem("isMobileDevice") === "true";
 
-  console.log("isRecipeOwner: ", isRecipeOwner);
-  console.log("recipe: ", recipe);
-  console.log("userData: ", userData);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -106,7 +103,6 @@ const RecipeNew = () => {
   const commentSectionRef = React.useRef(null);
 
   const scrollToRef = (ref) => {
-    console.log("ref: ", ref);
     if (isMobileDevice) {
       window.scrollTo(0, ref.current.offsetTop);
     } else {

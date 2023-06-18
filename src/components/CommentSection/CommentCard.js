@@ -36,9 +36,6 @@ const CommentCard = ({ comment, recipe, handleDeleteCommentModal }) => {
     }
   }, [comment]);
 
-  console.log("comment: ", comment);
-  console.log("commentBy: ", commentBy);
-
   return (
     <div
       style={{
@@ -86,7 +83,7 @@ const CommentCard = ({ comment, recipe, handleDeleteCommentModal }) => {
           }}
         >
           <p style={{ fontSize: "0.7rem" }}>
-            {recipeCommentDate(recipe.createdAt)}
+            {recipeCommentDate(comment?.createdAt)}
           </p>
           {comment.commentBy === userData?.uid && (
             <TrashCan onClick={handleDeleteCommentModal(comment.id)} />

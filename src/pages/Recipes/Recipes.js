@@ -487,13 +487,11 @@ const Recipes = () => {
       <Layout title="Recipes">
         {searchRecipe ? (
           <Card
-            title={
+            headingElements={[
               <FilterWrapper onClick={handleFilterModal}>
                 <FilterIcon />
                 Filter
-              </FilterWrapper>
-            }
-            headingElements={[
+              </FilterWrapper>,
               <SearchBar
                 placeholder="Search name or description"
                 onChange={handleSearchInput}
