@@ -69,6 +69,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
+          <Route path="*" element={<ErrorPage />} />
           <Route
             path="/"
             element={
@@ -130,7 +131,6 @@ function App() {
 
             <Route path="/account-settings" element={<AccountSettings />} />
             <Route path="/profile/account-stats" element={<AccountStats />} />
-            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </Router>
