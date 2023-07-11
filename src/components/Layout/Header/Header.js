@@ -16,21 +16,6 @@ import {
 } from './HeaderStyle';
 
 
-import {
-  MenuWrapper,
-  MenuText,
-  ExitImg as ExitElement,
-  HeaderNavLink,
-  Dashboard as DashboardIcon,
-  Food as FoodIcon,
-  AboutUs as AboutUsIcon,
-  LogOut as LogOutIcon,
-  YourProfile as YourProfileIcon,
-  ItemsWrapper,
-  IconTextWrapper,
-  HowItWorks,
-} from '../../Layout/Sidemenu/SidemenuStyle';
-
 import Menu from '../../Menu/Menu';
 
 import LogoImg from '../../../assets/img/logo.png';
@@ -77,7 +62,7 @@ const Header = () => {
           {openMenu && <Menu closePopup={() => setOpenMenu(false)} />}
         </HeaderProfileWrapper>
       </HeaderWrapper>
-      <Sidemenu  />
+      <Sidemenu />
     </>
   );
 };

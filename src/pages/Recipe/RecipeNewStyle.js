@@ -177,7 +177,7 @@ export const RecipeSpan = styled.span`
     content: " ";
     position: absolute;
     background: ${({ theme }) =>
-      theme.mode === "dark" ? theme.primaryLight : theme.primaryMain};
+    theme.mode === "dark" ? theme.primaryLight : theme.primaryMain};
     margin: -0.5125rem;
     inset: 0px;
     z-index: -1;
@@ -237,8 +237,8 @@ export const SectionHeadline = styled.p`
     secondary
       ? theme.primary700
       : theme.mode === "dark"
-      ? theme.white
-      : theme.textPrimary};
+        ? theme.white
+        : theme.textPrimary};
 
   font-family: ${fonts.primary};
 

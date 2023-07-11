@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-// import jwt from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-// import { loginUser, getUserByID } from '../../api/users';
 import { AuthContext } from '../../context/AuthContext';
 
 import * as Yup from 'yup';
