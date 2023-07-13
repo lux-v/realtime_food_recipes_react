@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import useCheckImage from "../../../hooks/useCheckImage"
 
@@ -7,7 +7,6 @@ import {
   LogoLink,
   LogoImg as LogoElement,
   HamburgerIcon,
-  HamburgerContent,
   HeaderProfile,
   ProfileImg,
   Arrow,
@@ -20,33 +19,26 @@ import Menu from '../../Menu/Menu';
 
 import LogoImg from '../../../assets/img/logo.png';
 import profileImg from '../../../assets/img/profile.svg';
-import ExitIcon from '../../../assets/img/exit-icon.svg';
-import PresetColor from '../../PresetColor/PresetColor';
 import Sidemenu from '../Sidemenu/Sidemenu';
 
 
 const Header = () => {
-  const { isSidebarOpen, setIsSidebarOpen, logout, userData } = useContext(AuthContext)
+  const { isSidebarOpen, setIsSidebarOpen, userData } = useContext(AuthContext)
   const imageSrc = useCheckImage(userData?.photoURL, profileImg)
-
-  const [openMenu, setOpenMenu] = useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleHamburgerClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
-    setOpenMenu(false);
+    setIsMenuOpen(false);
   };
-
 
   const handleMenuClick = (e) => {
-    setOpenMenu(!openMenu);
+    setIsMenuOpen(!isMenuOpen);
   };
-
-
 
   return (
     <>
-      <HeaderWrapper isSidebarOpen={isSidebarOpen}>
+      <HeaderWrapper>
         <LeftSideWrapper>
           <LogoLink to="/dashboard">
             <LogoElement src={LogoImg} alt="logo" />
@@ -59,7 +51,7 @@ const Header = () => {
             <Arrow />
           </HeaderProfile>
           <HamburgerIcon onClick={handleHamburgerClick} />
-          {openMenu && <Menu closePopup={() => setOpenMenu(false)} />}
+          {isMenuOpen && <Menu closePopup={() => setIsMenuOpen(false)} />}
         </HeaderProfileWrapper>
       </HeaderWrapper>
       <Sidemenu />

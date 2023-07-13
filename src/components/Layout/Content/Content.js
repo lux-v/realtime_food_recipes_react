@@ -26,7 +26,7 @@ const Content = ({
 
   return (
     <ContentWrapper isSidebarOpen={isSidebarOpen} isLoggedIn={isLoggedIn}>
-         <Background />
+      <Background />
       {showHeading && (
         <NavigationWrapper>
           <TitleButtonWrapper>
@@ -42,7 +42,7 @@ const Content = ({
           <Breadcrumbs />
         </NavigationWrapper>
       )}
-      <ChildrenWrapper showHeading={showHeading}>
+      <ChildrenWrapper>
         {children}
       </ChildrenWrapper>
     </ContentWrapper>

@@ -18,7 +18,8 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index:3;      
+  z-index:3;     
+  transition:all 0.2s ease-in; 
 
   @media (${breakpoints.tablet}) {
     padding: 8px 87px 8px 8px;
@@ -27,8 +28,6 @@ export const HeaderWrapper = styled.header`
   @media (${breakpoints.desktop}) {
     padding: 10px 40px 10px 8px;
   }
-
-  transition:all 0.2s ease-in;
 `;
 
 
@@ -38,6 +37,7 @@ export const LeftSideWrapper = styled.div`
   justify-content: space-between; 
   align-items: center; 
   width: 232px; 
+  height: 40px;
   padding-right: 20px;
 `;
 
@@ -56,6 +56,7 @@ export const HeaderProfileWrapper = styled.div`
 
 
 export const LogoLink = styled(Link)`
+  height: 40px;
 `;
 
 export const LogoImg = styled.img`

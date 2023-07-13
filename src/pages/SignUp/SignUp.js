@@ -36,9 +36,7 @@ import LineEffect from "../../assets/img/line-effect.png"
 import { SignUpSchema } from '../../utils/validationSchema';
 
 export default function SignUp() {
-    const { signup,
-        // googleSignin, handleUser , setToastType,
-    } = useContext(AuthContext);
+    const { signup } = useContext(AuthContext);
     const navigate = useNavigate();
 
     // const handleGoogleSignup = async () => {
