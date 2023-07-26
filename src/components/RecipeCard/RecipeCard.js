@@ -30,7 +30,6 @@ const RecipeCard = ({ onClick, recipe }) => {
   const imageSrc = useCheckImage(recipe.imgUrl, RecipeImagePlaceholder);
   const { isLikedByUser, handleLikeRecipe } = useRecipeLike(recipe, userData);
 
-  console.log("recipe: ", recipe);
 
   return (
     <RecipieCardWrapper onClick={onClick}>

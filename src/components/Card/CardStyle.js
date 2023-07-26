@@ -28,6 +28,7 @@ export const CardHeading = styled.div`
 
     @media(${breakpoints.tablet}){
         flex-direction:row;
+    }
 `;
 
 export const HeadingElementsWrapper = styled.div`
@@ -43,6 +44,7 @@ export const HeadingElementsWrapper = styled.div`
     flex-direction: row;
   }
 `;
+
 export const CardContent = styled.div`
   width: 100%;
   padding: 12px;

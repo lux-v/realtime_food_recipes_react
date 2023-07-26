@@ -96,10 +96,10 @@ const FilterContent = ({ formikRef }) => {
     newValue === ""
       ? setNewIngredientError(ingredientErrorRequiredMessage)
       : newValue.length > 50
-      ? setNewIngredientError(ingredientErrorLengthMessage)
-      : formik.values.ingredients.includes(newValue)
-      ? setNewIngredientError(ingredientUniqueErrorMessage)
-      : setNewIngredientError("");
+        ? setNewIngredientError(ingredientErrorLengthMessage)
+        : formik.values.ingredients.includes(newValue)
+          ? setNewIngredientError(ingredientUniqueErrorMessage)
+          : setNewIngredientError("");
 
     setNewIngredient(newValue);
   };
@@ -268,7 +268,7 @@ const FilterContent = ({ formikRef }) => {
                   formik.setFieldValue("dietaryRestrictions", e.target.value);
                 }}
                 value={formik.values.dietaryRestrictions}
-                // multiple
+              // multiple
               >
                 <Option key={-2} value="All">
                   All
@@ -500,7 +500,7 @@ const Recipes = () => {
           >
             <div style={{ marginBottom: "25px" }}>
               <Button callback={() => navigate("/recipes/add-new")}>
-                Add recipe +
+                Add Recipe +
               </Button>
             </div>
             <RecipesWrapper>

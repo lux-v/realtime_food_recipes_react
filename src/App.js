@@ -95,10 +95,10 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/password-reset" element={<PasswordReset />} />
 
-          <Route path="/about-us" element={<ComingSoon title="About us" />} />
+          <Route path="/about-us" element={<ComingSoon title="About Us" />} />
           <Route
             path="/how-it-works"
-            element={<ComingSoon title="How it works" />}
+            element={<ComingSoon title="How It Works" />}
           />
 
           <Route

@@ -37,10 +37,9 @@ export const LeftSideWrapper = styled.div`
   justify-content: space-between; 
   align-items: center; 
   width: 232px; 
-  height: 40px;
+  height: 45px;
   padding-right: 20px;
 `;
-
 
 
 export const HeaderProfileWrapper = styled.div`

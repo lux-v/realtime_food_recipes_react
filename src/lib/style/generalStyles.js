@@ -45,14 +45,14 @@ export const Form = styled(FormFormik)`
     margin: unset;
 
     ${(props) =>
-      props.isCentered === true &&
-      `
+    props.isCentered === true &&
+    `
       margin: 0 auto;
   `}
 
     ${(props) =>
-      props.profile === true &&
-      `
+    props.profile === true &&
+    `
       width: 572px;
   `}
   }
@@ -94,7 +94,7 @@ export const FormRow = styled.div`
        justify-content:flex-end;
      `
       : props.center &&
-        `
+      `
         display:flex;
         justify-content: center;
       `}
@@ -102,8 +102,8 @@ export const FormRow = styled.div`
   @media (${breakpoints.tablet}) {
     margin-bottom: 24px;
     ${(props) =>
-      props.profileButton &&
-      `
+    props.profileButton &&
+    `
       width: 185px;
   `}
   }
@@ -184,7 +184,7 @@ const FieldStyleType1 = css`
   padding: 0 24px;
   border: 1px solid
     ${({ theme, textSecondary }) =>
-      textSecondary ? theme.white : theme.textPrimary};
+    textSecondary ? theme.white : theme.textPrimary};
   border-radius: ${border.borderRadius};
 
   outline: none;
@@ -219,7 +219,7 @@ const FieldStyleType2 = css`
   border: 0;
   border-bottom: 1px solid
     ${({ theme, textSecondary }) =>
-      textSecondary ? theme.white : theme.textPrimary};
+    textSecondary ? theme.white : theme.textPrimary};
   background-color: unset;
 
   color: ${({ textSecondary, theme }) =>
@@ -726,8 +726,8 @@ export const ShowingEntries = styled.div`
 
   @media (${breakpoints.tablet}) {
     ${(props) =>
-      props.clicked === 1 &&
-      `
+    props.clicked === 1 &&
+    `
       display: flex;
     `}
   }
