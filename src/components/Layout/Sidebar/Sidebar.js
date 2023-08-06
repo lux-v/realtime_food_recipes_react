@@ -15,52 +15,51 @@ import {
   IconText,
 } from "./SidebarStyle";
 
+
+const items = [
+  {
+    icon: <DashboardIcon />,
+    text: "Dashboard",
+    link: "/",
+  },
+  {
+    icon: <FoodIcon />,
+    text: "Recipes",
+    link: "/recipes",
+  },
+  {
+    icon: <HowItWorksIcon />,
+    text: "How It Works",
+    link: "/how-it-works",
+  },
+  {
+    icon: <AboutUsIcon />,
+    text: "About us",
+    link: "/about-us",
+  },
+];
+
+
 const Sidebar = () => {
-  const { logout, isSidebarOpen } = useContext(AuthContext);
+  const { isSidebarOpen } = useContext(AuthContext);
 
   return (
     <NavWrapper isSidebarOpen={isSidebarOpen}>
       <ItemsWrapper isSidebarOpen={isSidebarOpen}>
-        <HeaderNavLink to="/">
-          {isSidebarOpen ? (
-            <IconTextWrapper>
-              <DashboardIcon />
-              <IconText>Dashboard</IconText>
-            </IconTextWrapper>
-          ) : (
-            <DashboardIcon />
-          )}
-        </HeaderNavLink>
-        <HeaderNavLink to="/recipes">
-          {isSidebarOpen ? (
-            <IconTextWrapper>
-              <FoodIcon />
-              <IconText>Recipes</IconText>
-            </IconTextWrapper>
-          ) : (
-            <FoodIcon />
-          )}
-        </HeaderNavLink>
-        <HeaderNavLink to="/how-it-works">
-          {isSidebarOpen ? (
-            <IconTextWrapper>
-              <HowItWorksIcon />
-              <IconText>How It Works</IconText>
-            </IconTextWrapper>
-          ) : (
-            <HowItWorksIcon />
-          )}
-        </HeaderNavLink>
-        <HeaderNavLink to="/about-us">
-          {isSidebarOpen ? (
-            <IconTextWrapper>
-              <AboutUsIcon />
-              <IconText>About us</IconText>
-            </IconTextWrapper>
-          ) : (
-            <AboutUsIcon />
-          )}
-        </HeaderNavLink>
+        {
+          items.map((item, index) => (
+            <HeaderNavLink key={index} to={item.link}>
+              {isSidebarOpen ? (
+                <IconTextWrapper>
+                  {item.icon}
+                  <IconText>{item.text}</IconText>
+                </IconTextWrapper>
+              ) : (
+                item.icon
+              )}
+            </HeaderNavLink>
+          ))
+        }
       </ItemsWrapper>
     </NavWrapper>
   );
