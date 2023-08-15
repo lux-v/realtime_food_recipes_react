@@ -7,7 +7,7 @@ import useCheckImage from "../../hooks/useCheckImage";
 import { AuthContext } from "../../context/AuthContext";
 import { getUserData } from "../../api/users";
 
-const CommentCard = ({ comment, recipe, handleDeleteCommentModal }) => {
+const CommentCard = ({ comment, handleDeleteCommentModal }) => {
   const { userData } = useContext(AuthContext);
   const [commentBy, setCommentBy] = useState(null);
 
@@ -86,7 +86,7 @@ const CommentCard = ({ comment, recipe, handleDeleteCommentModal }) => {
             {recipeCommentDate(comment?.createdAt)}
           </p>
           {comment.commentBy === userData?.uid && (
-            <TrashCan onClick={handleDeleteCommentModal(comment.id)} />
+            <TrashCan onClick={() => handleDeleteCommentModal(comment.id)} />
           )}
         </div>
       </div>

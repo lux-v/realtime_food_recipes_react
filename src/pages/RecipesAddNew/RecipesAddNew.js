@@ -20,7 +20,10 @@ import {
     SmallSelect,
     Option
 } from '../../lib/style/generalStyles'
+
 import {
+    RecipeIngredientsWrapper,
+    RecipeStepsWrapper,
     BottomSideWrapper,
     LeftSideWrapper,
     RecipeImg,
@@ -29,9 +32,6 @@ import {
     SectionHeadline,
     SectionWrapper,
     TopSideWrapper
-} from '../Recipe/RecipeStyle'
-import {
-    RecipeIngredientsWrapper, RecipeStepsWrapper
 } from './RecipesAddNewStyles'
 
 import Layout from '../../components/Layout/Layout'
@@ -164,7 +164,7 @@ const RecipesAddNew = ({ isEditRecipe }) => {
                     title={isEditRecipe ? "Edit this recipe" : "Create your own recipe"}
                     headingElements={[
                         isEditRecipe && <Button isSecondary isError callback={handleDeleteModal}>Delete</Button>,
-                        isEditRecipe&& <Button isTertiary callback={() => navigate(-1)}>Exit edit mode</Button>
+                        isEditRecipe && <Button isTertiary callback={() => navigate(-1)}>Exit edit mode</Button>
                     ]}
                     elements={
                         [

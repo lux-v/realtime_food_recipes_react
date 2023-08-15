@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { getUserData } from "../../api/users";
 import { putRecipeData } from "../../api/recipes";
 import { AuthContext } from "../../context/AuthContext";
 import useCheckImage from "../../hooks/useCheckImage";
@@ -24,15 +23,6 @@ import CommentCard from "./CommentCard";
 
 import { firestore } from "../../api/firebase";
 
-const commentByDisplayName = async (commentById) => {
-  const userData = await getUserData(commentById).then((res) => {
-    console.log("res: ", res);
-    return [res];
-  });
-
-  return userData?.displayName || "-";
-};
-
 const CommentSection = React.forwardRef(({ recipe, setRecipe }, ref) => {
   const { userData, setToastType } = useContext(AuthContext);
   const profileImgSrc = useCheckImage(userData?.photoURL, profileImg);
@@ -42,10 +32,8 @@ const CommentSection = React.forwardRef(({ recipe, setRecipe }, ref) => {
     useState(false);
 
   const handleDeleteCommentModal = (commentId) => {
-    return () => {
-      setIsDeleteCommentModalOpen(true);
-      setDeleteCommentId(commentId);
-    };
+    setIsDeleteCommentModalOpen(true);
+    setDeleteCommentId(commentId);
   };
 
   const handleDeleteComment = async () => {
@@ -105,12 +93,6 @@ const CommentSection = React.forwardRef(({ recipe, setRecipe }, ref) => {
             comment: values.comment,
             createdAt: firestore.Timestamp.fromDate(new Date()),
           });
-
-          console.log("recipeComments: ", recipeComments);
-
-          console.log("date: ", Date.now());
-          console.log("new date: ", new Date(Date.now()).toLocaleString());
-          console.log("newDate ", new Date());
 
           try {
             await putRecipeData({ comments: recipeComments }, recipe.id).then(
@@ -194,12 +176,11 @@ const CommentSection = React.forwardRef(({ recipe, setRecipe }, ref) => {
             gap: "10px",
           }}
         >
-          {recipe?.comments?.map((comment, index) => {
+          {recipe?.comments?.toReversed().map((comment, index) => {
             return (
               <CommentCard
                 key={index}
                 comment={comment}
-                recipe={recipe}
                 handleDeleteCommentModal={handleDeleteCommentModal}
               />
             );
