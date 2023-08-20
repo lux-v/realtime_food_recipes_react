@@ -1,6 +1,7 @@
 // this theme is combination of grey and blue
 
 //primary
+$primaryTransparent: #7b8b9a91;
 $primaryLight: #F2F2F2;
 $primaryMain: #7b8b9a;
 $primaryDark: #4d5867;
@@ -37,6 +38,17 @@ $bgPrimaryLight600: #6c7a8a; // gray
 $bgPrimaryLight700: #5c6978; // gray
 $bgPrimaryLight800: #4d5867; // gray
 $bgPrimaryLight900: #3d4755; // gray
+
+$bgSecondaryLight50: #e0e7ed; // blue
+$bgSecondaryLight100: #eef2f6dc; // blue
+$bgSecondaryLight200: #e0e7ed; // blue
+$bgSecondaryLight300: #c5d0de; // blue
+$bgSecondaryLight400: #9ba7b3; // blue
+$bgSecondaryLight500: #7b8b9a; // blue
+$bgSecondaryLight600: #6c7a8a; // blue
+$bgSecondaryLight700: #5c6978; // blue
+$bgSecondaryLight800: #4d5867; // blue
+$bgSecondaryLight900: #3d4755; // blue
 
 
 
@@ -80,8 +92,8 @@ $grey900: #212121;
 
 
 
-
 :export{
+    primaryTransparent: $primaryTransparent;
     primaryLight: $primaryLight;
     primaryMain: $primaryMain;
     primaryDark: $primaryDark;
@@ -116,6 +128,18 @@ $grey900: #212121;
     bgPrimaryLight700: $bgPrimaryLight700;
     bgPrimaryLight800: $bgPrimaryLight800;
     bgPrimaryLight900: $bgPrimaryLight900;
+
+    bgSecondaryLight50: $bgSecondaryLight50;
+    bgSecondaryLight100: $bgSecondaryLight100;
+    bgSecondaryLight200: $bgSecondaryLight200;
+    bgSecondaryLight300: $bgSecondaryLight300;
+    bgSecondaryLight400: $bgSecondaryLight400;
+    bgSecondaryLight500: $bgSecondaryLight500;
+    bgSecondaryLight600: $bgSecondaryLight600;
+    bgSecondaryLight700: $bgSecondaryLight700;
+    bgSecondaryLight800: $bgSecondaryLight800;
+    bgSecondaryLight900: $bgSecondaryLight900;
+    
     
 
     successLight: $successLight;

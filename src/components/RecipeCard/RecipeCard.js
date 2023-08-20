@@ -25,14 +25,14 @@ import {
 import Chip from "../Chip/Chip";
 import RecipeImagePlaceholder from "../../assets/img/recipe-image-placeholder.png";
 
-const RecipeCard = ({ onClick, recipe }) => {
+const RecipeCard = ({ onClick, recipe, maxWidth }) => {
   const { userData } = useContext(AuthContext);
   const imageSrc = useCheckImage(recipe.imgUrl, RecipeImagePlaceholder);
   const { isLikedByUser, handleLikeRecipe } = useRecipeLike(recipe, userData);
 
 
   return (
-    <RecipieCardWrapper onClick={onClick}>
+    <RecipieCardWrapper onClick={onClick} maxWidth={maxWidth}>
       <ImageWrapper>
         <RecipeImage src={imageSrc} />
       </ImageWrapper>

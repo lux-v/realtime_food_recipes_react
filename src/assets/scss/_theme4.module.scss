@@ -1,4 +1,5 @@
 // primary
+$primaryTransparent: #0a23429c;
 $primaryLight: #d7e1ec;
 $primaryMain: #0a2342;
 $primaryDark: #091f3c;
@@ -108,6 +109,7 @@ $darkTextSecondary: #8492c4;
 
 :export {
     // primary
+    primaryTransparent: $primaryTransparent;
     primaryLight: $primaryLight;
     primary200: $primary200;
     primaryMain: $primaryMain;

@@ -1,6 +1,7 @@
 // this theme is combination of purple
 
 // primary
+$primaryTransparent: #3f51b5a4;
 $primaryLight: #e6e8f3;
 $primaryMain: #3f51b5;
 $primaryDark: #3949ab;
@@ -119,6 +120,7 @@ $darkTextSecondary: #8492c4;
     // paper & background
  
     // primary
+    primaryTransparent: $primaryTransparent;
     primaryLight: $primaryLight;
     primary200: $primary200;
     primary300: $primary300;

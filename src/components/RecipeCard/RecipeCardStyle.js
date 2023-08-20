@@ -66,7 +66,8 @@ export const RecipieCardWrapper = styled.div`
 
   width: 100%;
   height: auto;
-  max-width: 650px;
+  /* max-width: 650px; */
+  max-width: ${({ maxWidth }) => maxWidth || "650px"};
   max-height: 500px;
   padding: 10px;
 
