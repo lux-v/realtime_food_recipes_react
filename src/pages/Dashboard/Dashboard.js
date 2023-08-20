@@ -83,14 +83,14 @@ const Dashboard = () => {
                 </StatsCardWrapper>
                 <StatsCardWrapper>
                     {mostLikedRecipe ? (
-                        <StatsCard maxWidth="100%" height="100%" value={`The most Popular Recipe - ${mostLikedRecipe.likedBy.length} likes`} variant='primary'>
+                        <StatsCard maxWidth="100%" height="100%" value={`The Most Popular Recipe - ${mostLikedRecipe.likedBy.length} likes`} variant='primary'>
                             <MostPopularRecipe
                                 mostPopularRecipe={mostLikedRecipe}
                             />
                         </StatsCard>
                     )
                         : (
-                            <StatsCard maxWidth="100%" height="auto" value="The most Popular Recipe" variant='primary-dark'>
+                            <StatsCard maxWidth="100%" height="auto" value="The Most Popular Recipe" variant='primary-dark'>
                                 <LoadingSpinner />
                             </StatsCard>
                         )
