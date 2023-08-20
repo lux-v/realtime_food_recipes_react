@@ -9,9 +9,11 @@ import Layout from '../../components/Layout/Layout.js'
 import StatsCard from '../../components/StatsCard/StatsCard.js'
 //icons
 import { ReactComponent as DoubleTicks } from '../../assets/icons/double-tick.svg'
+import { ReactComponent as RecipesIcon } from '../../assets/icons/recipes-icon.svg'
 import RecipeCard from '../../components/RecipeCard/RecipeCard.js'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner.js'
 import { StatsCardWrapper } from './DashboardStyle.js'
+import MostPopularRecipe from '../../components/MostPopularRecipe/MostPopularRecipe.js'
 
 
 
@@ -67,30 +69,28 @@ const Dashboard = () => {
                 <StatsCardWrapper                >
                     <StatsCard
                         maxWidth="100%"
-                        variant='primary'
+                        variant='primary-dark'
                         title="Total Recipes"
                         value={totalRecipes ?? 0}
-                        icon={<DoubleTicks />}
+                        icon={<RecipesIcon />}
                     />
                     <StatsCard
                         maxWidth="100%"
                         title="My Total Recipes"
                         value={myRecipesNumber}
-                        icon={<DoubleTicks />}
+                        icon={<RecipesIcon />}
                     />
                 </StatsCardWrapper>
                 <StatsCardWrapper>
                     {mostLikedRecipe ? (
-                        <StatsCard maxWidth="100%" height="auto" value="The most Popular Recipe" title={`Likes: ${mostLikedRecipe.likedBy.length || '0'}`} variant='primary-dark'>
-                            <RecipeCard
-                                maxWidth="100%"
-                                recipe={mostLikedRecipe}
-                                onClick={() => navigate(`/recipes/${mostLikedRecipe.id}`)}
+                        <StatsCard maxWidth="100%" height="100%" value={`The most Popular Recipe - ${mostLikedRecipe.likedBy.length} likes`} variant='primary'>
+                            <MostPopularRecipe
+                                mostPopularRecipe={mostLikedRecipe}
                             />
                         </StatsCard>
                     )
                         : (
-                            <StatsCard maxWidth="100%" height="auto" value="The most Popular Recipe" title={`Likes: 0`} variant='primary-dark'>
+                            <StatsCard maxWidth="100%" height="auto" value="The most Popular Recipe" variant='primary-dark'>
                                 <LoadingSpinner />
                             </StatsCard>
                         )
@@ -99,18 +99,16 @@ const Dashboard = () => {
                         <StatsCard
                             maxWidth="100%"
                             height="auto"
-                            value="My Most Popular Recipe"
-                            title={`Likes: ${myMostLikedRecipe.likedBy.length || '0'}`}
+                            value={`My Most Popular Recipe - ${myMostLikedRecipe.likedBy.length} likes`}
                         >
-                            <RecipeCard
-                                maxWidth="100%"
-                                recipe={myMostLikedRecipe}
-                                onClick={() => navigate(`/recipes/${myMostLikedRecipe.id}`)}
+
+                            <MostPopularRecipe
+                                mostPopularRecipe={myMostLikedRecipe}
                             />
                         </StatsCard>
                     )
                         : (
-                            <StatsCard maxWidth="100%" height="auto" value={myMostLikedRecipe !== undefined && "My Most Popular Recipe"} title={myMostLikedRecipe !== undefined && `Likes: 0`} variant='primary-dark'>
+                            <StatsCard maxWidth="100%" height="auto" value={myMostLikedRecipe !== undefined && "My Most Popular Recipe"} variant='primary-dark'>
 
                                 {myMostLikedRecipe === undefined ?
                                     <>
@@ -132,7 +130,7 @@ const Dashboard = () => {
 
 
             </div>
-        </Layout>
+        </Layout >
     )
 }
 
