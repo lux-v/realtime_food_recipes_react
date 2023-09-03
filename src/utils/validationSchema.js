@@ -59,9 +59,12 @@ export const AddNewRecipeSchema = Yup.object({
         .url('Image URL is not valid'),
     cookTimeMin: Yup.number()
         .typeError('The cook time must be a number')
+        .integer('Cook time must be a whole number')
         .min(1, 'Cook time must be at least 1 minute')
         .max(1440, 'Cook time must be less than 1440 minutes (24 hours)').required('Cook time is required'),
-    servings: Yup.number().typeError('Servings must be a number')
+    servings: Yup.number()
+        .typeError('Servings must be a number')
+        .integer('Serving number must be a whole number')
         .min(1, 'Serving number must be at least 1')
         .max(50, 'Serving number must be less than 50').required('Serving number is required'),
     category: Yup.string(),
