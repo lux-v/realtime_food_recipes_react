@@ -111,8 +111,8 @@ const AccountSettings = () => {
                         <Card title="Preset color" >
                             <PresetColor />
                         </Card>
-                        <Card title="Mode">
-                            {/* <div style={{ display: "flex", gap: "5px" }}>
+                        {/* <Card title="Mode">
+                            <div style={{ display: "flex", gap: "5px" }}>
                                 <input type="radio" id="dark" name="mode" value="dark" />
                                 <label htmlFor="dark">Dark</label><br />
                             </div>
@@ -120,7 +120,7 @@ const AccountSettings = () => {
                                 <input type="radio" id="light" name="mode" value="light" />
                                 <label htmlFor="light">Light</label><br />
 
-                            </div> */}
+                            </div>
                             <p>
                                 Ability to change the mode of the application (light / dark)
                             </p>
@@ -133,7 +133,7 @@ const AccountSettings = () => {
                             <p>Total recipes likes: xy</p>
                             <p>Mosed liked recipe: component...</p>
                             <p>Avrage recipe grade:(1-5 stars)</p>
-                        </Card>
+                        </Card> */}
                     </CardWrapper>
                 </CardsWrapper>
             </Layout>
