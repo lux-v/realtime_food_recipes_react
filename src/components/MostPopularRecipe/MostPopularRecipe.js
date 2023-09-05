@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { RecipeName } from '../../pages/Recipe/RecipeStyle'
 import { MostPopularRecipeName, RecipeNameWrapper } from './MostPopularRecipeStyle'
 
 const MostPopularRecipe = ({

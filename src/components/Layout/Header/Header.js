@@ -40,7 +40,7 @@ const Header = () => {
     <>
       <HeaderWrapper>
         <LeftSideWrapper>
-          <LogoLink to="/dashboard">
+          <LogoLink to="/">
             <LogoElement src={LogoImg} alt="logo" />
           </LogoLink>
           <HamburgerIcon left onClick={handleHamburgerClick} />

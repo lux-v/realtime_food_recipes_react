@@ -28,7 +28,7 @@ import {
   SummaryAndImageWrapper,
   ButtonsAndDescriptionWrapper,
   IngredientsAndStepsWrapper,
-} from "./RecipeStyle";
+} from "./RecipeDetailStyle";
 import {
   AddFavorite,
   CommentIcon,
@@ -55,7 +55,7 @@ import { ReactComponent as FacebookIcon } from "../../assets/icons/facebook.svg"
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
-const Recipe = () => {
+const RecipeDetail = () => {
   const navigate = useNavigate();
   const recipeId = useParams().id;
   const { userData } = useContext(AuthContext);
@@ -338,4 +338,4 @@ const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default RecipeDetail;

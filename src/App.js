@@ -20,11 +20,10 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Toast from "./components/Toast/Toast";
 import Landing from "./pages/Landing/Landing";
 import Recipes from "./pages/Recipes/Recipes";
-import Recipe from "./pages/Recipe/Recipe";
+import Recipe from "./pages/RecipeDetail/RecipeDetail";
 import RecipesAddNew from "./pages/RecipesAddNew/RecipesAddNew";
 import Backdrop from "./components/Backdrop/Backdrop";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import AccountStats from "./pages/AccountStats/AccountStats";
 
 import Palette from "./lib/style/theme/palette";
 
@@ -118,7 +117,6 @@ function App() {
             />
 
             <Route path="/account-settings" element={<AccountSettings />} />
-            <Route path="/profile/account-stats" element={<AccountStats />} />
           </Route>
         </Routes>
       </Router>

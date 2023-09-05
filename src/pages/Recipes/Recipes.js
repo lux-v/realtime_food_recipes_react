@@ -31,7 +31,7 @@ import { RecipeIngredientsWrapper } from "../RecipesAddNew/RecipesAddNewStyles";
 import Chip from "../../components/Chip/Chip";
 import { ReactComponent as CloseIcon } from "../../assets/img/x-icon.svg";
 import Modal from "../../components/Modal/Modal";
-import { SectionHeadline, SectionWrapper } from "../Recipe/RecipeStyle";
+import { SectionHeadline, SectionWrapper } from "../RecipeDetail/RecipeDetailStyle";
 import {
   categoryOptions,
   cookingMethodOptions,
