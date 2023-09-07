@@ -1,25 +1,27 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+//api
 import { getAllRecipesData } from "../../api/recipes";
-
-import Layout from "../../components/Layout/Layout";
+//formik
+import { FieldArray, Formik } from "formik";
+//constants
+import {
+  categoryOptions,
+  cookingMethodOptions,
+  cuisineOptions,
+  dieateryRestrictionsOptions,
+} from "../../lib/constants";
+//styles
 import {
   LoadingSpinnerWrapper,
   RecipesWrapper,
   Filter as FilterIcon,
   FilterWrapper,
 } from "./RecipesStyle";
-
-import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import Button from "../../components/Button/Button";
-import Card from "../../components/Card/Card";
-import { FieldArray, Formik } from "formik";
 import {
   Form,
   SmallField,
-  SearchBar,
   ErrorMesagge,
   ErrorMessageCustom,
   TwoInRow,
@@ -27,17 +29,21 @@ import {
   Option,
   FormRow,
 } from "../../lib/style/generalStyles";
-import { RecipeIngredientsWrapper } from "../RecipesAddNew/RecipesAddNewStyles";
-import Chip from "../../components/Chip/Chip";
-import { ReactComponent as CloseIcon } from "../../assets/img/x-icon.svg";
-import Modal from "../../components/Modal/Modal";
 import { SectionHeadline, SectionWrapper } from "../RecipeDetail/RecipeDetailStyle";
-import {
-  categoryOptions,
-  cookingMethodOptions,
-  cuisineOptions,
-  dieateryRestrictionsOptions,
-} from "../../lib/constants";
+import { RecipeIngredientsWrapper } from "../RecipesAddNew/RecipesAddNewStyles";
+//icons
+import { ReactComponent as CloseIcon } from "../../assets/img/x-icon.svg";
+//components
+import Layout from "../../components/Layout/Layout";
+import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Button from "../../components/Button/Button";
+import Card from "../../components/Card/Card";
+import RecipesSearchBar from "../../components/RecipesSearchBar/RecipesSearchBar";
+import Chip from "../../components/Chip/Chip";
+import Modal from "../../components/Modal/Modal";
+
+
 
 const FilterContent = ({ formikRef }) => {
   // I want to have an ability to filter by:
@@ -492,10 +498,10 @@ const Recipes = () => {
                 <FilterIcon />
                 Filter
               </FilterWrapper>,
-              <SearchBar
-                placeholder="Search name or description"
-                onChange={handleSearchInput}
-              />,
+              <RecipesSearchBar
+                callback={handleSearchInput}
+              />
+              ,
             ]}
           >
             <div style={{ marginBottom: "25px" }}>
