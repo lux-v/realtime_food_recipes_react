@@ -1,7 +1,7 @@
 import React from "react";
 import { Button as ButtonWrapper } from "./ButtonStyle";
 
-function Button({
+const Button = ({
   isSecondary = false,
   isTertiary = false,
   isCancel = false,
@@ -14,7 +14,7 @@ function Button({
   isHidden,
   isTransparent,
   isError,
-}) {
+}) => {
   return (
     <ButtonWrapper
       isSecondary={isSecondary}
@@ -35,3 +35,4 @@ function Button({
 }
 
 export default Button;
+
